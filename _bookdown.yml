@@ -1,5 +1,16 @@
-book_filename: "testings"
-delete_merged_file: true
+book_filename: "R for Excel Users"
 language:
   ui:
     chapter_name: "Chapter "
+rmd_files: [
+  "index.Rmd",
+  "overview.Rmd",
+  "rmarkdown.Rmd",
+  "excel-meet-r.Rmd",
+  "readxl.Rmd",
+  "readxl-multiple-sheets.Rmd",
+  "data-import.Rmd",
+  "better-practices.Rmd",
+  "output-collaborate.Rmd"
+ ]
+delete_merged_file: true
