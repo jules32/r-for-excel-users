@@ -1,4 +1,5 @@
-# Title
+# `readxl` {#readxl}
+Note for Allison: the `{#readxl}` above lets us reference it from another chapter...not sure how much we'll use it but it's possible (and doesn't hurt to have)
 
 ## Summary (a few sentences)
 ## Objectives (more detailed, bulletpoints?)
@@ -10,4 +11,3 @@
 ## Our Turn Your Turn 2
 ## Efficiency Tips
 
-### Testing 3rd
