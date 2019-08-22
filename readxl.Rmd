@@ -1,9 +1,25 @@
 # `readxl` {#readxl}
-Note for Allison: the `{#readxl}` above lets us reference it from another chapter...not sure how much we'll use it but it's possible (and doesn't hurt to have)
+Note for Allison: the `{#readxl}` above lets us reference it from another chapter...not sure how much we'll use it but it's possible (and doesn't hurt to have). Cool, thanks Julie! 
 
 ## Summary (a few sentences)
+
+The **readxl** package makes it easy to import tabular data from Excel spreadsheets (.xls or .xlsx files) and includes several options for cleaning data during import. **readxl** has no external dependencies and functions on any operating system, making it an OS- and user-friendly package that simplifies getting your data from Excel into R. 
+
 ## Objectives (more detailed, bulletpoints?)
+
+- Use readxl::read_excel() to read in an entire spreadsheet
+- Use readxl::read_excel() to read in pieces of a spreadsheet
+- Specify column names when importing Excel data
+- Replace a specific string/value with 'NA' 
+- Skip *n* rows when importing
+- Read in multiple worksheets (note to Julie: I actually think this is fine to include...purrr::map() can be explained in a really simple way) 
+
 ## Resources
+
+- https://readxl.tidyverse.org/
+- https://readxl.tidyverse.org/articles/articles/readxl-workflows.html
+
+
 ## Lessons teaching for each objective….. (objectives, examples)
 ## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
 ## Interludes (deep thoughts/openscapes)
