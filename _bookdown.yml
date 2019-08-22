@@ -8,7 +8,6 @@ rmd_files: [
   "rmarkdown.Rmd",
   "excel-meet-r.Rmd",
   "readxl.Rmd",
-  "readxl-multiple-sheets.Rmd",
   "data-import.Rmd",
   "better-practices.Rmd",
   "output-collaborate.Rmd"

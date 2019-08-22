@@ -1,3 +1,12 @@
-# Methods
+# Excel, Meet R
 
-We describe our methods in this chapter.
+## Summary (a few sentences)
+## Objectives (more detailed, bulletpoints?)
+## Resources
+## Lessons teaching for each objective….. (objectives, examples)
+## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
+## Interludes (deep thoughts/openscapes)
+## Our Turn Your Turn 1
+## Our Turn Your Turn 2
+## Efficiency Tips
+
