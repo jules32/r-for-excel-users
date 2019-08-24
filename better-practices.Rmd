@@ -1,12 +1,72 @@
-# Better practices
+# Better practices [needs a better name]
+How to be a nimble useR
+Modern useRs are nimble internet useRs
+something clever about cleaning 
+I am the worst at naming things
 
 ## Summary (a few sentences)
+
+R ecosystem evolves and improves due to contributed work by the community, and this is a good thing. Being a nimble useR means being able to navigate/keep tabs on this ecosystem and find what you need. It also means working reproducibly, so you can re-run and update things more easily. Here we will teach you how to expect things and help yourself. Pay attention to urls.
+
 ## Objectives (more detailed, bulletpoints?)
+
+- expect there is a better way, how and where to look (20 mins)
+  - CRAN
+  - Twitter #rstats
+  - rOpenSci
+  - RStudio
+  - Example: how to Google.
+- hands-on with janitor (30+ mins)
+  - discovery and quality assurance
+  - installing from GitHub
+  - big payoff for little effort
+- hands-on with another excel-useful example: skimr?   
+- reproducibility (20 mins)
+  - it's important, scripted
+
+
 ## Resources
+
+- Wilson et al. 2014 "Good enough practices"
+
 ## Lessons teaching for each objective….. (objectives, examples)
+
+### Expect there's a better way chat
+
+- give time for them to google?
+
+### Janitor
+
+janitor & other things that will make your life easier with limited effort
+Janitor: up till now the column names have been fine. Until now.
+
+#### Our turn your turn
+Walk through and example and leave our code up, and have you do it but clean another dataset. Work with a neighbor.
+
+### Example: How to Google
+Pay attention to URLs, build github/rmarkdown savviness (ex: raw.githubusercontent.com)
+
+- I read this blog: https://blog.revolutionanalytics.com/2018/08/how-to-use-r-with-excel.html
+- I’ve never heard of click on `openxlsx`, what is it
+- Takes me here https://www.rdocumentation.org/packages/openxlsx/versions/4.1.0.1, but I want more info. How recently was it worked on? Does it interface with tidyverse? Click on “news”
+- Takes me here. https://raw.githubusercontent.com/awalker89/openxlsx/master/NEWS . Not useful. But from this URL, - I see the username so I can edit this url to be
+https://github.com/awalker89/openxlsx/
+- 1st thing: most recent commit was a year ago. Can poke around more, are there issues open, are they taken care of? Etc. I will probably not pursue using this right now. But good to have learned about it. 
+
 ## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
 ## Interludes (deep thoughts/openscapes)
-## Our Turn Your Turn 1
 ## Our Turn Your Turn 2
 ## Efficiency Tips
+ 
+ - browser efficiency tips
+   - Rmd/github anchors for urls
+   - press command to open a new tab
+   
 
+Reproducibility is important (this might be new to some people)
+Example: run everything start to finish and then closing it all and trying to do again
+In excel
+Vs R
+If your computer shuts off are you nervous to close it?
+Recreate it
+“What they didn’t forget to teach you about R” WTDF. uncool 

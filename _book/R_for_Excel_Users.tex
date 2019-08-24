@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-08-17}
+    \date{2019-08-24}
 
 \usepackage{booktabs}
 
@@ -298,16 +298,43 @@ References Brainstorm
 \hypertarget{readxl}{%
 \chapter{\texorpdfstring{\texttt{readxl}}{readxl}}\label{readxl}}
 
-Note for Allison: the \texttt{\{\#readxl\}} above lets us reference it from another chapter\ldots{}not sure how much we'll use it but it's possible (and doesn't hurt to have)
+Note for Allison: the \texttt{\{\#readxl\}} above lets us reference it from another chapter\ldots{}not sure how much we'll use it but it's possible (and doesn't hurt to have). Cool, thanks Julie!
 
 \hypertarget{summary-a-few-sentences-2}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences-2}}
 
+The \textbf{readxl} package makes it easy to import tabular data from Excel spreadsheets (.xls or .xlsx files) and includes several options for cleaning data during import. \textbf{readxl} has no external dependencies and functions on any operating system, making it an OS- and user-friendly package that simplifies getting your data from Excel into R.
+
 \hypertarget{objectives-more-detailed-bulletpoints-2}{%
 \section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-2}}
 
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Use readxl::read\_excel() to read in an Excel worksheet
+\item
+  Use readxl::read\_excel() to read in parts of a worksheet (by cell range)
+\item
+  Specify column names when importing Excel data
+\item
+  Replace a specific string/value with `NA'
+\item
+  Skip \emph{n} rows when importing an Excel worksheet
+\item
+  Read in multiple Excel worksheets (note to Julie: I actually think this is fine to include\ldots{}purrr::map() can be explained in a really simple way)
+\item
+  Something about readxl workflows (e.g. \%\textgreater{}\% write\_csv())
+\end{enumerate}
+
 \hypertarget{resources-2}{%
 \section{Resources}\label{resources-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  \url{https://readxl.tidyverse.org/}
+\end{itemize}
 
 \hypertarget{lessons-teaching-for-each-objective..-objectives-examples-2}{%
 \section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-2}}
@@ -357,20 +384,115 @@ Note for Allison: the \texttt{\{\#readxl\}} above lets us reference it from anot
 \hypertarget{efficiency-tips-3}{%
 \section{Efficiency Tips}\label{efficiency-tips-3}}
 
-\hypertarget{better-practices}{%
-\chapter{Better practices}\label{better-practices}}
+\hypertarget{better-practices-needs-a-better-name}{%
+\chapter{Better practices {[}needs a better name{]}}\label{better-practices-needs-a-better-name}}
+
+How to be a nimble useR
+Modern useRs are nimble internet useRs
+something clever about cleaning
+I am the worst at naming things
 
 \hypertarget{summary-a-few-sentences-4}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences-4}}
 
+R ecosystem evolves and improves due to contributed work by the community, and this is a good thing. Being a nimble useR means being able to navigate/keep tabs on this ecosystem and find what you need. It also means working reproducibly, so you can re-run and update things more easily. Here we will teach you how to expect things and help yourself. Pay attention to urls.
+
 \hypertarget{objectives-more-detailed-bulletpoints-4}{%
 \section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-4}}
+
+\begin{itemize}
+\tightlist
+\item
+  expect there is a better way, how and where to look (20 mins)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    CRAN
+  \item
+    Twitter \#rstats
+  \item
+    rOpenSci
+  \item
+    RStudio
+  \item
+    Example: how to Google.
+  \end{itemize}
+\item
+  hands-on with janitor (30+ mins)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    discovery and quality assurance
+  \item
+    installing from GitHub
+  \item
+    big payoff for little effort
+  \end{itemize}
+\item
+  hands-on with another excel-useful example: skimr?\\
+\item
+  reproducibility (20 mins)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    it's important, scripted
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{resources-4}{%
 \section{Resources}\label{resources-4}}
 
+\begin{itemize}
+\tightlist
+\item
+  Wilson et al.~2014 ``Good enough practices''
+\end{itemize}
+
 \hypertarget{lessons-teaching-for-each-objective..-objectives-examples-4}{%
 \section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-4}}
+
+\hypertarget{expect-theres-a-better-way-chat}{%
+\subsection{Expect there's a better way chat}\label{expect-theres-a-better-way-chat}}
+
+\begin{itemize}
+\tightlist
+\item
+  give time for them to google?
+\end{itemize}
+
+\hypertarget{janitor}{%
+\subsection{Janitor}\label{janitor}}
+
+janitor \& other things that will make your life easier with limited effort
+Janitor: up till now the column names have been fine. Until now.
+
+\hypertarget{our-turn-your-turn}{%
+\subsubsection{Our turn your turn}\label{our-turn-your-turn}}
+
+Walk through and example and leave our code up, and have you do it but clean another dataset. Work with a neighbor.
+
+\hypertarget{example-how-to-google}{%
+\subsection{Example: How to Google}\label{example-how-to-google}}
+
+Pay attention to URLs, build github/rmarkdown savviness (ex: raw.githubusercontent.com)
+
+\begin{itemize}
+\tightlist
+\item
+  I read this blog: \url{https://blog.revolutionanalytics.com/2018/08/how-to-use-r-with-excel.html}
+\item
+  I've never heard of click on \texttt{openxlsx}, what is it
+\item
+  Takes me here \url{https://www.rdocumentation.org/packages/openxlsx/versions/4.1.0.1}, but I want more info. How recently was it worked on? Does it interface with tidyverse? Click on ``news''
+\item
+  Takes me here. \url{https://raw.githubusercontent.com/awalker89/openxlsx/master/NEWS} . Not useful. But from this URL, - I see the username so I can edit this url to be
+  \url{https://github.com/awalker89/openxlsx/}
+\item
+  1st thing: most recent commit was a year ago. Can poke around more, are there issues open, are they taken care of? Etc. I will probably not pursue using this right now. But good to have learned about it.
+\end{itemize}
 
 \hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4}{%
 \section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4}}
@@ -378,14 +500,33 @@ Note for Allison: the \texttt{\{\#readxl\}} above lets us reference it from anot
 \hypertarget{interludes-deep-thoughtsopenscapes-4}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-4}}
 
-\hypertarget{our-turn-your-turn-1-4}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-4}}
-
 \hypertarget{our-turn-your-turn-2-4}{%
 \section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-4}}
 
 \hypertarget{efficiency-tips-4}{%
 \section{Efficiency Tips}\label{efficiency-tips-4}}
+
+\begin{itemize}
+\tightlist
+\item
+  browser efficiency tips
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Rmd/github anchors for urls
+  \item
+    press command to open a new tab
+  \end{itemize}
+\end{itemize}
+
+Reproducibility is important (this might be new to some people)
+Example: run everything start to finish and then closing it all and trying to do again
+In excel
+Vs R
+If your computer shuts off are you nervous to close it?
+Recreate it
+``What they didn't forget to teach you about R'' WTDF. uncool
 
 \hypertarget{outputting-files-collaborating}{%
 \chapter{Outputting files \& collaborating}\label{outputting-files-collaborating}}
@@ -408,8 +549,8 @@ Note for Allison: the \texttt{\{\#readxl\}} above lets us reference it from anot
 \hypertarget{interludes-deep-thoughtsopenscapes-5}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-5}}
 
-\hypertarget{our-turn-your-turn-1-5}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-5}}
+\hypertarget{our-turn-your-turn-1-4}{%
+\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-4}}
 
 \hypertarget{our-turn-your-turn-2-5}{%
 \section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-5}}

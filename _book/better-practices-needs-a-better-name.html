@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Outputting files &amp; collaborating | R for the Excel User</title>
+  <title>Chapter 7 Better practices [needs a better name] | R for the Excel User</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Outputting files &amp; collaborating | R for the Excel User" />
+  <meta property="og:title" content="Chapter 7 Better practices [needs a better name] | R for the Excel User" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Outputting files &amp; collaborating | R for the Excel User" />
+  <meta name="twitter:title" content="Chapter 7 Better practices [needs a better name] | R for the Excel User" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="better-practices-needs-a-better-name.html">
-
+<link rel="prev" href="import.html">
+<link rel="next" href="outputting-files-collaborating.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -220,43 +220,103 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="outputting-files-collaborating" class="section level1">
-<h1><span class="header-section-number">Chapter 8</span> Outputting files &amp; collaborating</h1>
-<div id="summary-a-few-sentences-5" class="section level2">
-<h2><span class="header-section-number">8.1</span> Summary (a few sentences)</h2>
+<div id="better-practices-needs-a-better-name" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Better practices [needs a better name]</h1>
+<p>How to be a nimble useR
+Modern useRs are nimble internet useRs
+something clever about cleaning
+I am the worst at naming things</p>
+<div id="summary-a-few-sentences-4" class="section level2">
+<h2><span class="header-section-number">7.1</span> Summary (a few sentences)</h2>
+<p>R ecosystem evolves and improves due to contributed work by the community, and this is a good thing. Being a nimble useR means being able to navigate/keep tabs on this ecosystem and find what you need. It also means working reproducibly, so you can re-run and update things more easily. Here we will teach you how to expect things and help yourself. Pay attention to urls.</p>
 </div>
-<div id="objectives-more-detailed-bulletpoints-5" class="section level2">
-<h2><span class="header-section-number">8.2</span> Objectives (more detailed, bulletpoints?)</h2>
+<div id="objectives-more-detailed-bulletpoints-4" class="section level2">
+<h2><span class="header-section-number">7.2</span> Objectives (more detailed, bulletpoints?)</h2>
+<ul>
+<li>expect there is a better way, how and where to look (20 mins)
+<ul>
+<li>CRAN</li>
+<li>Twitter #rstats</li>
+<li>rOpenSci</li>
+<li>RStudio</li>
+<li>Example: how to Google.</li>
+</ul></li>
+<li>hands-on with janitor (30+ mins)
+<ul>
+<li>discovery and quality assurance</li>
+<li>installing from GitHub</li>
+<li>big payoff for little effort</li>
+</ul></li>
+<li>hands-on with another excel-useful example: skimr?<br />
+</li>
+<li>reproducibility (20 mins)
+<ul>
+<li>it’s important, scripted</li>
+</ul></li>
+</ul>
 </div>
-<div id="resources-5" class="section level2">
-<h2><span class="header-section-number">8.3</span> Resources</h2>
+<div id="resources-4" class="section level2">
+<h2><span class="header-section-number">7.3</span> Resources</h2>
+<ul>
+<li>Wilson et al. 2014 “Good enough practices”</li>
+</ul>
 </div>
-<div id="lessons-teaching-for-each-objective..-objectives-examples-5" class="section level2">
-<h2><span class="header-section-number">8.4</span> Lessons teaching for each objective….. (objectives, examples)</h2>
+<div id="lessons-teaching-for-each-objective..-objectives-examples-4" class="section level2">
+<h2><span class="header-section-number">7.4</span> Lessons teaching for each objective….. (objectives, examples)</h2>
+<div id="expect-theres-a-better-way-chat" class="section level3">
+<h3><span class="header-section-number">7.4.1</span> Expect there’s a better way chat</h3>
+<ul>
+<li>give time for them to google?</li>
+</ul>
 </div>
-<div id="fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-5" class="section level2">
-<h2><span class="header-section-number">8.5</span> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</h2>
+<div id="janitor" class="section level3">
+<h3><span class="header-section-number">7.4.2</span> Janitor</h3>
+<p>janitor &amp; other things that will make your life easier with limited effort
+Janitor: up till now the column names have been fine. Until now.</p>
+<div id="our-turn-your-turn" class="section level4">
+<h4><span class="header-section-number">7.4.2.1</span> Our turn your turn</h4>
+<p>Walk through and example and leave our code up, and have you do it but clean another dataset. Work with a neighbor.</p>
 </div>
-<div id="interludes-deep-thoughtsopenscapes-5" class="section level2">
-<h2><span class="header-section-number">8.6</span> Interludes (deep thoughts/openscapes)</h2>
 </div>
-<div id="our-turn-your-turn-1-4" class="section level2">
-<h2><span class="header-section-number">8.7</span> Our Turn Your Turn 1</h2>
+<div id="example-how-to-google" class="section level3">
+<h3><span class="header-section-number">7.4.3</span> Example: How to Google</h3>
+<p>Pay attention to URLs, build github/rmarkdown savviness (ex: raw.githubusercontent.com)</p>
+<ul>
+<li>I read this blog: <a href="https://blog.revolutionanalytics.com/2018/08/how-to-use-r-with-excel.html" class="uri">https://blog.revolutionanalytics.com/2018/08/how-to-use-r-with-excel.html</a></li>
+<li>I’ve never heard of click on <code>openxlsx</code>, what is it</li>
+<li>Takes me here <a href="https://www.rdocumentation.org/packages/openxlsx/versions/4.1.0.1" class="uri">https://www.rdocumentation.org/packages/openxlsx/versions/4.1.0.1</a>, but I want more info. How recently was it worked on? Does it interface with tidyverse? Click on “news”</li>
+<li>Takes me here. <a href="https://raw.githubusercontent.com/awalker89/openxlsx/master/NEWS" class="uri">https://raw.githubusercontent.com/awalker89/openxlsx/master/NEWS</a> . Not useful. But from this URL, - I see the username so I can edit this url to be
+<a href="https://github.com/awalker89/openxlsx/" class="uri">https://github.com/awalker89/openxlsx/</a></li>
+<li>1st thing: most recent commit was a year ago. Can poke around more, are there issues open, are they taken care of? Etc. I will probably not pursue using this right now. But good to have learned about it.</li>
+</ul>
 </div>
-<div id="our-turn-your-turn-2-5" class="section level2">
-<h2><span class="header-section-number">8.8</span> Our Turn Your Turn 2</h2>
 </div>
-<div id="efficiency-tips-5" class="section level2">
-<h2><span class="header-section-number">8.9</span> Efficiency Tips</h2>
+<div id="fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4" class="section level2">
+<h2><span class="header-section-number">7.5</span> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</h2>
+</div>
+<div id="interludes-deep-thoughtsopenscapes-4" class="section level2">
+<h2><span class="header-section-number">7.6</span> Interludes (deep thoughts/openscapes)</h2>
+</div>
+<div id="our-turn-your-turn-2-4" class="section level2">
+<h2><span class="header-section-number">7.7</span> Our Turn Your Turn 2</h2>
+</div>
+<div id="efficiency-tips-4" class="section level2">
+<h2><span class="header-section-number">7.8</span> Efficiency Tips</h2>
+<ul>
+<li>browser efficiency tips
+<ul>
+<li>Rmd/github anchors for urls</li>
+<li>press command to open a new tab</li>
+</ul></li>
+</ul>
+<p>Reproducibility is important (this might be new to some people)
+Example: run everything start to finish and then closing it all and trying to do again
+In excel
+Vs R
+If your computer shuts off are you nervous to close it?
+Recreate it
+“What they didn’t forget to teach you about R” WTDF. uncool</p>
 
-<div id="refs" class="references">
-<div>
-<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.</p>
-</div>
-<div>
-<p>———. 2019. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.</p>
-</div>
-</div>
 </div>
 </div>
             </section>
@@ -264,8 +324,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="better-practices-needs-a-better-name.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="import.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="outputting-files-collaborating.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
