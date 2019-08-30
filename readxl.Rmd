@@ -13,7 +13,7 @@ The **readxl** package makes it easy to import tabular data from Excel spreadshe
 4. Replace a specific string/value with 'NA' 
 5. Skip *n* rows when importing an Excel worksheet
 6. Read in multiple Excel worksheets (note to Julie: I actually think this is fine to include...purrr::map() can be explained in a really simple way)
-7. Something about readxl workflows (e.g. %>% write_csv())
+7. Something about readxl workflows (e.g. %>% write_csv() to keep a copy of the raw data in a project)?? 
 
 ## Resources
 

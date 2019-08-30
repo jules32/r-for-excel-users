@@ -1,0 +1,16 @@
+---
+title: "Fish counts data curation"
+author: "Allison Horst"
+date: "8/30/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Curating the 'fish counts' LTER data into a perfect, tidy, ggplot-able CSV file. 
+
+**Info:** https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-sbc&identifier=17&revision=newest
+
+**Citation:** Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Fish abundance. Environmental Data Initiative. https://doi.org/10.6073/pasta/dbd1d5f0b225d903371ce89b09ee7379. Dataset accessed 8/30/2019.
