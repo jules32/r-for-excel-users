@@ -9,8 +9,23 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+library(tidyverse)
+library(janitor)
+```
+
+
 Curating the 'fish counts' LTER data into a perfect, tidy, ggplot-able CSV file. 
 
 **Info:** https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-sbc&identifier=17&revision=newest
 
 **Citation:** Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Fish abundance. Environmental Data Initiative. https://doi.org/10.6073/pasta/dbd1d5f0b225d903371ce89b09ee7379. Dataset accessed 8/30/2019.
+
+1. Get the raw data:
+```{r}
+
+fish_counts <- read_csv("fish_counts_raw.csv") %>% 
+  clean_names()
+
+```
+
