@@ -1,0 +1,90 @@
+---
+title: "Invertebrate counts data curation"
+author: "Julie Lowndes"
+date: "09/02/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE)
+```
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(janitor)
+library(here)
+library(skimr)
+```
+
+**TODO: chat with Allison about picking a year, transect, site, etc.** Probably makes more sense to do this together.
+
+
+Curating the 'invertebrate counts' LTER data into a wide, needs-janitor-to-be-joined to kelp Google Sheet. 
+
+**Info:** https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-sbc&identifier=19&revision=newest
+
+**Citation:** Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Invertebrate and algal density. Environmental Data Initiative. https://doi.org/10.6073/pasta/748ee568669ca2b740e9b8f5f8a085d8. Dataset accessed 9/02/2019.
+
+**Description:** These data describe the density and size of a select group of about 50 species of benthic invertebrates and understory algae in fixed plots (either 1m x 1m or 20m x 1m) along permanent transects. These data are part of SBCLTER’s kelp forest monitoring program to track long-term patterns in species abundance and diversity of reef-associated organisms in the Santa Barbara Channel, California, USA. The sampling locations in this dataset are at nine reef sites along the mainland coast of the Santa Barbara Channel and at two sites on the north side of Santa Cruz Island. These sites reflect several oceanographic regimes in the channel and vary in distance from sources of terrestrial runoff. 
+
+## 1. Get the raw data:
+
+This is a big data file. 
+
+```{r}
+
+data_raw <- read_csv(here("curation/annual_quad_swath_all_years.csv")) %>% 
+  clean_names()
+
+head(data_raw)
+skim(data_raw)
+
+```
+60 common names, 62 scientific names
+
+## 2. Explore possible curations
+
+Filtering rows...
+```{r}
+
+x <- data_raw %>%
+  filter(year == 2018)
+
+skim(x)
+
+unique(x$taxon_class)
+unique(x$taxon_order)
+
+# hmm how about a few economically important species
+y <- x %>%
+  filter(taxon_class %in% c("Cephalopoda", "Bivalvia"))
+
+skim(y)
+
+unique(y$common_name)
+# interesting, no cephs!
+
+# how about just handpic interesting species
+unique(x$common_name)
+
+z <- x %>%
+  filter(common_name %in% c("Orange Cup Coral", "Califonia Cone Snail", "Rock Scallop",
+                            "Purple Urchin", "California Spiny Lobster"))
+
+skim(z)
+
+# TODO: Also filter by transect? Or site? Or quad? Before selecting columns...
+```
+
+
+And selecting columns...
+```{r}
+
+unique(z$transect)
+
+a <- z %>%
+  select (-group, -quad)
+
+```
+
+
