@@ -21,11 +21,27 @@ Curating the 'fish counts' LTER data into a perfect, tidy, ggplot-able CSV file.
 
 **Citation:** Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Fish abundance. Environmental Data Initiative. https://doi.org/10.6073/pasta/dbd1d5f0b225d903371ce89b09ee7379. Dataset accessed 8/30/2019.
 
-1. Get the raw data:
+1. Get the raw data (updating all non-observed -99999's to NA):
 ```{r}
 
-fish_counts <- read_csv("fish_counts_raw.csv") %>% 
-  clean_names()
+fish_counts_raw <- read_csv("fish_counts_raw.csv", na = "-99999")
+
+```
+
+2. Some basic cleaning (already in great shape): 
+```{r}
+
+fish_counts <- fish_counts_raw %>% 
+  janitor::clean_names() %>% 
+  purrr::map(tolower) %>% 
+  as.data.frame()
+
+```
+
+3. Write CSV
+```{r}
+
+write_csv(fish_counts, "fish_counts.csv")
 
 ```
 
