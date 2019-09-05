@@ -1,0 +1,76 @@
+---
+title: "Kelp counts data curation"
+author: "Allison Horst"
+date: "9/5/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(writexl)
+```
+
+
+Curating the 'annual_kelp_all_years.csv' LTER data into an Excel worksheet with multiple tabs (stored as kelp_counts.xlsx). 
+
+**Info:** https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-sbc&identifier=18&revision=newest
+
+**Citation:** Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Abundance and size of Giant Kelp (Macrocystis Pyrifera), ongoing since 2000. Environmental Data Initiative. https://doi.org/10.6073/pasta/dea56e02127161194626f97c8b6118e8. Dataset accessed 9/05/2019.
+
+1. Get the raw data: 
+```{r}
+
+kelp_data <- read_csv("annual_kelp_all_years.csv")
+
+```
+
+2. Split it up by SITE (will put data for each of 11 sites in a separate Excel worksheet, within the same workbook)
+```{r}
+
+kelp_split <- kelp_data %>% 
+  group_by(SITE) %>% 
+  group_split()
+
+# Yeah this is super tedious, will swith to purrr::map or something eventually...
+
+# Question: How to split a data frame into multiples by a grouped variable (dplyr::group_split), but then save each part of the list as a data frame with the assigned name a snake_case version of what was in the grouped variable column? 
+
+arroyo_burro <- data.frame(kelp_split[[1]])
+arroyo_hondo <- data.frame(kelp_split[[2]])
+arroyo_quemado <- data.frame(kelp_split[[3]])
+bulito <- data.frame(kelp_split[[4]])
+carpinteria <- data.frame(kelp_split[[5]])
+goleta_bay <- data.frame(kelp_split[[6]])
+iv_reef <- data.frame(kelp_split[[7]])
+mohawk_reef <- data.frame(kelp_split[[8]])
+naples_reef <- data.frame(kelp_split[[9]])
+santa_cruz_diablo <- data.frame(kelp_split[[10]])
+santa_cruz_twin_harbor <- data.frame(kelp_split[[11]])
+
+```
+
+3. Add to an Excel workbook as separate worksheets: 
+```{r}
+
+# Seriously not even sure if this is necessary, seems like I should have been able to combine these steps with names(list) or something...
+
+sheets <- list("arroyo_burro" = arroyo_burro, 
+               "arroyo_hondo" = arroyo_hondo,
+               "arroyo_quemado" = arroyo_quemado,
+               "bulito" = bulito,
+               "carpinteria" = carpinteria,
+               "goleta_bay" = goleta_bay,
+               "iv_reef" = iv_reef,
+               "mohawk_reef" = mohawk_reef,
+               "naples_reef" = naples_reef,
+               "santa_cruz_diablo" = santa_cruz_diablo,
+               "santa_cruz_twin_harbor" = santa_cruz_twin_harbor)
+
+write_xlsx(sheets, "kelp_counts.xlsx")
+
+```
+
