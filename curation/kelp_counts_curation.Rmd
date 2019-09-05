@@ -34,43 +34,19 @@ kelp_data <- read_csv("annual_kelp_all_years.csv")
 kelp_split <- kelp_data %>% 
   group_by(SITE) %>% 
   group_split()
-
-# Yeah this is super tedious, will swith to purrr::map or something eventually...
-
-# Question: How to split a data frame into multiples by a grouped variable (dplyr::group_split), but then save each part of the list as a data frame with the assigned name a snake_case version of what was in the grouped variable column? 
-
-arroyo_burro <- data.frame(kelp_split[[1]])
-arroyo_hondo <- data.frame(kelp_split[[2]])
-arroyo_quemado <- data.frame(kelp_split[[3]])
-bulito <- data.frame(kelp_split[[4]])
-carpinteria <- data.frame(kelp_split[[5]])
-goleta_bay <- data.frame(kelp_split[[6]])
-iv_reef <- data.frame(kelp_split[[7]])
-mohawk_reef <- data.frame(kelp_split[[8]])
-naples_reef <- data.frame(kelp_split[[9]])
-santa_cruz_diablo <- data.frame(kelp_split[[10]])
-santa_cruz_twin_harbor <- data.frame(kelp_split[[11]])
-
 ```
 
-3. Add to an Excel workbook as separate worksheets: 
 ```{r}
 
-# Seriously not even sure if this is necessary, seems like I should have been able to combine these steps with names(list) or something...
+# Just get the names & arrange (in order of list appearance)
+site_names <- kelp_data %>% 
+  select(SITE) %>% 
+  arrange(SITE)
 
-sheets <- list("arroyo_burro" = arroyo_burro, 
-               "arroyo_hondo" = arroyo_hondo,
-               "arroyo_quemado" = arroyo_quemado,
-               "bulito" = bulito,
-               "carpinteria" = carpinteria,
-               "goleta_bay" = goleta_bay,
-               "iv_reef" = iv_reef,
-               "mohawk_reef" = mohawk_reef,
-               "naples_reef" = naples_reef,
-               "santa_cruz_diablo" = santa_cruz_diablo,
-               "santa_cruz_twin_harbor" = santa_cruz_twin_harbor)
+# Set the names of the kelp_split list items
+names(kelp_split) <- tolower(unique(site_names$SITE))
 
-write_xlsx(sheets, "kelp_counts.xlsx")
-
+# Write to an Excel file: 
+write_xlsx(kelp_split, "kelp_counts.xlsx")
 ```
 
