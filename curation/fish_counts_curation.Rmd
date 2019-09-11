@@ -21,6 +21,8 @@ Curating the 'fish counts' LTER data into a perfect, tidy, ggplot-able CSV file.
 
 **Citation:** Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Fish abundance. Environmental Data Initiative. https://doi.org/10.6073/pasta/dbd1d5f0b225d903371ce89b09ee7379. Dataset accessed 8/30/2019.
 
+NOTE: "Count values were given a NA (-99999) if: (1) data were not collected for a particular species, (2) a datasheet was lost or (3) poor underwater visibility prevented fish from being surveyed" (from: https://portal.edirepository.org/nis/metadataviewer?packageid=knb-lter-sbc.17.33)
+
 1. Get the raw data (updating all non-observed -99999's to NA):
 ```{r}
 
@@ -42,6 +44,38 @@ fish_counts <- fish_counts_raw %>%
 ```{r}
 
 write_csv(fish_counts, "fish_counts.csv")
+
+```
+
+4. Some further curation testing (trying out different fish subsets, etc.)
+```{r}
+# Subset fish
+# Find the most commonly observed fish (by year and species) - will be more interesting than a bunch of 0's
+
+fish_pivot <- fish_counts %>% 
+  drop_na(count) %>% 
+  mutate(count = as.numeric(count)) %>% 
+  group_by(common_name) %>% 
+  summarize(
+    total = sum(count, na.rm = TRUE)
+    ) %>% 
+  arrange(-total)
+
+top_ten <- fish_pivot$common_name[1:10]
+
+# Try: senorita, blacksmith, black surfperch, rock wrasse, opaleye?
+
+fish_subset <- fish_counts %>% 
+  filter(common_name %in% c("senorita", "blacksmith", "black surfperch", "rock wrasse", "opaleye")) %>% 
+  drop_na(count) %>% 
+  mutate(count = as.numeric(count)) %>% 
+  group_by(year, month, site, common_name) %>% 
+  summarize(
+    tot_count = sum(count)
+  )
+
+# Compiling counts by month and location for each fish type: 
+
 
 ```
 
