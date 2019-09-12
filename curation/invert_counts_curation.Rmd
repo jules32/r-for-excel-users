@@ -7,17 +7,18 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo=TRUE)
+
+devtools::install_github("tidyverse/tidyr")
 ```
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
+library(tidyr) # for pivot_wider
 library(janitor)
 library(here)
 library(skimr)
+library(writexl) # install.packages('writexl')
 ```
-
-**TODO: chat with Allison about picking a year, transect, site, etc.** Probably makes more sense to do this together.
-
 
 Curating the 'invertebrate counts' LTER data into a wide, needs-janitor-to-be-joined to kelp Google Sheet. 
 
@@ -39,6 +40,12 @@ data_raw <- read_csv(here("curation/annual_quad_swath_all_years.csv")) %>%
 head(data_raw)
 skim(data_raw)
 
+data_clean <- data_raw %>% 
+  janitor::clean_names() %>% 
+  purrr::map(tolower) %>% 
+  as.data.frame()
+
+
 ```
 60 common names, 62 scientific names
 
@@ -47,44 +54,41 @@ skim(data_raw)
 Filtering rows...
 ```{r}
 
-x <- data_raw %>%
-  filter(year == 2018)
+invert_subset <- data_clean %>% 
+  filter(common_name %in% c("orange cup coral", "califonia cone snail", "rock scallop",
+                            "purple urchin", "california spiny lobster")) %>% 
+  filter(year %in% 2016:2018, 
+         month == 7) %>%
+  drop_na(count) %>% 
+  mutate(count = as.numeric(count)) %>% 
+  group_by(year, month, site, common_name) %>% 
+  summarize(
+    tot_count = sum(count)
+  )
 
-skim(x)
+unique(invert_subset$site) 
 
-unique(x$taxon_class)
-unique(x$taxon_order)
 
-# hmm how about a few economically important species
-y <- x %>%
-  filter(taxon_class %in% c("Cephalopoda", "Bivalvia"))
-
-skim(y)
-
-unique(y$common_name)
-# interesting, no cephs!
-
-# how about just handpic interesting species
-unique(x$common_name)
-
-z <- x %>%
-  filter(common_name %in% c("Orange Cup Coral", "Califonia Cone Snail", "Rock Scallop",
-                            "Purple Urchin", "California Spiny Lobster"))
-
-skim(z)
-
-# TODO: Also filter by transect? Or site? Or quad? Before selecting columns...
 ```
+Inverts has `r length(unique(invert_subset$site))` unique sites, while fish counts have only 3; this will be great to demo inner joins, etc. 
+
+Data are only from month 7 and 8 in 2018; only month 7 in 2017. 
 
 
-And selecting columns...
+Pivot wider!
 ```{r}
 
-unique(z$transect)
-
-a <- z %>%
-  select (-group, -quad)
+invert_wide <- invert_subset %>%
+  tidyr::pivot_wider(names_from = year, values_from = tot_count)
 
 ```
+can also teach about numeric column headers!
 
+
+Write to xl!
+
+```{r}
+# Write to an Excel file: 
+write_xlsx(invert_wide, here("curation", "invert_counts_curated.xlsx"))
+```
 
