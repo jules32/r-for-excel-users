@@ -43,7 +43,7 @@ fish_counts <- fish_counts_raw %>%
 3. Write CSV
 ```{r}
 
-write_csv(fish_counts, "fish_counts.csv")
+write_csv(fish_counts, "fish_counts.csv") # NOT THE FINAL ONE
 
 ```
 
@@ -66,17 +66,24 @@ top_ten <- fish_pivot$common_name[1:10]
 # Try: senorita, blacksmith, black surfperch, rock wrasse, opaleye?
 
 fish_subset <- fish_counts %>% 
-  filter(common_name %in% c("senorita", "blacksmith", "black surfperch", "rock wrasse", "opaleye","garibaldi")) %>% 
-  filter(year == 2018) %>% 
+  filter(common_name %in% c("senorita", "blacksmith", "black surfperch", "rock wrasse", "garibaldi")) %>% 
+  filter(year %in% 2016:2018) %>% 
+  filter(month == 7) %>% 
   drop_na(count) %>% 
   mutate(count = as.numeric(count)) %>% 
-  group_by(year, month, site, common_name) %>% 
+  group_by(year, site, common_name) %>% 
   summarize(
     tot_count = sum(count)
-  )
+  ) %>% 
+  ungroup()
 
-# Compiling counts by month and location for each fish type: 
+write_csv(fish_subset, "fish_counts_curated.csv")
 
+# Make a graph of the numbers by location & species?
+
+ggplot(fish_subset, aes(x = year, y = tot_count, fill = common_name)) +
+  geom_col(position = "dodge") +
+  facet_wrap(~site)
 
 ```
 
