@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(tidyverse)
-library(writexl)
+library(writexl) # install.packages("writexl")
 ```
 
 
@@ -21,32 +21,55 @@ Curating the 'annual_kelp_all_years.csv' LTER data into an Excel worksheet with 
 
 **Citation:** Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Abundance and size of Giant Kelp (Macrocystis Pyrifera), ongoing since 2000. Environmental Data Initiative. https://doi.org/10.6073/pasta/dea56e02127161194626f97c8b6118e8. Dataset accessed 9/05/2019.
 
-1. Get the raw data: 
+1. Get the raw data, clean and filter
 ```{r}
 
-kelp_data <- read_csv("annual_kelp_all_years.csv")
+data_raw <- read_csv("annual_kelp_all_years.csv")
+
+## clean!
+data_clean <- data_raw %>% 
+  janitor::clean_names() %>% 
+  purrr::map(tolower) %>% 
+  as.data.frame()
+
+
+# filter as we do
+kelp_subset <- data_clean %>% 
+  filter(year %in% 2016:2018, 
+         month == 7) %>%
+  drop_na(fronds) %>% 
+  mutate(fronds = as.numeric(fronds)) %>% 
+  group_by(year, month, site, common_name) %>% 
+  summarize(
+    tot_fronds = sum(fronds)
+  ) %>%
+  ungroup()
+
+unique(kelp_subset$site) 
 
 ```
 
-2. Split it up by SITE (will put data for each of 11 sites in a separate Excel worksheet, within the same workbook)
+2. Split it up by site (will put data for each of 11 sites in a separate Excel worksheet, within the same workbook)
 ```{r}
 
-kelp_split <- kelp_data %>% 
-  group_by(SITE) %>% 
-  group_split()
+kelp_split <- kelp_subset %>% 
+  group_by(site) %>% 
+  dplyr::group_split()
+
 ```
 
+3. Save to separate sheets!
 ```{r}
 
 # Just get the names & arrange (in order of list appearance)
-site_names <- kelp_data %>% 
-  select(SITE) %>% 
-  arrange(SITE)
+site_names <- data_clean %>%
+  select(site) %>%
+  arrange(site)
 
 # Set the names of the kelp_split list items
-names(kelp_split) <- tolower(unique(site_names$SITE))
+names(kelp_split) <- tolower(unique(site_names$site))
 
 # Write to an Excel file: 
-write_xlsx(kelp_split, "kelp_counts.xlsx")
+write_xlsx(kelp_split, "kelp_counts_curated.xlsx")
 ```
 
