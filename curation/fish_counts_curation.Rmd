@@ -79,7 +79,8 @@ fish_subset <- fish_counts %>%
 
 write_csv(fish_subset, "fish_counts_curated.csv")
 
-# Make a graph of the numbers by location & species?
+# Make a graph of the numbers by location, year & species?
+# Probably want to work on this a bit more ()
 
 ggplot(fish_subset, aes(x = year, y = tot_count, fill = common_name)) +
   geom_col(position = "dodge") +
