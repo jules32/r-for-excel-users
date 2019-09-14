@@ -70,6 +70,6 @@ site_names <- data_clean %>%
 names(kelp_split) <- tolower(unique(site_names$site))
 
 # Write to an Excel file: 
-write_xlsx(kelp_split, "kelp_counts_curated.xlsx")
+write_xlsx(kelp_split, here("curation", "kelp_counts_curated.xlsx"))
 ```
 
