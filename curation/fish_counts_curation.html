@@ -433,7 +433,7 @@ fish_pivot &lt;- fish_counts %&gt;%
 
 top_ten &lt;- fish_pivot$common_name[1:10]
 
-# Try: senorita, blacksmith, black surfperch, rock wrasse, opaleye?
+# Try: senorita, blacksmith, black surfperch, rock wrasse, garibaldi
 
 fish_subset &lt;- fish_counts %&gt;% 
   filter(common_name %in% c(&quot;senorita&quot;, &quot;blacksmith&quot;, &quot;black surfperch&quot;, &quot;rock wrasse&quot;, &quot;garibaldi&quot;)) %&gt;% 
@@ -447,6 +447,7 @@ fish_subset &lt;- fish_counts %&gt;%
   ) %&gt;% 
   ungroup()
 
+# This is the final curated version (fish_counts_curated.csv)
 write_csv(fish_subset, &quot;fish_counts_curated.csv&quot;)
 
 # Make a graph of the numbers by location, year &amp; species?
