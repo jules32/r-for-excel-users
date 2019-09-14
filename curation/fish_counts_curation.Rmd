@@ -63,7 +63,7 @@ fish_pivot <- fish_counts %>%
 
 top_ten <- fish_pivot$common_name[1:10]
 
-# Try: senorita, blacksmith, black surfperch, rock wrasse, opaleye?
+# Try: senorita, blacksmith, black surfperch, rock wrasse, garibaldi
 
 fish_subset <- fish_counts %>% 
   filter(common_name %in% c("senorita", "blacksmith", "black surfperch", "rock wrasse", "garibaldi")) %>% 
@@ -77,6 +77,7 @@ fish_subset <- fish_counts %>%
   ) %>% 
   ungroup()
 
+# This is the final curated version (fish_counts_curated.csv)
 write_csv(fish_subset, "fish_counts_curated.csv")
 
 # Make a graph of the numbers by location, year & species?
