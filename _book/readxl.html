@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 readxl | R for the Excel User</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 readxl | R for the Excel User" />
   <meta property="og:type" content="book" />
@@ -55,7 +55,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -135,7 +134,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="readxl.html"><a href="readxl.html#summary-a-few-sentences"><i class="fa fa-check"></i><b>3.1</b> Summary (a few sentences)</a></li>
 <li class="chapter" data-level="3.2" data-path="readxl.html"><a href="readxl.html#objectives-more-detailed-bulletpoints"><i class="fa fa-check"></i><b>3.2</b> Objectives (more detailed, bulletpoints?)</a></li>
 <li class="chapter" data-level="3.3" data-path="readxl.html"><a href="readxl.html#resources"><i class="fa fa-check"></i><b>3.3</b> Resources</a></li>
-<li class="chapter" data-level="3.4" data-path="readxl.html"><a href="readxl.html#lessons-teaching-for-each-objective..-objectives-examples"><i class="fa fa-check"></i><b>3.4</b> Lessons teaching for each objective….. (objectives, examples)</a></li>
+<li class="chapter" data-level="3.4" data-path="readxl.html"><a href="readxl.html#lessons-teaching-for-each-objective..-objectives-examples"><i class="fa fa-check"></i><b>3.4</b> Lessons teaching for each objective….. (objectives, examples)</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="readxl.html"><a href="readxl.html#a.-use-readrread_csv-to-read-in-data-from-a-csv-file"><i class="fa fa-check"></i><b>3.4.1</b> a. Use <strong>readr::read_csv()</strong> to read in data from a CSV file</a></li>
+</ul></li>
 <li class="chapter" data-level="3.5" data-path="readxl.html"><a href="readxl.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections"><i class="fa fa-check"></i><b>3.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
 <li class="chapter" data-level="3.6" data-path="readxl.html"><a href="readxl.html#interludes-deep-thoughtsopenscapes"><i class="fa fa-check"></i><b>3.6</b> Interludes (deep thoughts/openscapes)</a></li>
 <li class="chapter" data-level="3.7" data-path="readxl.html"><a href="readxl.html#our-turn-your-turn-1"><i class="fa fa-check"></i><b>3.7</b> Our Turn Your Turn 1</a></li>
@@ -241,15 +242,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="objectives-more-detailed-bulletpoints" class="section level2">
 <h2><span class="header-section-number">3.2</span> Objectives (more detailed, bulletpoints?)</h2>
-<ol style="list-style-type: decimal">
+<ul>
+<li>Use readr::read_csv() to read in a comma separated value (CSV) file</li>
 <li>Use readxl::read_excel() to read in an Excel worksheet</li>
 <li>Use readxl::read_excel() to read in parts of a worksheet (by cell range)</li>
 <li>Specify column names when importing Excel data</li>
-<li>Replace a specific string/value with ‘NA’</li>
+<li>Replace a specific string/value in a spreadsheet with with ‘NA’</li>
 <li>Skip <em>n</em> rows when importing an Excel worksheet</li>
-<li>Read in multiple Excel worksheets (note to Julie: I actually think this is fine to include…purrr::map() can be explained in a really simple way)</li>
+<li>Read in multiple Excel worksheets</li>
 <li>Something about readxl workflows (e.g. %&gt;% write_csv() to keep a copy of the raw data in a project)??</li>
-</ol>
+</ul>
 </div>
 <div id="resources" class="section level2">
 <h2><span class="header-section-number">3.3</span> Resources</h2>
@@ -259,6 +261,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="lessons-teaching-for-each-objective..-objectives-examples" class="section level2">
 <h2><span class="header-section-number">3.4</span> Lessons teaching for each objective….. (objectives, examples)</h2>
+<div id="a.-use-readrread_csv-to-read-in-data-from-a-csv-file" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> a. Use <strong>readr::read_csv()</strong> to read in data from a CSV file</h3>
+<p>There are many types of files containing data that you might want to work with in R. A common one is a comma separated value (CSV) file, which contains values with each column entry separated by a comma delimiter. CSVs can be opened, viewed, and worked with in Excel just like an .xlx or .xlsx file - but let’s learn how to get data directly from a CSV into R where we can work with it more reproducibly.</p>
+<p>First, create a new .R script and add a useful header to the top of it. For example, at a minimum:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># --------------------------------</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co"># A descriptive title</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># Summary of what this script is for </span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># Your name</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co"># Contact information</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co"># --------------------------------</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co"># Other things you might include: required packages or datasets, relevant links (e.g. to raw data source, GitHub repo, etc.), citations and sources.</span></a></code></pre></div>
+</div>
 </div>
 <div id="fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections" class="section level2">
 <h2><span class="header-section-number">3.5</span> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</h2>
@@ -328,19 +343,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
