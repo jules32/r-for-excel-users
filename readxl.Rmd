@@ -23,11 +23,22 @@ The **readxl** package makes it easy to import tabular data from Excel spreadshe
 
 ## Lessons teaching for each objective….. (objectives, examples)
 
-### a. Use **readr::read_csv()** to read in data from a CSV file
+### Prep: get data files into your working directory
 
-There are many types of files containing data that you might want to work with in R. A common one is a comma separated value (CSV) file, which contains values with each column entry separated by a comma delimiter. CSVs can be opened, viewed, and worked with in Excel just like an .xlx or .xlsx file - but let's learn how to get data directly from a CSV into R where we can work with it more reproducibly. 
+In Session 1, we introduced how and why R Projects are great for reproducibility, because our self-contained working directory will be the **first** place R looks for files. 
 
-First, create a new .R script and add a useful header to the top of it. For example, at a minimum: 
+You downloaded four files for this workshop: 
+
+- fish_counts_curated.csv
+- invert_counts_curated.xlsx
+- kelp_counts_curated.xlsx
+- ...the OTHER ONE? 
+
+Copy and paste those files into the 'RforExcelUsers' folder on your computer. Notice that now these files show up right in your working directory when you go back to that Project in RStudio! That means they're going to be in the first place R will look when you ask it to find a file. 
+
+### Create a new .R script and attach the tidyverse 
+
+In your RforExcelUsers project in RStudio, open a new .R script and add a useful header to the top of it. For example, at a minimum: 
 
 ```{r}
 
@@ -41,7 +52,24 @@ First, create a new .R script and add a useful header to the top of it. For exam
 # Other things you might include: required packages or datasets, relevant links (e.g. to raw data source, GitHub repo, etc.), citations and sources.
 ```
 
-Now let's read in our first CSV file using readr::read_csv(). 
+We'll read in a CSV file with `readr::read_csv()`, so we need to have the `readr` package attached. Since it's part of the `tidyverse`, we'll go ahead and attach the `tidyverse` package below our script header using `library(package_name)`. 
+
+```{r, message = FALSE}
+# Attach the tidyverse
+library(tidyverse)
+```
+
+Now, all of the packages and functions within the `tidyverse`, including `readr::read_csv()` are available for us to use. 
+
+### Use **readr::read_csv()** to read in data from a CSV file
+
+There are many types of files containing data that you might want to work with in R. A common one is a comma separated value (CSV) file, which contains values with each column entry separated by a comma delimiter. CSVs can be opened, viewed, and worked with in Excel just like an .xls or .xlsx file - but let's learn how to get data directly from a CSV into R where we can work with it more reproducibly. 
+
+The CSV we'll read in here is called "fish_counts_curated.csv", and contains observations for "the abundance and size of fish species as part of SBCLTER's kelp forest monitoring program to track long-term patterns in species abundance and diversity" from the [Santa Barbara Channel Long Term Ecological Research](http://sbc.lternet.edu/) program. 
+
+**Source:** Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Fish abundance. Environmental Data Initiative. https://doi.org/10.6073/pasta/dbd1d5f0b225d903371ce89b09ee7379. Dataset accessed 9/26/2019.
+
+Read in the "fish_counts_curated.csv" 
 
 ## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
 ## Interludes (deep thoughts/openscapes)
