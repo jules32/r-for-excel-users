@@ -135,104 +135,102 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{prerequisites}{%
-\chapter{Prerequisites}\label{prerequisites}}
+\hypertarget{welcome}{%
+\chapter{Welcome}\label{welcome}}
 
-This is a \emph{sample} book written in \textbf{Markdown}. You can use anything that Pandoc's Markdown supports, e.g., a math equation \(a^2 + b^2 = c^2\).
+Excel is a widely used and powerful tool for working with data. As automation, reproducibility, collaboration, and frequent reporting become increasingly expected in data analysis, a good option for Excel users is to extend their workflows with R. Integrating R into data analysis with Excel can bridge the technical gap between collaborators using either software. R enables use of existing tools built for specific tasks and overcomes some limitations that arise when working with large datasets or repeated analyses. This course is for Excel users who want to add or integrate R and RStudio into their existing data analysis toolkit. Participants will get hands-on experience working with data across R, Excel, and Google Sheets, focusing on: data import and export, basic wrangling, visualization, and reporting with RMarkdown. Throughout, we will emphasize conventions and best practices for working reproducibly and collaboratively with data, including naming conventions, documentation, organization, all while ``keeping the raw data raw''. Whether you are working in Excel and want to get started in R, already working in R and want tools for working more seamlessly with collaborators who use Excel, or whether you are new to data analysis entirely, this is the course for you!
 
-The \textbf{bookdown} package can be installed from CRAN or Github:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"bookdown"}\NormalTok{)}
-\CommentTok{# or the development version}
-\CommentTok{# devtools::install_github("rstudio/bookdown")}
-\end{Highlighting}
-\end{Shaded}
-
-Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading \texttt{\#}.
-
-To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): \url{https://yihui.name/tinytex/}.
-
-You can label chapter and section titles using \texttt{\{\#label\}} after them, e.g., we can reference Chapter \ref{overview}. If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \ref{readxl}.
-
-Figures and tables with captions will be placed in \texttt{figure} and \texttt{table} environments, respectively.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{.1}\NormalTok{, }\FloatTok{.1}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(pressure, }\DataTypeTok{type =} \StringTok{'b'}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{R_for_Excel_Users_files/figure-latex/nice-fig-1} 
-
-}
-
-\caption{Here is a nice figure!}\label{fig:nice-fig}
-\end{figure}
-
-Reference a figure by its code chunk label with the \texttt{fig:} prefix, e.g., see Figure \ref{fig:nice-fig}. Similarly, you can reference tables generated from \texttt{knitr::kable()}, e.g., see Table \ref{tab:nice-tab}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}
-  \KeywordTok{head}\NormalTok{(iris, }\DecValTok{20}\NormalTok{), }\DataTypeTok{caption =} \StringTok{'Here is a nice table!'}\NormalTok{,}
-  \DataTypeTok{booktabs =} \OtherTok{TRUE}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{table}[t]
-
-\caption{\label{tab:nice-tab}Here is a nice table!}
-\centering
-\begin{tabular}{rrrrl}
-\toprule
-Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
-\midrule
-5.1 & 3.5 & 1.4 & 0.2 & setosa\\
-4.9 & 3.0 & 1.4 & 0.2 & setosa\\
-4.7 & 3.2 & 1.3 & 0.2 & setosa\\
-4.6 & 3.1 & 1.5 & 0.2 & setosa\\
-5.0 & 3.6 & 1.4 & 0.2 & setosa\\
-\addlinespace
-5.4 & 3.9 & 1.7 & 0.4 & setosa\\
-4.6 & 3.4 & 1.4 & 0.3 & setosa\\
-5.0 & 3.4 & 1.5 & 0.2 & setosa\\
-4.4 & 2.9 & 1.4 & 0.2 & setosa\\
-4.9 & 3.1 & 1.5 & 0.1 & setosa\\
-\addlinespace
-5.4 & 3.7 & 1.5 & 0.2 & setosa\\
-4.8 & 3.4 & 1.6 & 0.2 & setosa\\
-4.8 & 3.0 & 1.4 & 0.1 & setosa\\
-4.3 & 3.0 & 1.1 & 0.1 & setosa\\
-5.8 & 4.0 & 1.2 & 0.2 & setosa\\
-\addlinespace
-5.7 & 4.4 & 1.5 & 0.4 & setosa\\
-5.4 & 3.9 & 1.3 & 0.4 & setosa\\
-5.1 & 3.5 & 1.4 & 0.3 & setosa\\
-5.7 & 3.8 & 1.7 & 0.3 & setosa\\
-5.1 & 3.8 & 1.5 & 0.3 & setosa\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-You can write citations, too. For example, we are using the \textbf{bookdown} package \citep{R-bookdown} in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
-
-\hypertarget{overview}{%
-\chapter{Overview}\label{overview}}
-
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
-
-References Brainstorm
+If you answer yes to these questions, this course is for you!
 
 \begin{itemize}
 \tightlist
 \item
-  Broman \& Woo 2017: \url{https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989}
+  Are you an Excel user who wants to expand your data analysis toolset with R?
+\item
+  Do you want to bridge analyses between Excel and R, whether working independently or to more easily collaborate with others who use Excel or R?
+\item
+  Are you new to data analysis, and looking for a good place to get started?
+\end{itemize}
+
+\hypertarget{overview}{%
+\chapter{Overview}\label{overview}}
+
+Welcome.
+
+This workshop you will learn hands-on how to begin to interoperate between Excel and R.
+
+We will learn and reinforce X main things all at the same time: coding with best practices (R/RStudio), Y, Z. This training will teach these all together to reinforce skills and best practices, and get you comfortable with a workflow that you can use in your own projects.
+
+\hypertarget{what-to-expect}{%
+\section{What to expect}\label{what-to-expect}}
+
+This is going to be a fun workshop.
+
+The plan is to expose you to a lot of great tools that you can have confidence using in your research. You'll be working hands-on and doing the same things on your own computer as we do live on up on the screen. We're going to go through a lot in these two days and it's less important that you remember it all. More importantly, you'll have experience with it and confidence that you can do it. The main thing to take away is that there \emph{are} good ways to approach your analyses; we will teach you to expect that so you can find what you need and use it! A theme throughout is that tools exist and are being developed by real, and extraordinarily nice, people to meet you where you are and help you do what you need to do. If you expect and appreciate that, you will be more efficient in doing your awesome science.
+
+You are all welcome here, please be respectful of one another. You are encouraged to help each other.
+
+Everyone in this workshop is coming from a different place with different experiences and expectations. But everyone will learn something new here, because there is so much innovation in the data science world. Instructors and helpers learn something new every time, from each other and from your questions. If you are already familiar with some of this material, focus on how we teach, and how you might teach it to others. Use these workshop materials not only as a reference in the future but also for talking points so you can communicate the importance of these tools to your communities. A big part of this training is not only for you to learn these skills, but for you to also teach others and increase the value and practice of open data science in science as a whole.
+
+\hypertarget{what-youll-learn}{%
+\section{What you'll learn}\label{what-youll-learn}}
+
+\hypertarget{learning-with-data-that-are-not-your-own}{%
+\section{Learning with data that are not your own}\label{learning-with-data-that-are-not-your-own}}
+
+\hypertarget{emphasizing-collaboration}{%
+\section{Emphasizing collaboration}\label{emphasizing-collaboration}}
+
+Collaborating efficiently has historically been really hard to do. It's only been the last 20 years or so that we've moved beyond mailing things with the postal service. Being able to email and get feedback on files through track changes was a huge step forward, but it comes with a lot of bookkeeping and reproduciblity issues (did I send that report based on \texttt{analysis\_final\_final.xls} or \texttt{analysis\_final\_usethisone.xls}?). But now, open tools make it much easier to collaborate.
+
+Working with collaborators in mind is critical for reproducibility. And, your most important collaborator is Future You. This training will introduce best practices using open tools, so that collaboration will become second nature to you!
+
+\hypertarget{by-the-end-of-the-course}{%
+\section{By the end of the course\ldots{}}\label{by-the-end-of-the-course}}
+
+By the end of the course,
+
+\hypertarget{prerequisites}{%
+\section{Prerequisites}\label{prerequisites}}
+
+Before the training, please make sure you have done the following:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Download and install \textbf{up-to-date versions} of:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    R: \url{https://cloud.r-project.org}
+  \item
+    RStudio: \url{http://www.rstudio.com/download}
+  \item
+    Git: \url{https://git-scm.com/downloads} \emph{Note: open the download and follow normal install procedures on your computer but you won't see any software installed when you're done}
+  \end{itemize}
+\item
+  Create a GitHub account: \url{https://github.com} \emph{Note! Shorter names that kind of identify you are better, and use your work email!}
+\item
+  Get comfortable: if you're not in a physical workshop, be set up with two screens if possible. You will be following along in RStudio on your own computer while also watching a virtual training or following this tutorial on your own.
+\end{enumerate}
+
+\hypertarget{credit}{%
+\section{Credit}\label{credit}}
+
+This material builds from a lot of fantastic materials developed by others in the open data science community. In particular, it pulls from the following resources, which are highly recommended for further learning and as resources later on. Specific lessons will also cite more resources.
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://r4ds.had.co.nz/}{R for Data Science} by Hadley Wickham and Garrett Grolemund
+\item
+  \href{http://stat545.com/}{STAT 545} by Jenny Bryan
+\item
+  \href{http://happygitwithr.com}{Happy Git with R} by Jenny Bryan
+\item
+  \href{https://software-carpentry.org/lessons/}{Software Carpentry} by the Carpentries
 \end{itemize}
 
 \hypertarget{readxl}{%
@@ -248,9 +246,10 @@ The \textbf{readxl} package makes it easy to import tabular data from Excel spre
 \hypertarget{objectives-more-detailed-bulletpoints}{%
 \section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints}}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
+\begin{itemize}
 \tightlist
+\item
+  Use readr::read\_csv() to read in a comma separated value (CSV) file
 \item
   Use readxl::read\_excel() to read in an Excel worksheet
 \item
@@ -258,14 +257,14 @@ The \textbf{readxl} package makes it easy to import tabular data from Excel spre
 \item
   Specify column names when importing Excel data
 \item
-  Replace a specific string/value with `NA'
+  Replace a specific string/value in a spreadsheet with with `NA'
 \item
   Skip \emph{n} rows when importing an Excel worksheet
 \item
-  Read in multiple Excel worksheets (note to Julie: I actually think this is fine to include\ldots{}purrr::map() can be explained in a really simple way)
+  Read in multiple Excel worksheets
 \item
   Something about readxl workflows (e.g. \%\textgreater{}\% write\_csv() to keep a copy of the raw data in a project)??
-\end{enumerate}
+\end{itemize}
 
 \hypertarget{resources}{%
 \section{Resources}\label{resources}}
@@ -278,6 +277,26 @@ The \textbf{readxl} package makes it easy to import tabular data from Excel spre
 
 \hypertarget{lessons-teaching-for-each-objective..-objectives-examples}{%
 \section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples}}
+
+\hypertarget{a.-use-readrread_csv-to-read-in-data-from-a-csv-file}{%
+\subsection{\texorpdfstring{a. Use \textbf{readr::read\_csv()} to read in data from a CSV file}{a. Use readr::read\_csv() to read in data from a CSV file}}\label{a.-use-readrread_csv-to-read-in-data-from-a-csv-file}}
+
+There are many types of files containing data that you might want to work with in R. A common one is a comma separated value (CSV) file, which contains values with each column entry separated by a comma delimiter. CSVs can be opened, viewed, and worked with in Excel just like an .xlx or .xlsx file - but let's learn how to get data directly from a CSV into R where we can work with it more reproducibly.
+
+First, create a new .R script and add a useful header to the top of it. For example, at a minimum:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# --------------------------------}
+\CommentTok{# A descriptive title}
+\CommentTok{# Summary of what this script is for }
+\CommentTok{# Your name}
+\CommentTok{# Contact information}
+\CommentTok{# --------------------------------}
+
+\CommentTok{# Other things you might include: required packages or datasets, relevant links (e.g. to raw data source, GitHub repo, etc.), citations and sources.}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections}{%
 \section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections}}

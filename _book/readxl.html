@@ -5,20 +5,20 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 readxl | R for the Excel User</title>
-  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 readxl | R for the Excel User" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta property="og:description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 3 readxl | R for the Excel User" />
   
-  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="twitter:description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   
 
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
@@ -55,6 +55,7 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -128,8 +129,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R for Excel Users</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
-<li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Overview</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a></li>
+<li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Overview</a><ul>
+<li class="chapter" data-level="2.1" data-path="overview.html"><a href="overview.html#what-to-expect"><i class="fa fa-check"></i><b>2.1</b> What to expect</a></li>
+<li class="chapter" data-level="2.2" data-path="overview.html"><a href="overview.html#what-youll-learn"><i class="fa fa-check"></i><b>2.2</b> What you’ll learn</a></li>
+<li class="chapter" data-level="2.3" data-path="overview.html"><a href="overview.html#learning-with-data-that-are-not-your-own"><i class="fa fa-check"></i><b>2.3</b> Learning with data that are not your own</a></li>
+<li class="chapter" data-level="2.4" data-path="overview.html"><a href="overview.html#emphasizing-collaboration"><i class="fa fa-check"></i><b>2.4</b> Emphasizing collaboration</a></li>
+<li class="chapter" data-level="2.5" data-path="overview.html"><a href="overview.html#by-the-end-of-the-course"><i class="fa fa-check"></i><b>2.5</b> By the end of the course…</a></li>
+<li class="chapter" data-level="2.6" data-path="overview.html"><a href="overview.html#prerequisites"><i class="fa fa-check"></i><b>2.6</b> Prerequisites</a></li>
+<li class="chapter" data-level="2.7" data-path="overview.html"><a href="overview.html#credit"><i class="fa fa-check"></i><b>2.7</b> Credit</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="readxl.html"><a href="readxl.html"><i class="fa fa-check"></i><b>3</b> <code>readxl</code></a><ul>
 <li class="chapter" data-level="3.1" data-path="readxl.html"><a href="readxl.html#summary-a-few-sentences"><i class="fa fa-check"></i><b>3.1</b> Summary (a few sentences)</a></li>
 <li class="chapter" data-level="3.2" data-path="readxl.html"><a href="readxl.html#objectives-more-detailed-bulletpoints"><i class="fa fa-check"></i><b>3.2</b> Objectives (more detailed, bulletpoints?)</a></li>
@@ -265,14 +274,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">3.4.1</span> a. Use <strong>readr::read_csv()</strong> to read in data from a CSV file</h3>
 <p>There are many types of files containing data that you might want to work with in R. A common one is a comma separated value (CSV) file, which contains values with each column entry separated by a comma delimiter. CSVs can be opened, viewed, and worked with in Excel just like an .xlx or .xlsx file - but let’s learn how to get data directly from a CSV into R where we can work with it more reproducibly.</p>
 <p>First, create a new .R script and add a useful header to the top of it. For example, at a minimum:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># --------------------------------</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co"># A descriptive title</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># Summary of what this script is for </span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># Your name</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co"># Contact information</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co"># --------------------------------</span></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co"># Other things you might include: required packages or datasets, relevant links (e.g. to raw data source, GitHub repo, etc.), citations and sources.</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># --------------------------------</span>
+<span class="co"># A descriptive title</span>
+<span class="co"># Summary of what this script is for </span>
+<span class="co"># Your name</span>
+<span class="co"># Contact information</span>
+<span class="co"># --------------------------------</span>
+
+<span class="co"># Other things you might include: required packages or datasets, relevant links (e.g. to raw data source, GitHub repo, etc.), citations and sources.</span></code></pre>
 </div>
 </div>
 <div id="fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections" class="section level2">

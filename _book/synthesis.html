@@ -5,20 +5,20 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Synthesis | R for the Excel User</title>
-  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Synthesis | R for the Excel User" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta property="og:description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 9 Synthesis | R for the Excel User" />
   
-  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="twitter:description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   
 
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
@@ -129,13 +129,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R for Excel Users</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
-<li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Overview</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a></li>
+<li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Overview</a><ul>
+<li class="chapter" data-level="2.1" data-path="overview.html"><a href="overview.html#what-to-expect"><i class="fa fa-check"></i><b>2.1</b> What to expect</a></li>
+<li class="chapter" data-level="2.2" data-path="overview.html"><a href="overview.html#what-youll-learn"><i class="fa fa-check"></i><b>2.2</b> What you’ll learn</a></li>
+<li class="chapter" data-level="2.3" data-path="overview.html"><a href="overview.html#learning-with-data-that-are-not-your-own"><i class="fa fa-check"></i><b>2.3</b> Learning with data that are not your own</a></li>
+<li class="chapter" data-level="2.4" data-path="overview.html"><a href="overview.html#emphasizing-collaboration"><i class="fa fa-check"></i><b>2.4</b> Emphasizing collaboration</a></li>
+<li class="chapter" data-level="2.5" data-path="overview.html"><a href="overview.html#by-the-end-of-the-course"><i class="fa fa-check"></i><b>2.5</b> By the end of the course…</a></li>
+<li class="chapter" data-level="2.6" data-path="overview.html"><a href="overview.html#prerequisites"><i class="fa fa-check"></i><b>2.6</b> Prerequisites</a></li>
+<li class="chapter" data-level="2.7" data-path="overview.html"><a href="overview.html#credit"><i class="fa fa-check"></i><b>2.7</b> Credit</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="readxl.html"><a href="readxl.html"><i class="fa fa-check"></i><b>3</b> <code>readxl</code></a><ul>
 <li class="chapter" data-level="3.1" data-path="readxl.html"><a href="readxl.html#summary-a-few-sentences"><i class="fa fa-check"></i><b>3.1</b> Summary (a few sentences)</a></li>
 <li class="chapter" data-level="3.2" data-path="readxl.html"><a href="readxl.html#objectives-more-detailed-bulletpoints"><i class="fa fa-check"></i><b>3.2</b> Objectives (more detailed, bulletpoints?)</a></li>
 <li class="chapter" data-level="3.3" data-path="readxl.html"><a href="readxl.html#resources"><i class="fa fa-check"></i><b>3.3</b> Resources</a></li>
-<li class="chapter" data-level="3.4" data-path="readxl.html"><a href="readxl.html#lessons-teaching-for-each-objective..-objectives-examples"><i class="fa fa-check"></i><b>3.4</b> Lessons teaching for each objective….. (objectives, examples)</a></li>
+<li class="chapter" data-level="3.4" data-path="readxl.html"><a href="readxl.html#lessons-teaching-for-each-objective..-objectives-examples"><i class="fa fa-check"></i><b>3.4</b> Lessons teaching for each objective….. (objectives, examples)</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="readxl.html"><a href="readxl.html#a.-use-readrread_csv-to-read-in-data-from-a-csv-file"><i class="fa fa-check"></i><b>3.4.1</b> a. Use <strong>readr::read_csv()</strong> to read in data from a CSV file</a></li>
+</ul></li>
 <li class="chapter" data-level="3.5" data-path="readxl.html"><a href="readxl.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections"><i class="fa fa-check"></i><b>3.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
 <li class="chapter" data-level="3.6" data-path="readxl.html"><a href="readxl.html#interludes-deep-thoughtsopenscapes"><i class="fa fa-check"></i><b>3.6</b> Interludes (deep thoughts/openscapes)</a></li>
 <li class="chapter" data-level="3.7" data-path="readxl.html"><a href="readxl.html#our-turn-your-turn-1"><i class="fa fa-check"></i><b>3.7</b> Our Turn Your Turn 1</a></li>
@@ -261,14 +271,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="efficiency-tips-6" class="section level2">
 <h2><span class="header-section-number">9.9</span> Efficiency Tips</h2>
 
-<div id="refs" class="references">
-<div>
-<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.</p>
-</div>
-<div>
-<p>———. 2019. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.</p>
-</div>
-</div>
 </div>
 </div>
             </section>
@@ -322,19 +324,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
