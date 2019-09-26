@@ -152,44 +152,6 @@ If you answer yes to these questions, this course is for you!
   Are you new to data analysis, and looking for a good place to get started?
 \end{itemize}
 
-\hypertarget{overview}{%
-\chapter{Overview}\label{overview}}
-
-Welcome.
-
-This workshop you will learn hands-on how to begin to interoperate between Excel and R.
-
-We will learn and reinforce X main things all at the same time: coding with best practices (R/RStudio), Y, Z. This training will teach these all together to reinforce skills and best practices, and get you comfortable with a workflow that you can use in your own projects.
-
-\hypertarget{what-to-expect}{%
-\section{What to expect}\label{what-to-expect}}
-
-This is going to be a fun workshop.
-
-The plan is to expose you to a lot of great tools that you can have confidence using in your research. You'll be working hands-on and doing the same things on your own computer as we do live on up on the screen. We're going to go through a lot in these two days and it's less important that you remember it all. More importantly, you'll have experience with it and confidence that you can do it. The main thing to take away is that there \emph{are} good ways to approach your analyses; we will teach you to expect that so you can find what you need and use it! A theme throughout is that tools exist and are being developed by real, and extraordinarily nice, people to meet you where you are and help you do what you need to do. If you expect and appreciate that, you will be more efficient in doing your awesome science.
-
-You are all welcome here, please be respectful of one another. You are encouraged to help each other.
-
-Everyone in this workshop is coming from a different place with different experiences and expectations. But everyone will learn something new here, because there is so much innovation in the data science world. Instructors and helpers learn something new every time, from each other and from your questions. If you are already familiar with some of this material, focus on how we teach, and how you might teach it to others. Use these workshop materials not only as a reference in the future but also for talking points so you can communicate the importance of these tools to your communities. A big part of this training is not only for you to learn these skills, but for you to also teach others and increase the value and practice of open data science in science as a whole.
-
-\hypertarget{what-youll-learn}{%
-\section{What you'll learn}\label{what-youll-learn}}
-
-\hypertarget{learning-with-data-that-are-not-your-own}{%
-\section{Learning with data that are not your own}\label{learning-with-data-that-are-not-your-own}}
-
-\hypertarget{emphasizing-collaboration}{%
-\section{Emphasizing collaboration}\label{emphasizing-collaboration}}
-
-Collaborating efficiently has historically been really hard to do. It's only been the last 20 years or so that we've moved beyond mailing things with the postal service. Being able to email and get feedback on files through track changes was a huge step forward, but it comes with a lot of bookkeeping and reproduciblity issues (did I send that report based on \texttt{analysis\_final\_final.xls} or \texttt{analysis\_final\_usethisone.xls}?). But now, open tools make it much easier to collaborate.
-
-Working with collaborators in mind is critical for reproducibility. And, your most important collaborator is Future You. This training will introduce best practices using open tools, so that collaboration will become second nature to you!
-
-\hypertarget{by-the-end-of-the-course}{%
-\section{By the end of the course\ldots{}}\label{by-the-end-of-the-course}}
-
-By the end of the course,
-
 \hypertarget{prerequisites}{%
 \section{Prerequisites}\label{prerequisites}}
 
@@ -207,44 +169,211 @@ Before the training, please make sure you have done the following:
     R: \url{https://cloud.r-project.org}
   \item
     RStudio: \url{http://www.rstudio.com/download}
-  \item
-    Git: \url{https://git-scm.com/downloads} \emph{Note: open the download and follow normal install procedures on your computer but you won't see any software installed when you're done}
   \end{itemize}
 \item
-  Create a GitHub account: \url{https://github.com} \emph{Note! Shorter names that kind of identify you are better, and use your work email!}
+  Install the Tidyverse
+  \\
 \item
   Get comfortable: if you're not in a physical workshop, be set up with two screens if possible. You will be following along in RStudio on your own computer while also watching a virtual training or following this tutorial on your own.
 \end{enumerate}
 
-\hypertarget{credit}{%
-\section{Credit}\label{credit}}
+\hypertarget{overview}{%
+\chapter{Overview}\label{overview}}
 
-This material builds from a lot of fantastic materials developed by others in the open data science community. In particular, it pulls from the following resources, which are highly recommended for further learning and as resources later on. Specific lessons will also cite more resources.
+\hypertarget{summary-a-few-sentences}{%
+\section{Summary (a few sentences)}\label{summary-a-few-sentences}}
+
+\hypertarget{objectives-more-detailed-bulletpoints}{%
+\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints}}
+
+\hypertarget{resources}{%
+\section{Resources}\label{resources}}
+
+\hypertarget{overview-1}{%
+\section{Overview}\label{overview-1}}
+
+Welcome.
+
+This workshop you will learn hands-on how to begin to interoperate between Excel and R.
+
+A main theme throughout is to produce analyses people can understand --- including Future You. Literate programming (Rmd). {[}might be better as a deep thought than right at the beginning{]}: Comments! Organization (spacing, subsections, vertical structure, indentation, etc.)! Well-named variables! Also, well-named operations so analyses (select(data, columnname)) instead of data{[}1:6,5{]} and excel equivalent. (Ex with strings)
+Not so brittle/sensitive to minor changes.
+
+We will learn and reinforce X main things all at the same time: coding with best practices (R/RStudio), Y, Z. This training will teach these all together to reinforce skills and best practices, and get you comfortable with a workflow that you can use in your own projects.
+
+\hypertarget{what-to-expect}{%
+\subsection{What to expect}\label{what-to-expect}}
+
+This is going to be a fun workshop.
+
+The plan is to expose you to a lot of great tools that you can have confidence using in your research. You'll be working hands-on and doing the same things on your own computer as we do live on up on the screen. We're going to go through a lot in these two days and it's less important that you remember it all. More importantly, you'll have experience with it and confidence that you can do it. The main thing to take away is that there \emph{are} good ways to approach your analyses; we will teach you to expect that so you can find what you need and use it! A theme throughout is that tools exist and are being developed by real, and extraordinarily nice, people to meet you where you are and help you do what you need to do. If you expect and appreciate that, you will be more efficient in doing your awesome science.
+
+You are all welcome here, please be respectful of one another. You are encouraged to help each other.
+
+Everyone in this workshop is coming from a different place with different experiences and expectations. But everyone will learn something new here, because there is so much innovation in the data science world. Instructors and helpers learn something new every time, from each other and from your questions. If you are already familiar with some of this material, focus on how we teach, and how you might teach it to others. Use these workshop materials not only as a reference in the future but also for talking points so you can communicate the importance of these tools to your communities. A big part of this training is not only for you to learn these skills, but for you to also teach others and increase the value and practice of open data science in science as a whole.
+
+\hypertarget{what-youll-learn}{%
+\subsection{What you'll learn}\label{what-youll-learn}}
 
 \begin{itemize}
 \tightlist
 \item
-  \href{http://r4ds.had.co.nz/}{R for Data Science} by Hadley Wickham and Garrett Grolemund
+  Motivation is to bridge and/or get out of excel
 \item
-  \href{http://stat545.com/}{STAT 545} by Jenny Bryan
+  We're not going to replicate all of your fancy things in R,
 \item
-  \href{http://happygitwithr.com}{Happy Git with R} by Jenny Bryan
+  We use Excel to look at data that we're reading into R
 \item
-  \href{https://software-carpentry.org/lessons/}{Software Carpentry} by the Carpentries
+  Spreadsheets are great; blend data entry with analyses and we're going to try to help you think about them a bit more distinctively.
+\item
+  Most important collaborator is future you, and future us
 \end{itemize}
+
+R4DS drawing
+
+\hypertarget{learning-with-data-that-are-not-your-own}{%
+\subsection{Learning with data that are not your own}\label{learning-with-data-that-are-not-your-own}}
+
+\hypertarget{emphasizing-collaboration}{%
+\subsection{Emphasizing collaboration}\label{emphasizing-collaboration}}
+
+Collaborating efficiently has historically been really hard to do. It's only been the last 20 years or so that we've moved beyond mailing things with the postal service. Being able to email and get feedback on files through track changes was a huge step forward, but it comes with a lot of bookkeeping and reproduciblity issues (did I send that report based on \texttt{analysis\_final\_final.xls} or \texttt{analysis\_final\_usethisone.xls}?). But now, open tools make it much easier to collaborate.
+
+Working with collaborators in mind is critical for reproducibility. And, your most important collaborator is Future You. This training will introduce best practices using open tools, so that collaboration will become second nature to you!
+
+\hypertarget{by-the-end-of-the-course}{%
+\subsection{By the end of the course\ldots{}}\label{by-the-end-of-the-course}}
+
+By the end of this course you'll produce this report that you can reproduce, which means\ldots{}
+Introduce the problem we will solve. Eg: (just an idea maybe time-series is not a great idea) SMALL PROBLEM. (4 mins)
+Show data files, We will discuss our analysis plan (only enough to motivate!) Create a report, that looks great.
+
+\hypertarget{rstudio-orientation}{%
+\section{RStudio Orientation}\label{rstudio-orientation}}
+
+Open RStudio for the first time.
+
+Launch RStudio/R.
+
+\includegraphics{img/RStudio_IDE.png}
+
+Notice the default panes:
+
+\begin{itemize}
+\tightlist
+\item
+  Console (entire left)
+\item
+  Environment/History (tabbed in upper right)
+\item
+  Files/Plots/Packages/Help (tabbed in lower right)
+\end{itemize}
+
+FYI: you can change the default location of the panes, among many other things: \href{https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio}{Customizing RStudio}.
+
+An important first question: \textbf{where are we?}
+
+If you've have opened RStudio for the first time, you'll be in your Home directory. This is noted by the \texttt{\textasciitilde{}/} at the top of the console. You can see too that the Files pane in the lower right shows what is in the Home directory where you are. You can navigate around within that Files pane and explore, but note that you won't change where you are: even as you click through you'll still be Home: \texttt{\textasciitilde{}/}.
+
+\includegraphics{img/RStudio_IDE_homedir.png}
+
+\hypertarget{rstudio-projects}{%
+\subsection{RStudio Projects}\label{rstudio-projects}}
+
+Create a new project called `RforExcelUsers'. Why does this matter? Working directory = no file path/broken path issues. Notice that a folder now appears wherever you saved this project with the same name, and it contains a .Rproj file.
+
+Let's do this together (with screenshots).
+
+Important question: where are we? Now we are in this project. Everything we do will by default be saved here so we can be nice and organized.
+
+\hypertarget{r-console}{%
+\subsection{R Console}\label{r-console}}
+
+Watch me work in the console.
+
+I can do math, I can store data in variables, and recall those variables.
+
+There are also functions like in Excel; I can do \texttt{?sum} and look at the help pages.
+
+OK so working in the Console is great, but it gets messy. It's good for quick things. But looking back at what I've done and trying to build upon it would be a nightmare.
+
+\hypertarget{deep-thought-error-messages-are-your-friends}{%
+\subsection{Deep thought: Error messages are your friends}\label{deep-thought-error-messages-are-your-friends}}
+
+Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Pay attention to how you type.
+
+Remember that this is a language, not unsimilar to English! There are times you aren't understood -- it's going to happen. There are different ways this can happen. Sometimes you'll get an error. This is like someone saying `What?' or `Pardon'? Error messages can also be more useful, like when they say `I didn't understand what you said, I was expecting you to say blah'. That is a great type of error message. Error messages are your friend. Google them (copy-and-paste!) to figure out what they mean.
+
+---\textgreater{}
+
+And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I am telling a story about suspenders that my British friend hears but silently interprets in a very different way (true story). This can leave me thinking I've gotten something across that the listener (or R) might silently interpreted very differently. And as I continue telling my story you get more and more confused\ldots{} Clear communication is critical when you code: write clean, well documented code and check your work as you go to minimize these circumstances!
+
+\hypertarget{r-scripts}{%
+\section{R Scripts}\label{r-scripts}}
+
+Instead of working in the Console that can get messy, we can be more organized. In a script. Let's all do this together.
+
+File \textgreater{} New File \textgreater{} R Script.
+
+This is a blank slate for us to write our code; but there are some good practices we can start off with. Let's add a useful header to the top of it. For example, at a minimum:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# --------------------------------}
+\CommentTok{# A descriptive title}
+\CommentTok{# Summary of what this script is for }
+\CommentTok{# Your name}
+\CommentTok{# Contact information}
+\CommentTok{# Date}
+\CommentTok{# --------------------------------}
+
+\CommentTok{# Other things you might include: required packages or datasets, relevant links (e.g. to raw data source, GitHub repo, etc.), citations and sources.}
+\end{Highlighting}
+\end{Shaded}
+
+Since we're working in or Project, this script is now nicely saved in our Project
+
+Let's attach a package. Since you've already installed tidyverse
+
+Cool looking plot with diamonds.
+
+You can run code line by line or sourcing the script
+
+\hypertarget{dont-save-the-workspace}{%
+\section{Don't save the workspace}\label{dont-save-the-workspace}}
+
+\hypertarget{deep-thought-keep-the-raw-data-raw.}{%
+\section{Deep thought: keep the raw data raw.}\label{deep-thought-keep-the-raw-data-raw.}}
+
+Discussing using Excel for variables.
+
+\hypertarget{interludes-deep-thoughtsopenscapes}{%
+\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes}}
+
+Comments! Organization (spacing, subsections, vertical structure, indentation, etc.)! Well-named variables! Also, well-named operations so analyses (select(data, columnname)) instead of data{[}1:6,5{]} and excel equivalent. (Ex with strings)
+Not so brittle/sensitive to minor changes.
+
+\hypertarget{our-turn-your-turn-1}{%
+\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1}}
+
+\hypertarget{our-turn-your-turn-2}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2}}
+
+\hypertarget{efficiency-tips}{%
+\section{Efficiency Tips}\label{efficiency-tips}}
 
 \hypertarget{readxl}{%
 \chapter{\texorpdfstring{\texttt{readxl}}{readxl}}\label{readxl}}
 
 Note for Allison: the \texttt{\{\#readxl\}} above lets us reference it from another chapter\ldots{}not sure how much we'll use it but it's possible (and doesn't hurt to have). Cool, thanks Julie!
 
-\hypertarget{summary-a-few-sentences}{%
-\section{Summary (a few sentences)}\label{summary-a-few-sentences}}
+\hypertarget{summary-a-few-sentences-1}{%
+\section{Summary (a few sentences)}\label{summary-a-few-sentences-1}}
 
 The \textbf{readxl} package makes it easy to import tabular data from Excel spreadsheets (.xls or .xlsx files) and includes several options for cleaning data during import. \textbf{readxl} has no external dependencies and functions on any operating system, making it an OS- and user-friendly package that simplifies getting your data from Excel into R.
 
-\hypertarget{objectives-more-detailed-bulletpoints}{%
-\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints}}
+\hypertarget{objectives-more-detailed-bulletpoints-1}{%
+\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-1}}
 
 \begin{itemize}
 \tightlist
@@ -266,8 +395,8 @@ The \textbf{readxl} package makes it easy to import tabular data from Excel spre
   Something about readxl workflows (e.g. \%\textgreater{}\% write\_csv() to keep a copy of the raw data in a project)??
 \end{itemize}
 
-\hypertarget{resources}{%
-\section{Resources}\label{resources}}
+\hypertarget{resources-1}{%
+\section{Resources}\label{resources-1}}
 
 \begin{itemize}
 \tightlist
@@ -278,12 +407,31 @@ The \textbf{readxl} package makes it easy to import tabular data from Excel spre
 \hypertarget{lessons-teaching-for-each-objective..-objectives-examples}{%
 \section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples}}
 
-\hypertarget{a.-use-readrread_csv-to-read-in-data-from-a-csv-file}{%
-\subsection{\texorpdfstring{a. Use \textbf{readr::read\_csv()} to read in data from a CSV file}{a. Use readr::read\_csv() to read in data from a CSV file}}\label{a.-use-readrread_csv-to-read-in-data-from-a-csv-file}}
+\hypertarget{prep-get-data-files-into-your-working-directory}{%
+\subsection{Prep: get data files into your working directory}\label{prep-get-data-files-into-your-working-directory}}
 
-There are many types of files containing data that you might want to work with in R. A common one is a comma separated value (CSV) file, which contains values with each column entry separated by a comma delimiter. CSVs can be opened, viewed, and worked with in Excel just like an .xlx or .xlsx file - but let's learn how to get data directly from a CSV into R where we can work with it more reproducibly.
+In Session 1, we introduced how and why R Projects are great for reproducibility, because our self-contained working directory will be the \textbf{first} place R looks for files.
 
-First, create a new .R script and add a useful header to the top of it. For example, at a minimum:
+You downloaded four files for this workshop:
+
+\begin{itemize}
+\tightlist
+\item
+  fish\_counts\_curated.csv
+\item
+  invert\_counts\_curated.xlsx
+\item
+  kelp\_counts\_curated.xlsx
+\item
+  \ldots{}the OTHER ONE?
+\end{itemize}
+
+Copy and paste those files into the `RforExcelUsers' folder on your computer. Notice that now these files show up right in your working directory when you go back to that Project in RStudio! That means they're going to be in the first place R will look when you ask it to find a file.
+
+\hypertarget{create-a-new-.r-script-and-attach-the-tidyverse}{%
+\subsection{Create a new .R script and attach the tidyverse}\label{create-a-new-.r-script-and-attach-the-tidyverse}}
+
+In your RforExcelUsers project in RStudio, open a new .R script and add a useful header to the top of it. For example, at a minimum:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -298,38 +446,30 @@ First, create a new .R script and add a useful header to the top of it. For exam
 \end{Highlighting}
 \end{Shaded}
 
+We'll read in a CSV file with \texttt{readr::read\_csv()}, so we need to have the \texttt{readr} package attached. Since it's part of the \texttt{tidyverse}, we'll go ahead and attach the \texttt{tidyverse} package below our script header using \texttt{library(package\_name)}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Attach the tidyverse}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+Now, all of the packages and functions within the \texttt{tidyverse}, including \texttt{readr::read\_csv()} are available for us to use.
+
+\hypertarget{use-readrread_csv-to-read-in-data-from-a-csv-file}{%
+\subsection{\texorpdfstring{Use \textbf{readr::read\_csv()} to read in data from a CSV file}{Use readr::read\_csv() to read in data from a CSV file}}\label{use-readrread_csv-to-read-in-data-from-a-csv-file}}
+
+There are many types of files containing data that you might want to work with in R. A common one is a comma separated value (CSV) file, which contains values with each column entry separated by a comma delimiter. CSVs can be opened, viewed, and worked with in Excel just like an .xls or .xlsx file - but let's learn how to get data directly from a CSV into R where we can work with it more reproducibly.
+
+The CSV we'll read in here is called ``fish\_counts\_curated.csv'', and contains observations for ``the abundance and size of fish species as part of SBCLTER's kelp forest monitoring program to track long-term patterns in species abundance and diversity'' from the \href{http://sbc.lternet.edu/}{Santa Barbara Channel Long Term Ecological Research} program.
+
+\textbf{Source:} Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Fish abundance. Environmental Data Initiative. \url{https://doi.org/10.6073/pasta/dbd1d5f0b225d903371ce89b09ee7379}. Dataset accessed 9/26/2019.
+
+Read in the ``fish\_counts\_curated.csv''
+
 \hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections}{%
 \section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections}}
-
-\hypertarget{interludes-deep-thoughtsopenscapes}{%
-\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes}}
-
-\hypertarget{our-turn-your-turn-1}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1}}
-
-\hypertarget{our-turn-your-turn-2}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2}}
-
-\hypertarget{efficiency-tips}{%
-\section{Efficiency Tips}\label{efficiency-tips}}
-
-\hypertarget{rmarkdown}{%
-\chapter{RMarkdown}\label{rmarkdown}}
-
-\hypertarget{summary-a-few-sentences-1}{%
-\section{Summary (a few sentences)}\label{summary-a-few-sentences-1}}
-
-\hypertarget{objectives-more-detailed-bulletpoints-1}{%
-\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-1}}
-
-\hypertarget{resources-1}{%
-\section{Resources}\label{resources-1}}
-
-\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-1}{%
-\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-1}}
-
-\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1}{%
-\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1}}
 
 \hypertarget{interludes-deep-thoughtsopenscapes-1}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-1}}
@@ -343,8 +483,8 @@ First, create a new .R script and add a useful header to the top of it. For exam
 \hypertarget{efficiency-tips-1}{%
 \section{Efficiency Tips}\label{efficiency-tips-1}}
 
-\hypertarget{pivot}{%
-\chapter{Dplyr and Pivot Tables}\label{pivot}}
+\hypertarget{rmarkdown}{%
+\chapter{RMarkdown}\label{rmarkdown}}
 
 \hypertarget{summary-a-few-sentences-2}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences-2}}
@@ -355,11 +495,11 @@ First, create a new .R script and add a useful header to the top of it. For exam
 \hypertarget{resources-2}{%
 \section{Resources}\label{resources-2}}
 
-\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-2}{%
-\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-2}}
+\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-1}{%
+\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-1}}
 
-\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}{%
-\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}}
+\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1}{%
+\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1}}
 
 \hypertarget{interludes-deep-thoughtsopenscapes-2}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-2}}
@@ -373,8 +513,8 @@ First, create a new .R script and add a useful header to the top of it. For exam
 \hypertarget{efficiency-tips-2}{%
 \section{Efficiency Tips}\label{efficiency-tips-2}}
 
-\hypertarget{vlookup}{%
-\chapter{Dplyr and vlookups}\label{vlookup}}
+\hypertarget{pivot}{%
+\chapter{Dplyr and Pivot Tables}\label{pivot}}
 
 \hypertarget{summary-a-few-sentences-3}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences-3}}
@@ -385,11 +525,11 @@ First, create a new .R script and add a useful header to the top of it. For exam
 \hypertarget{resources-3}{%
 \section{Resources}\label{resources-3}}
 
-\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-3}{%
-\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-3}}
+\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-2}{%
+\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-2}}
 
-\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3}{%
-\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3}}
+\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}{%
+\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}}
 
 \hypertarget{interludes-deep-thoughtsopenscapes-3}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-3}}
@@ -403,6 +543,36 @@ First, create a new .R script and add a useful header to the top of it. For exam
 \hypertarget{efficiency-tips-3}{%
 \section{Efficiency Tips}\label{efficiency-tips-3}}
 
+\hypertarget{vlookup}{%
+\chapter{Dplyr and vlookups}\label{vlookup}}
+
+\hypertarget{summary-a-few-sentences-4}{%
+\section{Summary (a few sentences)}\label{summary-a-few-sentences-4}}
+
+\hypertarget{objectives-more-detailed-bulletpoints-4}{%
+\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-4}}
+
+\hypertarget{resources-4}{%
+\section{Resources}\label{resources-4}}
+
+\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-3}{%
+\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-3}}
+
+\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3}{%
+\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3}}
+
+\hypertarget{interludes-deep-thoughtsopenscapes-4}{%
+\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-4}}
+
+\hypertarget{our-turn-your-turn-1-4}{%
+\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-4}}
+
+\hypertarget{our-turn-your-turn-2-4}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-4}}
+
+\hypertarget{efficiency-tips-4}{%
+\section{Efficiency Tips}\label{efficiency-tips-4}}
+
 \hypertarget{tidying}{%
 \chapter{Tidying}\label{tidying}}
 
@@ -414,13 +584,13 @@ Modern useRs are nimble internet useRs
 something clever about cleaning
 I am the worst at naming things
 
-\hypertarget{summary-a-few-sentences-4}{%
-\section{Summary (a few sentences)}\label{summary-a-few-sentences-4}}
+\hypertarget{summary-a-few-sentences-5}{%
+\section{Summary (a few sentences)}\label{summary-a-few-sentences-5}}
 
 R ecosystem evolves and improves due to contributed work by the community, and this is a good thing. Being a nimble useR means being able to navigate/keep tabs on this ecosystem and find what you need. It also means working reproducibly, so you can re-run and update things more easily. Here we will teach you how to expect things and help yourself. Pay attention to urls.
 
-\hypertarget{objectives-more-detailed-bulletpoints-4}{%
-\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-4}}
+\hypertarget{objectives-more-detailed-bulletpoints-5}{%
+\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-5}}
 
 \begin{itemize}
 \tightlist
@@ -464,8 +634,8 @@ R ecosystem evolves and improves due to contributed work by the community, and t
   \end{itemize}
 \end{itemize}
 
-\hypertarget{resources-4}{%
-\section{Resources}\label{resources-4}}
+\hypertarget{resources-5}{%
+\section{Resources}\label{resources-5}}
 
 \begin{itemize}
 \tightlist
@@ -519,14 +689,14 @@ Pay attention to URLs, build github/rmarkdown savviness (ex: raw.githubuserconte
 \hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4}{%
 \section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4}}
 
-\hypertarget{interludes-deep-thoughtsopenscapes-4}{%
-\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-4}}
+\hypertarget{interludes-deep-thoughtsopenscapes-5}{%
+\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-5}}
 
-\hypertarget{our-turn-your-turn-2-4}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-4}}
+\hypertarget{our-turn-your-turn-2-5}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-5}}
 
-\hypertarget{efficiency-tips-4}{%
-\section{Efficiency Tips}\label{efficiency-tips-4}}
+\hypertarget{efficiency-tips-5}{%
+\section{Efficiency Tips}\label{efficiency-tips-5}}
 
 \begin{itemize}
 \tightlist
@@ -553,36 +723,6 @@ Recreate it
 \hypertarget{format}{%
 \chapter{Formatting and Sharing}\label{format}}
 
-\hypertarget{summary-a-few-sentences-5}{%
-\section{Summary (a few sentences)}\label{summary-a-few-sentences-5}}
-
-\hypertarget{objectives-more-detailed-bulletpoints-5}{%
-\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-5}}
-
-\hypertarget{resources-5}{%
-\section{Resources}\label{resources-5}}
-
-\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-5}{%
-\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-5}}
-
-\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-5}{%
-\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-5}}
-
-\hypertarget{interludes-deep-thoughtsopenscapes-5}{%
-\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-5}}
-
-\hypertarget{our-turn-your-turn-1-4}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-4}}
-
-\hypertarget{our-turn-your-turn-2-5}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-5}}
-
-\hypertarget{efficiency-tips-5}{%
-\section{Efficiency Tips}\label{efficiency-tips-5}}
-
-\hypertarget{synthesis}{%
-\chapter{Synthesis}\label{synthesis}}
-
 \hypertarget{summary-a-few-sentences-6}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences-6}}
 
@@ -592,11 +732,18 @@ Recreate it
 \hypertarget{resources-6}{%
 \section{Resources}\label{resources-6}}
 
-\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-6}{%
-\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-6}}
+\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-5}{%
+\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-5}}
 
-\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-6}{%
-\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-6}}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create a GitHub account: \url{https://github.com} \emph{Note! Shorter names that kind of identify you are better, and use your work email!}
+\end{enumerate}
+
+\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-5}{%
+\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-5}}
 
 \hypertarget{interludes-deep-thoughtsopenscapes-6}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-6}}
@@ -609,6 +756,36 @@ Recreate it
 
 \hypertarget{efficiency-tips-6}{%
 \section{Efficiency Tips}\label{efficiency-tips-6}}
+
+\hypertarget{synthesis}{%
+\chapter{Synthesis}\label{synthesis}}
+
+\hypertarget{summary-a-few-sentences-7}{%
+\section{Summary (a few sentences)}\label{summary-a-few-sentences-7}}
+
+\hypertarget{objectives-more-detailed-bulletpoints-7}{%
+\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-7}}
+
+\hypertarget{resources-7}{%
+\section{Resources}\label{resources-7}}
+
+\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-6}{%
+\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-6}}
+
+\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-6}{%
+\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-6}}
+
+\hypertarget{interludes-deep-thoughtsopenscapes-7}{%
+\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-7}}
+
+\hypertarget{our-turn-your-turn-1-6}{%
+\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-6}}
+
+\hypertarget{our-turn-your-turn-2-7}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-7}}
+
+\hypertarget{efficiency-tips-7}{%
+\section{Efficiency Tips}\label{efficiency-tips-7}}
 
 \bibliography{book.bib,packages.bib}
 
