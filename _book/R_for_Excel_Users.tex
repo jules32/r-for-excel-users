@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-08-24}
+    \date{2019-09-26}
 
 \usepackage{booktabs}
 
@@ -235,17 +235,46 @@ References Brainstorm
   Broman \& Woo 2017: \url{https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989}
 \end{itemize}
 
-\hypertarget{rmarkdown}{%
-\chapter{RMarkdown}\label{rmarkdown}}
+\hypertarget{readxl}{%
+\chapter{\texorpdfstring{\texttt{readxl}}{readxl}}\label{readxl}}
+
+Note for Allison: the \texttt{\{\#readxl\}} above lets us reference it from another chapter\ldots{}not sure how much we'll use it but it's possible (and doesn't hurt to have). Cool, thanks Julie!
 
 \hypertarget{summary-a-few-sentences}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences}}
 
+The \textbf{readxl} package makes it easy to import tabular data from Excel spreadsheets (.xls or .xlsx files) and includes several options for cleaning data during import. \textbf{readxl} has no external dependencies and functions on any operating system, making it an OS- and user-friendly package that simplifies getting your data from Excel into R.
+
 \hypertarget{objectives-more-detailed-bulletpoints}{%
 \section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints}}
 
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Use readxl::read\_excel() to read in an Excel worksheet
+\item
+  Use readxl::read\_excel() to read in parts of a worksheet (by cell range)
+\item
+  Specify column names when importing Excel data
+\item
+  Replace a specific string/value with `NA'
+\item
+  Skip \emph{n} rows when importing an Excel worksheet
+\item
+  Read in multiple Excel worksheets (note to Julie: I actually think this is fine to include\ldots{}purrr::map() can be explained in a really simple way)
+\item
+  Something about readxl workflows (e.g. \%\textgreater{}\% write\_csv() to keep a copy of the raw data in a project)??
+\end{enumerate}
+
 \hypertarget{resources}{%
 \section{Resources}\label{resources}}
+
+\begin{itemize}
+\tightlist
+\item
+  \url{https://readxl.tidyverse.org/}
+\end{itemize}
 
 \hypertarget{lessons-teaching-for-each-objective..-objectives-examples}{%
 \section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples}}
@@ -265,8 +294,8 @@ References Brainstorm
 \hypertarget{efficiency-tips}{%
 \section{Efficiency Tips}\label{efficiency-tips}}
 
-\hypertarget{excel-meet-r}{%
-\chapter{Excel, Meet R}\label{excel-meet-r}}
+\hypertarget{rmarkdown}{%
+\chapter{RMarkdown}\label{rmarkdown}}
 
 \hypertarget{summary-a-few-sentences-1}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences-1}}
@@ -295,46 +324,17 @@ References Brainstorm
 \hypertarget{efficiency-tips-1}{%
 \section{Efficiency Tips}\label{efficiency-tips-1}}
 
-\hypertarget{readxl}{%
-\chapter{\texorpdfstring{\texttt{readxl}}{readxl}}\label{readxl}}
-
-Note for Allison: the \texttt{\{\#readxl\}} above lets us reference it from another chapter\ldots{}not sure how much we'll use it but it's possible (and doesn't hurt to have). Cool, thanks Julie!
+\hypertarget{pivot}{%
+\chapter{Dplyr and Pivot Tables}\label{pivot}}
 
 \hypertarget{summary-a-few-sentences-2}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences-2}}
 
-The \textbf{readxl} package makes it easy to import tabular data from Excel spreadsheets (.xls or .xlsx files) and includes several options for cleaning data during import. \textbf{readxl} has no external dependencies and functions on any operating system, making it an OS- and user-friendly package that simplifies getting your data from Excel into R.
-
 \hypertarget{objectives-more-detailed-bulletpoints-2}{%
 \section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-2}}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Use readxl::read\_excel() to read in an Excel worksheet
-\item
-  Use readxl::read\_excel() to read in parts of a worksheet (by cell range)
-\item
-  Specify column names when importing Excel data
-\item
-  Replace a specific string/value with `NA'
-\item
-  Skip \emph{n} rows when importing an Excel worksheet
-\item
-  Read in multiple Excel worksheets (note to Julie: I actually think this is fine to include\ldots{}purrr::map() can be explained in a really simple way)
-\item
-  Something about readxl workflows (e.g. \%\textgreater{}\% write\_csv())
-\end{enumerate}
-
 \hypertarget{resources-2}{%
 \section{Resources}\label{resources-2}}
-
-\begin{itemize}
-\tightlist
-\item
-  \url{https://readxl.tidyverse.org/}
-\end{itemize}
 
 \hypertarget{lessons-teaching-for-each-objective..-objectives-examples-2}{%
 \section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-2}}
@@ -354,8 +354,8 @@ The \textbf{readxl} package makes it easy to import tabular data from Excel spre
 \hypertarget{efficiency-tips-2}{%
 \section{Efficiency Tips}\label{efficiency-tips-2}}
 
-\hypertarget{import}{%
-\chapter{Data Import}\label{import}}
+\hypertarget{vlookup}{%
+\chapter{Dplyr and vlookups}\label{vlookup}}
 
 \hypertarget{summary-a-few-sentences-3}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences-3}}
@@ -384,8 +384,11 @@ The \textbf{readxl} package makes it easy to import tabular data from Excel spre
 \hypertarget{efficiency-tips-3}{%
 \section{Efficiency Tips}\label{efficiency-tips-3}}
 
+\hypertarget{tidying}{%
+\chapter{Tidying}\label{tidying}}
+
 \hypertarget{better-practices-needs-a-better-name}{%
-\chapter{Better practices {[}needs a better name{]}}\label{better-practices-needs-a-better-name}}
+\section{Better practices {[}needs a better name{]}}\label{better-practices-needs-a-better-name}}
 
 How to be a nimble useR
 Modern useRs are nimble internet useRs
@@ -528,8 +531,8 @@ If your computer shuts off are you nervous to close it?
 Recreate it
 ``What they didn't forget to teach you about R'' WTDF. uncool
 
-\hypertarget{outputting-files-collaborating}{%
-\chapter{Outputting files \& collaborating}\label{outputting-files-collaborating}}
+\hypertarget{format}{%
+\chapter{Formatting and Sharing}\label{format}}
 
 \hypertarget{summary-a-few-sentences-5}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences-5}}
@@ -557,6 +560,36 @@ Recreate it
 
 \hypertarget{efficiency-tips-5}{%
 \section{Efficiency Tips}\label{efficiency-tips-5}}
+
+\hypertarget{synthesis}{%
+\chapter{Synthesis}\label{synthesis}}
+
+\hypertarget{summary-a-few-sentences-6}{%
+\section{Summary (a few sentences)}\label{summary-a-few-sentences-6}}
+
+\hypertarget{objectives-more-detailed-bulletpoints-6}{%
+\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-6}}
+
+\hypertarget{resources-6}{%
+\section{Resources}\label{resources-6}}
+
+\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-6}{%
+\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-6}}
+
+\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-6}{%
+\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-6}}
+
+\hypertarget{interludes-deep-thoughtsopenscapes-6}{%
+\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-6}}
+
+\hypertarget{our-turn-your-turn-1-5}{%
+\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-5}}
+
+\hypertarget{our-turn-your-turn-2-6}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-6}}
+
+\hypertarget{efficiency-tips-6}{%
+\section{Efficiency Tips}\label{efficiency-tips-6}}
 
 \bibliography{book.bib,packages.bib}
 

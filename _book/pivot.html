@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 readxl | R for the Excel User</title>
+  <title>Chapter 5 Dplyr and Pivot Tables | R for the Excel User</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 readxl | R for the Excel User" />
+  <meta property="og:title" content="Chapter 5 Dplyr and Pivot Tables | R for the Excel User" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 readxl | R for the Excel User" />
+  <meta name="twitter:title" content="Chapter 5 Dplyr and Pivot Tables | R for the Excel User" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="overview.html">
-<link rel="next" href="rmarkdown.html">
+<link rel="prev" href="rmarkdown.html">
+<link rel="next" href="vlookup.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -232,48 +232,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="readxl" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> <code>readxl</code></h1>
-<p>Note for Allison: the <code>{#readxl}</code> above lets us reference it from another chapter…not sure how much we’ll use it but it’s possible (and doesn’t hurt to have). Cool, thanks Julie!</p>
-<div id="summary-a-few-sentences" class="section level2">
-<h2><span class="header-section-number">3.1</span> Summary (a few sentences)</h2>
-<p>The <strong>readxl</strong> package makes it easy to import tabular data from Excel spreadsheets (.xls or .xlsx files) and includes several options for cleaning data during import. <strong>readxl</strong> has no external dependencies and functions on any operating system, making it an OS- and user-friendly package that simplifies getting your data from Excel into R.</p>
+<div id="pivot" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Dplyr and Pivot Tables</h1>
+<div id="summary-a-few-sentences-2" class="section level2">
+<h2><span class="header-section-number">5.1</span> Summary (a few sentences)</h2>
 </div>
-<div id="objectives-more-detailed-bulletpoints" class="section level2">
-<h2><span class="header-section-number">3.2</span> Objectives (more detailed, bulletpoints?)</h2>
-<ol style="list-style-type: decimal">
-<li>Use readxl::read_excel() to read in an Excel worksheet</li>
-<li>Use readxl::read_excel() to read in parts of a worksheet (by cell range)</li>
-<li>Specify column names when importing Excel data</li>
-<li>Replace a specific string/value with ‘NA’</li>
-<li>Skip <em>n</em> rows when importing an Excel worksheet</li>
-<li>Read in multiple Excel worksheets (note to Julie: I actually think this is fine to include…purrr::map() can be explained in a really simple way)</li>
-<li>Something about readxl workflows (e.g. %&gt;% write_csv() to keep a copy of the raw data in a project)??</li>
-</ol>
+<div id="objectives-more-detailed-bulletpoints-2" class="section level2">
+<h2><span class="header-section-number">5.2</span> Objectives (more detailed, bulletpoints?)</h2>
 </div>
-<div id="resources" class="section level2">
-<h2><span class="header-section-number">3.3</span> Resources</h2>
-<ul>
-<li><a href="https://readxl.tidyverse.org/" class="uri">https://readxl.tidyverse.org/</a></li>
-</ul>
+<div id="resources-2" class="section level2">
+<h2><span class="header-section-number">5.3</span> Resources</h2>
 </div>
-<div id="lessons-teaching-for-each-objective..-objectives-examples" class="section level2">
-<h2><span class="header-section-number">3.4</span> Lessons teaching for each objective….. (objectives, examples)</h2>
+<div id="lessons-teaching-for-each-objective..-objectives-examples-2" class="section level2">
+<h2><span class="header-section-number">5.4</span> Lessons teaching for each objective….. (objectives, examples)</h2>
 </div>
-<div id="fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections" class="section level2">
-<h2><span class="header-section-number">3.5</span> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</h2>
+<div id="fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2" class="section level2">
+<h2><span class="header-section-number">5.5</span> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</h2>
 </div>
-<div id="interludes-deep-thoughtsopenscapes" class="section level2">
-<h2><span class="header-section-number">3.6</span> Interludes (deep thoughts/openscapes)</h2>
+<div id="interludes-deep-thoughtsopenscapes-2" class="section level2">
+<h2><span class="header-section-number">5.6</span> Interludes (deep thoughts/openscapes)</h2>
 </div>
-<div id="our-turn-your-turn-1" class="section level2">
-<h2><span class="header-section-number">3.7</span> Our Turn Your Turn 1</h2>
+<div id="our-turn-your-turn-1-2" class="section level2">
+<h2><span class="header-section-number">5.7</span> Our Turn Your Turn 1</h2>
 </div>
-<div id="our-turn-your-turn-2" class="section level2">
-<h2><span class="header-section-number">3.8</span> Our Turn Your Turn 2</h2>
+<div id="our-turn-your-turn-2-2" class="section level2">
+<h2><span class="header-section-number">5.8</span> Our Turn Your Turn 2</h2>
 </div>
-<div id="efficiency-tips" class="section level2">
-<h2><span class="header-section-number">3.9</span> Efficiency Tips</h2>
+<div id="efficiency-tips-2" class="section level2">
+<h2><span class="header-section-number">5.9</span> Efficiency Tips</h2>
 
 </div>
 </div>
@@ -282,8 +268,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="overview.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="rmarkdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="rmarkdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="vlookup.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

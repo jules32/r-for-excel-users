@@ -1,4 +1,6 @@
-# Better practices [needs a better name]
+# Tidying
+
+## Better practices [needs a better name]
 How to be a nimble useR
 Modern useRs are nimble internet useRs
 something clever about cleaning 

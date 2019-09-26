@@ -1,4 +1,4 @@
-# Outputting files & collaborating
+# Dplyr and vlookups {#vlookup}
 
 ## Summary (a few sentences)
 ## Objectives (more detailed, bulletpoints?)

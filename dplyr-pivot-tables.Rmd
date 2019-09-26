@@ -1,4 +1,4 @@
-# Data Import {#import}
+# Dplyr and Pivot Tables {#pivot}
 
 ## Summary (a few sentences)
 ## Objectives (more detailed, bulletpoints?)

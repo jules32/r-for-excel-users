@@ -1,4 +1,4 @@
-# Excel, Meet R
+# Formatting and Sharing {#format}
 
 ## Summary (a few sentences)
 ## Objectives (more detailed, bulletpoints?)

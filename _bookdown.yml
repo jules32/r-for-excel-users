@@ -5,11 +5,12 @@ language:
 rmd_files: [
   "index.Rmd",
   "overview.Rmd",
-  "rmarkdown.Rmd",
-  "excel-meet-r.Rmd",
   "readxl.Rmd",
-  "data-import.Rmd",
-  "better-practices.Rmd",
-  "output-collaborate.Rmd"
+  "rmarkdown.Rmd",
+  "dplyr-pivot-tables.Rmd",
+  "dplyr-vlookups.Rmd",
+  "tidying.Rmd",
+  "formatting-and-sharing.Rmd",
+  "synthesis.Rmd"
  ]
 delete_merged_file: true
