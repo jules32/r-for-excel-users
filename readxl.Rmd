@@ -41,6 +41,7 @@ First, create a new .R script and add a useful header to the top of it. For exam
 # Other things you might include: required packages or datasets, relevant links (e.g. to raw data source, GitHub repo, etc.), citations and sources.
 ```
 
+Now let's read in our first CSV file using readr::read_csv(). 
 
 ## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
 ## Interludes (deep thoughts/openscapes)
