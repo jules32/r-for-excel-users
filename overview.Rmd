@@ -99,9 +99,33 @@ Important question: where are we? Now we are in this project. Everything we do w
 
 Watch me work in the console. 
 
-I can do math, I can store data in variables, and recall those variables. 
+I can do math, 
+
+But like Excel, the power comes not from doing small operations by hand (like 8*22.3), it's by being able to operate on swaths of numbers. Columns, Rows, etc. In Excel, they are stored in the spreadsheet. In R, they are stored in variables. 
+
+R stores data in variables, and that data can be a variety of formats, like numeric and text. Let's have a look at some data in R. R has several built-in data sets that we can look at and work with. 
+
+One of these datasets is called `mtcars`. If I write this in the Console, it will print the data in the console.
+
+```{r}
+mtcars
+```
+
+I can also use RStudio's Viewer to see this in a more familiar-looking format: 
+
+```{r}
+View(mtcars)
+```
+
+This opens the fourth pane of the RStudio IDE. In the Viewer I can do things like filter or sort. This does not do anything to the actual data, it just changes how you are viewing the data. 
 
 There are also functions like in Excel; I can do `?sum` and look at the help pages. 
+
+
+
+Average mile per gallon. In excel there is a function called AVERAGE. Let's see 
+
+
 
 OK so working in the Console is great, but it gets messy. It's good for quick things. But looking back at what I've done and trying to build upon it would be a nightmare. 
 
@@ -138,9 +162,15 @@ This is a blank slate for us to write our code; but there are some good practice
 ```
 
 
-Since we're working in or Project, this script is now nicely saved in our Project
+Since we're working in or Project, this script is now nicely saved in our Project. 
 
 Let's attach a package. Since you've already installed tidyverse
+
+```{r, message = FALSE}
+# Attach the tidyverse
+library(tidyverse)
+```
+
 
 Cool looking plot with diamonds. 
 
@@ -151,6 +181,8 @@ You can run code line by line or sourcing the script
 ## Deep thought: keep the raw data raw. 
 
 Discussing using Excel for variables. 
+
+Horror Stories! Economist etc. 
 
 
 ## Interludes (deep thoughts/openscapes)
