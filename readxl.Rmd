@@ -288,10 +288,50 @@ kelp_all_sites
 
 Awesome! 
 
-### Save data frames as .csv or .xlsx with `readr::write_csv()` or `writexl::write_excel()`
+### Save data frames as .csv or .xlsx with `readr::write_csv()` or `writexl::write_xlsx()`
 
-## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
+There are a number of reasons you might want to save (/export) data in a data frame as a .csv or Excel worksheet, including: 
+
+- To cache raw data within your project
+- To store copies of intermediate data frames
+- To convert your data back to a format that your coworkers/clients/colleagues will be able to use it more easily
+- OTHERS? 
+
+Use `readr::write_csv(object, "file_name.csv")` to write a data frame to a CSV, or `writexl::write_xlsx(object, "file_name.xlsx")` to similarly export as a .xlsx (or .xls) worksheet. 
+
+In the previous step, we combined all of our kelp frond observations into a single data frame. Wouldn't it make sense to store a copy? 
+
+As a CSV: 
+```{r, eval = FALSE}
+readr::write_csv(kelp_all_sites, "kelp_all_sites.csv")
+```
+
+A cool thing about `readr::read_csv()` is that it just quietly *works* without wrecking anything else you do in a sequence, so it's great to add at the end of a piped sequence.
+
+For example, if I want to read in the 'ivee' worksheet from kelp_counts_curated.xlsx, select only columns 'year' and 'tot_fronds', then write that new subset to a .csv file, I can pipe all the way through:
+```{r, eval = FALSE}
+
+kelp_ivee <- readxl::read_excel("kelp_counts_curated.xlsx", sheet = "ivee") %>% 
+  select(year, tot_fronds) %>% 
+  write_csv("kelp_ivee.csv")
+
+```
+
+Now I've created *kelp_ivee.csv*, but the object *kelp_ivee* also exists for me to use in R. 
+
+If needed, I can also export a data frame as an Excel (.xlsx) worksheet:
+```{r, eval = FALSE}
+writexl::write_xlsx(kelp_all_sites, "kelp_all_sites.xlsx")
+```
+
+## Fun facts to add throughout:
+
+Did you know that Clippy shows up to help you in the documentation for ?writexl::write_xlsx()?
+
+The name of the `purrr` package? 
+
 ## Interludes (deep thoughts/openscapes)
 ## Our Turn Your Turn 1
 ## Our Turn Your Turn 2
 ## Efficiency Tips
+
