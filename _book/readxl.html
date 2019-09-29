@@ -175,9 +175,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="readxl.html"><a href="readxl.html#fun-facts-ideas"><i class="fa fa-check"></i><b>3.5</b> Fun facts ideas:</a></li>
 <li class="chapter" data-level="3.6" data-path="readxl.html"><a href="readxl.html#interludes-deep-thoughtsopenscapes-1"><i class="fa fa-check"></i><b>3.6</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="3.7" data-path="readxl.html"><a href="readxl.html#activity-1-invertebrates"><i class="fa fa-check"></i><b>3.7</b> Activity 1: Invertebrates!</a></li>
-<li class="chapter" data-level="3.8" data-path="readxl.html"><a href="readxl.html#activity-2"><i class="fa fa-check"></i><b>3.8</b> Activity 2</a></li>
-<li class="chapter" data-level="3.9" data-path="readxl.html"><a href="readxl.html#efficiency-tips-1"><i class="fa fa-check"></i><b>3.9</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="3.7" data-path="readxl.html"><a href="readxl.html#activity-import-invertebrates"><i class="fa fa-check"></i><b>3.7</b> Activity: Import invertebrates!</a></li>
+<li class="chapter" data-level="3.8" data-path="readxl.html"><a href="readxl.html#efficiency-tips-1"><i class="fa fa-check"></i><b>3.8</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>4</b> RMarkdown</a><ul>
 <li class="chapter" data-level="4.1" data-path="rmarkdown.html"><a href="rmarkdown.html#summary-a-few-sentences-1"><i class="fa fa-check"></i><b>4.1</b> Summary (a few sentences)</a></li>
@@ -521,14 +520,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Respecting the tools people are working with already (e.g. don’t make your Excel using co-workers hate you)</li>
 </ul>
 </div>
-<div id="activity-1-invertebrates" class="section level2">
-<h2><span class="header-section-number">3.7</span> Activity 1: Invertebrates!</h2>
-</div>
-<div id="activity-2" class="section level2">
-<h2><span class="header-section-number">3.8</span> Activity 2</h2>
+<div id="activity-import-invertebrates" class="section level2">
+<h2><span class="header-section-number">3.7</span> Activity: Import invertebrates!</h2>
+<p>There’s one dataset we haven’t imported or explored yet: invertebrate counts for 5 popular invertebrates (California cone snail, California spiny lobster, orange cup coral, purple urchin and rock scallops) at 11 sites in the Santa Barbara Channel. Take a look at the <em>invert_counts_curated.xlsx</em> data by opening it in Excel</p>
+<ul>
+<li>Read in the <em>invert_counts_curated.xlsx</em> worksheet as object ‘inverts_july’, only retaining <strong>site</strong>, <strong>common_name</strong>, and <strong>2016</strong> and setting the existing first row in the worksheet as to column headers upon import</li>
+<li>Explore the imported data frame using View, names, head, tail, etc.</li>
+<li>Write ‘inverts_july’ to a CSV file in your working directory called “inverts_july.csv”</li>
+<li>Create a basic graph of invert counts in 2016 (y-axis) by site (x-axis), with each species indicated by a different fill color
+<ul>
+<li><strong>Note:</strong> If your column name is a number (not great) you’ll probably want to rename it…but in the meantime, to call it as a variable make sure you put single or double quotes around it (e.g. <code>'2016'</code> or <code>&quot;2016&quot;</code>) so that R recognizes it’s a variable and not a value</li>
+</ul></li>
+</ul>
 </div>
 <div id="efficiency-tips-1" class="section level2">
-<h2><span class="header-section-number">3.9</span> Efficiency Tips</h2>
+<h2><span class="header-section-number">3.8</span> Efficiency Tips</h2>
 <ul>
 <li>Add an assignment arrow in script/code chunk (&lt;-): Alt + minus (-)</li>
 <li>Undo shortcut: Command + Z</li>

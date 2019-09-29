@@ -359,8 +359,37 @@ writexl::write_xlsx(kelp_all_sites, "kelp_all_sites.xlsx")
 - Workflow/reproducibility/readxl workflows article 
 - Respecting the tools people are working with already (e.g. don't make your Excel using co-workers hate you)
 
-## Activity 1: Invertebrates! 
-## Activity 2
+## Activity: Import invertebrates! 
+
+There's one dataset we haven't imported or explored yet: invertebrate counts for 5 popular invertebrates (California cone snail, California spiny lobster, orange cup coral, purple urchin and rock scallops) at 11 sites in the Santa Barbara Channel. Take a look at the *invert_counts_curated.xlsx* data by opening it in Excel
+
+- Read in the *invert_counts_curated.xlsx* worksheet as object 'inverts_july', only retaining **site**, **common_name**, and **2016** and setting the existing first row in the worksheet as to column headers upon import
+- Explore the imported data frame using View, names, head, tail, etc. 
+- Write 'inverts_july' to a CSV file in your working directory called "inverts_july.csv"
+- Create a basic graph of invert counts in 2016 (y-axis) by site (x-axis), with each species indicated by a different fill color
+    - **Note:** If your column name is a number (not great) you'll probably want to rename it...but in the meantime, to call it as a variable make sure you put single or double quotes around it (e.g. `'2016'` or `"2016"`) so that R recognizes it's a variable and not a value
+
+```{r, include = FALSE}
+
+# Solution:
+
+# Importing only 'site' through '2016' columns: 
+inverts_july <- readxl::read_excel("curation/invert_counts_curated.xlsx", range = "B1:D56")
+
+# Do some basic exploring (why might we want to do this in the Console instead?):
+View(inverts_july)
+names(inverts_july)
+head(inverts_july)
+tail(inverts_july)
+ls()
+
+# Write back to a csv file: 
+# write_csv(inverts_july, "inverts_july.csv")
+
+# Note: this is terrible looking, but fine for the activity
+ggplot(inverts_july, aes(x = site, y = `2016`)) +
+  geom_col(aes(fill = common_name), position = "dodge")
+```
 
 ## Efficiency Tips
 
