@@ -1,9 +1,8 @@
 # `readxl` {#readxl}
-Note for Allison: the `{#readxl}` above lets us reference it from another chapter...not sure how much we'll use it but it's possible (and doesn't hurt to have). Cool, thanks Julie! 
 
 ## Summary
 
-**CHECK THIS SUMMARY, MAY NEED TO BE A BLOCK QUOTE W/SOURCE**: The **readxl** package makes it easy to import tabular data from Excel spreadsheets (.xls or .xlsx files) and includes several options for cleaning data during import. **readxl** has no external dependencies and functions on any operating system, making it an OS- and user-friendly package that simplifies getting your data from Excel into R. 
+**Check this, may need to be a block quote**: The **readxl** package makes it easy to import tabular data from Excel spreadsheets (.xls or .xlsx files) and includes several options for cleaning data during import. **readxl** has no external dependencies and functions on any operating system, making it an OS- and user-friendly package that simplifies getting your data from Excel into R. 
 
 ## Objectives
 
@@ -34,9 +33,9 @@ You downloaded four files for this workshop:
 - kelp_counts_curated.xlsx
 - substrate_cover_curated.xlsx
 
-Copy and paste those files into the 'RforExcelUsers' folder on your computer. Notice that now these files show up right in your working directory when you go back to that Project in RStudio! That means they're going to be in the first place R will look when you ask it to find a file. 
+Copy and paste those files into the 'RforExcelUsers' folder on your computer. Notice that now these files are in your working directory when you go back to that Project in RStudio (check the 'Files' tab). That means they're going to be in the first place R will look when you ask it to find a file to read in. 
 
-### Create a new .R script and attach the tidyverse 
+### Create a new .R script, attach the `tidyverse` and `readxl` packages  
 
 In your RforExcelUsers project in RStudio, open a new .R script and add a useful header to the top of it. For example, at a minimum: 
 
@@ -52,16 +51,19 @@ In your RforExcelUsers project in RStudio, open a new .R script and add a useful
 # Other things you might include: required packages or datasets, relevant links (e.g. to raw data source, GitHub repo, etc.), citations and sources.
 ```
 
-We'll read in a CSV file with the `readr::read_csv()` function, so we need to have the `readr` package attached. Since it's part of the `tidyverse`, we'll go ahead and attach the `tidyverse` package below our script header using `library(package_name)`. 
+In this lesson, we'll read in a CSV file with the `readr::read_csv()` function, so we need to have the `readr` package attached. Since it's part of the `tidyverse`, we'll go ahead and attach the `tidyverse` package below our script header using `library(package_name)`. It's a good idea to attach all necessary packages near the top of a script, so we'll also attach the `readxl` packages here. 
 
 ```{r, message = FALSE}
 # Attach the tidyverse
 library(tidyverse)
+
+# Attach the readxl package
+library(readxl)
 ```
 
-Now, all of the packages and functions within the `tidyverse`, including `readr::read_csv()`, are available for use. 
+Now, all of the packages and functions within the `tidyverse` and `readxl`, including `readr::read_csv()` and `readxl::read_excel()`, are available for use. 
 
-### Use [`readr::read_csv()`](https://readr.tidyverse.org/reference/read_delim.html) to read in data from a CSV file
+### Use `readr::read_csv()` to read in data from a CSV file
 
 There are many types of files containing data that you might want to work with in R. A common one is a comma separated value (CSV) file, which contains values with each column entry separated by a comma delimiter. CSVs can be opened, viewed, and worked with in Excel just like an .xls or .xlsx file - but let's learn how to get data directly from a CSV into R where we can work with it more reproducibly. 
 
@@ -96,9 +98,9 @@ ggplot(fish_counts, aes(x = year, y = tot_count, group = common_name)) +
   facet_wrap(~site)
 ```
 
-Now that we have our fish counts data ready to work with in R, let's get the substrate cover and kelp data (both .xlsx files). In the following sections, we'll learn that we can use `readxl::read_xls()` to read in Excel files directly.
+Now that we have our fish counts data ready to work with in R, let's get the substrate cover and kelp data (both .xlsx files). In the following sections, we'll learn that we can use `readxl::read_excel()` to read in Excel files directly.
 
-### Use readxl::read_xls() to read in a single Excel worksheet 
+### Use `readxl::read_excel()` to read in a single Excel worksheet 
 
 First, take a look at *substrate_cover_curated.xlsx* in Excel, which contains a single worksheet with substrate type and percent cover observations at different sampling locations in the Santa Barbara Channel. 
 
@@ -108,9 +110,42 @@ A few things to notice:
 - There are multiple rows containing text information up top
 - Where observations were not recorded, there exists '-9999'
 
-Let's go ahead and read in the data. We can read in a single worksheet .xlsx file using `readxl::read_xlsx("file_name.xlsx")`. Note: use `read_xls()` for .xls files. 
+Let's go ahead and read in the data. If the file is in our working directory, we can read in a single worksheet .xlsx file using `readxl::read_excel("file_name.xlsx")`. *Note: readxl::read_excel() works for both .xlsx and .xls types*. 
 
-### Use readxl::read_xls() to read in selected worksheets 
+Like this: 
+```{r, include = FALSE}
+
+substrate_cover <- read_excel("curation/substrate_cover_curated.xlsx")
+
+```
+
+```{r, eval = FALSE, results = 'hide'}
+substrate_cover <- read_excel("substrate_cover_curated.xlsx")
+```
+
+**Tada? Not quite.** 
+
+Click on the object name (*substrate_cover*) in the Environment to view the data in a new tab. A few things aren't ideal:
+
+- The top row of text has automatically become the (messy) column headers
+- There are multiple descriptive rows before we actually get to the data
+- There are -9999s that we want R to understand `NA` instead
+
+We can deal with those issues by adding arguments within `read_excel()`. Include argument `skip = n` to skip the first 'n' rows when importing data, and `na = "this"` to replace "this" with `NA` when importing:
+
+```{r, include = FALSE}
+substrate_cover <- read_excel("curation/substrate_cover_curated.xlsx", skip = 4, na = "-9999")
+```
+
+```{r, eval = FALSE}
+substrate_cover <- read_excel("curation/substrate_cover_curated.xlsx, skip = 4, na = "-9999")
+```
+
+Check out *substrate_cover*, and see that the first row *after* the 4 skipped are the column names, and all -9999s have been updated to `NA`. Hooray!
+
+So far we've read in a single CSV file using `readr::read_csv()`, and an Excel file containing a single worksheet with `readxl::read_excel()`. Now let's read in data from an Excel file with multiple worksheets. 
+
+### Use readxl::read_xlsx() to read in selected worksheets 
 
 Now, we'll read in the kelp fronds data from file *kelp_counts_curated.xlsx*. If you open the file in Excel, you'll see that it contains multiple worksheets with for giant kelp observations in the Santa Barbara Channel during 2016, 2017, and 2018, with data collected at each *site* in a separate worksheet.
 
