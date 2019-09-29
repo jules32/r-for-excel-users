@@ -173,7 +173,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.7" data-path="readxl.html"><a href="readxl.html#read-in-and-combine-data-from-multiple-worksheets-into-a-data-frame-simultaneously-with-purrrmap_df"><i class="fa fa-check"></i><b>3.4.7</b> Read in and combine data from multiple worksheets into a data frame simultaneously with <code>purrr::map_df()</code></a></li>
 <li class="chapter" data-level="3.4.8" data-path="readxl.html"><a href="readxl.html#save-data-frames-as-.csv-or-.xlsx-with-readrwrite_csv-or-writexlwrite_xlsx"><i class="fa fa-check"></i><b>3.4.8</b> Save data frames as .csv or .xlsx with <code>readr::write_csv()</code> or <code>writexl::write_xlsx()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="readxl.html"><a href="readxl.html#fun-facts-to-add-throughout"><i class="fa fa-check"></i><b>3.5</b> Fun facts to add throughout:</a></li>
+<li class="chapter" data-level="3.5" data-path="readxl.html"><a href="readxl.html#fun-facts-ideas"><i class="fa fa-check"></i><b>3.5</b> Fun facts ideas:</a></li>
 <li class="chapter" data-level="3.6" data-path="readxl.html"><a href="readxl.html#interludes-deep-thoughtsopenscapes-1"><i class="fa fa-check"></i><b>3.6</b> Interludes (deep thoughts/openscapes)</a></li>
 <li class="chapter" data-level="3.7" data-path="readxl.html"><a href="readxl.html#our-turn-your-turn-1-1"><i class="fa fa-check"></i><b>3.7</b> Our Turn Your Turn 1</a></li>
 <li class="chapter" data-level="3.8" data-path="readxl.html"><a href="readxl.html#our-turn-your-turn-2-1"><i class="fa fa-check"></i><b>3.8</b> Our Turn Your Turn 2</a></li>
@@ -322,14 +322,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb1-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co"># Other things you might include: required packages or datasets, relevant links (e.g. to raw data source, GitHub repo, etc.), citations and sources.</span></a></code></pre></div>
 <p>In this lesson, we’ll read in a CSV file with the <code>readr::read_csv()</code> function, so we need to have the <code>readr</code> package attached. Since it’s part of the <code>tidyverse</code>, we’ll go ahead and attach the <code>tidyverse</code> package below our script header using <code>library(package_name)</code>. It’s a good idea to attach all necessary packages near the top of a script, so we’ll also attach the <code>readxl</code> packages here.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># Attach the tidyverse:</span></a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># Attach the tidyverse, readxl and writexl packages:</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># Attach the readxl package:</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">library</span>(readxl)</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co"># Attach the writexl package:</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="kw">library</span>(writexl)</a></code></pre></div>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">library</span>(readxl)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">library</span>(writexl)</a></code></pre></div>
 <p>Now, all of the packages and functions within the <code>tidyverse</code> and <code>readxl</code>, including <code>readr::read_csv()</code> and <code>readxl::read_excel()</code>, are available for use.</p>
 </div>
 <div id="use-readrread_csv-to-read-in-data-from-a-csv-file" class="section level3">
@@ -341,8 +337,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;fish_counts_curated.csv&quot;</span>)</a></code></pre></div>
 <p>Notice that the name of the stored object (here, <em>fish_counts</em>) will show up in our Environment tab in RStudio.</p>
 <p>Click on the object in the Environment, and R will automatically run the <code>View()</code> function for you to pull up your data in a separate viewing tab. Now we can look at it in the spreadsheet format we’re used to.</p>
-<p>Let’s make a simple plot of some fish counts with <code>ggplot2</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">ggplot</span>(fish_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> tot_count, <span class="dt">group =</span> common_name)) <span class="op">+</span></a>
+<p>Here are a few other functions for quickly exploring imported data:</p>
+<ul>
+<li><code>summary()</code>: summary of class, dimensions, <code>NA</code> values, etc.</li>
+<li><code>names()</code>: variable names (column headers)</li>
+<li><code>ls()</code>: list all objects in environment</li>
+<li><code>head()</code>: Show the first x rows (default is 6 lines)</li>
+<li><code>tail()</code>: Show the last x rows (default is 6 lines)</li>
+</ul>
+<p>Now let’s make a simple plot of some fish counts with <code>ggplot2</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">ggplot</span>(fish_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> tot_count)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> common_name)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>site)</a></code></pre></div>
 <p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
@@ -500,13 +504,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">writexl<span class="op">::</span><span class="kw">write_xlsx</span>(kelp_all_sites, <span class="st">&quot;kelp_all_sites.xlsx&quot;</span>)</a></code></pre></div>
 </div>
 </div>
-<div id="fun-facts-to-add-throughout" class="section level2">
-<h2><span class="header-section-number">3.5</span> Fun facts to add throughout:</h2>
-<p>Did you know that Clippy shows up to help you in the documentation for ?writexl::write_xlsx()?</p>
-<p>The name of the <code>purrr</code> package?</p>
+<div id="fun-facts-ideas" class="section level2">
+<h2><span class="header-section-number">3.5</span> Fun facts ideas:</h2>
+<ul>
+<li>Did you know that Clippy shows up to help you in the documentation for ?writexl::write_xlsx()?</li>
+<li>The name of the <code>purrr</code> package? Why map?</li>
+</ul>
 </div>
 <div id="interludes-deep-thoughtsopenscapes-1" class="section level2">
 <h2><span class="header-section-number">3.6</span> Interludes (deep thoughts/openscapes)</h2>
+<ul>
+<li>Workflow/reproducibility/readxl workflows article</li>
+<li>Respecting the tools people are working with already (e.g. don’t make your Excel using co-workers hate you)</li>
+</ul>
 </div>
 <div id="our-turn-your-turn-1-1" class="section level2">
 <h2><span class="header-section-number">3.7</span> Our Turn Your Turn 1</h2>
@@ -516,6 +526,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="efficiency-tips-1" class="section level2">
 <h2><span class="header-section-number">3.9</span> Efficiency Tips</h2>
+<ul>
+<li>Add an assignment arrow in script/code chunk (&lt;-): Alt + minus (-)</li>
+<li>Undo shortcut: Command + Z</li>
+<li>Redo shortcut: Command + Shift + Z</li>
+</ul>
 
 </div>
 </div>

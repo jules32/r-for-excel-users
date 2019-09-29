@@ -56,13 +56,9 @@ In your RforExcelUsers project in RStudio, open a new .R script and add a useful
 In this lesson, we'll read in a CSV file with the `readr::read_csv()` function, so we need to have the `readr` package attached. Since it's part of the `tidyverse`, we'll go ahead and attach the `tidyverse` package below our script header using `library(package_name)`. It's a good idea to attach all necessary packages near the top of a script, so we'll also attach the `readxl` packages here. 
 
 ```{r, message = FALSE}
-# Attach the tidyverse:
+# Attach the tidyverse, readxl and writexl packages:
 library(tidyverse)
-
-# Attach the readxl package:
 library(readxl)
-
-# Attach the writexl package:
 library(writexl)
 ```
 
@@ -95,10 +91,18 @@ Notice that the name of the stored object (here, *fish_counts*) will show up in 
 
 Click on the object in the Environment, and R will automatically run the `View()` function for you to pull up your data in a separate viewing tab. Now we can look at it in the spreadsheet format we're used to. 
 
-Let's make a simple plot of some fish counts with `ggplot2`. 
+Here are a few other functions for quickly exploring imported data: 
+
+- `summary()`: summary of class, dimensions, `NA` values, etc.
+- `names()`: variable names (column headers)
+- `ls()`: list all objects in environment
+- `head()`: Show the first x rows (default is 6 lines)
+- `tail()`: Show the last x rows (default is 6 lines)
+
+Now let's make a simple plot of some fish counts with `ggplot2`. 
 
 ```{r}
-ggplot(fish_counts, aes(x = year, y = tot_count, group = common_name)) +
+ggplot(fish_counts, aes(x = year, y = tot_count)) +
   geom_col(aes(fill = common_name)) +
   facet_wrap(~site)
 ```
@@ -324,14 +328,22 @@ If needed, I can also export a data frame as an Excel (.xlsx) worksheet:
 writexl::write_xlsx(kelp_all_sites, "kelp_all_sites.xlsx")
 ```
 
-## Fun facts to add throughout:
+## Fun facts ideas:
 
-Did you know that Clippy shows up to help you in the documentation for ?writexl::write_xlsx()?
-
-The name of the `purrr` package? 
+- Did you know that Clippy shows up to help you in the documentation for ?writexl::write_xlsx()?
+- The name of the `purrr` package? Why map? 
 
 ## Interludes (deep thoughts/openscapes)
+
+- Workflow/reproducibility/readxl workflows article 
+- Respecting the tools people are working with already (e.g. don't make your Excel using co-workers hate you)
+
 ## Our Turn Your Turn 1
 ## Our Turn Your Turn 2
+
 ## Efficiency Tips
+
+- Add an assignment arrow in script/code chunk (<-): Alt + minus (-)
+- Undo shortcut: Command + Z 
+- Redo shortcut: Command + Shift + Z
 
