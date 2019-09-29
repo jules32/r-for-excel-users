@@ -314,7 +314,6 @@ ggplot(kelp_complete, aes(x = site, y = tot_fronds)) +
 
 ```
 
-
 ### Save data frames as .csv or .xlsx with `readr::write_csv()` or `writexl::write_xlsx()`
 
 There are a number of reasons you might want to save (/export) data in a data frame as a .csv or Excel worksheet, including: 
@@ -322,7 +321,6 @@ There are a number of reasons you might want to save (/export) data in a data fr
 - To cache raw data within your project
 - To store copies of intermediate data frames
 - To convert your data back to a format that your coworkers/clients/colleagues will be able to use it more easily
-- OTHERS? 
 
 Use `readr::write_csv(object, "file_name.csv")` to write a data frame to a CSV, or `writexl::write_xlsx(object, "file_name.xlsx")` to similarly export as a .xlsx (or .xls) worksheet. 
 
@@ -361,8 +359,8 @@ writexl::write_xlsx(kelp_all_sites, "kelp_all_sites.xlsx")
 - Workflow/reproducibility/readxl workflows article 
 - Respecting the tools people are working with already (e.g. don't make your Excel using co-workers hate you)
 
-## Our Turn Your Turn 1
-## Our Turn Your Turn 2
+## Activity 1
+## Activity 2
 
 ## Efficiency Tips
 
