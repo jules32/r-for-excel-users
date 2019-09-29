@@ -12,12 +12,14 @@
 - Skip *n* rows when importing an Excel worksheet
 - Use `readxl::read_excel()` to read in parts of a worksheet (by cell range)
 - Specify column names when importing Excel data
-- Read in multiple Excel worksheets
-- Something about readxl workflows (e.g. %>% `write_csv()` to keep a copy of the raw data in a project)?? 
+- Read and combine data from multiple Excel worksheets into a single df using `purrr::map_df()`
+- Write data using `readr::write_csv()` or `writexl::write_excel()`
+- Workflows with `readxl`: considerations, limitations, reproducibility
 
 ## Resources
 
 - https://readxl.tidyverse.org/
+- [readxl Workflows article (from tidyverse.org)](https://readxl.tidyverse.org/articles/articles/readxl-workflows.html)
 
 
 ## Lesson
@@ -35,7 +37,7 @@ You downloaded four files for this workshop:
 
 Copy and paste those files into the 'RforExcelUsers' folder on your computer. Notice that now these files are in your working directory when you go back to that Project in RStudio (check the 'Files' tab). That means they're going to be in the first place R will look when you ask it to find a file to read in. 
 
-### Create a new .R script, attach the `tidyverse` and `readxl` packages  
+### Create a new .R script, attach the `tidyverse`, `readxl` and `writexl` packages  
 
 In your RforExcelUsers project in RStudio, open a new .R script and add a useful header to the top of it. For example, at a minimum: 
 
@@ -54,11 +56,14 @@ In your RforExcelUsers project in RStudio, open a new .R script and add a useful
 In this lesson, we'll read in a CSV file with the `readr::read_csv()` function, so we need to have the `readr` package attached. Since it's part of the `tidyverse`, we'll go ahead and attach the `tidyverse` package below our script header using `library(package_name)`. It's a good idea to attach all necessary packages near the top of a script, so we'll also attach the `readxl` packages here. 
 
 ```{r, message = FALSE}
-# Attach the tidyverse
+# Attach the tidyverse:
 library(tidyverse)
 
-# Attach the readxl package
+# Attach the readxl package:
 library(readxl)
+
+# Attach the writexl package:
+library(writexl)
 ```
 
 Now, all of the packages and functions within the `tidyverse` and `readxl`, including `readr::read_csv()` and `readxl::read_excel()`, are available for use. 
@@ -127,6 +132,10 @@ substrate_cover <- read_excel("substrate_cover_curated.xlsx")
 
 Click on the object name (*substrate_cover*) in the Environment to view the data in a new tab. A few things aren't ideal:
 
+```{r}
+substrate_cover
+```
+
 - The top row of text has automatically become the (messy) column headers
 - There are multiple descriptive rows before we actually get to the data
 - There are -9999s that we want R to understand `NA` instead
@@ -141,11 +150,43 @@ substrate_cover <- read_excel("curation/substrate_cover_curated.xlsx", skip = 4,
 substrate_cover <- read_excel("curation/substrate_cover_curated.xlsx, skip = 4, na = "-9999")
 ```
 
+```{r}
+substrate_cover
+```
+
+
 Check out *substrate_cover*, and see that the first row *after* the 4 skipped are the column names, and all -9999s have been updated to `NA`. Hooray!
 
-So far we've read in a single CSV file using `readr::read_csv()`, and an Excel file containing a single worksheet with `readxl::read_excel()`. Now let's read in data from an Excel file with multiple worksheets. 
+### Use `readxl::read_excel()` to read in only *part* of an Excel worksheet
 
-### Use `readxl::read_excel()` to read in selected worksheets 
+We always advocate for leaving the raw data raw, and writing a complete script containing all steps of data wrangling & transformation. But in *some* situations (be careful), you may want to specify a range of cells to read in from an Excel worksheet.
+
+You can specify a range of cells to read in using the `range = ` argument in `read_excel()`. For example, if I want to read in the rectangle from D12:I15 in *substrate_cover_curated.xlsx* - only observations for Carpenteria Beach (Transect 2) in September 2000 - I can use: 
+```{r, include = FALSE}
+carp_cover_2000 <- readxl::read_excel("curation/substrate_cover_curated.xlsx", range = "D12:I15")
+```
+
+```{r, eval = FALSE}
+carp_cover_2000 <- readxl::read_excel("substrate_cover_curated.xlsx", range = "D12:I15")
+```
+
+But yuck. Look at *carp_cover_2000* and you'll notice that the first row *of that range* is automatically made the column headers. To keep all rows within a range and **add your own column names**, add a `col_names = ` argument:
+```{r, include = FALSE}
+carp_cover_2000 <- readxl::read_excel("curation/substrate_cover_curated.xlsx", range = "D12:I15", col_names = c("site_name", "transect", "quad", "plot_side", "type", "coverage"))
+```
+
+```{r, eval = FALSE}
+carp_cover_2000 <- readxl::read_excel("substrate_cover_curated.xlsx", range = "D12:I15", col_names = c("site_name", "transect", "quad", "plot_side", "type", "coverage"))
+```
+
+```{r}
+carp_cover_2000
+```
+
+
+So far we've read in a single CSV file using `readr::read_csv()`, and an Excel file containing a single worksheet with `readxl::read_excel()`. Now let's read in data from an Excel workbook with multiple worksheets. 
+
+### Use `readxl::read_excel()` to read in selected worksheets from a workbook
 
 Now, we'll read in the kelp fronds data from file *kelp_counts_curated.xlsx*. If you open the Excel workbook, you'll see that it contains multiple worksheets with giant kelp observations in the Santa Barbara Channel during July 2016, 2017, and 2018, with data collected at each *site* in a separate worksheet.
 
@@ -165,6 +206,15 @@ kelp_counts <- readxl::read_excel("kelp_counts_curated.xlsx")
 ```
 
 You might be thinking, "Hooray, I got all of my Excel workbook data!" But remember to always look at your data - you will see that actually only the first worksheet was read in. The default in `readxl::read_excel()` is to read in the **first worksheet** in a multi-sheet Excel workbook. 
+
+To check the worksheet names in an Excel workbook, use `readxl::excel_sheets()`:
+```{r, include = FALSE}
+readxl::excel_sheets("curation/kelp_counts_curated.xlsx")
+```
+
+```{r, eval = FALSE}
+readxl::excel_sheets("kelp_counts_curated.xlsx")
+```
 
 If we want to read in data from a worksheet other than the first one in an Excel workbook, we can specify the correct worksheet by name or position by adding the `sheet` argument. 
 
@@ -186,12 +236,59 @@ kelp_golb <- readxl::read_excel("curation/kelp_counts_curated.xlsx", sheet = 6)
 kelp_golb <- readxl::read_excel("kelp_counts_curated.xlsx", sheet = 6)
 ```
 
+```{r}
+kelp_golb
+```
 
-### Use readxl::read_xls() to read in pieces of an Excel worksheet
 
+### Read in and combine data from multiple worksheets into a data frame simultaneously with `purrr::map_df()`
 
-### Use purrr::map() and readxl::read_xls() to read in multiple worksheets simultaneously
+So far, we've read in entire Excel worksheets and pieces of a worksheet. What if we have a workbook (like *kelp_counts_curated.xlsx*) that contains worksheets that contain observations for the same variables, in the same organization? Then we may want to read in data from *all* worksheets, and combine them into a single data frame. 
 
+We'll use `purrr::map_df()` to loop through all the worksheets in a workbook, reading them in & putting them together into a single df in the process. 
+
+The steps we'll go through in the code below are: 
+
+- Set a pathway so that R knows where to look for an Excel workbook
+- Get the names of all worksheets in that workbook with `excel_sheets()`
+- Set names of a vector with `set_names()`
+- Read in all worksheets, and put them together into a single data frame with `purrr::map_df()`
+
+**QUESTION: Have they learned the pipe operator at this point?**
+
+```{r, include = FALSE}
+
+kelp_path <- "curation/kelp_counts_curated.xlsx"
+
+kelp_all_sites <- kelp_path %>% # Start with that pathway (file)...
+  excel_sheets() %>% # Get all the names of the worksheets
+  set_names() %>% # Names the vector items
+  map_df(read_excel, path = kelp_path) # Applies 'read_excel' to all worksheet names (loops through them) in the workbook at kelp_path
+  
+```
+
+**Expect the question:** Why do I need to use read_excel() instead of just giving it the file path (as below)? 
+
+```{r, eval = FALSE}
+
+kelp_path <- "kelp_counts_curated.xlsx"
+
+kelp_all_sites <- kelp_path %>% 
+  excel_sheets() %>% 
+  set_names() %>% 
+  purrr::map_df(read_excel, kelp_path)
+
+```
+
+Check out *kelp_all_sites*, and notice that now the data from all 11 sites is now collected into a single data frame:
+
+```{r}
+kelp_all_sites
+```
+
+Awesome! 
+
+### Save data frames as .csv or .xlsx with `readr::write_csv()` or `writexl::write_excel()`
 
 ## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
 ## Interludes (deep thoughts/openscapes)
