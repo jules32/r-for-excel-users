@@ -175,7 +175,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="readxl.html"><a href="readxl.html#fun-facts-ideas"><i class="fa fa-check"></i><b>3.5</b> Fun facts ideas:</a></li>
 <li class="chapter" data-level="3.6" data-path="readxl.html"><a href="readxl.html#interludes-deep-thoughtsopenscapes-1"><i class="fa fa-check"></i><b>3.6</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="3.7" data-path="readxl.html"><a href="readxl.html#activity-import-invertebrates"><i class="fa fa-check"></i><b>3.7</b> Activity: Import invertebrates!</a></li>
+<li class="chapter" data-level="3.7" data-path="readxl.html"><a href="readxl.html#activity-import-some-invertebrates"><i class="fa fa-check"></i><b>3.7</b> Activity: Import some invertebrates!</a></li>
 <li class="chapter" data-level="3.8" data-path="readxl.html"><a href="readxl.html#efficiency-tips-1"><i class="fa fa-check"></i><b>3.8</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>4</b> RMarkdown</a><ul>
@@ -520,8 +520,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Respecting the tools people are working with already (e.g. don’t make your Excel using co-workers hate you)</li>
 </ul>
 </div>
-<div id="activity-import-invertebrates" class="section level2">
-<h2><span class="header-section-number">3.7</span> Activity: Import invertebrates!</h2>
+<div id="activity-import-some-invertebrates" class="section level2">
+<h2><span class="header-section-number">3.7</span> Activity: Import some invertebrates!</h2>
 <p>There’s one dataset we haven’t imported or explored yet: invertebrate counts for 5 popular invertebrates (California cone snail, California spiny lobster, orange cup coral, purple urchin and rock scallops) at 11 sites in the Santa Barbara Channel. Take a look at the <em>invert_counts_curated.xlsx</em> data by opening it in Excel</p>
 <ul>
 <li>Read in the <em>invert_counts_curated.xlsx</em> worksheet as object ‘inverts_july’, only retaining <strong>site</strong>, <strong>common_name</strong>, and <strong>2016</strong> and setting the existing first row in the worksheet as to column headers upon import</li>
@@ -532,6 +532,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Note:</strong> If your column name is a number (not great) you’ll probably want to rename it…but in the meantime, to call it as a variable make sure you put single or double quotes around it (e.g. <code>'2016'</code> or <code>&quot;2016&quot;</code>) so that R recognizes it’s a variable and not a value</li>
 </ul></li>
 </ul>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="co"># Importing only &#39;site&#39; through &#39;2016&#39; columns: </span></a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">inverts_july &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;curation/invert_counts_curated.xlsx&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;B1:D56&quot;</span>)</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="co"># Do some basic exploring (why might we want to do this in the Console instead?):</span></a>
+<a class="sourceLine" id="cb28-5" data-line-number="5"><span class="kw">View</span>(inverts_july)</a>
+<a class="sourceLine" id="cb28-6" data-line-number="6"><span class="kw">names</span>(inverts_july)</a>
+<a class="sourceLine" id="cb28-7" data-line-number="7"><span class="kw">head</span>(inverts_july)</a>
+<a class="sourceLine" id="cb28-8" data-line-number="8"><span class="kw">tail</span>(inverts_july)</a>
+<a class="sourceLine" id="cb28-9" data-line-number="9"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb28-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb28-11" data-line-number="11"><span class="co"># Make a gg-graph: </span></a>
+<a class="sourceLine" id="cb28-12" data-line-number="12">inverts_graph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(inverts_july, <span class="kw">aes</span>(<span class="dt">x =</span> site, <span class="dt">y =</span> <span class="st">`</span><span class="dt">2016</span><span class="st">`</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb28-13" data-line-number="13"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> common_name), </a>
+<a class="sourceLine" id="cb28-14" data-line-number="14">           <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">inverts_graph</a></code></pre></div>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 </div>
 <div id="efficiency-tips-1" class="section level2">
 <h2><span class="header-section-number">3.8</span> Efficiency Tips</h2>
