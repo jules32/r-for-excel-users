@@ -168,7 +168,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.2" data-path="readxl.html"><a href="readxl.html#create-a-new-.r-script-attach-the-tidyverse-and-readxl-packages"><i class="fa fa-check"></i><b>3.4.2</b> Create a new .R script, attach the <code>tidyverse</code> and <code>readxl</code> packages</a></li>
 <li class="chapter" data-level="3.4.3" data-path="readxl.html"><a href="readxl.html#use-readrread_csv-to-read-in-data-from-a-csv-file"><i class="fa fa-check"></i><b>3.4.3</b> Use <code>readr::read_csv()</code> to read in data from a CSV file</a></li>
 <li class="chapter" data-level="3.4.4" data-path="readxl.html"><a href="readxl.html#use-readxlread_excel-to-read-in-a-single-excel-worksheet"><i class="fa fa-check"></i><b>3.4.4</b> Use <code>readxl::read_excel()</code> to read in a single Excel worksheet</a></li>
-<li class="chapter" data-level="3.4.5" data-path="readxl.html"><a href="readxl.html#use-readxlread_xlsx-to-read-in-selected-worksheets"><i class="fa fa-check"></i><b>3.4.5</b> Use readxl::read_xlsx() to read in selected worksheets</a></li>
+<li class="chapter" data-level="3.4.5" data-path="readxl.html"><a href="readxl.html#use-readxlread_excel-to-read-in-selected-worksheets"><i class="fa fa-check"></i><b>3.4.5</b> Use <code>readxl::read_excel()</code> to read in selected worksheets</a></li>
 <li class="chapter" data-level="3.4.6" data-path="readxl.html"><a href="readxl.html#use-readxlread_xls-to-read-in-pieces-of-an-excel-worksheet"><i class="fa fa-check"></i><b>3.4.6</b> Use readxl::read_xls() to read in pieces of an Excel worksheet</a></li>
 <li class="chapter" data-level="3.4.7" data-path="readxl.html"><a href="readxl.html#use-purrrmap-and-readxlread_xls-to-read-in-multiple-worksheets-simultaneously"><i class="fa fa-check"></i><b>3.4.7</b> Use purrr::map() and readxl::read_xls() to read in multiple worksheets simultaneously</a></li>
 </ul></li>
@@ -278,11 +278,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.2</span> Objectives</h2>
 <ul>
 <li>Use <code>readr::read_csv()</code> to read in a comma separated value (CSV) file</li>
-<li>Use <code>readxl::read_excel()</code> to read in an Excel worksheet</li>
-<li>Use <code>readxl::read_excel()</code> to read in parts of a worksheet (by cell range)</li>
-<li>Specify column names when importing Excel data</li>
+<li>Use <code>readxl::read_excel()</code> to read in an Excel worksheet from a workbook</li>
 <li>Replace a specific string/value in a spreadsheet with with <code>NA</code></li>
 <li>Skip <em>n</em> rows when importing an Excel worksheet</li>
+<li>Use <code>readxl::read_excel()</code> to read in parts of a worksheet (by cell range)</li>
+<li>Specify column names when importing Excel data</li>
 <li>Read in multiple Excel worksheets</li>
 <li>Something about readxl workflows (e.g. %&gt;% <code>write_csv()</code> to keep a copy of the raw data in a project)??</li>
 </ul>
@@ -366,14 +366,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Check out <em>substrate_cover</em>, and see that the first row <em>after</em> the 4 skipped are the column names, and all -9999s have been updated to <code>NA</code>. Hooray!</p>
 <p>So far we’ve read in a single CSV file using <code>readr::read_csv()</code>, and an Excel file containing a single worksheet with <code>readxl::read_excel()</code>. Now let’s read in data from an Excel file with multiple worksheets.</p>
 </div>
-<div id="use-readxlread_xlsx-to-read-in-selected-worksheets" class="section level3">
-<h3><span class="header-section-number">3.4.5</span> Use readxl::read_xlsx() to read in selected worksheets</h3>
-<p>Now, we’ll read in the kelp fronds data from file <em>kelp_counts_curated.xlsx</em>. If you open the file in Excel, you’ll see that it contains multiple worksheets with for giant kelp observations in the Santa Barbara Channel during 2016, 2017, and 2018, with data collected at each <em>site</em> in a separate worksheet.</p>
-<p>To read in an Excel worksheet (.xlsx or .xls) as-is, use <code>readxl::read_xlsx(&quot;file_name.xlsx&quot;)</code> with the correct file extension. Use instead <code>readxl::read_xls()</code> for .xls files.</p>
-<p>Let’s store the invert data as an object called <em>kelp_counts</em>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">kelp_counts &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_xlsx</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>)</a></code></pre></div>
-<p>You might be thinking, “HOORAY, I got all of my Excel workbook data!” But remember to always look at your data - you will see that actually only the <em>first worksheet</em> was read in.</p>
-<p>That’s an important constraint: without ….</p>
+<div id="use-readxlread_excel-to-read-in-selected-worksheets" class="section level3">
+<h3><span class="header-section-number">3.4.5</span> Use <code>readxl::read_excel()</code> to read in selected worksheets</h3>
+<p>Now, we’ll read in the kelp fronds data from file <em>kelp_counts_curated.xlsx</em>. If you open the Excel workbook, you’ll see that it contains multiple worksheets with giant kelp observations in the Santa Barbara Channel during July 2016, 2017, and 2018, with data collected at each <em>site</em> in a separate worksheet.</p>
+<p>To read in a single Excel worksheet from a workbook we’ll again use <code>readxl::read_excel(&quot;file_name.xlsx&quot;)</code>, but we’ll need to let R know which worksheet to get.</p>
+<p>Let’s read in the kelp data just like we did above, as an object called <em>kelp_counts</em>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">kelp_counts &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>)</a></code></pre></div>
+<p>You might be thinking, “Hooray, I got all of my Excel workbook data!” But remember to always look at your data - you will see that actually only the first worksheet was read in. The default in <code>readxl::read_excel()</code> is to read in the <strong>first worksheet</strong> in a multi-sheet Excel workbook.</p>
+<p>If we want to read in data from a worksheet other than the first one in an Excel workbook, we can specify the correct worksheet by name or position by adding the <code>sheet</code> argument.</p>
+<p>Let’s read in data from the worksheet named <em>golb</em> (Goleta Beach) in the <em>kelp_counts_curated.xlsx</em> workbook:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">kelp_golb &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;golb&quot;</span>)</a></code></pre></div>
+<p>Note that you can also specify a worksheet by position: since <em>golb</em> is the 6<sup>th</sup> worksheet in the workbook, we could also use the following:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">kelp_golb &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="dv">6</span>)</a></code></pre></div>
 </div>
 <div id="use-readxlread_xls-to-read-in-pieces-of-an-excel-worksheet" class="section level3">
 <h3><span class="header-section-number">3.4.6</span> Use readxl::read_xls() to read in pieces of an Excel worksheet</h3>

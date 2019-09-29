@@ -7,11 +7,11 @@
 ## Objectives
 
 - Use `readr::read_csv()` to read in a comma separated value (CSV) file
-- Use `readxl::read_excel()` to read in an Excel worksheet
-- Use `readxl::read_excel()` to read in parts of a worksheet (by cell range)
-- Specify column names when importing Excel data
+- Use `readxl::read_excel()` to read in an Excel worksheet from a workbook
 - Replace a specific string/value in a spreadsheet with with `NA` 
 - Skip *n* rows when importing an Excel worksheet
+- Use `readxl::read_excel()` to read in parts of a worksheet (by cell range)
+- Specify column names when importing Excel data
 - Read in multiple Excel worksheets
 - Something about readxl workflows (e.g. %>% `write_csv()` to keep a copy of the raw data in a project)?? 
 
@@ -145,28 +145,47 @@ Check out *substrate_cover*, and see that the first row *after* the 4 skipped ar
 
 So far we've read in a single CSV file using `readr::read_csv()`, and an Excel file containing a single worksheet with `readxl::read_excel()`. Now let's read in data from an Excel file with multiple worksheets. 
 
-### Use readxl::read_xlsx() to read in selected worksheets 
+### Use `readxl::read_excel()` to read in selected worksheets 
 
-Now, we'll read in the kelp fronds data from file *kelp_counts_curated.xlsx*. If you open the file in Excel, you'll see that it contains multiple worksheets with for giant kelp observations in the Santa Barbara Channel during 2016, 2017, and 2018, with data collected at each *site* in a separate worksheet.
+Now, we'll read in the kelp fronds data from file *kelp_counts_curated.xlsx*. If you open the Excel workbook, you'll see that it contains multiple worksheets with giant kelp observations in the Santa Barbara Channel during July 2016, 2017, and 2018, with data collected at each *site* in a separate worksheet.
 
-To read in an Excel worksheet (.xlsx or .xls) as-is, use `readxl::read_xlsx("file_name.xlsx")` with the correct file extension. Use instead `readxl::read_xls()` for .xls files. 
+To read in a single Excel worksheet from a workbook we'll again use `readxl::read_excel("file_name.xlsx")`, but we'll need to let R know which worksheet to get. 
 
-Let's store the invert data as an object called *kelp_counts*.
+Let's read in the kelp data just like we did above, as an object called *kelp_counts*.
 
 ```{r, include = FALSE}
 
 # Teaching chunk (won't show up when knitted)
-kelp_counts <- readxl::read_xlsx("curation/kelp_counts_curated.xlsx")
+kelp_counts <- readxl::read_excel("curation/kelp_counts_curated.xlsx")
 
 ```
 
 ```{r, eval = FALSE, results = 'hide'}
-kelp_counts <- readxl::read_xlsx("kelp_counts_curated.xlsx")
+kelp_counts <- readxl::read_excel("kelp_counts_curated.xlsx")
 ```
 
-You might be thinking, "HOORAY, I got all of my Excel workbook data!" But remember to always look at your data - you will see that actually only the *first worksheet* was read in. 
+You might be thinking, "Hooray, I got all of my Excel workbook data!" But remember to always look at your data - you will see that actually only the first worksheet was read in. The default in `readxl::read_excel()` is to read in the **first worksheet** in a multi-sheet Excel workbook. 
 
-That's an important constraint: without ....
+If we want to read in data from a worksheet other than the first one in an Excel workbook, we can specify the correct worksheet by name or position by adding the `sheet` argument. 
+
+Let's read in data from the worksheet named *golb* (Goleta Beach) in the *kelp_counts_curated.xlsx* workbook: 
+```{r, include = FALSE}
+kelp_golb <- readxl::read_excel("curation/kelp_counts_curated.xlsx", sheet = "golb")
+```
+
+```{r, eval = FALSE, results = 'hide'}
+kelp_golb <- readxl::read_excel("kelp_counts_curated.xlsx", sheet = "golb")
+```
+
+Note that you can also specify a worksheet by position: since *golb* is the 6^th^ worksheet in the workbook, we could also use the following: 
+```{r, include = FALSE}
+kelp_golb <- readxl::read_excel("curation/kelp_counts_curated.xlsx", sheet = 6)
+```
+
+```{r, eval = FALSE}
+kelp_golb <- readxl::read_excel("kelp_counts_curated.xlsx", sheet = 6)
+```
+
 
 ### Use readxl::read_xls() to read in pieces of an Excel worksheet
 
