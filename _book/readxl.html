@@ -479,7 +479,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 2018  7     aque  giant kelp        7754
 ## 10 2016  7     bull  giant kelp        6706
 ## # … with 22 more rows</code></pre>
-<p>Awesome!</p>
+<p>Awesome! Let’s make a graph with ggplot2:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">ggplot</span>(kelp_all_sites, <span class="kw">aes</span>(<span class="dt">x =</span> site, <span class="dt">y =</span> tot_fronds)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> year), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb24-3" data-line-number="3"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;purple&quot;</span>,<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;gray30&quot;</span>))</a></code></pre></div>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 </div>
 <div id="save-data-frames-as-.csv-or-.xlsx-with-readrwrite_csv-or-writexlwrite_xlsx" class="section level3">
 <h3><span class="header-section-number">3.4.8</span> Save data frames as .csv or .xlsx with <code>readr::write_csv()</code> or <code>writexl::write_xlsx()</code></h3>
@@ -493,15 +497,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Use <code>readr::write_csv(object, &quot;file_name.csv&quot;)</code> to write a data frame to a CSV, or <code>writexl::write_xlsx(object, &quot;file_name.xlsx&quot;)</code> to similarly export as a .xlsx (or .xls) worksheet.</p>
 <p>In the previous step, we combined all of our kelp frond observations into a single data frame. Wouldn’t it make sense to store a copy?</p>
 <p>As a CSV:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">readr<span class="op">::</span><span class="kw">write_csv</span>(kelp_all_sites, <span class="st">&quot;kelp_all_sites.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">readr<span class="op">::</span><span class="kw">write_csv</span>(kelp_all_sites, <span class="st">&quot;kelp_all_sites.csv&quot;</span>)</a></code></pre></div>
 <p>A cool thing about <code>readr::read_csv()</code> is that it just quietly <em>works</em> without wrecking anything else you do in a sequence, so it’s great to add at the end of a piped sequence.</p>
 <p>For example, if I want to read in the ‘ivee’ worksheet from kelp_counts_curated.xlsx, select only columns ‘year’ and ‘tot_fronds’, then write that new subset to a .csv file, I can pipe all the way through:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">kelp_ivee &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;ivee&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(year, tot_fronds) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb25-3" data-line-number="3"><span class="st">  </span><span class="kw">write_csv</span>(<span class="st">&quot;kelp_ivee.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">kelp_ivee &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;ivee&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(year, tot_fronds) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb26-3" data-line-number="3"><span class="st">  </span><span class="kw">write_csv</span>(<span class="st">&quot;kelp_ivee.csv&quot;</span>)</a></code></pre></div>
 <p>Now I’ve created <em>kelp_ivee.csv</em>, but the object <em>kelp_ivee</em> also exists for me to use in R.</p>
 <p>If needed, I can also export a data frame as an Excel (.xlsx) worksheet:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">writexl<span class="op">::</span><span class="kw">write_xlsx</span>(kelp_all_sites, <span class="st">&quot;kelp_all_sites.xlsx&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">writexl<span class="op">::</span><span class="kw">write_xlsx</span>(kelp_all_sites, <span class="st">&quot;kelp_all_sites.xlsx&quot;</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="fun-facts-ideas" class="section level2">

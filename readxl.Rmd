@@ -290,7 +290,30 @@ Check out *kelp_all_sites*, and notice that now the data from all 11 sites is no
 kelp_all_sites
 ```
 
-Awesome! 
+Awesome! Let's make a graph with ggplot2: 
+```{r}
+
+ggplot(kelp_all_sites, aes(x = site, y = tot_fronds)) +
+  geom_col(aes(fill = year), position = "dodge") +
+  scale_fill_manual(values = c("purple","orange","gray30"))
+```
+
+```{r, include = FALSE}
+# An extra: notice that for site 'bull' only 2 levels show up, so the width of bars is wider. That's obnoxious. We need to complete the levels - we can do that using tidyr::complete(). 
+
+kelp_complete <- kelp_all_sites %>% 
+  tidyr::complete(year, site)
+
+# Now, instead of the "bull 2018" observations not existing, it now has 'NA' values. Cool! Then let's try plotting again: 
+
+ggplot(kelp_complete, aes(x = site, y = tot_fronds)) +
+  geom_col(aes(fill = year), position = "dodge") +
+  scale_fill_manual(values = c("purple","orange","gray30"))
+
+# Now 'bull' has 3 levels again - even though there's only data for two. Good. 
+
+```
+
 
 ### Save data frames as .csv or .xlsx with `readr::write_csv()` or `writexl::write_xlsx()`
 
