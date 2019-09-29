@@ -359,7 +359,7 @@ writexl::write_xlsx(kelp_all_sites, "kelp_all_sites.xlsx")
 - Workflow/reproducibility/readxl workflows article 
 - Respecting the tools people are working with already (e.g. don't make your Excel using co-workers hate you)
 
-## Activity 1
+## Activity 1: 
 ## Activity 2
 
 ## Efficiency Tips
