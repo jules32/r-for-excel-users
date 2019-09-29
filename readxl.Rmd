@@ -1,29 +1,29 @@
 # `readxl` {#readxl}
 Note for Allison: the `{#readxl}` above lets us reference it from another chapter...not sure how much we'll use it but it's possible (and doesn't hurt to have). Cool, thanks Julie! 
 
-## Summary (a few sentences)
+## Summary
 
-The **readxl** package makes it easy to import tabular data from Excel spreadsheets (.xls or .xlsx files) and includes several options for cleaning data during import. **readxl** has no external dependencies and functions on any operating system, making it an OS- and user-friendly package that simplifies getting your data from Excel into R. 
+**CHECK THIS SUMMARY, MAY NEED TO BE A BLOCK QUOTE W/SOURCE**: The **readxl** package makes it easy to import tabular data from Excel spreadsheets (.xls or .xlsx files) and includes several options for cleaning data during import. **readxl** has no external dependencies and functions on any operating system, making it an OS- and user-friendly package that simplifies getting your data from Excel into R. 
 
-## Objectives (more detailed, bulletpoints?)
+## Objectives
 
-- Use readr::read_csv() to read in a comma separated value (CSV) file
-- Use readxl::read_excel() to read in an Excel worksheet
-- Use readxl::read_excel() to read in parts of a worksheet (by cell range)
+- Use `readr::read_csv()` to read in a comma separated value (CSV) file
+- Use `readxl::read_excel()` to read in an Excel worksheet
+- Use `readxl::read_excel()` to read in parts of a worksheet (by cell range)
 - Specify column names when importing Excel data
-- Replace a specific string/value in a spreadsheet with with 'NA' 
+- Replace a specific string/value in a spreadsheet with with `NA` 
 - Skip *n* rows when importing an Excel worksheet
 - Read in multiple Excel worksheets
-- Something about readxl workflows (e.g. %>% write_csv() to keep a copy of the raw data in a project)?? 
+- Something about readxl workflows (e.g. %>% `write_csv()` to keep a copy of the raw data in a project)?? 
 
 ## Resources
 
 - https://readxl.tidyverse.org/
 
 
-## Lessons teaching for each objective….. (objectives, examples)
+## Lesson
 
-### Prep: get data files into your working directory
+### Lesson prep: get data files into your working directory
 
 In Session 1, we introduced how and why R Projects are great for reproducibility, because our self-contained working directory will be the **first** place R looks for files. 
 
@@ -32,7 +32,7 @@ You downloaded four files for this workshop:
 - fish_counts_curated.csv
 - invert_counts_curated.xlsx
 - kelp_counts_curated.xlsx
-- ...the OTHER ONE? 
+- substrate_cover_curated.xlsx
 
 Copy and paste those files into the 'RforExcelUsers' folder on your computer. Notice that now these files show up right in your working directory when you go back to that Project in RStudio! That means they're going to be in the first place R will look when you ask it to find a file. 
 
@@ -52,16 +52,16 @@ In your RforExcelUsers project in RStudio, open a new .R script and add a useful
 # Other things you might include: required packages or datasets, relevant links (e.g. to raw data source, GitHub repo, etc.), citations and sources.
 ```
 
-We'll read in a CSV file with `readr::read_csv()`, so we need to have the `readr` package attached. Since it's part of the `tidyverse`, we'll go ahead and attach the `tidyverse` package below our script header using `library(package_name)`. 
+We'll read in a CSV file with the `readr::read_csv()` function, so we need to have the `readr` package attached. Since it's part of the `tidyverse`, we'll go ahead and attach the `tidyverse` package below our script header using `library(package_name)`. 
 
 ```{r, message = FALSE}
 # Attach the tidyverse
 library(tidyverse)
 ```
 
-Now, all of the packages and functions within the `tidyverse`, including `readr::read_csv()` are available for us to use. 
+Now, all of the packages and functions within the `tidyverse`, including `readr::read_csv()`, are available for use. 
 
-### Use **readr::read_csv()** to read in data from a CSV file
+### Use [`readr::read_csv()`](https://readr.tidyverse.org/reference/read_delim.html) to read in data from a CSV file
 
 There are many types of files containing data that you might want to work with in R. A common one is a comma separated value (CSV) file, which contains values with each column entry separated by a comma delimiter. CSVs can be opened, viewed, and worked with in Excel just like an .xls or .xlsx file - but let's learn how to get data directly from a CSV into R where we can work with it more reproducibly. 
 
@@ -69,11 +69,78 @@ The CSV we'll read in here is called "fish_counts_curated.csv", and contains obs
 
 **Source:** Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Fish abundance. Environmental Data Initiative. https://doi.org/10.6073/pasta/dbd1d5f0b225d903371ce89b09ee7379. Dataset accessed 9/26/2019.
 
-Read in the "fish_counts_curated.csv" 
+Read in the "fish_counts_curated.csv" file `read_csv("file_name.csv")`, and store it in R as an object called *fish_counts*:
+
+```{r, include = FALSE}
+
+# Teaching version
+fish_counts <- read_csv("curation/fish_counts_curated.csv")
+
+```
+
+```{r, eval = FALSE, results = 'hide'}
+
+fish_counts <- read_csv("fish_counts_curated.csv")
+
+```
+
+Notice that the name of the stored object (here, *fish_counts*) will show up in our Environment tab in RStudio. 
+
+Click on the object in the Environment, and R will automatically run the `View()` function for you to pull up your data in a separate viewing tab. Now we can look at it in the spreadsheet format we're used to. 
+
+Let's make a simple plot of some fish counts with `ggplot2`. 
+
+```{r}
+ggplot(fish_counts, aes(x = year, y = tot_count, group = common_name)) +
+  geom_col(aes(fill = common_name)) +
+  facet_wrap(~site)
+```
+
+Now that we have our fish counts data ready to work with in R, let's get the substrate cover and kelp data (both .xlsx files). In the following sections, we'll learn that we can use `readxl::read_xls()` to read in Excel files directly.
+
+### Use readxl::read_xls() to read in a single Excel worksheet 
+
+First, take a look at *substrate_cover_curated.xlsx* in Excel, which contains a single worksheet with substrate type and percent cover observations at different sampling locations in the Santa Barbara Channel. 
+
+A few things to notice:
+
+- The file contains a single worksheet
+- There are multiple rows containing text information up top
+- Where observations were not recorded, there exists '-9999'
+
+Let's go ahead and read in the data. We can read in a single worksheet .xlsx file using `readxl::read_xlsx("file_name.xlsx")`. Note: use `read_xls()` for .xls files. 
+
+### Use readxl::read_xls() to read in selected worksheets 
+
+Now, we'll read in the kelp fronds data from file *kelp_counts_curated.xlsx*. If you open the file in Excel, you'll see that it contains multiple worksheets with for giant kelp observations in the Santa Barbara Channel during 2016, 2017, and 2018, with data collected at each *site* in a separate worksheet.
+
+To read in an Excel worksheet (.xlsx or .xls) as-is, use `readxl::read_xlsx("file_name.xlsx")` with the correct file extension. Use instead `readxl::read_xls()` for .xls files. 
+
+Let's store the invert data as an object called *kelp_counts*.
+
+```{r, include = FALSE}
+
+# Teaching chunk (won't show up when knitted)
+kelp_counts <- readxl::read_xlsx("curation/kelp_counts_curated.xlsx")
+
+```
+
+```{r, eval = FALSE, results = 'hide'}
+kelp_counts <- readxl::read_xlsx("kelp_counts_curated.xlsx")
+```
+
+You might be thinking, "HOORAY, I got all of my Excel workbook data!" But remember to always look at your data - you will see that actually only the *first worksheet* was read in. 
+
+That's an important constraint: without ....
+
+### Use readxl::read_xls() to read in pieces of an Excel worksheet
+
+
+### Use purrr::map() and readxl::read_xls() to read in multiple worksheets simultaneously
+
 
 ## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
 ## Interludes (deep thoughts/openscapes)
 ## Our Turn Your Turn 1
 ## Our Turn Your Turn 2
 ## Efficiency Tips
-
