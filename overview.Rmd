@@ -1,5 +1,9 @@
 # Overview {#overview}
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
 ## Summary (a few sentences)
 ## Objectives (more detailed, bulletpoints?)
 
@@ -67,7 +71,7 @@ An important theme for this workshop is being deliberate about your analyses and
 
 This graphic by Hadley Wickham and Garrett Grolemund in their book [R for Data Science](http://r4ds.had.co.nz/) is simple but incredibly powerful: 
 
-```{r, out.width="80%"}
+```{r, eval=FALSE, echo=FALSE, out.width="80%"}
 knitr::include_graphics("img/r4ds_data-science.png")  
 ```
 
@@ -106,7 +110,7 @@ Open RStudio for the first time.
 
 Launch RStudio/R.
 
-```{r, out.width="80%"}
+```{r, eval=TRUE, echo=FALSE, out.width="80%"}
 knitr::include_graphics("img/RStudio_IDE.png")  
 ```
 
@@ -124,7 +128,7 @@ An important first question: **where are we?**
 If you've have opened RStudio for the first time, you'll be in your Home directory. This is noted by the `~/` at the top of the console. You can see too that the Files pane in the lower right shows what is in the Home directory where you are. You can navigate around within that Files pane and explore, but note that you won't change where you are: even as you click through you'll still be Home: `~/`. 
 
 
-```{r, out.width="80%"}
+```{r, eval=TRUE, echo=FALSE, out.width="80%"}
 knitr::include_graphics("img/RStudio_IDE_homedir.png")  
 ```
 
@@ -141,7 +145,7 @@ Working directory = no file path/broken path issues. Notice that a folder now ap
 
 Now that we have our Project, here is an important question: where are we? Now we are in our Project. Everything we do will by default be saved here so we can be nice and organized. 
 
-```{r, out.width="80%"}
+```{r, eval=TRUE, echo=FALSE, out.width="80%"}
 knitr::include_graphics("img/RStudio_IDE_projdir.png")  
 ```
 
@@ -159,7 +163,9 @@ I can do math:
 365/12
 ```
 
-But like Excel, the power comes not from doing small operations by hand (like 8*22.3), it's by being able to operate on swaths of numbers. Columns, Rows, etc. In Excel, they are stored in the spreadsheet. In R, they are stored in variables. 
+*TODO: refine*
+ 
+But like Excel, the power comes not from doing small operations by hand (like 8*22.3), it's by being able to operate on whole suites of numbers and datasets. In Excel, data are stored in the spreadsheet. In R, they are stored in dataframes, and named as variables. 
 
 R stores data in variables, and that data can be a variety of formats, like numeric and text. Let's have a look at some data in R. R has several built-in data sets that we can look at and work with. 
 
@@ -192,8 +198,6 @@ OK so working in the Console is great, but it gets messy. It's good for quick th
 Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Pay attention to how you type.
 
 Remember that this is a language, not unsimilar to English! There are times you aren't understood -- it's going to happen. There are different ways this can happen. Sometimes you'll get an error. This is like someone saying 'What?' or 'Pardon'? Error messages can also be more useful, like when they say 'I didn't understand what you said, I was expecting you to say blah'. That is a great type of error message. Error messages are your friend. Google them (copy-and-paste!) to figure out what they mean. 
-
-<!--- `r htmltools::img(src='img/practicalDev_googleErrorMessage.jpg', width=400)`--->
 
 And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I am telling a story about suspenders that my British friend hears but silently interprets in a very different way (true story). This can leave me thinking I've gotten something across that the listener (or R) might silently interpreted very differently. And as I continue telling my story you get more and more confused... Clear communication is critical when you code: write clean, well documented code and check your work as you go to minimize these circumstances!
 

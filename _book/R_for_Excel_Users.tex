@@ -194,13 +194,11 @@ R is not only a language, it is an active community of developers, users, and ed
 \begin{itemize}
 \tightlist
 \item
-  \href{https://whattheyforgot.org/}{What they forgot to teach you about R} --- Jenny Bryan \& Jim Hester
+  \href{https://whattheyforgot.org/}{What They Forgot to Teach You About R} --- Jenny Bryan \& Jim Hester
 \item
   \href{https://stat545.com/}{Stat545} --- Jenny Bryan \& Stat545 TAs
 \item
   \href{http://rex-analytics.com/things-live-r-r-excel-users/}{Where do Things Live in R?} REX Analytics
-\item
-  \href{https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005510\#}{Good enough practices for scientific computing}
 \end{itemize}
 
 \hypertarget{overview-1}{%
@@ -210,17 +208,17 @@ Welcome.
 
 This workshop you will learn hands-on how to begin to interoperate between Excel and R.
 
-A main theme throughout is to produce analyses people can understand --- including Future You. Literate programming (Rmd). {[}might be better as a deep thought than right at the beginning{]}: Comments! Organization (spacing, subsections, vertical structure, indentation, etc.)! Well-named variables! Also, well-named operations so analyses (select(data, columnname)) instead of data{[}1:6,5{]} and excel equivalent. (Ex with strings)
+A main theme throughout is to produce analyses people can understand and build from --- including Future You.
 Not so brittle/sensitive to minor changes.
 
-We will learn and reinforce X main things all at the same time: coding with best practices (R/RStudio), Y, Z. This training will teach these all together to reinforce skills and best practices, and get you comfortable with a workflow that you can use in your own projects.
+We will learn and reinforce X main things all at the same time: coding with best practices (R/RStudio), how this relates to operations in Excel, Z. This training will teach these all together to reinforce skills and best practices, and get you comfortable with a workflow that you can use in your own projects.
 
 \hypertarget{what-to-expect}{%
 \subsection{What to expect}\label{what-to-expect}}
 
 This is going to be a fun workshop.
 
-The plan is to expose you to a lot of great tools that you can have confidence using in your research. You'll be working hands-on and doing the same things on your own computer as we do live on up on the screen. We're going to go through a lot in these two days and it's less important that you remember it all. More importantly, you'll have experience with it and confidence that you can do it. The main thing to take away is that there \emph{are} good ways to approach your analyses; we will teach you to expect that so you can find what you need and use it! A theme throughout is that tools exist and are being developed by real, and extraordinarily nice, people to meet you where you are and help you do what you need to do. If you expect and appreciate that, you will be more efficient in doing your awesome science.
+The plan is to expose you to X that you can have confidence using in your work. You'll be working hands-on and doing the same things on your own computer as we do live on up on the screen. We're going to go through a lot in these two days and it's less important that you remember it all. More importantly, you'll have experience with it and confidence that you can do it. The main thing to take away is that there \emph{are} good ways to work between R and Excel; we will teach you to expect that so you can find what you need and use it! A theme throughout is that tools exist and are being developed by real, and extraordinarily nice, people to meet you where you are and help you do what you need to do. If you expect and appreciate that, you will be more efficient in doing your awesome science.
 
 You are all welcome here, please be respectful of one another. You are encouraged to help each other.
 
@@ -230,19 +228,6 @@ Everyone in this workshop is coming from a different place with different experi
 \subsection{What you'll learn}\label{what-youll-learn}}
 
 TODO: dev
-
-Some big themes from Good enough practices in scientific computing. In terms of data management, they have 2 main themes:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  work towards ready-to-analyze data incrementally, documenting both the intermediate data and the process
-\item
-  embrace the idea of ``tidy data'', which can be a powerful accelerator for analysis
-\end{enumerate}
-
-We are going to focus on both of these, using R and discussing the similarities and differences between R and Excel, and how to interoperate between them.
 
 \begin{itemize}
 \tightlist
@@ -258,13 +243,40 @@ We are going to focus on both of these, using R and discussing the similarities 
   Most important collaborator is future you, and future us
 \end{itemize}
 
-R4DS drawing
+An important theme for this workshop is being deliberate about your analyses and setting things up in a way that will make your analytical life better downstream in the current task, and better when Future You or Future Us revisit it in the future (i.e.~avoiding: what happens next? What does this name mean?)
 
-\hypertarget{learning-with-data-that-are-not-your-own}{%
-\subsection{Learning with data that are not your own}\label{learning-with-data-that-are-not-your-own}}
+This graphic by Hadley Wickham and Garrett Grolemund in their book \href{http://r4ds.had.co.nz/}{R for Data Science} is simple but incredibly powerful:
+
+You may not have ever thought about analysis in such discrete steps: I certainly hadn't before seeing this. That is partly because in Excel, it can be easy to blend these steps together. We are going to keep them separate, and talk about why. The first step is Import: and implicit in this as a first step is that the data is stored elsewhere and is not manipulated directly, which \textbf{keeps the raw data raw}.
+
+We will be focusing on:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Import}: \texttt{readr}, \texttt{readxl} to read raw data stored in CSV or Excel files directly into R
+\item
+  \textbf{Tidy}: \texttt{tidyr} to (re)organize rows of data into unique values
+\item
+  \textbf{Transform}: \texttt{dplyr} to ``wrangle'' data based on subsetting by rows or columns, sorting and joining
+\item
+  \textbf{Visualize}: \texttt{ggplot2} static plots, using grammar of graphics principles
+\item
+  \textbf{Communicate}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{writexl} to export intermediate and final data
+  \item
+    GitHub File Upload and Issues for online publishing and collaboration
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{emphasizing-collaboration}{%
 \subsection{Emphasizing collaboration}\label{emphasizing-collaboration}}
+
+TODO: rewrite/update (from OHI book):
 
 Collaborating efficiently has historically been really hard to do. It's only been the last 20 years or so that we've moved beyond mailing things with the postal service. Being able to email and get feedback on files through track changes was a huge step forward, but it comes with a lot of bookkeeping and reproduciblity issues (did I send that report based on \texttt{analysis\_final\_final.xls} or \texttt{analysis\_final\_usethisone.xls}?). But now, open tools make it much easier to collaborate.
 
@@ -284,7 +296,7 @@ Open RStudio for the first time.
 
 Launch RStudio/R.
 
-\includegraphics{img/RStudio_IDE.png}
+\includegraphics[width=0.8\linewidth]{img/RStudio_IDE}
 
 Notice the default panes:
 
@@ -304,16 +316,22 @@ An important first question: \textbf{where are we?}
 
 If you've have opened RStudio for the first time, you'll be in your Home directory. This is noted by the \texttt{\textasciitilde{}/} at the top of the console. You can see too that the Files pane in the lower right shows what is in the Home directory where you are. You can navigate around within that Files pane and explore, but note that you won't change where you are: even as you click through you'll still be Home: \texttt{\textasciitilde{}/}.
 
-\includegraphics{img/RStudio_IDE_homedir.png}
+\includegraphics[width=0.8\linewidth]{img/RStudio_IDE_homedir}
 
 \hypertarget{rstudio-projects}{%
 \subsection{RStudio Projects}\label{rstudio-projects}}
 
-Create a new project called `RforExcelUsers'. Why does this matter? Working directory = no file path/broken path issues. Notice that a folder now appears wherever you saved this project with the same name, and it contains a .Rproj file.
+Create a new Project called `r-for-excel-users'. File \textgreater{} New Project\ldots{} \textgreater{} New Directory \textgreater{} New Project. Give your Project a name browse to a place to keep it. And then click to Create Project!
 
-Let's do this together (with screenshots).
+What is a Project? It is a way to organize all of the relevant things you need for an analysis in the same place. This means data, code, figures, notes, etc.
 
-Important question: where are we? Now we are in this project. Everything we do will by default be saved here so we can be nice and organized.
+Why does this matter? Keeping everything you need for your analysis together makes it less brittle and more portable --- across people, time, and computers.
+
+Working directory = no file path/broken path issues. Notice that a folder now appears wherever you saved this project with the same name, and it contains a .Rproj file.
+
+Now that we have our Project, here is an important question: where are we? Now we are in our Project. Everything we do will by default be saved here so we can be nice and organized.
+
+\includegraphics[width=0.8\linewidth]{img/RStudio_IDE_projdir}
 
 \hypertarget{r-console}{%
 \subsection{R Console}\label{r-console}}
@@ -324,12 +342,14 @@ I can do math:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\DecValTok{52}\OperatorTok{*}\DecValTok{40}
 \DecValTok{365}\OperatorTok{/}\DecValTok{12}
-\DecValTok{38}\OperatorTok{*}\DecValTok{40}
 \end{Highlighting}
 \end{Shaded}
 
-But like Excel, the power comes not from doing small operations by hand (like 8*22.3), it's by being able to operate on swaths of numbers. Columns, Rows, etc. In Excel, they are stored in the spreadsheet. In R, they are stored in variables.
+\emph{TODO: refine}
+
+But like Excel, the power comes not from doing small operations by hand (like 8*22.3), it's by being able to operate on whole suites of numbers and datasets. In Excel, data are stored in the spreadsheet. In R, they are stored in dataframes, and named as variables.
 
 R stores data in variables, and that data can be a variety of formats, like numeric and text. Let's have a look at some data in R. R has several built-in data sets that we can look at and work with.
 
@@ -343,11 +363,9 @@ One of these datasets is called \texttt{mtcars}. If I write this in the Console,
 
 I can also use RStudio's Viewer to see this in a more familiar-looking format:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{View}\NormalTok{(mtcars)}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+View(mtcars)
+\end{verbatim}
 
 This opens the fourth pane of the RStudio IDE. In the Viewer I can do things like filter or sort. This does not do anything to the actual data, it just changes how you are viewing the data.
 
@@ -363,8 +381,6 @@ OK so working in the Console is great, but it gets messy. It's good for quick th
 Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Pay attention to how you type.
 
 Remember that this is a language, not unsimilar to English! There are times you aren't understood -- it's going to happen. There are different ways this can happen. Sometimes you'll get an error. This is like someone saying `What?' or `Pardon'? Error messages can also be more useful, like when they say `I didn't understand what you said, I was expecting you to say blah'. That is a great type of error message. Error messages are your friend. Google them (copy-and-paste!) to figure out what they mean.
-
----\textgreater{}
 
 And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I am telling a story about suspenders that my British friend hears but silently interprets in a very different way (true story). This can leave me thinking I've gotten something across that the listener (or R) might silently interpreted very differently. And as I continue telling my story you get more and more confused\ldots{} Clear communication is critical when you code: write clean, well documented code and check your work as you go to minimize these circumstances!
 
