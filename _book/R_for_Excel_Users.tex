@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-09-29}
+    \date{2019-09-26}
 
 \usepackage{booktabs}
 
@@ -138,12 +138,19 @@
 \hypertarget{welcome}{%
 \chapter{Welcome}\label{welcome}}
 
-\emph{TODO: shorten, add about RStudio::conf}
-
 Excel is a widely used and powerful tool for working with data. As automation, reproducibility, collaboration, and frequent reporting become increasingly expected in data analysis, a good option for Excel users is to extend their workflows with R. Integrating R into data analysis with Excel can bridge the technical gap between collaborators using either software. R enables use of existing tools built for specific tasks and overcomes some limitations that arise when working with large datasets or repeated analyses. This course is for Excel users who want to add or integrate R and RStudio into their existing data analysis toolkit. Participants will get hands-on experience working with data across R, Excel, and Google Sheets, focusing on: data import and export, basic wrangling, visualization, and reporting with RMarkdown. Throughout, we will emphasize conventions and best practices for working reproducibly and collaboratively with data, including naming conventions, documentation, organization, all while ``keeping the raw data raw''. Whether you are working in Excel and want to get started in R, already working in R and want tools for working more seamlessly with collaborators who use Excel, or whether you are new to data analysis entirely, this is the course for you!
 
-\hypertarget{about-this-book}{%
-\subsection{About this book}\label{about-this-book}}
+If you answer yes to these questions, this course is for you!
+
+\begin{itemize}
+\tightlist
+\item
+  Are you an Excel user who wants to expand your data analysis toolset with R?
+\item
+  Do you want to bridge analyses between Excel and R, whether working independently or to more easily collaborate with others who use Excel or R?
+\item
+  Are you new to data analysis, and looking for a good place to get started?
+\end{itemize}
 
 \hypertarget{prerequisites}{%
 \section{Prerequisites}\label{prerequisites}}
@@ -182,18 +189,6 @@ Before the training, please make sure you have done the following:
 \hypertarget{resources}{%
 \section{Resources}\label{resources}}
 
-R is not only a language, it is an active community of developers, users, and educators (often these traits are in each person). This workshop and book based on many excellent materials created by other members in the R community, who share their work freely to help others learn. Using community materials is how WE learned R, and each chapter of the book will have Resources listed for further reading into the topics we discuss. And, when there is no better way to explain something (ahem Jenny Bryan), we will quote or reference that work directly.
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://whattheyforgot.org/}{What They Forgot to Teach You About R} --- Jenny Bryan \& Jim Hester
-\item
-  \href{https://stat545.com/}{Stat545} --- Jenny Bryan \& Stat545 TAs
-\item
-  \href{http://rex-analytics.com/things-live-r-r-excel-users/}{Where do Things Live in R?} REX Analytics
-\end{itemize}
-
 \hypertarget{overview-1}{%
 \section{Overview}\label{overview-1}}
 
@@ -201,17 +196,17 @@ Welcome.
 
 This workshop you will learn hands-on how to begin to interoperate between Excel and R.
 
-A main theme throughout is to produce analyses people can understand and build from --- including Future You.
+A main theme throughout is to produce analyses people can understand --- including Future You. Literate programming (Rmd). {[}might be better as a deep thought than right at the beginning{]}: Comments! Organization (spacing, subsections, vertical structure, indentation, etc.)! Well-named variables! Also, well-named operations so analyses (select(data, columnname)) instead of data{[}1:6,5{]} and excel equivalent. (Ex with strings)
 Not so brittle/sensitive to minor changes.
 
-We will learn and reinforce X main things all at the same time: coding with best practices (R/RStudio), how this relates to operations in Excel, Z. This training will teach these all together to reinforce skills and best practices, and get you comfortable with a workflow that you can use in your own projects.
+We will learn and reinforce X main things all at the same time: coding with best practices (R/RStudio), Y, Z. This training will teach these all together to reinforce skills and best practices, and get you comfortable with a workflow that you can use in your own projects.
 
 \hypertarget{what-to-expect}{%
 \subsection{What to expect}\label{what-to-expect}}
 
 This is going to be a fun workshop.
 
-The plan is to expose you to X that you can have confidence using in your work. You'll be working hands-on and doing the same things on your own computer as we do live on up on the screen. We're going to go through a lot in these two days and it's less important that you remember it all. More importantly, you'll have experience with it and confidence that you can do it. The main thing to take away is that there \emph{are} good ways to work between R and Excel; we will teach you to expect that so you can find what you need and use it! A theme throughout is that tools exist and are being developed by real, and extraordinarily nice, people to meet you where you are and help you do what you need to do. If you expect and appreciate that, you will be more efficient in doing your awesome science.
+The plan is to expose you to a lot of great tools that you can have confidence using in your research. You'll be working hands-on and doing the same things on your own computer as we do live on up on the screen. We're going to go through a lot in these two days and it's less important that you remember it all. More importantly, you'll have experience with it and confidence that you can do it. The main thing to take away is that there \emph{are} good ways to approach your analyses; we will teach you to expect that so you can find what you need and use it! A theme throughout is that tools exist and are being developed by real, and extraordinarily nice, people to meet you where you are and help you do what you need to do. If you expect and appreciate that, you will be more efficient in doing your awesome science.
 
 You are all welcome here, please be respectful of one another. You are encouraged to help each other.
 
@@ -219,8 +214,6 @@ Everyone in this workshop is coming from a different place with different experi
 
 \hypertarget{what-youll-learn}{%
 \subsection{What you'll learn}\label{what-youll-learn}}
-
-TODO: dev
 
 \begin{itemize}
 \tightlist
@@ -236,48 +229,13 @@ TODO: dev
   Most important collaborator is future you, and future us
 \end{itemize}
 
-An important theme for this workshop is being deliberate about your analyses and setting things up in a way that will make your analytical life better downstream in the current task, and better when Future You or Future Us revisit it in the future (i.e.~avoiding: what happens next? What does this name mean?)
+R4DS drawing
 
-This graphic by Hadley Wickham and Garrett Grolemund in their book \href{http://r4ds.had.co.nz/}{R for Data Science} is simple but incredibly powerful:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{include_graphics}\NormalTok{(}\StringTok{"img/r4ds_data-science.png"}\NormalTok{)  }
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics[width=0.8\linewidth]{img/r4ds_data-science}
-
-You may not have ever thought about analysis in such discrete steps: I certainly hadn't before seeing this. That is partly because in Excel, it can be easy to blend these steps together. We are going to keep them separate, and talk about why. The first step is Import: and implicit in this as a first step is that the data is stored elsewhere and is not manipulated directly, which \textbf{keeps the raw data raw}.
-
-We will be focusing on:
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Import}: \texttt{readr}, \texttt{readxl} to read raw data stored in CSV or Excel files directly into R
-\item
-  \textbf{Tidy}: \texttt{tidyr} to (re)organize rows of data into unique values
-\item
-  \textbf{Transform}: \texttt{dplyr} to ``wrangle'' data based on subsetting by rows or columns, sorting and joining
-\item
-  \textbf{Visualize}: \texttt{ggplot2} static plots, using grammar of graphics principles
-\item
-  \textbf{Communicate}
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \texttt{writexl} to export intermediate and final data
-  \item
-    GitHub File Upload and Issues for online publishing and collaboration
-  \end{itemize}
-\end{itemize}
+\hypertarget{learning-with-data-that-are-not-your-own}{%
+\subsection{Learning with data that are not your own}\label{learning-with-data-that-are-not-your-own}}
 
 \hypertarget{emphasizing-collaboration}{%
 \subsection{Emphasizing collaboration}\label{emphasizing-collaboration}}
-
-TODO: rewrite/update (from OHI book):
 
 Collaborating efficiently has historically been really hard to do. It's only been the last 20 years or so that we've moved beyond mailing things with the postal service. Being able to email and get feedback on files through track changes was a huge step forward, but it comes with a lot of bookkeeping and reproduciblity issues (did I send that report based on \texttt{analysis\_final\_final.xls} or \texttt{analysis\_final\_usethisone.xls}?). But now, open tools make it much easier to collaborate.
 
@@ -297,13 +255,7 @@ Open RStudio for the first time.
 
 Launch RStudio/R.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{include_graphics}\NormalTok{(}\StringTok{"img/RStudio_IDE.png"}\NormalTok{)  }
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics[width=0.8\linewidth]{img/RStudio_IDE}
+\includegraphics{img/RStudio_IDE.png}
 
 Notice the default panes:
 
@@ -323,72 +275,25 @@ An important first question: \textbf{where are we?}
 
 If you've have opened RStudio for the first time, you'll be in your Home directory. This is noted by the \texttt{\textasciitilde{}/} at the top of the console. You can see too that the Files pane in the lower right shows what is in the Home directory where you are. You can navigate around within that Files pane and explore, but note that you won't change where you are: even as you click through you'll still be Home: \texttt{\textasciitilde{}/}.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{include_graphics}\NormalTok{(}\StringTok{"img/RStudio_IDE_homedir.png"}\NormalTok{)  }
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics[width=0.8\linewidth]{img/RStudio_IDE_homedir}
+\includegraphics{img/RStudio_IDE_homedir.png}
 
 \hypertarget{rstudio-projects}{%
 \subsection{RStudio Projects}\label{rstudio-projects}}
 
-Create a new Project called `r-for-excel-users'. File \textgreater{} New Project\ldots{} \textgreater{} New Directory \textgreater{} New Project. Give your Project a name browse to a place to keep it. And then click to Create Project!
+Create a new project called `RforExcelUsers'. Why does this matter? Working directory = no file path/broken path issues. Notice that a folder now appears wherever you saved this project with the same name, and it contains a .Rproj file.
 
-What is a Project? It is a way to organize all of the relevant things you need for an analysis in the same place. This means data, code, figures, notes, etc.
+Let's do this together (with screenshots).
 
-Why does this matter? Keeping everything you need for your analysis together makes it less brittle and more portable --- across people, time, and computers.
-
-Working directory = no file path/broken path issues. Notice that a folder now appears wherever you saved this project with the same name, and it contains a .Rproj file.
-
-Now that we have our Project, here is an important question: where are we? Now we are in our Project. Everything we do will by default be saved here so we can be nice and organized.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{include_graphics}\NormalTok{(}\StringTok{"img/RStudio_IDE_projdir.png"}\NormalTok{)  }
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics[width=0.8\linewidth]{img/RStudio_IDE_projdir}
+Important question: where are we? Now we are in this project. Everything we do will by default be saved here so we can be nice and organized.
 
 \hypertarget{r-console}{%
 \subsection{R Console}\label{r-console}}
 
-Watch me work in the Console.
+Watch me work in the console.
 
-I can do math:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DecValTok{52}\OperatorTok{*}\DecValTok{40}
-\DecValTok{365}\OperatorTok{/}\DecValTok{12}
-\end{Highlighting}
-\end{Shaded}
-
-But like Excel, the power comes not from doing small operations by hand (like 8*22.3), it's by being able to operate on swaths of numbers. Columns, Rows, etc. In Excel, they are stored in the spreadsheet. In R, they are stored in variables.
-
-R stores data in variables, and that data can be a variety of formats, like numeric and text. Let's have a look at some data in R. R has several built-in data sets that we can look at and work with.
-
-One of these datasets is called \texttt{mtcars}. If I write this in the Console, it will print the data in the console.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mtcars}
-\end{Highlighting}
-\end{Shaded}
-
-I can also use RStudio's Viewer to see this in a more familiar-looking format:
-
-\begin{verbatim}
-View(mtcars)
-\end{verbatim}
-
-This opens the fourth pane of the RStudio IDE. In the Viewer I can do things like filter or sort. This does not do anything to the actual data, it just changes how you are viewing the data.
+I can do math, I can store data in variables, and recall those variables.
 
 There are also functions like in Excel; I can do \texttt{?sum} and look at the help pages.
-
-Average mile per gallon. In excel there is a function called AVERAGE. Let's see
 
 OK so working in the Console is great, but it gets messy. It's good for quick things. But looking back at what I've done and trying to build upon it would be a nightmare.
 
@@ -426,16 +331,9 @@ This is a blank slate for us to write our code; but there are some good practice
 \end{Highlighting}
 \end{Shaded}
 
-Since we're working in or Project, this script is now nicely saved in our Project.
+Since we're working in or Project, this script is now nicely saved in our Project
 
 Let's attach a package. Since you've already installed tidyverse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Attach the tidyverse}
-\KeywordTok{library}\NormalTok{(tidyverse)}
-\end{Highlighting}
-\end{Shaded}
 
 Cool looking plot with diamonds.
 
@@ -448,8 +346,6 @@ You can run code line by line or sourcing the script
 \section{Deep thought: keep the raw data raw.}\label{deep-thought-keep-the-raw-data-raw.}}
 
 Discussing using Excel for variables.
-
-Horror Stories! Economist etc.
 
 \hypertarget{interludes-deep-thoughtsopenscapes}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes}}
@@ -469,34 +365,34 @@ Not so brittle/sensitive to minor changes.
 \hypertarget{readxl}{%
 \chapter{\texorpdfstring{\texttt{readxl}}{readxl}}\label{readxl}}
 
-\hypertarget{summary}{%
-\section{Summary}\label{summary}}
+Note for Allison: the \texttt{\{\#readxl\}} above lets us reference it from another chapter\ldots{}not sure how much we'll use it but it's possible (and doesn't hurt to have). Cool, thanks Julie!
 
-\textbf{Check this, may need to be a block quote}: The \textbf{readxl} package makes it easy to import tabular data from Excel spreadsheets (.xls or .xlsx files) and includes several options for cleaning data during import. \textbf{readxl} has no external dependencies and functions on any operating system, making it an OS- and user-friendly package that simplifies getting your data from Excel into R.
+\hypertarget{summary-a-few-sentences-1}{%
+\section{Summary (a few sentences)}\label{summary-a-few-sentences-1}}
 
-\hypertarget{objectives}{%
-\section{Objectives}\label{objectives}}
+The \textbf{readxl} package makes it easy to import tabular data from Excel spreadsheets (.xls or .xlsx files) and includes several options for cleaning data during import. \textbf{readxl} has no external dependencies and functions on any operating system, making it an OS- and user-friendly package that simplifies getting your data from Excel into R.
+
+\hypertarget{objectives-more-detailed-bulletpoints-1}{%
+\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-1}}
 
 \begin{itemize}
 \tightlist
 \item
-  Use \texttt{readr::read\_csv()} to read in a comma separated value (CSV) file
+  Use readr::read\_csv() to read in a comma separated value (CSV) file
 \item
-  Use \texttt{readxl::read\_excel()} to read in an Excel worksheet from a workbook
+  Use readxl::read\_excel() to read in an Excel worksheet
 \item
-  Replace a specific string/value in a spreadsheet with with \texttt{NA}
-\item
-  Skip \emph{n} rows when importing an Excel worksheet
-\item
-  Use \texttt{readxl::read\_excel()} to read in parts of a worksheet (by cell range)
+  Use readxl::read\_excel() to read in parts of a worksheet (by cell range)
 \item
   Specify column names when importing Excel data
 \item
-  Read and combine data from multiple Excel worksheets into a single df using \texttt{purrr::map\_df()}
+  Replace a specific string/value in a spreadsheet with with `NA'
 \item
-  Write data using \texttt{readr::write\_csv()} or \texttt{writexl::write\_excel()}
+  Skip \emph{n} rows when importing an Excel worksheet
 \item
-  Workflows with \texttt{readxl}: considerations, limitations, reproducibility
+  Read in multiple Excel worksheets
+\item
+  Something about readxl workflows (e.g. \%\textgreater{}\% write\_csv() to keep a copy of the raw data in a project)??
 \end{itemize}
 
 \hypertarget{resources-1}{%
@@ -506,15 +402,13 @@ Not so brittle/sensitive to minor changes.
 \tightlist
 \item
   \url{https://readxl.tidyverse.org/}
-\item
-  \href{https://readxl.tidyverse.org/articles/articles/readxl-workflows.html}{readxl Workflows article (from tidyverse.org)}
 \end{itemize}
 
-\hypertarget{lesson}{%
-\section{Lesson}\label{lesson}}
+\hypertarget{lessons-teaching-for-each-objective..-objectives-examples}{%
+\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples}}
 
-\hypertarget{lesson-prep-get-data-files-into-your-working-directory}{%
-\subsection{Lesson prep: get data files into your working directory}\label{lesson-prep-get-data-files-into-your-working-directory}}
+\hypertarget{prep-get-data-files-into-your-working-directory}{%
+\subsection{Prep: get data files into your working directory}\label{prep-get-data-files-into-your-working-directory}}
 
 In Session 1, we introduced how and why R Projects are great for reproducibility, because our self-contained working directory will be the \textbf{first} place R looks for files.
 
@@ -529,13 +423,13 @@ You downloaded four files for this workshop:
 \item
   kelp\_counts\_curated.xlsx
 \item
-  substrate\_cover\_curated.xlsx
+  \ldots{}the OTHER ONE?
 \end{itemize}
 
-Copy and paste those files into the `RforExcelUsers' folder on your computer. Notice that now these files are in your working directory when you go back to that Project in RStudio (check the `Files' tab). That means they're going to be in the first place R will look when you ask it to find a file to read in.
+Copy and paste those files into the `RforExcelUsers' folder on your computer. Notice that now these files show up right in your working directory when you go back to that Project in RStudio! That means they're going to be in the first place R will look when you ask it to find a file.
 
-\hypertarget{create-a-new-.r-script-attach-the-tidyverse-readxl-and-writexl-packages}{%
-\subsection{\texorpdfstring{Create a new .R script, attach the \texttt{tidyverse}, \texttt{readxl} and \texttt{writexl} packages}{Create a new .R script, attach the tidyverse, readxl and writexl packages}}\label{create-a-new-.r-script-attach-the-tidyverse-readxl-and-writexl-packages}}
+\hypertarget{create-a-new-.r-script-and-attach-the-tidyverse}{%
+\subsection{Create a new .R script and attach the tidyverse}\label{create-a-new-.r-script-and-attach-the-tidyverse}}
 
 In your RforExcelUsers project in RStudio, open a new .R script and add a useful header to the top of it. For example, at a minimum:
 
@@ -552,21 +446,19 @@ In your RforExcelUsers project in RStudio, open a new .R script and add a useful
 \end{Highlighting}
 \end{Shaded}
 
-In this lesson, we'll read in a CSV file with the \texttt{readr::read\_csv()} function, so we need to have the \texttt{readr} package attached. Since it's part of the \texttt{tidyverse}, we'll go ahead and attach the \texttt{tidyverse} package below our script header using \texttt{library(package\_name)}. It's a good idea to attach all necessary packages near the top of a script, so we'll also attach the \texttt{readxl} packages here.
+We'll read in a CSV file with \texttt{readr::read\_csv()}, so we need to have the \texttt{readr} package attached. Since it's part of the \texttt{tidyverse}, we'll go ahead and attach the \texttt{tidyverse} package below our script header using \texttt{library(package\_name)}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Attach the tidyverse, readxl and writexl packages:}
+\CommentTok{# Attach the tidyverse}
 \KeywordTok{library}\NormalTok{(tidyverse)}
-\KeywordTok{library}\NormalTok{(readxl)}
-\KeywordTok{library}\NormalTok{(writexl)}
 \end{Highlighting}
 \end{Shaded}
 
-Now, all of the packages and functions within the \texttt{tidyverse} and \texttt{readxl}, including \texttt{readr::read\_csv()} and \texttt{readxl::read\_excel()}, are available for use.
+Now, all of the packages and functions within the \texttt{tidyverse}, including \texttt{readr::read\_csv()} are available for us to use.
 
 \hypertarget{use-readrread_csv-to-read-in-data-from-a-csv-file}{%
-\subsection{\texorpdfstring{Use \texttt{readr::read\_csv()} to read in data from a CSV file}{Use readr::read\_csv() to read in data from a CSV file}}\label{use-readrread_csv-to-read-in-data-from-a-csv-file}}
+\subsection{\texorpdfstring{Use \textbf{readr::read\_csv()} to read in data from a CSV file}{Use readr::read\_csv() to read in data from a CSV file}}\label{use-readrread_csv-to-read-in-data-from-a-csv-file}}
 
 There are many types of files containing data that you might want to work with in R. A common one is a comma separated value (CSV) file, which contains values with each column entry separated by a comma delimiter. CSVs can be opened, viewed, and worked with in Excel just like an .xls or .xlsx file - but let's learn how to get data directly from a CSV into R where we can work with it more reproducibly.
 
@@ -574,425 +466,13 @@ The CSV we'll read in here is called ``fish\_counts\_curated.csv'', and contains
 
 \textbf{Source:} Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Fish abundance. Environmental Data Initiative. \url{https://doi.org/10.6073/pasta/dbd1d5f0b225d903371ce89b09ee7379}. Dataset accessed 9/26/2019.
 
-Read in the ``fish\_counts\_curated.csv'' file \texttt{read\_csv("file\_name.csv")}, and store it in R as an object called \emph{fish\_counts}:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{fish_counts <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"fish_counts_curated.csv"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-Notice that the name of the stored object (here, \emph{fish\_counts}) will show up in our Environment tab in RStudio.
-
-Click on the object in the Environment, and R will automatically run the \texttt{View()} function for you to pull up your data in a separate viewing tab. Now we can look at it in the spreadsheet format we're used to.
-
-Here are a few other functions for quickly exploring imported data:
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{summary()}: summary of class, dimensions, \texttt{NA} values, etc.
-\item
-  \texttt{names()}: variable names (column headers)
-\item
-  \texttt{ls()}: list all objects in environment
-\item
-  \texttt{head()}: Show the first x rows (default is 6 lines)
-\item
-  \texttt{tail()}: Show the last x rows (default is 6 lines)
-\end{itemize}
-
-Now let's make a simple plot of some fish counts with \texttt{ggplot2}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(fish_counts, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ year, }\DataTypeTok{y =}\NormalTok{ tot_count)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill =}\NormalTok{ common_name)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{site)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{R_for_Excel_Users_files/figure-latex/unnamed-chunk-13-1.pdf}
-
-Now that we have our fish counts data ready to work with in R, let's get the substrate cover and kelp data (both .xlsx files). In the following sections, we'll learn that we can use \texttt{readxl::read\_excel()} to read in Excel files directly.
-
-\hypertarget{use-readxlread_excel-to-read-in-a-single-excel-worksheet}{%
-\subsection{\texorpdfstring{Use \texttt{readxl::read\_excel()} to read in a single Excel worksheet}{Use readxl::read\_excel() to read in a single Excel worksheet}}\label{use-readxlread_excel-to-read-in-a-single-excel-worksheet}}
-
-First, take a look at \emph{substrate\_cover\_curated.xlsx} in Excel, which contains a single worksheet with substrate type and percent cover observations at different sampling locations in the Santa Barbara Channel.
-
-A few things to notice:
-
-\begin{itemize}
-\tightlist
-\item
-  The file contains a single worksheet
-\item
-  There are multiple rows containing text information up top
-\item
-  Where observations were not recorded, there exists `-9999'
-\end{itemize}
-
-Let's go ahead and read in the data. If the file is in our working directory, we can read in a single worksheet .xlsx file using \texttt{readxl::read\_excel("file\_name.xlsx")}. \emph{Note: readxl::read\_excel() works for both .xlsx and .xls types}.
-
-Like this:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{substrate_cover <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\StringTok{"substrate_cover_curated.xlsx"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Tada? Not quite.}
-
-Click on the object name (\emph{substrate\_cover}) in the Environment to view the data in a new tab. A few things aren't ideal:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{substrate_cover}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 23,942 x 9
-##    `Substrate cover data~ ...2  ...3   ...4  ...5   ...6  ...7  ...8  ...9 
-##    <chr>                  <chr> <chr>  <chr> <chr>  <chr> <chr> <chr> <chr>
-##  1 Source: https://porta~ <NA>  <NA>   <NA>  <NA>   <NA>  <NA>  <NA>  <NA> 
-##  2 Accessed: 9/28/2019    <NA>  <NA>   <NA>  <NA>   <NA>  <NA>  <NA>  <NA> 
-##  3 <NA>                   <NA>  <NA>   <NA>  <NA>   <NA>  <NA>  <NA>  <NA> 
-##  4 year                   month date   site  trans~ quad  side  subs~ perc~
-##  5 -9999                  -9999 -9999  carp  1      20    i     b     -9999
-##  6 2000                   9     -9999  carp  1      20    o     b     -9999
-##  7 2000                   9     9/8/00 carp  1      20    i     b     100  
-##  8 2000                   9     9/8/00 carp  1      20    o     b     100  
-##  9 2000                   9     9/8/00 carp  1      40    i     b     100  
-## 10 2000                   9     9/8/00 carp  1      40    o     b     100  
-## # ... with 23,932 more rows
-\end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  The top row of text has automatically become the (messy) column headers
-\item
-  There are multiple descriptive rows before we actually get to the data
-\item
-  There are -9999s that we want R to understand \texttt{NA} instead
-\end{itemize}
-
-We can deal with those issues by adding arguments within \texttt{read\_excel()}. Include argument \texttt{skip\ =\ n} to skip the first `n' rows when importing data, and \texttt{na\ =\ "this"} to replace ``this'' with \texttt{NA} when importing:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{substrate_cover <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\StringTok{"curation/substrate_cover_curated.xlsx, skip = 4, na = "}\OperatorTok{-}\DecValTok{9999}\StringTok{")}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{substrate_cover}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 23,938 x 9
-##    year  month date  site  transect quad  side  substrate_type
-##    <chr> <chr> <chr> <chr> <chr>    <chr> <chr> <chr>         
-##  1 <NA>  <NA>  <NA>  carp  1        20    i     b             
-##  2 2000  9     <NA>  carp  1        20    o     b             
-##  3 2000  9     9/8/~ carp  1        20    i     b             
-##  4 2000  9     9/8/~ carp  1        20    o     b             
-##  5 2000  9     9/8/~ carp  1        40    i     b             
-##  6 2000  9     9/8/~ carp  1        40    o     b             
-##  7 2000  9     9/8/~ carp  2        20    i     b             
-##  8 2000  9     9/8/~ carp  2        20    o     b             
-##  9 2000  9     9/8/~ carp  2        40    i     b             
-## 10 2000  9     9/8/~ carp  2        40    o     b             
-## # ... with 23,928 more rows, and 1 more variable: percent_cover <chr>
-\end{verbatim}
-
-Check out \emph{substrate\_cover}, and see that the first row \emph{after} the 4 skipped are the column names, and all -9999s have been updated to \texttt{NA}. Hooray!
-
-\hypertarget{use-readxlread_excel-to-read-in-only-part-of-an-excel-worksheet}{%
-\subsection{\texorpdfstring{Use \texttt{readxl::read\_excel()} to read in only \emph{part} of an Excel worksheet}{Use readxl::read\_excel() to read in only part of an Excel worksheet}}\label{use-readxlread_excel-to-read-in-only-part-of-an-excel-worksheet}}
-
-We always advocate for leaving the raw data raw, and writing a complete script containing all steps of data wrangling \& transformation. But in \emph{some} situations (be careful), you may want to specify a range of cells to read in from an Excel worksheet.
-
-You can specify a range of cells to read in using the \texttt{range\ =} argument in \texttt{read\_excel()}. For example, if I want to read in the rectangle from D12:I15 in \emph{substrate\_cover\_curated.xlsx} - only observations for Carpenteria Beach (Transect 2) in September 2000 - I can use:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{carp_cover_}\DecValTok{2000}\NormalTok{ <-}\StringTok{ }\NormalTok{readxl}\OperatorTok{::}\KeywordTok{read_excel}\NormalTok{(}\StringTok{"substrate_cover_curated.xlsx"}\NormalTok{, }\DataTypeTok{range =} \StringTok{"D12:I15"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-But yuck. Look at \emph{carp\_cover\_2000} and you'll notice that the first row \emph{of that range} is automatically made the column headers. To keep all rows within a range and \textbf{add your own column names}, add a \texttt{col\_names\ =} argument:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{carp_cover_}\DecValTok{2000}\NormalTok{ <-}\StringTok{ }\NormalTok{readxl}\OperatorTok{::}\KeywordTok{read_excel}\NormalTok{(}\StringTok{"substrate_cover_curated.xlsx"}\NormalTok{, }\DataTypeTok{range =} \StringTok{"D12:I15"}\NormalTok{, }\DataTypeTok{col_names =} \KeywordTok{c}\NormalTok{(}\StringTok{"site_name"}\NormalTok{, }\StringTok{"transect"}\NormalTok{, }\StringTok{"quad"}\NormalTok{, }\StringTok{"plot_side"}\NormalTok{, }\StringTok{"type"}\NormalTok{, }\StringTok{"coverage"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{carp_cover_}\DecValTok{2000}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 4 x 6
-##   site_name transect quad  plot_side type  coverage
-##   <chr>     <chr>    <chr> <chr>     <chr> <chr>   
-## 1 carp      2        20    i         b     90      
-## 2 carp      2        20    o         b     80      
-## 3 carp      2        40    i         b     80      
-## 4 carp      2        40    o         b     85
-\end{verbatim}
-
-So far we've read in a single CSV file using \texttt{readr::read\_csv()}, and an Excel file containing a single worksheet with \texttt{readxl::read\_excel()}. Now let's read in data from an Excel workbook with multiple worksheets.
-
-\hypertarget{use-readxlread_excel-to-read-in-selected-worksheets-from-a-workbook}{%
-\subsection{\texorpdfstring{Use \texttt{readxl::read\_excel()} to read in selected worksheets from a workbook}{Use readxl::read\_excel() to read in selected worksheets from a workbook}}\label{use-readxlread_excel-to-read-in-selected-worksheets-from-a-workbook}}
-
-Now, we'll read in the kelp fronds data from file \emph{kelp\_counts\_curated.xlsx}. If you open the Excel workbook, you'll see that it contains multiple worksheets with giant kelp observations in the Santa Barbara Channel during July 2016, 2017, and 2018, with data collected at each \emph{site} in a separate worksheet.
-
-To read in a single Excel worksheet from a workbook we'll again use \texttt{readxl::read\_excel("file\_name.xlsx")}, but we'll need to let R know which worksheet to get.
-
-Let's read in the kelp data just like we did above, as an object called \emph{kelp\_counts}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{kelp_counts <-}\StringTok{ }\NormalTok{readxl}\OperatorTok{::}\KeywordTok{read_excel}\NormalTok{(}\StringTok{"kelp_counts_curated.xlsx"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-You might be thinking, ``Hooray, I got all of my Excel workbook data!'' But remember to always look at your data - you will see that actually only the first worksheet was read in. The default in \texttt{readxl::read\_excel()} is to read in the \textbf{first worksheet} in a multi-sheet Excel workbook.
-
-To check the worksheet names in an Excel workbook, use \texttt{readxl::excel\_sheets()}:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{readxl}\OperatorTok{::}\KeywordTok{excel_sheets}\NormalTok{(}\StringTok{"kelp_counts_curated.xlsx"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-If we want to read in data from a worksheet other than the first one in an Excel workbook, we can specify the correct worksheet by name or position by adding the \texttt{sheet} argument.
-
-Let's read in data from the worksheet named \emph{golb} (Goleta Beach) in the \emph{kelp\_counts\_curated.xlsx} workbook:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{kelp_golb <-}\StringTok{ }\NormalTok{readxl}\OperatorTok{::}\KeywordTok{read_excel}\NormalTok{(}\StringTok{"kelp_counts_curated.xlsx"}\NormalTok{, }\DataTypeTok{sheet =} \StringTok{"golb"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-Note that you can also specify a worksheet by position: since \emph{golb} is the 6\textsuperscript{th} worksheet in the workbook, we could also use the following:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{kelp_golb <-}\StringTok{ }\NormalTok{readxl}\OperatorTok{::}\KeywordTok{read_excel}\NormalTok{(}\StringTok{"kelp_counts_curated.xlsx"}\NormalTok{, }\DataTypeTok{sheet =} \DecValTok{6}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{kelp_golb}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 3 x 5
-##   year  month site  common_name tot_fronds
-##   <chr> <chr> <chr> <chr>            <dbl>
-## 1 2016  7     golb  giant kelp        2557
-## 2 2017  7     golb  giant kelp        1575
-## 3 2018  7     golb  giant kelp        1629
-\end{verbatim}
-
-\hypertarget{read-in-and-combine-data-from-multiple-worksheets-into-a-data-frame-simultaneously-with-purrrmap_df}{%
-\subsection{\texorpdfstring{Read in and combine data from multiple worksheets into a data frame simultaneously with \texttt{purrr::map\_df()}}{Read in and combine data from multiple worksheets into a data frame simultaneously with purrr::map\_df()}}\label{read-in-and-combine-data-from-multiple-worksheets-into-a-data-frame-simultaneously-with-purrrmap_df}}
-
-So far, we've read in entire Excel worksheets and pieces of a worksheet. What if we have a workbook (like \emph{kelp\_counts\_curated.xlsx}) that contains worksheets that contain observations for the same variables, in the same organization? Then we may want to read in data from \emph{all} worksheets, and combine them into a single data frame.
-
-We'll use \texttt{purrr::map\_df()} to loop through all the worksheets in a workbook, reading them in \& putting them together into a single df in the process.
-
-The steps we'll go through in the code below are:
-
-\begin{itemize}
-\tightlist
-\item
-  Set a pathway so that R knows where to look for an Excel workbook
-\item
-  Get the names of all worksheets in that workbook with \texttt{excel\_sheets()}
-\item
-  Set names of a vector with \texttt{set\_names()}
-\item
-  Read in all worksheets, and put them together into a single data frame with \texttt{purrr::map\_df()}
-\end{itemize}
-
-\textbf{QUESTION: Have they learned the pipe operator at this point?}
-
-\textbf{Expect the question:} Why do I need to use read\_excel() instead of just giving it the file path (as below)?
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{kelp_path <-}\StringTok{ "kelp_counts_curated.xlsx"}
-
-\NormalTok{kelp_all_sites <-}\StringTok{ }\NormalTok{kelp_path }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{excel_sheets}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{set_names}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{purrr}\OperatorTok{::}\KeywordTok{map_df}\NormalTok{(read_excel, kelp_path)}
-\end{Highlighting}
-\end{Shaded}
-
-Check out \emph{kelp\_all\_sites}, and notice that now the data from all 11 sites is now collected into a single data frame:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{kelp_all_sites}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 32 x 5
-##    year  month site  common_name tot_fronds
-##    <chr> <chr> <chr> <chr>            <dbl>
-##  1 2016  7     abur  giant kelp         307
-##  2 2017  7     abur  giant kelp         604
-##  3 2018  7     abur  giant kelp        3532
-##  4 2016  7     ahnd  giant kelp        2572
-##  5 2017  7     ahnd  giant kelp          16
-##  6 2018  7     ahnd  giant kelp          16
-##  7 2016  7     aque  giant kelp       11152
-##  8 2017  7     aque  giant kelp        9194
-##  9 2018  7     aque  giant kelp        7754
-## 10 2016  7     bull  giant kelp        6706
-## # ... with 22 more rows
-\end{verbatim}
-
-Awesome! Let's make a graph with ggplot2:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(kelp_all_sites, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ site, }\DataTypeTok{y =}\NormalTok{ tot_fronds)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill =}\NormalTok{ year), }\DataTypeTok{position =} \StringTok{"dodge"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"purple"}\NormalTok{,}\StringTok{"orange"}\NormalTok{,}\StringTok{"gray30"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{R_for_Excel_Users_files/figure-latex/unnamed-chunk-37-1.pdf}
-
-\hypertarget{save-data-frames-as-.csv-or-.xlsx-with-readrwrite_csv-or-writexlwrite_xlsx}{%
-\subsection{\texorpdfstring{Save data frames as .csv or .xlsx with \texttt{readr::write\_csv()} or \texttt{writexl::write\_xlsx()}}{Save data frames as .csv or .xlsx with readr::write\_csv() or writexl::write\_xlsx()}}\label{save-data-frames-as-.csv-or-.xlsx-with-readrwrite_csv-or-writexlwrite_xlsx}}
-
-There are a number of reasons you might want to save (/export) data in a data frame as a .csv or Excel worksheet, including:
-
-\begin{itemize}
-\tightlist
-\item
-  To cache raw data within your project
-\item
-  To store copies of intermediate data frames
-\item
-  To convert your data back to a format that your coworkers/clients/colleagues will be able to use it more easily
-\end{itemize}
-
-Use \texttt{readr::write\_csv(object,\ "file\_name.csv")} to write a data frame to a CSV, or \texttt{writexl::write\_xlsx(object,\ "file\_name.xlsx")} to similarly export as a .xlsx (or .xls) worksheet.
-
-In the previous step, we combined all of our kelp frond observations into a single data frame. Wouldn't it make sense to store a copy?
-
-As a CSV:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{readr}\OperatorTok{::}\KeywordTok{write_csv}\NormalTok{(kelp_all_sites, }\StringTok{"kelp_all_sites.csv"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-A cool thing about \texttt{readr::read\_csv()} is that it just quietly \emph{works} without wrecking anything else you do in a sequence, so it's great to add at the end of a piped sequence.
-
-For example, if I want to read in the `ivee' worksheet from kelp\_counts\_curated.xlsx, select only columns `year' and `tot\_fronds', then write that new subset to a .csv file, I can pipe all the way through:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{kelp_ivee <-}\StringTok{ }\NormalTok{readxl}\OperatorTok{::}\KeywordTok{read_excel}\NormalTok{(}\StringTok{"kelp_counts_curated.xlsx"}\NormalTok{, }\DataTypeTok{sheet =} \StringTok{"ivee"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{select}\NormalTok{(year, tot_fronds) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{write_csv}\NormalTok{(}\StringTok{"kelp_ivee.csv"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-Now I've created \emph{kelp\_ivee.csv}, but the object \emph{kelp\_ivee} also exists for me to use in R.
-
-If needed, I can also export a data frame as an Excel (.xlsx) worksheet:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{writexl}\OperatorTok{::}\KeywordTok{write_xlsx}\NormalTok{(kelp_all_sites, }\StringTok{"kelp_all_sites.xlsx"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{fun-facts-ideas}{%
-\section{Fun facts ideas:}\label{fun-facts-ideas}}
-
-\begin{itemize}
-\tightlist
-\item
-  Did you know that Clippy shows up to help you in the documentation for ?writexl::write\_xlsx()?
-\item
-  The name of the \texttt{purrr} package? Why map?
-\end{itemize}
-
-\hypertarget{interludes-deep-thoughtsopenscapes-1}{%
-\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-1}}
-
-\begin{itemize}
-\tightlist
-\item
-  Workflow/reproducibility/readxl workflows article
-\item
-  Respecting the tools people are working with already (e.g.~don't make your Excel using co-workers hate you)
-\end{itemize}
-
-\hypertarget{activity-1}{%
-\section{Activity 1}\label{activity-1}}
-
-\hypertarget{activity-2}{%
-\section{Activity 2}\label{activity-2}}
-
-\hypertarget{efficiency-tips-1}{%
-\section{Efficiency Tips}\label{efficiency-tips-1}}
-
-\begin{itemize}
-\tightlist
-\item
-  Add an assignment arrow in script/code chunk (\textless{}-): Alt + minus (-)
-\item
-  Undo shortcut: Command + Z
-\item
-  Redo shortcut: Command + Shift + Z
-\end{itemize}
-
-\hypertarget{rmarkdown}{%
-\chapter{RMarkdown}\label{rmarkdown}}
-
-\hypertarget{summary-a-few-sentences-1}{%
-\section{Summary (a few sentences)}\label{summary-a-few-sentences-1}}
-
-\hypertarget{objectives-more-detailed-bulletpoints-1}{%
-\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-1}}
-
-\hypertarget{resources-2}{%
-\section{Resources}\label{resources-2}}
-
-\hypertarget{lessons-teaching-for-each-objective..-objectives-examples}{%
-\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples}}
+Read in the ``fish\_counts\_curated.csv''
 
 \hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections}{%
 \section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections}}
 
-\hypertarget{interludes-deep-thoughtsopenscapes-2}{%
-\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-2}}
+\hypertarget{interludes-deep-thoughtsopenscapes-1}{%
+\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-1}}
 
 \hypertarget{our-turn-your-turn-1-1}{%
 \section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-1}}
@@ -1000,11 +480,11 @@ If needed, I can also export a data frame as an Excel (.xlsx) worksheet:
 \hypertarget{our-turn-your-turn-2-1}{%
 \section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-1}}
 
-\hypertarget{efficiency-tips-2}{%
-\section{Efficiency Tips}\label{efficiency-tips-2}}
+\hypertarget{efficiency-tips-1}{%
+\section{Efficiency Tips}\label{efficiency-tips-1}}
 
-\hypertarget{pivot}{%
-\chapter{Dplyr and Pivot Tables}\label{pivot}}
+\hypertarget{rmarkdown}{%
+\chapter{RMarkdown}\label{rmarkdown}}
 
 \hypertarget{summary-a-few-sentences-2}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences-2}}
@@ -1012,8 +492,8 @@ If needed, I can also export a data frame as an Excel (.xlsx) worksheet:
 \hypertarget{objectives-more-detailed-bulletpoints-2}{%
 \section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-2}}
 
-\hypertarget{resources-3}{%
-\section{Resources}\label{resources-3}}
+\hypertarget{resources-2}{%
+\section{Resources}\label{resources-2}}
 
 \hypertarget{lessons-teaching-for-each-objective..-objectives-examples-1}{%
 \section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-1}}
@@ -1021,8 +501,8 @@ If needed, I can also export a data frame as an Excel (.xlsx) worksheet:
 \hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1}{%
 \section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1}}
 
-\hypertarget{interludes-deep-thoughtsopenscapes-3}{%
-\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-3}}
+\hypertarget{interludes-deep-thoughtsopenscapes-2}{%
+\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-2}}
 
 \hypertarget{our-turn-your-turn-1-2}{%
 \section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-2}}
@@ -1030,11 +510,11 @@ If needed, I can also export a data frame as an Excel (.xlsx) worksheet:
 \hypertarget{our-turn-your-turn-2-2}{%
 \section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-2}}
 
-\hypertarget{efficiency-tips-3}{%
-\section{Efficiency Tips}\label{efficiency-tips-3}}
+\hypertarget{efficiency-tips-2}{%
+\section{Efficiency Tips}\label{efficiency-tips-2}}
 
-\hypertarget{vlookup}{%
-\chapter{Dplyr and vlookups}\label{vlookup}}
+\hypertarget{pivot}{%
+\chapter{Dplyr and Pivot Tables}\label{pivot}}
 
 \hypertarget{summary-a-few-sentences-3}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences-3}}
@@ -1042,8 +522,8 @@ If needed, I can also export a data frame as an Excel (.xlsx) worksheet:
 \hypertarget{objectives-more-detailed-bulletpoints-3}{%
 \section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-3}}
 
-\hypertarget{resources-4}{%
-\section{Resources}\label{resources-4}}
+\hypertarget{resources-3}{%
+\section{Resources}\label{resources-3}}
 
 \hypertarget{lessons-teaching-for-each-objective..-objectives-examples-2}{%
 \section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-2}}
@@ -1051,14 +531,44 @@ If needed, I can also export a data frame as an Excel (.xlsx) worksheet:
 \hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}{%
 \section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}}
 
-\hypertarget{interludes-deep-thoughtsopenscapes-4}{%
-\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-4}}
+\hypertarget{interludes-deep-thoughtsopenscapes-3}{%
+\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-3}}
 
 \hypertarget{our-turn-your-turn-1-3}{%
 \section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-3}}
 
 \hypertarget{our-turn-your-turn-2-3}{%
 \section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-3}}
+
+\hypertarget{efficiency-tips-3}{%
+\section{Efficiency Tips}\label{efficiency-tips-3}}
+
+\hypertarget{vlookup}{%
+\chapter{Dplyr and vlookups}\label{vlookup}}
+
+\hypertarget{summary-a-few-sentences-4}{%
+\section{Summary (a few sentences)}\label{summary-a-few-sentences-4}}
+
+\hypertarget{objectives-more-detailed-bulletpoints-4}{%
+\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-4}}
+
+\hypertarget{resources-4}{%
+\section{Resources}\label{resources-4}}
+
+\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-3}{%
+\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-3}}
+
+\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3}{%
+\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3}}
+
+\hypertarget{interludes-deep-thoughtsopenscapes-4}{%
+\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-4}}
+
+\hypertarget{our-turn-your-turn-1-4}{%
+\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-4}}
+
+\hypertarget{our-turn-your-turn-2-4}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-4}}
 
 \hypertarget{efficiency-tips-4}{%
 \section{Efficiency Tips}\label{efficiency-tips-4}}
@@ -1074,13 +584,13 @@ Modern useRs are nimble internet useRs
 something clever about cleaning
 I am the worst at naming things
 
-\hypertarget{summary-a-few-sentences-4}{%
-\section{Summary (a few sentences)}\label{summary-a-few-sentences-4}}
+\hypertarget{summary-a-few-sentences-5}{%
+\section{Summary (a few sentences)}\label{summary-a-few-sentences-5}}
 
 R ecosystem evolves and improves due to contributed work by the community, and this is a good thing. Being a nimble useR means being able to navigate/keep tabs on this ecosystem and find what you need. It also means working reproducibly, so you can re-run and update things more easily. Here we will teach you how to expect things and help yourself. Pay attention to urls.
 
-\hypertarget{objectives-more-detailed-bulletpoints-4}{%
-\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-4}}
+\hypertarget{objectives-more-detailed-bulletpoints-5}{%
+\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-5}}
 
 \begin{itemize}
 \tightlist
@@ -1133,8 +643,8 @@ R ecosystem evolves and improves due to contributed work by the community, and t
   Wilson et al.~2014 ``Good enough practices''
 \end{itemize}
 
-\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-3}{%
-\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-3}}
+\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-4}{%
+\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-4}}
 
 \hypertarget{expect-theres-a-better-way-chat}{%
 \subsection{Expect there's a better way chat}\label{expect-theres-a-better-way-chat}}
@@ -1176,14 +686,14 @@ Pay attention to URLs, build github/rmarkdown savviness (ex: raw.githubuserconte
   1st thing: most recent commit was a year ago. Can poke around more, are there issues open, are they taken care of? Etc. I will probably not pursue using this right now. But good to have learned about it.
 \end{itemize}
 
-\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3}{%
-\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3}}
+\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4}{%
+\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4}}
 
 \hypertarget{interludes-deep-thoughtsopenscapes-5}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-5}}
 
-\hypertarget{our-turn-your-turn-2-4}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-4}}
+\hypertarget{our-turn-your-turn-2-5}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-5}}
 
 \hypertarget{efficiency-tips-5}{%
 \section{Efficiency Tips}\label{efficiency-tips-5}}
@@ -1213,17 +723,17 @@ Recreate it
 \hypertarget{format}{%
 \chapter{Formatting and Sharing}\label{format}}
 
-\hypertarget{summary-a-few-sentences-5}{%
-\section{Summary (a few sentences)}\label{summary-a-few-sentences-5}}
+\hypertarget{summary-a-few-sentences-6}{%
+\section{Summary (a few sentences)}\label{summary-a-few-sentences-6}}
 
-\hypertarget{objectives-more-detailed-bulletpoints-5}{%
-\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-5}}
+\hypertarget{objectives-more-detailed-bulletpoints-6}{%
+\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-6}}
 
 \hypertarget{resources-6}{%
 \section{Resources}\label{resources-6}}
 
-\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-4}{%
-\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-4}}
+\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-5}{%
+\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-5}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1232,17 +742,17 @@ Recreate it
   Create a GitHub account: \url{https://github.com} \emph{Note! Shorter names that kind of identify you are better, and use your work email!}
 \end{enumerate}
 
-\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4}{%
-\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4}}
+\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-5}{%
+\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-5}}
 
 \hypertarget{interludes-deep-thoughtsopenscapes-6}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-6}}
 
-\hypertarget{our-turn-your-turn-1-4}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-4}}
+\hypertarget{our-turn-your-turn-1-5}{%
+\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-5}}
 
-\hypertarget{our-turn-your-turn-2-5}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-5}}
+\hypertarget{our-turn-your-turn-2-6}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-6}}
 
 \hypertarget{efficiency-tips-6}{%
 \section{Efficiency Tips}\label{efficiency-tips-6}}
@@ -1250,29 +760,29 @@ Recreate it
 \hypertarget{synthesis}{%
 \chapter{Synthesis}\label{synthesis}}
 
-\hypertarget{summary-a-few-sentences-6}{%
-\section{Summary (a few sentences)}\label{summary-a-few-sentences-6}}
+\hypertarget{summary-a-few-sentences-7}{%
+\section{Summary (a few sentences)}\label{summary-a-few-sentences-7}}
 
-\hypertarget{objectives-more-detailed-bulletpoints-6}{%
-\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-6}}
+\hypertarget{objectives-more-detailed-bulletpoints-7}{%
+\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-7}}
 
 \hypertarget{resources-7}{%
 \section{Resources}\label{resources-7}}
 
-\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-5}{%
-\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-5}}
+\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-6}{%
+\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-6}}
 
-\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-5}{%
-\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-5}}
+\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-6}{%
+\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-6}}
 
 \hypertarget{interludes-deep-thoughtsopenscapes-7}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-7}}
 
-\hypertarget{our-turn-your-turn-1-5}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-5}}
+\hypertarget{our-turn-your-turn-1-6}{%
+\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-6}}
 
-\hypertarget{our-turn-your-turn-2-6}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-6}}
+\hypertarget{our-turn-your-turn-2-7}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-7}}
 
 \hypertarget{efficiency-tips-7}{%
 \section{Efficiency Tips}\label{efficiency-tips-7}}

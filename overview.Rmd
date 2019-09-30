@@ -2,7 +2,6 @@
 
 ## Summary (a few sentences)
 ## Objectives (more detailed, bulletpoints?)
-
 ## Resources
 
 R is not only a language, it is an active community of developers, users, and educators (often these traits are in each person). This workshop and book based on many excellent materials created by other members in the R community, who share their work freely to help others learn. Using community materials is how WE learned R, and each chapter of the book will have Resources listed for further reading into the topics we discuss. And, when there is no better way to explain something (ahem Jenny Bryan), we will quote or reference that work directly.
@@ -25,26 +24,17 @@ This workshop you will learn hands-on how to begin to interoperate between Excel
 Trying not to be redundant to other tutorials out there, not the most comprehensive of all things possible with Excel, but setting you up with good practices now and to build on and pass on
 --->
 
-A main theme throughout is to produce analyses people can understand and build from — including Future You. 
+A main theme throughout is to produce analyses people can understand — including Future You. Literate programming (Rmd). [might be better as a deep thought than right at the beginning]: Comments! Organization (spacing, subsections, vertical structure, indentation, etc.)! Well-named variables! Also, well-named operations so analyses (select(data, columnname)) instead of data[1:6,5] and excel equivalent. (Ex with strings)
 Not so brittle/sensitive to minor changes.
 
 
-We will learn and reinforce X main things all at the same time: coding with best practices (R/RStudio), how this relates to operations in Excel, Z. This training will teach these all together to reinforce skills and best practices, and get you comfortable with a workflow that you can use in your own projects. 
+We will learn and reinforce X main things all at the same time: coding with best practices (R/RStudio), Y, Z. This training will teach these all together to reinforce skills and best practices, and get you comfortable with a workflow that you can use in your own projects. 
 
 ### What to expect
 
-<!---
-
-If you answer yes to these questions, this course is for you!
-
-- Are you an Excel user who wants to expand your data analysis toolset with R?
-- Do you want to bridge analyses between Excel and R, whether working independently or to more easily collaborate with others who use Excel or R? 
-- Are you new to data analysis, and looking for a good place to get started?
---->
-
 This is going to be a fun workshop. 
 
-The plan is to expose you to X that you can have confidence using in your work. You'll be working hands-on and doing the same things on your own computer as we do live on up on the screen. We're going to go through a lot in these two days and it's less important that you remember it all. More importantly, you'll have experience with it and confidence that you can do it. The main thing to take away is that there *are* good ways to work between R and Excel; we will teach you to expect that so you can find what you need and use it! A theme throughout is that tools exist and are being developed by real, and extraordinarily nice, people to meet you where you are and help you do what you need to do. If you expect and appreciate that, you will be more efficient in doing your awesome science.
+The plan is to expose you to a lot of great tools that you can have confidence using in your research. You'll be working hands-on and doing the same things on your own computer as we do live on up on the screen. We're going to go through a lot in these two days and it's less important that you remember it all. More importantly, you'll have experience with it and confidence that you can do it. The main thing to take away is that there *are* good ways to approach your analyses; we will teach you to expect that so you can find what you need and use it! A theme throughout is that tools exist and are being developed by real, and extraordinarily nice, people to meet you where you are and help you do what you need to do. If you expect and appreciate that, you will be more efficient in doing your awesome science.
 
 You are all welcome here, please be respectful of one another. You are encouraged to help each other. 
 
@@ -70,31 +60,11 @@ We are going to focus on both of these, using R and discussing the similarities 
 - Most important collaborator is future you, and future us
 
 
-
-An important theme for this workshop is being deliberate about your analyses and setting things up in a way that will make your analytical life better downstream in the current task, and better when Future You or Future Us revisit it in the future (i.e. avoiding: what happens next? What does this name mean?)
-
-This graphic by Hadley Wickham and Garrett Grolemund in their book [R for Data Science](http://r4ds.had.co.nz/) is simple but incredibly powerful: 
-
-```{r, out.width="80%"}
-knitr::include_graphics("img/r4ds_data-science.png")  
-```
-
-You may not have ever thought about analysis in such discrete steps: I certainly hadn't before seeing this. That is partly because in Excel, it can be easy to blend these steps together. We are going to keep them separate, and talk about why. The first step is Import: and implicit in this as a first step is that the data is stored elsewhere and is not manipulated directly, which **keeps the raw data raw**. 
-
-We will be focusing on: <!---TODO more?--->    
-
-- **Import**: `readr`, `readxl` to read raw data stored in CSV or Excel files directly into R
-- **Tidy**: `tidyr` to (re)organize rows of data into unique values
-- **Transform**: `dplyr` to "wrangle" data based on subsetting by rows or columns, sorting and joining
-- **Visualize**: `ggplot2` static plots, using grammar of graphics principles
-- **Communicate**
-    - `writexl` to export intermediate and final data
-    - GitHub File Upload and Issues for online publishing and collaboration
-
+R4DS drawing
+    
+### Learning with data that are not your own
 
 ### Emphasizing collaboration
-
-TODO: rewrite/update (from OHI book):
 
 Collaborating efficiently has historically been really hard to do. It's only been the last 20 years or so that we've moved beyond mailing things with the postal service. Being able to email and get feedback on files through track changes was a huge step forward, but it comes with a lot of bookkeeping and reproduciblity issues (did I send that report based on `analysis_final_final.xls` or `analysis_final_usethisone.xls`?). But now, open tools make it much easier to collaborate. 
 
@@ -106,17 +76,13 @@ By the end of this course you’ll produce this report that you can reproduce, w
 Introduce the problem we will solve. Eg: (just an idea maybe time-series is not a great idea) SMALL PROBLEM. (4 mins)
 Show data files, We will discuss our analysis plan (only enough to motivate!) Create a report, that looks great.
 
-<!---TODISCUSS: break this into a new chapter? --->
-
 ## RStudio Orientation
 
 Open RStudio for the first time. 
 
 Launch RStudio/R.
 
-```{r, out.width="80%"}
-knitr::include_graphics("img/RStudio_IDE.png")  
-```
+![](img/RStudio_IDE.png)
 
 Notice the default panes:
 
@@ -131,41 +97,25 @@ An important first question: **where are we?**
 
 If you've have opened RStudio for the first time, you'll be in your Home directory. This is noted by the `~/` at the top of the console. You can see too that the Files pane in the lower right shows what is in the Home directory where you are. You can navigate around within that Files pane and explore, but note that you won't change where you are: even as you click through you'll still be Home: `~/`. 
 
-
-```{r, out.width="80%"}
-knitr::include_graphics("img/RStudio_IDE_homedir.png")  
-```
+![](img/RStudio_IDE_homedir.png)
 
 
 ### RStudio Projects
 
-Create a new Project called 'r-for-excel-users'. File > New Project... > New Directory > New Project. Give your Project a name browse to a place to keep it. And then click to Create Project!
+Create a new project called 'RforExcelUsers'. Why does this matter? Working directory = no file path/broken path issues. Notice that a folder now appears wherever you saved this project with the same name, and it contains a .Rproj file.
 
-What is a Project? It is a way to organize all of the relevant things you need for an analysis in the same place. This means data, code, figures, notes, etc. 
+Let's do this together (with screenshots). 
 
-Why does this matter? Keeping everything you need for your analysis together makes it less brittle and more portable — across people, time, and computers.  
-
-Working directory = no file path/broken path issues. Notice that a folder now appears wherever you saved this project with the same name, and it contains a .Rproj file.
-
-Now that we have our Project, here is an important question: where are we? Now we are in our Project. Everything we do will by default be saved here so we can be nice and organized. 
-
-```{r, out.width="80%"}
-knitr::include_graphics("img/RStudio_IDE_projdir.png")  
-```
+Important question: where are we? Now we are in this project. Everything we do will by default be saved here so we can be nice and organized. 
 
 <!---TODO build  out more! A folder will show up and you can drag and drop into that folder.--->
 
 
 ### R Console
 
-Watch me work in the Console. 
+Watch me work in the console. 
 
-I can do math: 
-
-```{r, eval=FALSE}
-52*40
-365/12
-```
+I can do math, 
 
 But like Excel, the power comes not from doing small operations by hand (like 8*22.3), it's by being able to operate on swaths of numbers. Columns, Rows, etc. In Excel, they are stored in the spreadsheet. In R, they are stored in variables. 
 
@@ -173,13 +123,13 @@ R stores data in variables, and that data can be a variety of formats, like nume
 
 One of these datasets is called `mtcars`. If I write this in the Console, it will print the data in the console.
 
-```{r, eval=FALSE}
+```{r}
 mtcars
 ```
 
 I can also use RStudio's Viewer to see this in a more familiar-looking format: 
 
-```
+```{r}
 View(mtcars)
 ```
 
@@ -215,7 +165,7 @@ File > New File > R Script.
 
 This is a blank slate for us to write our code; but there are some good practices we can start off with. Let's add a useful header to the top of it. For example, at a minimum: 
 
-```{r, eval=FALSE}
+```{r}
 # --------------------------------
 # A descriptive title
 # Summary of what this script is for 
@@ -232,7 +182,7 @@ Since we're working in or Project, this script is now nicely saved in our Projec
 
 Let's attach a package. Since you've already installed tidyverse
 
-```{r, eval=FALSE}
+```{r, message = FALSE}
 # Attach the tidyverse
 library(tidyverse)
 ```
