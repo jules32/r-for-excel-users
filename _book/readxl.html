@@ -344,6 +344,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(fish_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> tot_count)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> common_name)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>site)</code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Now that we have our fish counts data ready to work with in R, let’s get the substrate cover and kelp data (both .xlsx files). In the following sections, we’ll learn that we can use <code>readxl::read_excel()</code> to read in Excel files directly.</p>
 </div>
 <div id="use-readxlread_excel-to-read-in-a-single-excel-worksheet" class="section level3">
@@ -361,6 +362,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Tada? Not quite.</strong></p>
 <p>Click on the object name (<em>substrate_cover</em>) in the Environment to view the data in a new tab. A few things aren’t ideal:</p>
 <pre class="sourceCode r"><code class="sourceCode r">substrate_cover</code></pre>
+<pre><code>## # A tibble: 23,942 x 9
+##    `Substrate cover data… ...2  ...3   ...4  ...5   ...6  ...7  ...8  ...9 
+##    &lt;chr&gt;                  &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+##  1 Source: https://porta… &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+##  2 Accessed: 9/28/2019    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+##  3 &lt;NA&gt;                   &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+##  4 year                   month date   site  trans… quad  side  subs… perc…
+##  5 -9999                  -9999 -9999  carp  1      20    i     b     -9999
+##  6 2000                   9     -9999  carp  1      20    o     b     -9999
+##  7 2000                   9     9/8/00 carp  1      20    i     b     100  
+##  8 2000                   9     9/8/00 carp  1      20    o     b     100  
+##  9 2000                   9     9/8/00 carp  1      40    i     b     100  
+## 10 2000                   9     9/8/00 carp  1      40    o     b     100  
+## # … with 23,932 more rows</code></pre>
 <ul>
 <li>The top row of text has automatically become the (messy) column headers</li>
 <li>There are multiple descriptive rows before we actually get to the data</li>
@@ -369,6 +384,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can deal with those issues by adding arguments within <code>read_excel()</code>. Include argument <code>skip = n</code> to skip the first ‘n’ rows when importing data, and <code>na = &quot;this&quot;</code> to replace “this” with <code>NA</code> when importing:</p>
 <pre class="sourceCode r"><code class="sourceCode r">substrate_cover &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;curation/substrate_cover_curated.xlsx, skip = 4, na = &quot;</span><span class="op">-</span><span class="dv">9999</span><span class="st">&quot;)</span></code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">substrate_cover</code></pre>
+<pre><code>## # A tibble: 23,938 x 9
+##    year  month date  site  transect quad  side  substrate_type
+##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;         
+##  1 &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  carp  1        20    i     b             
+##  2 2000  9     &lt;NA&gt;  carp  1        20    o     b             
+##  3 2000  9     9/8/… carp  1        20    i     b             
+##  4 2000  9     9/8/… carp  1        20    o     b             
+##  5 2000  9     9/8/… carp  1        40    i     b             
+##  6 2000  9     9/8/… carp  1        40    o     b             
+##  7 2000  9     9/8/… carp  2        20    i     b             
+##  8 2000  9     9/8/… carp  2        20    o     b             
+##  9 2000  9     9/8/… carp  2        40    i     b             
+## 10 2000  9     9/8/… carp  2        40    o     b             
+## # … with 23,928 more rows, and 1 more variable: percent_cover &lt;chr&gt;</code></pre>
 <p>Check out <em>substrate_cover</em>, and see that the first row <em>after</em> the 4 skipped are the column names, and all -9999s have been updated to <code>NA</code>. Hooray!</p>
 </div>
 <div id="use-readxlread_excel-to-read-in-only-part-of-an-excel-worksheet" class="section level3">
@@ -379,6 +408,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>But yuck. Look at <em>carp_cover_2000</em> and you’ll notice that the first row <em>of that range</em> is automatically made the column headers. To keep all rows within a range and <strong>add your own column names</strong>, add a <code>col_names =</code> argument:</p>
 <pre class="sourceCode r"><code class="sourceCode r">carp_cover_<span class="dv">2000</span> &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;substrate_cover_curated.xlsx&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;D12:I15&quot;</span>, <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;site_name&quot;</span>, <span class="st">&quot;transect&quot;</span>, <span class="st">&quot;quad&quot;</span>, <span class="st">&quot;plot_side&quot;</span>, <span class="st">&quot;type&quot;</span>, <span class="st">&quot;coverage&quot;</span>))</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">carp_cover_<span class="dv">2000</span></code></pre>
+<pre><code>## # A tibble: 4 x 6
+##   site_name transect quad  plot_side type  coverage
+##   &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;   
+## 1 carp      2        20    i         b     90      
+## 2 carp      2        20    o         b     80      
+## 3 carp      2        40    i         b     80      
+## 4 carp      2        40    o         b     85</code></pre>
 <p>So far we’ve read in a single CSV file using <code>readr::read_csv()</code>, and an Excel file containing a single worksheet with <code>readxl::read_excel()</code>. Now let’s read in data from an Excel workbook with multiple worksheets.</p>
 </div>
 <div id="use-readxlread_excel-to-read-in-selected-worksheets-from-a-workbook" class="section level3">
@@ -396,6 +432,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Note that you can also specify a worksheet by position: since <em>golb</em> is the 6<sup>th</sup> worksheet in the workbook, we could also use the following:</p>
 <pre class="sourceCode r"><code class="sourceCode r">kelp_golb &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="dv">6</span>)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">kelp_golb</code></pre>
+<pre><code>## # A tibble: 3 x 5
+##   year  month site  common_name tot_fronds
+##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+## 1 2016  7     golb  giant kelp        2557
+## 2 2017  7     golb  giant kelp        1575
+## 3 2018  7     golb  giant kelp        1629</code></pre>
 </div>
 <div id="read-in-and-combine-data-from-multiple-worksheets-into-a-data-frame-simultaneously-with-purrrmap_df" class="section level3">
 <h3><span class="header-section-number">3.4.7</span> Read in and combine data from multiple worksheets into a data frame simultaneously with <code>purrr::map_df()</code></h3>
@@ -418,10 +460,25 @@ kelp_all_sites &lt;-<span class="st"> </span>kelp_path <span class="op">%&gt;%</
 <span class="st">  </span>purrr<span class="op">::</span><span class="kw">map_df</span>(read_excel, kelp_path)</code></pre>
 <p>Check out <em>kelp_all_sites</em>, and notice that now the data from all 11 sites is now collected into a single data frame:</p>
 <pre class="sourceCode r"><code class="sourceCode r">kelp_all_sites</code></pre>
+<pre><code>## # A tibble: 32 x 5
+##    year  month site  common_name tot_fronds
+##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 2016  7     abur  giant kelp         307
+##  2 2017  7     abur  giant kelp         604
+##  3 2018  7     abur  giant kelp        3532
+##  4 2016  7     ahnd  giant kelp        2572
+##  5 2017  7     ahnd  giant kelp          16
+##  6 2018  7     ahnd  giant kelp          16
+##  7 2016  7     aque  giant kelp       11152
+##  8 2017  7     aque  giant kelp        9194
+##  9 2018  7     aque  giant kelp        7754
+## 10 2016  7     bull  giant kelp        6706
+## # … with 22 more rows</code></pre>
 <p>Awesome! Let’s make a graph with ggplot2:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(kelp_all_sites, <span class="kw">aes</span>(<span class="dt">x =</span> site, <span class="dt">y =</span> tot_fronds)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> year), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;purple&quot;</span>,<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;gray30&quot;</span>))</code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 </div>
 <div id="save-data-frames-as-.csv-or-.xlsx-with-readrwrite_csv-or-writexlwrite_xlsx" class="section level3">
 <h3><span class="header-section-number">3.4.8</span> Save data frames as .csv or .xlsx with <code>readr::write_csv()</code> or <code>writexl::write_xlsx()</code></h3>
@@ -475,7 +532,7 @@ kelp_all_sites &lt;-<span class="st"> </span>kelp_path <span class="op">%&gt;%</
 inverts_july &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;curation/invert_counts_curated.xlsx&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;B1:D56&quot;</span>)
 
 <span class="co"># Do some basic exploring (why might we want to do this in the Console instead?):</span>
-<span class="kw">View</span>(inverts_july)
+<span class="co">#View(inverts_july)</span>
 <span class="kw">names</span>(inverts_july)
 <span class="kw">head</span>(inverts_july)
 <span class="kw">tail</span>(inverts_july)
@@ -486,6 +543,7 @@ inverts_graph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(inver
 <span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> common_name), 
            <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">inverts_graph</code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 </div>
 <div id="efficiency-tips-1" class="section level2">
 <h2><span class="header-section-number">3.8</span> Efficiency Tips</h2>

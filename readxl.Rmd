@@ -377,7 +377,7 @@ There's one dataset we haven't imported or explored yet: invertebrate counts for
 inverts_july <- readxl::read_excel("curation/invert_counts_curated.xlsx", range = "B1:D56")
 
 # Do some basic exploring (why might we want to do this in the Console instead?):
-View(inverts_july)
+#View(inverts_july)
 names(inverts_july)
 head(inverts_july)
 tail(inverts_july)
@@ -396,7 +396,7 @@ inverts_graph <- ggplot(inverts_july, aes(x = site, y = `2016`)) +
 inverts_july <- readxl::read_excel("curation/invert_counts_curated.xlsx", range = "B1:D56")
 
 # Do some basic exploring (why might we want to do this in the Console instead?):
-View(inverts_july)
+#View(inverts_july)
 names(inverts_july)
 head(inverts_july)
 tail(inverts_july)

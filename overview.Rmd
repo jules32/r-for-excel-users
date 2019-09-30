@@ -1,7 +1,7 @@
 # Overview {#overview}
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(eval = FALSE)
+#knitr::opts_chunk$set(eval = FALSE)
 ```
 
 ## Summary (a few sentences)
