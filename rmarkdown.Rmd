@@ -4,6 +4,16 @@
 ## Objectives (more detailed, bulletpoints?)
 ## Resources
 ## Lessons teaching for each objective….. (objectives, examples)
+
+Now, hitting return does not execute this command; remember, it's a text file in the text editor, it's not associated with the R engine. To execute it, we need to get what we typed in the the R chunk (the grey R code) down into the console. How do we do it? There are several ways (let's do each of them):
+
+1. copy-paste this line into the console.
+1. select the line (or simply put the cursor there), and click 'Run'. This is available from 
+    a. the bar above the file (green arrow)
+    b. the menu bar: Code > Run Selected Line(s)
+    c. keyboard shortcut: command-return
+1. click the green arrow at the right of the code chunk
+
 ## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
 ## Interludes (deep thoughts/openscapes)
 ## Our Turn Your Turn 1

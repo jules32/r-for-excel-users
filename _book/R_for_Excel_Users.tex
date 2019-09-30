@@ -351,7 +351,9 @@ I can do math:
 
 But like Excel, the power comes not from doing small operations by hand (like 8*22.3), it's by being able to operate on whole suites of numbers and datasets. In Excel, data are stored in the spreadsheet. In R, they are stored in dataframes, and named as variables.
 
-R stores data in variables, and that data can be a variety of formats, like numeric and text. Let's have a look at some data in R. R has several built-in data sets that we can look at and work with.
+R stores data in variables, and that data can be a variety of formats, like numeric and text.
+
+Let's have a look at some data in R. R has several built-in data sets that we can look at and work with.
 
 One of these datasets is called \texttt{mtcars}. If I write this in the Console, it will print the data in the console.
 
@@ -363,17 +365,169 @@ One of these datasets is called \texttt{mtcars}. If I write this in the Console,
 
 I can also use RStudio's Viewer to see this in a more familiar-looking format:
 
-\begin{verbatim}
-View(mtcars)
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{View}\NormalTok{(mtcars)}
+\end{Highlighting}
+\end{Shaded}
 
-This opens the fourth pane of the RStudio IDE. In the Viewer I can do things like filter or sort. This does not do anything to the actual data, it just changes how you are viewing the data.
+This opens the fourth pane of the RStudio IDE; when you work in R you will have all four panes open so this will become a very comforting setup for you.
 
-There are also functions like in Excel; I can do \texttt{?sum} and look at the help pages.
+In the Viewer I can do things like filter or sort. This does not do anything to the actual data, it just changes how you are viewing the data. So even as I explore it, I am not editing or manipulating the data.
 
-Average mile per gallon. In excel there is a function called AVERAGE. Let's see
+Like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we'll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).
 
-OK so working in the Console is great, but it gets messy. It's good for quick things. But looking back at what I've done and trying to build upon it would be a nightmare.
+So let's look into some of these functions. In Excel, there is a ``SUM'' function to calculate a total. Let's expect that there is the same in R. I will type this into the Console:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?sum}
+\end{Highlighting}
+\end{Shaded}
+
+A few important things to note:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  R is case-sensitive. So ``sum'' is a completely different thing to ``Sum'' or ``SUM''. And this is true for the names of functions, data sets, variable names, and data itself (``blue'' vs ``Blue'').
+\item
+  RStudio has an autocomplete feature that can help you find the function you're looking for. In many cases it pops up as you type, but you can always type the tab key (above your caps lock key) to prompt the autocomplete. And, bonus: this feature can help you with the case-sensitivity mentioned above: If I start typing ``?SU'' and press tab, it will show me all options starting with those two letters, regardless of capitalization (although it will start with the capital S options).
+\end{enumerate}
+
+OK but what does typing \texttt{?sum} actually \emph{do}?
+
+When I press enter/return, it will open up a help page in the bottom right pane. Help pages vary in detail I find some easier to digest than others. But they all have the same structure, which is helpful to know. The help page tells the name of the package in the top left, and broken down into sections:
+
+\begin{itemize}
+\tightlist
+\item
+  Description: An extended description of what the function does.
+\item
+  Usage: The arguments of the function and their default values.
+\item
+  Arguments: An explanation of the data each argument is expecting.
+\item
+  Details: Any important details to be aware of.
+\item
+  Value: The data the function returns.
+\item
+  See Also: Any related functions you might find useful.
+\item
+  Examples: Some examples for how to use the function.
+\end{itemize}
+
+When I look at a help page, I start with the description, which might be too in-the-weeds for the level of understanding I need at the offset. For the \texttt{sum} page, it is pretty straight-forward and lets me know that yup, this is the function I want.
+
+I next look at the usage and arguments, which give me a more concrete view into what the function does. This syntax looks a bit cryptic but what it means is that you use it by writing sum, and then passing whatever you want to it in terms of data: that is what the ``\ldots{}'' means. And the ``na.rm=FALSE'' means that by default, it will not remove NAs (I read this as: ``remove NAs? FALSE!'')
+
+Then, I usually scroll down to the bottom to the examples. This is where I can actually see how the function is used, and I can also paste those examples into the Console to see their output. Best way to learn what the function actually does is seeing it in action. Let's try:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+So this is calculating the sum of the numbers from 1 and 5; that is what that \texttt{1:5} syntax means in this case. We can check it with the next example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Awesome. Let's try this on our \texttt{mtcars} data
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(mtcars)}
+\end{Highlighting}
+\end{Shaded}
+
+Alright. What is this number? It is the sum of ALL of the data in the mtcars dataset. Maybe in some analysis this would be a useful operation, but I would worry about the way your data is set up and your analyses if this is ever something you'd want to do. More likely, you'd want to take the sum of a specific column. In R, you can do that with the \texttt{\$} operator.
+
+Let's say we want to calculate the total number of gears that all these cars have:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{gear)}
+\end{Highlighting}
+\end{Shaded}
+
+OK so now that we've got a little bit of a feel for R and RStudio, let's do something much more interesting and really start feeling its power.
+
+\hypertarget{r-scripts}{%
+\section{R Scripts}\label{r-scripts}}
+
+OK so working in the Console is great for quick things, but it gets messy. Keeping track at what I've done and trying to build upon it would be a nightmare.
+
+Instead of working in the Console, we can be more organized by writing analyses in a script. This is a really powerful way to work in R. \emph{TODO dev more} Scripts are a written record of the analyses you do, unlike Excel. And they can be re-run easily\ldots{}
+
+In this script, we're going to make our first figure in R. Let's all do this together.
+
+File \textgreater{} New File \textgreater{} R Script.
+
+This is a blank slate for us to write our code; but there are some good practices we can start off with. Let's add a useful header to the top of it. For example, at a minimum:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# --------------------------------}
+\CommentTok{# A descriptive title}
+\CommentTok{# Your name}
+\CommentTok{# Contact information}
+\CommentTok{# Date}
+\CommentTok{# --------------------------------}
+\end{Highlighting}
+\end{Shaded}
+
+And then let's save it, naming it something like ``my\_first\_figure.R''. Let's get into good habits now with this filename: no spaces! Use underscores \texttt{\_} or dashes \texttt{-} or no space at all.
+
+Since we're working in or Project, this script is now nicely saved in our Project. You can see our \texttt{.R} show up in our Files pane on the bottom right.
+
+Let's attach a package. Since you've already installed tidyverse,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Attach the tidyverse}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+What is the tidyverse? \emph{TODO}
+- ggplot2
+
+Let's look at one of the datasets that is built into the ggplot2 package. Type this into your R script:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{View}\NormalTok{(diamonds)}
+\end{Highlighting}
+\end{Shaded}
+
+So this is not immediately executed like when we were typing in the Console. That's because an R script is really just a text file that doesn't do anything on its own; you need to tell R to execute it. You do that in a few ways (let's do each of them):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  copy-paste this line into the console.
+\item
+  click Run (with green arrow at the top-right of your script) to run the line where your cursor is or any highlighted selection
+\item
+  click Source (top right of your script) to run the whole script.
+\end{enumerate}
+
+Now let's plot it. Type this or copy-paste and then we'll discuss:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(diamonds, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ carat, }\DataTypeTok{y =}\NormalTok{ price)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{R_for_Excel_Users_files/figure-latex/unnamed-chunk-8-1.pdf}
 
 \hypertarget{deep-thought-error-messages-are-your-friends}{%
 \subsection{Deep thought: Error messages are your friends}\label{deep-thought-error-messages-are-your-friends}}
@@ -384,43 +538,8 @@ Remember that this is a language, not unsimilar to English! There are times you 
 
 And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I am telling a story about suspenders that my British friend hears but silently interprets in a very different way (true story). This can leave me thinking I've gotten something across that the listener (or R) might silently interpreted very differently. And as I continue telling my story you get more and more confused\ldots{} Clear communication is critical when you code: write clean, well documented code and check your work as you go to minimize these circumstances!
 
-\hypertarget{r-scripts}{%
-\section{R Scripts}\label{r-scripts}}
-
-Instead of working in the Console that can get messy, we can be more organized. In a script. Let's all do this together.
-
-File \textgreater{} New File \textgreater{} R Script.
-
-This is a blank slate for us to write our code; but there are some good practices we can start off with. Let's add a useful header to the top of it. For example, at a minimum:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# --------------------------------}
-\CommentTok{# A descriptive title}
-\CommentTok{# Summary of what this script is for }
-\CommentTok{# Your name}
-\CommentTok{# Contact information}
-\CommentTok{# Date}
-\CommentTok{# --------------------------------}
-
-\CommentTok{# Other things you might include: required packages or datasets, relevant links (e.g. to raw data source, GitHub repo, etc.), citations and sources.}
-\end{Highlighting}
-\end{Shaded}
-
-Since we're working in or Project, this script is now nicely saved in our Project.
-
-Let's attach a package. Since you've already installed tidyverse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Attach the tidyverse}
-\KeywordTok{library}\NormalTok{(tidyverse)}
-\end{Highlighting}
-\end{Shaded}
-
-Cool looking plot with diamonds.
-
-You can run code line by line or sourcing the script
+\hypertarget{the-pipe}{%
+\section{The pipe \%\textgreater{}\%}\label{the-pipe}}
 
 \hypertarget{dont-save-the-workspace}{%
 \section{Don't save the workspace}\label{dont-save-the-workspace}}
@@ -438,11 +557,11 @@ Horror Stories! Economist etc.
 Comments! Organization (spacing, subsections, vertical structure, indentation, etc.)! Well-named variables! Also, well-named operations so analyses (select(data, columnname)) instead of data{[}1:6,5{]} and excel equivalent. (Ex with strings)
 Not so brittle/sensitive to minor changes.
 
-\hypertarget{our-turn-your-turn-1}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1}}
+\hypertarget{activity-1}{%
+\section{Activity 1}\label{activity-1}}
 
-\hypertarget{our-turn-your-turn-2}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2}}
+\hypertarget{activity-2}{%
+\section{Activity 2}\label{activity-2}}
 
 \hypertarget{efficiency-tips}{%
 \section{Efficiency Tips}\label{efficiency-tips}}
@@ -1013,17 +1132,41 @@ There's one dataset we haven't imported or explored yet: invertebrate counts for
 \hypertarget{lessons-teaching-for-each-objective..-objectives-examples}{%
 \section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples}}
 
+Now, hitting return does not execute this command; remember, it's a text file in the text editor, it's not associated with the R engine. To execute it, we need to get what we typed in the the R chunk (the grey R code) down into the console. How do we do it? There are several ways (let's do each of them):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  copy-paste this line into the console.
+\item
+  select the line (or simply put the cursor there), and click `Run'. This is available from
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    the bar above the file (green arrow)
+  \item
+    the menu bar: Code \textgreater{} Run Selected Line(s)
+  \item
+    keyboard shortcut: command-return
+  \end{enumerate}
+\item
+  click the green arrow at the right of the code chunk
+\end{enumerate}
+
 \hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections}{%
 \section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections}}
 
 \hypertarget{interludes-deep-thoughtsopenscapes-2}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-2}}
 
-\hypertarget{our-turn-your-turn-1-1}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-1}}
+\hypertarget{our-turn-your-turn-1}{%
+\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1}}
 
-\hypertarget{our-turn-your-turn-2-1}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-1}}
+\hypertarget{our-turn-your-turn-2}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2}}
 
 \hypertarget{efficiency-tips-2}{%
 \section{Efficiency Tips}\label{efficiency-tips-2}}
@@ -1049,11 +1192,11 @@ There's one dataset we haven't imported or explored yet: invertebrate counts for
 \hypertarget{interludes-deep-thoughtsopenscapes-3}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-3}}
 
-\hypertarget{our-turn-your-turn-1-2}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-2}}
+\hypertarget{our-turn-your-turn-1-1}{%
+\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-1}}
 
-\hypertarget{our-turn-your-turn-2-2}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-2}}
+\hypertarget{our-turn-your-turn-2-1}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-1}}
 
 \hypertarget{efficiency-tips-3}{%
 \section{Efficiency Tips}\label{efficiency-tips-3}}
@@ -1079,11 +1222,11 @@ There's one dataset we haven't imported or explored yet: invertebrate counts for
 \hypertarget{interludes-deep-thoughtsopenscapes-4}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-4}}
 
-\hypertarget{our-turn-your-turn-1-3}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-3}}
+\hypertarget{our-turn-your-turn-1-2}{%
+\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-2}}
 
-\hypertarget{our-turn-your-turn-2-3}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-3}}
+\hypertarget{our-turn-your-turn-2-2}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-2}}
 
 \hypertarget{efficiency-tips-4}{%
 \section{Efficiency Tips}\label{efficiency-tips-4}}
@@ -1207,8 +1350,8 @@ Pay attention to URLs, build github/rmarkdown savviness (ex: raw.githubuserconte
 \hypertarget{interludes-deep-thoughtsopenscapes-5}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-5}}
 
-\hypertarget{our-turn-your-turn-2-4}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-4}}
+\hypertarget{our-turn-your-turn-2-3}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-3}}
 
 \hypertarget{efficiency-tips-5}{%
 \section{Efficiency Tips}\label{efficiency-tips-5}}
@@ -1263,11 +1406,11 @@ Recreate it
 \hypertarget{interludes-deep-thoughtsopenscapes-6}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-6}}
 
-\hypertarget{our-turn-your-turn-1-4}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-4}}
+\hypertarget{our-turn-your-turn-1-3}{%
+\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-3}}
 
-\hypertarget{our-turn-your-turn-2-5}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-5}}
+\hypertarget{our-turn-your-turn-2-4}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-4}}
 
 \hypertarget{efficiency-tips-6}{%
 \section{Efficiency Tips}\label{efficiency-tips-6}}
@@ -1293,11 +1436,11 @@ Recreate it
 \hypertarget{interludes-deep-thoughtsopenscapes-7}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-7}}
 
-\hypertarget{our-turn-your-turn-1-5}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-5}}
+\hypertarget{our-turn-your-turn-1-4}{%
+\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-4}}
 
-\hypertarget{our-turn-your-turn-2-6}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-6}}
+\hypertarget{our-turn-your-turn-2-5}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-5}}
 
 \hypertarget{efficiency-tips-7}{%
 \section{Efficiency Tips}\label{efficiency-tips-7}}

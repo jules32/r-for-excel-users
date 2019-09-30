@@ -1,8 +1,5 @@
 # Overview {#overview}
 
-```{r setup, include=FALSE}
-#knitr::opts_chunk$set(eval = FALSE)
-```
 
 ## Summary (a few sentences)
 ## Objectives (more detailed, bulletpoints?)
@@ -19,10 +16,9 @@ R is not only a language, it is an active community of developers, users, and ed
 
 Welcome. 
 
-<!---introduce ourselves ---> 
+<!---introduce ourselves, how this workshop will work. ---> 
 
 This workshop you will learn hands-on how to begin to interoperate between Excel and R. 
-
 
 <!---
 Trying not to be redundant to other tutorials out there, not the most comprehensive of all things possible with Excel, but setting you up with good practices now and to build on and pass on
@@ -110,7 +106,7 @@ Open RStudio for the first time.
 
 Launch RStudio/R.
 
-```{r, eval=TRUE, echo=FALSE, out.width="80%"}
+```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("img/RStudio_IDE.png")  
 ```
 
@@ -128,7 +124,7 @@ An important first question: **where are we?**
 If you've have opened RStudio for the first time, you'll be in your Home directory. This is noted by the `~/` at the top of the console. You can see too that the Files pane in the lower right shows what is in the Home directory where you are. You can navigate around within that Files pane and explore, but note that you won't change where you are: even as you click through you'll still be Home: `~/`. 
 
 
-```{r, eval=TRUE, echo=FALSE, out.width="80%"}
+```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("img/RStudio_IDE_homedir.png")  
 ```
 
@@ -145,7 +141,7 @@ Working directory = no file path/broken path issues. Notice that a folder now ap
 
 Now that we have our Project, here is an important question: where are we? Now we are in our Project. Everything we do will by default be saved here so we can be nice and organized. 
 
-```{r, eval=TRUE, echo=FALSE, out.width="80%"}
+```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("img/RStudio_IDE_projdir.png")  
 ```
 
@@ -158,7 +154,7 @@ Watch me work in the Console.
 
 I can do math: 
 
-```{r, eval=FALSE}
+```{r math, eval=FALSE}
 52*40
 365/12
 ```
@@ -167,43 +163,97 @@ I can do math:
  
 But like Excel, the power comes not from doing small operations by hand (like 8*22.3), it's by being able to operate on whole suites of numbers and datasets. In Excel, data are stored in the spreadsheet. In R, they are stored in dataframes, and named as variables. 
 
-R stores data in variables, and that data can be a variety of formats, like numeric and text. Let's have a look at some data in R. R has several built-in data sets that we can look at and work with. 
+R stores data in variables, and that data can be a variety of formats, like numeric and text. 
+
+Let's have a look at some data in R. R has several built-in data sets that we can look at and work with. 
 
 One of these datasets is called `mtcars`. If I write this in the Console, it will print the data in the console.
 
-```{r, eval=FALSE}
+```{r mtcars, eval=FALSE}
 mtcars
 ```
 
 I can also use RStudio's Viewer to see this in a more familiar-looking format: 
 
-```
+```{r mtcars-view, eval=FALSE}
 View(mtcars)
 ```
 
-This opens the fourth pane of the RStudio IDE. In the Viewer I can do things like filter or sort. This does not do anything to the actual data, it just changes how you are viewing the data. 
+This opens the fourth pane of the RStudio IDE; when you work in R you will have all four panes open so this will become a very comforting setup for you.
 
-There are also functions like in Excel; I can do `?sum` and look at the help pages. 
+In the Viewer I can do things like filter or sort. This does not do anything to the actual data, it just changes how you are viewing the data. So even as I explore it, I am not editing or manipulating the data. 
 
+Like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we'll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).
 
+So let's look into some of these functions. In Excel, there is a "SUM" function to calculate a total. Let's expect that there is the same in R. I will type this into the Console: 
 
-Average mile per gallon. In excel there is a function called AVERAGE. Let's see 
+```{r sum-help, eval=FALSE}
+?sum
+```
 
+A few important things to note: 
 
+1. R is case-sensitive. So "sum" is a completely different thing to "Sum" or "SUM". And this is true for the names of functions, data sets, variable names, and data itself ("blue" vs "Blue"). 
 
-OK so working in the Console is great, but it gets messy. It's good for quick things. But looking back at what I've done and trying to build upon it would be a nightmare. 
+1. RStudio has an autocomplete feature that can help you find the function you're looking for. In many cases it pops up as you type, but you can always type the tab key (above your caps lock key) to prompt the autocomplete. And, bonus: this feature can help you with the case-sensitivity mentioned above: If I start typing "?SU" and press tab, it will show me all options starting with those two letters, regardless of capitalization (although it will start with the capital S options). 
 
-### Deep thought: Error messages are your friends
+OK but what does typing `?sum` actually *do*?
 
-Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Pay attention to how you type.
+When I press enter/return, it will open up a help page in the bottom right pane. Help pages vary in detail I find some easier to digest than others. But they all have the same structure, which is helpful to know. The help page tells the name of the package in the top left, and broken down into sections:
 
-Remember that this is a language, not unsimilar to English! There are times you aren't understood -- it's going to happen. There are different ways this can happen. Sometimes you'll get an error. This is like someone saying 'What?' or 'Pardon'? Error messages can also be more useful, like when they say 'I didn't understand what you said, I was expecting you to say blah'. That is a great type of error message. Error messages are your friend. Google them (copy-and-paste!) to figure out what they mean. 
+ - Description: An extended description of what the function does.
+ - Usage: The arguments of the function and their default values.
+ - Arguments: An explanation of the data each argument is expecting.
+ - Details: Any important details to be aware of.
+ - Value: The data the function returns.
+ - See Also: Any related functions you might find useful.
+ - Examples: Some examples for how to use the function.
 
-And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I am telling a story about suspenders that my British friend hears but silently interprets in a very different way (true story). This can leave me thinking I've gotten something across that the listener (or R) might silently interpreted very differently. And as I continue telling my story you get more and more confused... Clear communication is critical when you code: write clean, well documented code and check your work as you go to minimize these circumstances!
+When I look at a help page, I start with the description, which might be too in-the-weeds for the level of understanding I need at the offset. For the `sum` page, it is pretty straight-forward and lets me know that yup, this is the function I want.
+
+I next look at the usage and arguments, which give me a more concrete view into what the function does. This syntax looks a bit cryptic but what it means is that you use it by writing sum, and then passing whatever you want to it in terms of data: that is what the "..." means. And the "na.rm=FALSE" means that by default, it will not remove NAs (I read this as: "remove NAs? FALSE!")
+
+Then, I usually scroll down to the bottom to the examples. This is where I can actually see how the function is used, and I can also paste those examples into the Console to see their output. Best way to learn what the function actually does is seeing it in action. Let's try: 
+
+```{r sum, eval=FALSE}
+sum(1:5)
+```
+
+So this is calculating the sum of the numbers from 1 and 5; that is what that `1:5` syntax means in this case. We can check it with the next example: 
+
+```{r sum2, eval=FALSE}
+sum(1, 2, 3, 4, 5)
+```
+
+Awesome. Let's try this on our `mtcars` data
+
+```{r sum-mtcars, eval=FALSE}
+sum(mtcars)
+```
+
+Alright. What is this number? It is the sum of ALL of the data in the mtcars dataset. Maybe in some analysis this would be a useful operation, but I would worry about the way your data is set up and your analyses if this is ever something you'd want to do. More likely, you'd want to take the sum of a specific column. In R, you can do that with the `$` operator. 
+
+Let's say we want to calculate the total number of gears that all these cars have:
+
+```{r sum-mtcars2, eval=FALSE}
+sum(mtcars$gear)
+```
+
+<!---
+TODO: should we get into this?
+Let's try another. In Excel there is a function called AVERAGE. Let's see if there is such a thing in R. 
+--->
+
+OK so now that we've got a little bit of a feel for R and RStudio, let's do something much more interesting and really start feeling its power. 
+
 
 ## R Scripts
 
-Instead of working in the Console that can get messy, we can be more organized. In a script. Let's all do this together. 
+OK so working in the Console is great for quick things, but it gets messy. Keeping  track at what I've done and trying to build upon it would be a nightmare. 
+
+Instead of working in the Console, we can be more organized by writing analyses in a script. This is a really powerful way to work in R. *TODO dev more* Scripts are a written record of the analyses you do, unlike Excel. And they can be re-run easily...
+
+In this script, we're going to make our first figure in R. Let's all do this together. 
 
 <!---TODO add screenshots, build out more ---> 
 
@@ -214,29 +264,58 @@ This is a blank slate for us to write our code; but there are some good practice
 ```{r, eval=FALSE}
 # --------------------------------
 # A descriptive title
-# Summary of what this script is for 
 # Your name
 # Contact information
 # Date
 # --------------------------------
-
-# Other things you might include: required packages or datasets, relevant links (e.g. to raw data source, GitHub repo, etc.), citations and sources.
 ```
 
 
-Since we're working in or Project, this script is now nicely saved in our Project. 
+And then let's save it, naming it something like "my_first_figure.R". Let's get into good habits now with this filename: no spaces! Use underscores `_` or dashes `-` or no space at all. 
 
-Let's attach a package. Since you've already installed tidyverse
+Since we're working in or Project, this script is now nicely saved in our Project. You can see our `.R` show up in our Files pane on the bottom right. 
 
-```{r, eval=FALSE}
+Let's attach a package. Since you've already installed tidyverse, 
+
+```{r, warnings=FALSE, message=FALSE}
 # Attach the tidyverse
 library(tidyverse)
 ```
 
 
-Cool looking plot with diamonds. 
+What is the tidyverse? *TODO*
+- ggplot2
 
-You can run code line by line or sourcing the script
+Let's look at one of the datasets that is built into the ggplot2 package. Type this into your R script: 
+
+```{r, eval=FALSE}
+View(diamonds)
+```
+
+So this is not immediately executed like when we were typing in the Console. That's because an R script is really just a text file that doesn't do anything on its own; you need to tell R to execute it. You do that in a few ways (let's do each of them):
+
+1. copy-paste this line into the console.
+1. click Run (with green arrow at the top-right of your script) to run the line where your cursor is or any highlighted selection
+1. click Source (top right of your script) to run the whole script. 
+
+Now let's plot it. Type this or copy-paste and then we'll discuss:
+
+```{r}
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_point()
+
+```
+
+
+### Deep thought: Error messages are your friends
+
+Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Pay attention to how you type.
+
+Remember that this is a language, not unsimilar to English! There are times you aren't understood -- it's going to happen. There are different ways this can happen. Sometimes you'll get an error. This is like someone saying 'What?' or 'Pardon'? Error messages can also be more useful, like when they say 'I didn't understand what you said, I was expecting you to say blah'. That is a great type of error message. Error messages are your friend. Google them (copy-and-paste!) to figure out what they mean. 
+
+And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I am telling a story about suspenders that my British friend hears but silently interprets in a very different way (true story). This can leave me thinking I've gotten something across that the listener (or R) might silently interpreted very differently. And as I continue telling my story you get more and more confused... Clear communication is critical when you code: write clean, well documented code and check your work as you go to minimize these circumstances!
+
+## The pipe %>%
 
 ## Don't save the workspace
 
@@ -253,8 +332,8 @@ Comments! Organization (spacing, subsections, vertical structure, indentation, e
 Not so brittle/sensitive to minor changes.
 
 
-## Our Turn Your Turn 1
-## Our Turn Your Turn 2
+## Activity 1
+## Activity 2
 ## Efficiency Tips
 
 
