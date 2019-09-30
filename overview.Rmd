@@ -7,9 +7,10 @@
 
 R is not only a language, it is an active community of developers, users, and educators (often these traits are in each person). This workshop and book based on many excellent materials created by other members in the R community, who share their work freely to help others learn. Using community materials is how WE learned R, and each chapter of the book will have Resources listed for further reading into the topics we discuss. And, when there is no better way to explain something (ahem Jenny Bryan), we will quote or reference that work directly.
 
-- [What They Forgot to Teach You About R](https://whattheyforgot.org/) — Jenny Bryan & Jim Hester
+- [What they forgot to teach you about R](https://whattheyforgot.org/) — Jenny Bryan & Jim Hester
 - [Stat545](https://stat545.com/) — Jenny Bryan & Stat545 TAs
 - [Where do Things Live in R?](http://rex-analytics.com/things-live-r-r-excel-users/) REX Analytics
+- [Good enough practices for scientific computing](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005510#)
 
 ## Overview
 
@@ -54,6 +55,13 @@ Everyone in this workshop is coming from a different place with different experi
 ### What you'll learn
 
 TODO: dev 
+
+Some big themes from Good enough practices in scientific computing. In terms of data management, they have 2 main themes:
+
+1. work towards ready-to-analyze data incrementally, documenting both the intermediate data and the process
+1. embrace the idea of "tidy data", which can be a powerful accelerator for analysis
+
+We are going to focus on both of these, using R and discussing the similarities and differences between R and Excel, and how to interoperate between them. 
 
 - Motivation is to bridge and/or get out of excel
 - We’re not going to replicate all of your fancy things in R, 
