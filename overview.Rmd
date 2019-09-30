@@ -1,5 +1,10 @@
 # Overview {#overview}
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+
 ## Summary (a few sentences)
 ## Objectives (more detailed, bulletpoints?)
 ## Resources
@@ -113,9 +118,15 @@ Important question: where are we? Now we are in this project. Everything we do w
 
 ### R Console
 
-Watch me work in the console. 
+Watch me work in the Console. 
 
-I can do math, 
+I can do math: 
+
+```{r}
+365/12
+38*40
+```
+
 
 But like Excel, the power comes not from doing small operations by hand (like 8*22.3), it's by being able to operate on swaths of numbers. Columns, Rows, etc. In Excel, they are stored in the spreadsheet. In R, they are stored in variables. 
 
@@ -129,7 +140,7 @@ mtcars
 
 I can also use RStudio's Viewer to see this in a more familiar-looking format: 
 
-```{r}
+```{r, eval=FALSE}
 View(mtcars)
 ```
 
