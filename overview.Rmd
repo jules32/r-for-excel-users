@@ -303,19 +303,18 @@ Now let's plot it. Type this or copy-paste and then we'll discuss:
 ```{r}
 ggplot(diamonds, aes(x = carat, y = price)) +
   geom_point()
-
 ```
 
 
 ### Deep thought: Error messages are your friends
 
-Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Pay attention to how you type.
+As [Jenny Bryan says](https://stat545.com/r-basics.html): 
+
+> Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Pay attention to how you type.
 
 Remember that this is a language, not unsimilar to English! There are times you aren't understood -- it's going to happen. There are different ways this can happen. Sometimes you'll get an error. This is like someone saying 'What?' or 'Pardon'? Error messages can also be more useful, like when they say 'I didn't understand what you said, I was expecting you to say blah'. That is a great type of error message. Error messages are your friend. Google them (copy-and-paste!) to figure out what they mean. 
 
 And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I am telling a story about suspenders that my British friend hears but silently interprets in a very different way (true story). This can leave me thinking I've gotten something across that the listener (or R) might silently interpreted very differently. And as I continue telling my story you get more and more confused... Clear communication is critical when you code: write clean, well documented code and check your work as you go to minimize these circumstances!
-
-## The pipe %>%
 
 ## Don't save the workspace
 
@@ -324,13 +323,6 @@ And also know that there are errors that can creep in more subtly, when you are 
 Discussing using Excel for variables. 
 
 Horror Stories! Economist etc. 
-
-
-## Interludes (deep thoughts/openscapes)
-
-Comments! Organization (spacing, subsections, vertical structure, indentation, etc.)! Well-named variables! Also, well-named operations so analyses (select(data, columnname)) instead of data[1:6,5] and excel equivalent. (Ex with strings)
-Not so brittle/sensitive to minor changes.
-
 
 ## Activity 1
 ## Activity 2

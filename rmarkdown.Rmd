@@ -14,8 +14,27 @@ Now, hitting return does not execute this command; remember, it's a text file in
     c. keyboard shortcut: command-return
 1. click the green arrow at the right of the code chunk
 
+## Create a Rmd for our Fish analysis
+
+- read in
+- View()
+
+fish_counts are what we call Tidy Data. 
+
+## Tidy data
+
+Tidy data has a simple convention: put variables in the columns and observations in the rows.
+
+![](img/tidy_data.png)
+
+
 ## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
 ## Interludes (deep thoughts/openscapes)
+## Interludes (deep thoughts/openscapes)
+
+Comments! Organization (spacing, subsections, vertical structure, indentation, etc.)! Well-named variables! Also, well-named operations so analyses (select(data, columnname)) instead of data[1:6,5] and excel equivalent. (Ex with strings)
+Not so brittle/sensitive to minor changes.
+
 ## Our Turn Your Turn 1
 ## Our Turn Your Turn 2
 ## Efficiency Tips

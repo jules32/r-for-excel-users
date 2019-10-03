@@ -1,9 +1,90 @@
 # Dplyr and Pivot Tables {#pivot}
 
 ## Summary (a few sentences)
+
+First of two chapters on data wrangling, here focused on pivot tables. 
+
 ## Objectives (more detailed, bulletpoints?)
+
+- intro to wrangling with dplyr 
+- learn select
+- learn group_by + summarize for pivot tables
+- emphasize reproducible research
+
+
 ## Resources
-## Lessons teaching for each objective….. (objectives, examples)
+
+## Introduction / our analytical plan
+
+We are going to continue with our analysis with the fish-counts data. So far, our RMarkdown has the following in the "setup" chunk: <!---TODO update after ch 3 complete --->
+
+```{r, eval=FALSE}
+## attach libraries
+library(tidyverse)
+
+## read in data
+fish_counts <- read_csv("fish_counts_curated.csv")
+```
+
+```{r, include = FALSE}
+# Teaching version
+fish_counts <- read_csv("curation/fish_counts_curated.csv")
+```
+
+And we have explored the data by looking at some summary statistics and making a simple plot. Now, we are going to learn how to wrangle data in R, using the `dplyr` package which is included in the `tidyverse`. In this session, we'll focus on the functions in `dplyr` that operate like pivot tables.
+
+This is because what we want to do with our fish_counts data is XXXXX. 
+
+## What are pivot tables?
+
+- what they are
+- what they allow you to do
+
+Let's talk about how this looks like in R. 
+
+## dplyr for pivot tables
+
+In R, we can use dplyr for pivot tables by using 2 main verbs in combination: `group_by` and `summarize`. We will also learn 2 critical verbs: `select` and `mutate`. Here is what this looks like:
+
+
+- **`filter()`**: pick observations by their values
+
+  `r htmltools::img(src='img/rstudio-cheatsheet-filter.png', width=300)` 
+    
+- **`select()`**: pick variables by their names
+
+  `r htmltools::img(src='img/rstudio-cheatsheet-select.png', width=300)`
+    
+- **`mutate()`**: create new variables with functions of existing variables 
+
+  `r htmltools::img(src='img/rstudio-cheatsheet-mutate.png', width=300)`
+    
+- **`summarise()`**: collapse many values down to a single summary 
+
+  `r htmltools::img(src='img/rstudio-cheatsheet-summarise.png', width=300)`
+  
+- **`arrange()`**: reorder the rows
+
+These can all be used in conjunction with `group_by()` which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the verbs for a language of data manipulation.
+
+All verbs work similarly:
+
+1. The first argument is a data frame.
+2. The subsequent arguments describe what to do with the data frame. You can refer to columns in the data frame directly without using `$`.
+3. The result is a new data frame.
+
+Together these properties make it easy to chain together multiple simple steps to achieve a complex result.
+
+
+
+
+
+
+
+
+
+
+
 ## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
 ## Interludes (deep thoughts/openscapes)
 ## Our Turn Your Turn 1
