@@ -1207,14 +1207,105 @@ Now, hitting return does not execute this command; remember, it's a text file in
 \hypertarget{summary-a-few-sentences-3}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences-3}}
 
-\hypertarget{objectives-more-detailed-bulletpoints-3}{%
-\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-3}}
+In Session 4, we learned how to do some basic wrangling and find summary information with functions in the \texttt{dplyr} package, which exists within the \texttt{tidyverse}. Those were:
+
+TODO: Check this list (to see what actually gets covered in Session 4)
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{dplyr::select()}: select which \textbf{columns} to retain or exclude
+\item
+  \texttt{dplyr::mutate()}: \textbf{add} a new column, while keeping the existing ones
+\item
+  \texttt{dplyr::group\_by()}: let R know that \textbf{groups} exist within the dataset, by variable(s)
+\item
+  \texttt{dplyr::summarize()}: calculate a value (that you specify) for each group, then report each group's value in a table
+\end{itemize}
+
+In Session 5, we'll expand our data wrangling toolkit using:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{dplyr::filter()} to conditionally subset our data by \textbf{rows}, and
+\item
+  \texttt{dplyr::join()} functions to merge data frames together
+\end{itemize}
+
+\hypertarget{objectives-1}{%
+\section{Objectives}\label{objectives-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Continue building R Markdown skills
+\item
+  Create subsets from data frames by setting conditions for \textbf{rows} using \texttt{dplyr::filter()}
+\item
+  Use \texttt{dplyr::full\_join()}, \texttt{dplyr::inner\_join()}, and beyond to merge data frames by matching variables, with different endpoints in mind
+\item
+  Use \texttt{dplyr::anti\_join()} to find things that \textbf{do not} exist in both data frames
+\end{itemize}
 
 \hypertarget{resources-4}{%
 \section{Resources}\label{resources-4}}
 
-\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-2}{%
-\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-2}}
+\begin{itemize}
+\item
+  \href{https://dplyr.tidyverse.org/reference/filter.html}{\texttt{dplyr::filter()} documentation from tidyverse.org}
+\item
+  \href{https://dplyr.tidyverse.org/reference/join.html}{\texttt{dplyr::join()} documentation from tidyverse.org}
+\item
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://r4ds.had.co.nz/}{Chapters 5 and 13 in \emph{R for Data Science} by Garrett Grolemund and Hadley Wickham}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{lessons}{%
+\section{Lessons}\label{lessons}}
+
+\textbf{Session 5 set-up:} TODO
+- Create a new .Rmd
+- Add some descriptive text
+- Attach packages
+- Read in the necessary data
+
+\hypertarget{dplyrfilter-to-conditionally-subset-by-rows}{%
+\subsection{\texorpdfstring{\texttt{dplyr::filter()} to conditionally subset by rows}{dplyr::filter() to conditionally subset by rows}}\label{dplyrfilter-to-conditionally-subset-by-rows}}
+
+Use \texttt{dplyr::filter()} to let R know which \textbf{rows} you want to keep or exclude, based on what they contain. Some examples in words:
+
+\begin{itemize}
+\tightlist
+\item
+  ``I only want to keep rows where the temperature is greater than 90°F.''
+\item
+  ``I want to keep all observations \textbf{except} those where the tree type is listed as \textbf{unknown}.''
+\item
+  ``I want to make a new subset with only data for mountain lions (the species variable) in California (the state variable).''
+\end{itemize}
+
+When we use \texttt{dplyr::filter()}, we need to let R know a couple of things:
+
+\begin{itemize}
+\tightlist
+\item
+  How to store the new subset we create (as relevant)
+\item
+  What data frame we're filtering from
+\item
+  What condition(s) we want observations to \textbf{match} and/or \textbf{not match} in order to keep them in the new subset
+\end{itemize}
+
+Structurally, that looks like this: TODO - add screen shot w/procreate writing
+
+(.png here)
+
+\hypertarget{example-make-a-subset-of-the}{%
+\subsubsection{Example: Make a subset of the}\label{example-make-a-subset-of-the}}
 
 \hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}{%
 \section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}}
@@ -1247,8 +1338,8 @@ I am the worst at naming things
 
 R ecosystem evolves and improves due to contributed work by the community, and this is a good thing. Being a nimble useR means being able to navigate/keep tabs on this ecosystem and find what you need. It also means working reproducibly, so you can re-run and update things more easily. Here we will teach you how to expect things and help yourself. Pay attention to urls.
 
-\hypertarget{objectives-more-detailed-bulletpoints-4}{%
-\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-4}}
+\hypertarget{objectives-more-detailed-bulletpoints-3}{%
+\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-3}}
 
 \begin{itemize}
 \tightlist
@@ -1301,8 +1392,8 @@ R ecosystem evolves and improves due to contributed work by the community, and t
   Wilson et al.~2014 ``Good enough practices''
 \end{itemize}
 
-\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-3}{%
-\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-3}}
+\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-2}{%
+\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-2}}
 
 \hypertarget{expect-theres-a-better-way-chat}{%
 \subsection{Expect there's a better way chat}\label{expect-theres-a-better-way-chat}}
@@ -1384,14 +1475,14 @@ Recreate it
 \hypertarget{summary-a-few-sentences-5}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences-5}}
 
-\hypertarget{objectives-more-detailed-bulletpoints-5}{%
-\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-5}}
+\hypertarget{objectives-more-detailed-bulletpoints-4}{%
+\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-4}}
 
 \hypertarget{resources-6}{%
 \section{Resources}\label{resources-6}}
 
-\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-4}{%
-\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-4}}
+\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-3}{%
+\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-3}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1421,14 +1512,14 @@ Recreate it
 \hypertarget{summary-a-few-sentences-6}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences-6}}
 
-\hypertarget{objectives-more-detailed-bulletpoints-6}{%
-\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-6}}
+\hypertarget{objectives-more-detailed-bulletpoints-5}{%
+\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-5}}
 
 \hypertarget{resources-7}{%
 \section{Resources}\label{resources-7}}
 
-\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-5}{%
-\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-5}}
+\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-4}{%
+\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-4}}
 
 \hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-5}{%
 \section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-5}}
