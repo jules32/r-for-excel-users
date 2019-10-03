@@ -35,7 +35,7 @@ You downloaded four files for this workshop:
 - kelp_counts_curated.xlsx
 - substrate_cover_curated.xlsx
 
-Copy and paste those files into the 'RforExcelUsers' folder on your computer. Notice that now these files are in your working directory when you go back to that Project in RStudio (check the 'Files' tab). That means they're going to be in the first place R will look when you ask it to find a file to read in. 
+Copy and paste those files into the 'r-and-excel' folder on your computer. Notice that now these files are in your working directory when you go back to that Project in RStudio (check the 'Files' tab). That means they're going to be in the first place R will look when you ask it to find a file to read in. 
 
 ### Create a new .R script, attach the `tidyverse`, `readxl` and `writexl` packages  
 
@@ -263,6 +263,8 @@ The steps we'll go through in the code below are:
 ```{r, include = FALSE}
 
 kelp_path <- "curation/kelp_counts_curated.xlsx"
+
+# ADD PIPE OPERATOR BRIEF INTRO (TODO)
 
 kelp_all_sites <- kelp_path %>% # Start with that pathway (file)...
   excel_sheets() %>% # Get all the names of the worksheets

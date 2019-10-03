@@ -1,9 +1,64 @@
 # Dplyr and vlookups {#vlookup}
 
 ## Summary (a few sentences)
-## Objectives (more detailed, bulletpoints?)
+
+In Session 4, we learned how to do some basic wrangling and find summary information with functions in the `dplyr` package, which exists within the `tidyverse`. Those were: 
+
+TODO: Check this list (to see what actually gets covered in Session 4)
+
+- `dplyr::select()`: select which **columns** to retain or exclude
+- `dplyr::mutate()`: **add** a new column, while keeping the existing ones
+- `dplyr::group_by()`: let R know that **groups** exist within the dataset, by variable(s)
+- `dplyr::summarize()`: calculate a value (that you specify) for each group, then report each group's value in a table
+
+In Session 5, we'll expand our data wrangling toolkit using: 
+
+- `dplyr::filter()` to conditionally subset our data by **rows**, and
+- `dplyr::join()` functions to merge data frames together
+
+## Objectives
+
+- Continue building R Markdown skills
+- Create subsets from data frames by setting conditions for **rows** using `dplyr::filter()`
+- Use `dplyr::full_join()`, `dplyr::inner_join()`, and beyond to merge data frames by matching variables, with different endpoints in mind
+- Use `dplyr::anti_join()` to find things that **do not** exist in both data frames
+
 ## Resources
-## Lessons teaching for each objective….. (objectives, examples)
+
+- [`dplyr::filter()` documentation from tidyverse.org](https://dplyr.tidyverse.org/reference/filter.html)
+- [`dplyr::join()` documentation from tidyverse.org](https://dplyr.tidyverse.org/reference/join.html)
+- - [Chapters 5 and 13 in *R for Data Science* by Garrett Grolemund and Hadley Wickham](https://r4ds.had.co.nz/)
+
+
+## Lessons
+
+**Session 5 set-up:** TODO
+- Create a new .Rmd
+- Add some descriptive text
+- Attach packages
+- Read in the necessary data 
+
+### `dplyr::filter()` to conditionally subset by rows
+
+Use `dplyr::filter()` to let R know which **rows** you want to keep or exclude, based on what they contain. Some examples in words: 
+
+- "I only want to keep rows where the temperature is greater than 90&deg;F."
+- "I want to keep all observations **except** those where the tree type is listed as **unknown**."
+- "I want to make a new subset with only data for mountain lions (the species variable) in California (the state variable)."
+
+When we use `dplyr::filter()`, we need to let R know a couple of things:
+
+- How to store the new subset we create (as relevant)
+- What data frame we're filtering from
+- What condition(s) we want observations to **match** and/or **not match** in order to keep them in the new subset
+
+Structurally, that looks like this: TODO - add screen shot w/procreate writing
+
+(.png here)
+
+#### Example: Make a subset of the 
+
+
 ## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
 ## Interludes (deep thoughts/openscapes)
 ## Our Turn Your Turn 1
