@@ -44,13 +44,20 @@ Let's talk about how this looks like in R.
 
 ## dplyr for pivot tables
 
-In R, we can use dplyr for pivot tables by using 2 main verbs in combination: `group_by` and `summarize`. We will also learn 2 critical verbs: `select` and `mutate`. Here is what this looks like:
+In R, we can use dplyr for pivot tables by using 2 main verbs in combination: `group_by` and `summarize`, and that's where we'll start. Then, we will learn 2 critical verbs that you will use all the time: `select` and `mutate`. Here is what this looks like:
 
 
-- **`filter()`**: pick observations by their values
+`group_by` and `summarize` are the main ingredients for pivot tables: 
 
-  `r htmltools::img(src='img/rstudio-cheatsheet-filter.png', width=300)` 
-    
+- **`group_by()`**: TODO: words here, screenshot without computed column!
+
+  `r htmltools::img(src='img/rstudio-cheatsheet-summarise.png', width=300)`
+
+- **`summarize()`**: collapse many values down to a single summary 
+
+  `r htmltools::img(src='img/rstudio-cheatsheet-summarise.png', width=300)`
+  
+
 - **`select()`**: pick variables by their names
 
   `r htmltools::img(src='img/rstudio-cheatsheet-select.png', width=300)`
@@ -59,15 +66,11 @@ In R, we can use dplyr for pivot tables by using 2 main verbs in combination: `g
 
   `r htmltools::img(src='img/rstudio-cheatsheet-mutate.png', width=300)`
     
-- **`summarise()`**: collapse many values down to a single summary 
-
-  `r htmltools::img(src='img/rstudio-cheatsheet-summarise.png', width=300)`
   
-- **`arrange()`**: reorder the rows
 
-These can all be used in conjunction with `group_by()` which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the verbs for a language of data manipulation.
+All dplyr verbs can be used in conjunction with `group_by()` which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. 
 
-All verbs work similarly:
+All dplyr verbs work similarly:
 
 1. The first argument is a data frame.
 2. The subsequent arguments describe what to do with the data frame. You can refer to columns in the data frame directly without using `$`.
@@ -76,8 +79,10 @@ All verbs work similarly:
 Together these properties make it easy to chain together multiple simple steps to achieve a complex result.
 
 
+## Deep thought
 
-
+group_by() %>% summarize() vs
+group_by() %>% mutate()
 
 
 

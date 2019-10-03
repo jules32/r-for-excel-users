@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Overview | R for the Excel User</title>
   <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
-  <meta name="generator" content="bookdown 0.13.2 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Overview | R for the Excel User" />
   <meta property="og:type" content="book" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="readxl.html"/>
+<link rel="prev" href="index.html">
+<link rel="next" href="readxl.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -40,9 +40,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
 
 
 
@@ -58,6 +55,7 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -151,13 +149,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6" data-path="overview.html"><a href="overview.html#r-scripts"><i class="fa fa-check"></i><b>2.6</b> R Scripts</a><ul>
 <li class="chapter" data-level="2.6.1" data-path="overview.html"><a href="overview.html#deep-thought-error-messages-are-your-friends"><i class="fa fa-check"></i><b>2.6.1</b> Deep thought: Error messages are your friends</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="overview.html"><a href="overview.html#the-pipe"><i class="fa fa-check"></i><b>2.7</b> The pipe %&gt;%</a></li>
-<li class="chapter" data-level="2.8" data-path="overview.html"><a href="overview.html#dont-save-the-workspace"><i class="fa fa-check"></i><b>2.8</b> Don’t save the workspace</a></li>
-<li class="chapter" data-level="2.9" data-path="overview.html"><a href="overview.html#deep-thought-keep-the-raw-data-raw."><i class="fa fa-check"></i><b>2.9</b> Deep thought: keep the raw data raw.</a></li>
-<li class="chapter" data-level="2.10" data-path="overview.html"><a href="overview.html#interludes-deep-thoughtsopenscapes"><i class="fa fa-check"></i><b>2.10</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="2.11" data-path="overview.html"><a href="overview.html#activity-1"><i class="fa fa-check"></i><b>2.11</b> Activity 1</a></li>
-<li class="chapter" data-level="2.12" data-path="overview.html"><a href="overview.html#activity-2"><i class="fa fa-check"></i><b>2.12</b> Activity 2</a></li>
-<li class="chapter" data-level="2.13" data-path="overview.html"><a href="overview.html#efficiency-tips"><i class="fa fa-check"></i><b>2.13</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="2.7" data-path="overview.html"><a href="overview.html#dont-save-the-workspace"><i class="fa fa-check"></i><b>2.7</b> Don’t save the workspace</a></li>
+<li class="chapter" data-level="2.8" data-path="overview.html"><a href="overview.html#deep-thought-keep-the-raw-data-raw."><i class="fa fa-check"></i><b>2.8</b> Deep thought: keep the raw data raw.</a></li>
+<li class="chapter" data-level="2.9" data-path="overview.html"><a href="overview.html#activity-1"><i class="fa fa-check"></i><b>2.9</b> Activity 1</a></li>
+<li class="chapter" data-level="2.10" data-path="overview.html"><a href="overview.html#activity-2"><i class="fa fa-check"></i><b>2.10</b> Activity 2</a></li>
+<li class="chapter" data-level="2.11" data-path="overview.html"><a href="overview.html#efficiency-tips"><i class="fa fa-check"></i><b>2.11</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="readxl.html"><a href="readxl.html"><i class="fa fa-check"></i><b>3</b> <code>readxl</code></a><ul>
 <li class="chapter" data-level="3.1" data-path="readxl.html"><a href="readxl.html#summary"><i class="fa fa-check"></i><b>3.1</b> Summary</a></li>
@@ -174,7 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.8" data-path="readxl.html"><a href="readxl.html#save-data-frames-as-.csv-or-.xlsx-with-readrwrite_csv-or-writexlwrite_xlsx"><i class="fa fa-check"></i><b>3.4.8</b> Save data frames as .csv or .xlsx with <code>readr::write_csv()</code> or <code>writexl::write_xlsx()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="readxl.html"><a href="readxl.html#fun-facts-ideas"><i class="fa fa-check"></i><b>3.5</b> Fun facts ideas:</a></li>
-<li class="chapter" data-level="3.6" data-path="readxl.html"><a href="readxl.html#interludes-deep-thoughtsopenscapes-1"><i class="fa fa-check"></i><b>3.6</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="3.6" data-path="readxl.html"><a href="readxl.html#interludes-deep-thoughtsopenscapes"><i class="fa fa-check"></i><b>3.6</b> Interludes (deep thoughts/openscapes)</a></li>
 <li class="chapter" data-level="3.7" data-path="readxl.html"><a href="readxl.html#activity-import-some-invertebrates"><i class="fa fa-check"></i><b>3.7</b> Activity: Import some invertebrates!</a></li>
 <li class="chapter" data-level="3.8" data-path="readxl.html"><a href="readxl.html#efficiency-tips-1"><i class="fa fa-check"></i><b>3.8</b> Efficiency Tips</a></li>
 </ul></li>
@@ -183,22 +179,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="rmarkdown.html"><a href="rmarkdown.html#objectives-more-detailed-bulletpoints-1"><i class="fa fa-check"></i><b>4.2</b> Objectives (more detailed, bulletpoints?)</a></li>
 <li class="chapter" data-level="4.3" data-path="rmarkdown.html"><a href="rmarkdown.html#resources-2"><i class="fa fa-check"></i><b>4.3</b> Resources</a></li>
 <li class="chapter" data-level="4.4" data-path="rmarkdown.html"><a href="rmarkdown.html#lessons-teaching-for-each-objective..-objectives-examples"><i class="fa fa-check"></i><b>4.4</b> Lessons teaching for each objective….. (objectives, examples)</a></li>
-<li class="chapter" data-level="4.5" data-path="rmarkdown.html"><a href="rmarkdown.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections"><i class="fa fa-check"></i><b>4.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
-<li class="chapter" data-level="4.6" data-path="rmarkdown.html"><a href="rmarkdown.html#interludes-deep-thoughtsopenscapes-2"><i class="fa fa-check"></i><b>4.6</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="4.7" data-path="rmarkdown.html"><a href="rmarkdown.html#our-turn-your-turn-1"><i class="fa fa-check"></i><b>4.7</b> Our Turn Your Turn 1</a></li>
-<li class="chapter" data-level="4.8" data-path="rmarkdown.html"><a href="rmarkdown.html#our-turn-your-turn-2"><i class="fa fa-check"></i><b>4.8</b> Our Turn Your Turn 2</a></li>
-<li class="chapter" data-level="4.9" data-path="rmarkdown.html"><a href="rmarkdown.html#efficiency-tips-2"><i class="fa fa-check"></i><b>4.9</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="4.5" data-path="rmarkdown.html"><a href="rmarkdown.html#create-a-rmd-for-our-fish-analysis"><i class="fa fa-check"></i><b>4.5</b> Create a Rmd for our Fish analysis</a></li>
+<li class="chapter" data-level="4.6" data-path="rmarkdown.html"><a href="rmarkdown.html#tidy-data"><i class="fa fa-check"></i><b>4.6</b> Tidy data</a></li>
+<li class="chapter" data-level="4.7" data-path="rmarkdown.html"><a href="rmarkdown.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections"><i class="fa fa-check"></i><b>4.7</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="4.8" data-path="rmarkdown.html"><a href="rmarkdown.html#interludes-deep-thoughtsopenscapes-1"><i class="fa fa-check"></i><b>4.8</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="4.9" data-path="rmarkdown.html"><a href="rmarkdown.html#interludes-deep-thoughtsopenscapes-2"><i class="fa fa-check"></i><b>4.9</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="4.10" data-path="rmarkdown.html"><a href="rmarkdown.html#our-turn-your-turn-1"><i class="fa fa-check"></i><b>4.10</b> Our Turn Your Turn 1</a></li>
+<li class="chapter" data-level="4.11" data-path="rmarkdown.html"><a href="rmarkdown.html#our-turn-your-turn-2"><i class="fa fa-check"></i><b>4.11</b> Our Turn Your Turn 2</a></li>
+<li class="chapter" data-level="4.12" data-path="rmarkdown.html"><a href="rmarkdown.html#efficiency-tips-2"><i class="fa fa-check"></i><b>4.12</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="pivot.html"><a href="pivot.html"><i class="fa fa-check"></i><b>5</b> Dplyr and Pivot Tables</a><ul>
 <li class="chapter" data-level="5.1" data-path="pivot.html"><a href="pivot.html#summary-a-few-sentences-2"><i class="fa fa-check"></i><b>5.1</b> Summary (a few sentences)</a></li>
 <li class="chapter" data-level="5.2" data-path="pivot.html"><a href="pivot.html#objectives-more-detailed-bulletpoints-2"><i class="fa fa-check"></i><b>5.2</b> Objectives (more detailed, bulletpoints?)</a></li>
 <li class="chapter" data-level="5.3" data-path="pivot.html"><a href="pivot.html#resources-3"><i class="fa fa-check"></i><b>5.3</b> Resources</a></li>
-<li class="chapter" data-level="5.4" data-path="pivot.html"><a href="pivot.html#lessons-teaching-for-each-objective..-objectives-examples-1"><i class="fa fa-check"></i><b>5.4</b> Lessons teaching for each objective….. (objectives, examples)</a></li>
-<li class="chapter" data-level="5.5" data-path="pivot.html"><a href="pivot.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1"><i class="fa fa-check"></i><b>5.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
-<li class="chapter" data-level="5.6" data-path="pivot.html"><a href="pivot.html#interludes-deep-thoughtsopenscapes-3"><i class="fa fa-check"></i><b>5.6</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="5.7" data-path="pivot.html"><a href="pivot.html#our-turn-your-turn-1-1"><i class="fa fa-check"></i><b>5.7</b> Our Turn Your Turn 1</a></li>
-<li class="chapter" data-level="5.8" data-path="pivot.html"><a href="pivot.html#our-turn-your-turn-2-1"><i class="fa fa-check"></i><b>5.8</b> Our Turn Your Turn 2</a></li>
-<li class="chapter" data-level="5.9" data-path="pivot.html"><a href="pivot.html#efficiency-tips-3"><i class="fa fa-check"></i><b>5.9</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="5.4" data-path="pivot.html"><a href="pivot.html#introduction-our-analytical-plan"><i class="fa fa-check"></i><b>5.4</b> Introduction / our analytical plan</a></li>
+<li class="chapter" data-level="5.5" data-path="pivot.html"><a href="pivot.html#what-are-pivot-tables"><i class="fa fa-check"></i><b>5.5</b> What are pivot tables?</a></li>
+<li class="chapter" data-level="5.6" data-path="pivot.html"><a href="pivot.html#dplyr-for-pivot-tables"><i class="fa fa-check"></i><b>5.6</b> dplyr for pivot tables</a></li>
+<li class="chapter" data-level="5.7" data-path="pivot.html"><a href="pivot.html#deep-thought"><i class="fa fa-check"></i><b>5.7</b> Deep thought</a></li>
+<li class="chapter" data-level="5.8" data-path="pivot.html"><a href="pivot.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1"><i class="fa fa-check"></i><b>5.8</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="5.9" data-path="pivot.html"><a href="pivot.html#interludes-deep-thoughtsopenscapes-3"><i class="fa fa-check"></i><b>5.9</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="5.10" data-path="pivot.html"><a href="pivot.html#our-turn-your-turn-1-1"><i class="fa fa-check"></i><b>5.10</b> Our Turn Your Turn 1</a></li>
+<li class="chapter" data-level="5.11" data-path="pivot.html"><a href="pivot.html#our-turn-your-turn-2-1"><i class="fa fa-check"></i><b>5.11</b> Our Turn Your Turn 2</a></li>
+<li class="chapter" data-level="5.12" data-path="pivot.html"><a href="pivot.html#efficiency-tips-3"><i class="fa fa-check"></i><b>5.12</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="vlookup.html"><a href="vlookup.html"><i class="fa fa-check"></i><b>6</b> Dplyr and vlookups</a><ul>
 <li class="chapter" data-level="6.1" data-path="vlookup.html"><a href="vlookup.html#summary-a-few-sentences-3"><i class="fa fa-check"></i><b>6.1</b> Summary (a few sentences)</a></li>
@@ -218,7 +220,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2" data-path="tidying.html"><a href="tidying.html#summary-a-few-sentences-4"><i class="fa fa-check"></i><b>7.2</b> Summary (a few sentences)</a></li>
 <li class="chapter" data-level="7.3" data-path="tidying.html"><a href="tidying.html#objectives-more-detailed-bulletpoints-3"><i class="fa fa-check"></i><b>7.3</b> Objectives (more detailed, bulletpoints?)</a></li>
 <li class="chapter" data-level="7.4" data-path="tidying.html"><a href="tidying.html#resources-5"><i class="fa fa-check"></i><b>7.4</b> Resources</a></li>
-<li class="chapter" data-level="7.5" data-path="tidying.html"><a href="tidying.html#lessons-teaching-for-each-objective..-objectives-examples-2"><i class="fa fa-check"></i><b>7.5</b> Lessons teaching for each objective….. (objectives, examples)</a><ul>
+<li class="chapter" data-level="7.5" data-path="tidying.html"><a href="tidying.html#lessons-teaching-for-each-objective..-objectives-examples-1"><i class="fa fa-check"></i><b>7.5</b> Lessons teaching for each objective….. (objectives, examples)</a><ul>
 <li class="chapter" data-level="7.5.1" data-path="tidying.html"><a href="tidying.html#expect-theres-a-better-way-chat"><i class="fa fa-check"></i><b>7.5.1</b> Expect there’s a better way chat</a></li>
 <li class="chapter" data-level="7.5.2" data-path="tidying.html"><a href="tidying.html#janitor"><i class="fa fa-check"></i><b>7.5.2</b> Janitor</a></li>
 <li class="chapter" data-level="7.5.3" data-path="tidying.html"><a href="tidying.html#example-how-to-google"><i class="fa fa-check"></i><b>7.5.3</b> Example: How to Google</a></li>
@@ -232,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1" data-path="format.html"><a href="format.html#summary-a-few-sentences-5"><i class="fa fa-check"></i><b>8.1</b> Summary (a few sentences)</a></li>
 <li class="chapter" data-level="8.2" data-path="format.html"><a href="format.html#objectives-more-detailed-bulletpoints-4"><i class="fa fa-check"></i><b>8.2</b> Objectives (more detailed, bulletpoints?)</a></li>
 <li class="chapter" data-level="8.3" data-path="format.html"><a href="format.html#resources-6"><i class="fa fa-check"></i><b>8.3</b> Resources</a></li>
-<li class="chapter" data-level="8.4" data-path="format.html"><a href="format.html#lessons-teaching-for-each-objective..-objectives-examples-3"><i class="fa fa-check"></i><b>8.4</b> Lessons teaching for each objective….. (objectives, examples)</a></li>
+<li class="chapter" data-level="8.4" data-path="format.html"><a href="format.html#lessons-teaching-for-each-objective..-objectives-examples-2"><i class="fa fa-check"></i><b>8.4</b> Lessons teaching for each objective….. (objectives, examples)</a></li>
 <li class="chapter" data-level="8.5" data-path="format.html"><a href="format.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4"><i class="fa fa-check"></i><b>8.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
 <li class="chapter" data-level="8.6" data-path="format.html"><a href="format.html#interludes-deep-thoughtsopenscapes-6"><i class="fa fa-check"></i><b>8.6</b> Interludes (deep thoughts/openscapes)</a></li>
 <li class="chapter" data-level="8.7" data-path="format.html"><a href="format.html#our-turn-your-turn-1-3"><i class="fa fa-check"></i><b>8.7</b> Our Turn Your Turn 1</a></li>
@@ -243,7 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="synthesis.html"><a href="synthesis.html#summary-a-few-sentences-6"><i class="fa fa-check"></i><b>9.1</b> Summary (a few sentences)</a></li>
 <li class="chapter" data-level="9.2" data-path="synthesis.html"><a href="synthesis.html#objectives-more-detailed-bulletpoints-5"><i class="fa fa-check"></i><b>9.2</b> Objectives (more detailed, bulletpoints?)</a></li>
 <li class="chapter" data-level="9.3" data-path="synthesis.html"><a href="synthesis.html#resources-7"><i class="fa fa-check"></i><b>9.3</b> Resources</a></li>
-<li class="chapter" data-level="9.4" data-path="synthesis.html"><a href="synthesis.html#lessons-teaching-for-each-objective..-objectives-examples-4"><i class="fa fa-check"></i><b>9.4</b> Lessons teaching for each objective….. (objectives, examples)</a></li>
+<li class="chapter" data-level="9.4" data-path="synthesis.html"><a href="synthesis.html#lessons-teaching-for-each-objective..-objectives-examples-3"><i class="fa fa-check"></i><b>9.4</b> Lessons teaching for each objective….. (objectives, examples)</a></li>
 <li class="chapter" data-level="9.5" data-path="synthesis.html"><a href="synthesis.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-5"><i class="fa fa-check"></i><b>9.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
 <li class="chapter" data-level="9.6" data-path="synthesis.html"><a href="synthesis.html#interludes-deep-thoughtsopenscapes-7"><i class="fa fa-check"></i><b>9.6</b> Interludes (deep thoughts/openscapes)</a></li>
 <li class="chapter" data-level="9.7" data-path="synthesis.html"><a href="synthesis.html#our-turn-your-turn-1-4"><i class="fa fa-check"></i><b>9.7</b> Our Turn Your Turn 1</a></li>
@@ -382,21 +384,21 @@ Show data files, We will discuss our analysis plan (only enough to motivate!) Cr
 <h3><span class="header-section-number">2.5.2</span> R Console</h3>
 <p>Watch me work in the Console.</p>
 <p>I can do math:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dv">52</span><span class="op">*</span><span class="dv">40</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="dv">365</span><span class="op">/</span><span class="dv">12</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">52</span><span class="op">*</span><span class="dv">40</span>
+<span class="dv">365</span><span class="op">/</span><span class="dv">12</span></code></pre>
 <p><em>TODO: refine</em></p>
 <p>But like Excel, the power comes not from doing small operations by hand (like 8*22.3), it’s by being able to operate on whole suites of numbers and datasets. In Excel, data are stored in the spreadsheet. In R, they are stored in dataframes, and named as variables.</p>
 <p>R stores data in variables, and that data can be a variety of formats, like numeric and text.</p>
 <p>Let’s have a look at some data in R. R has several built-in data sets that we can look at and work with.</p>
 <p>One of these datasets is called <code>mtcars</code>. If I write this in the Console, it will print the data in the console.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">mtcars</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">mtcars</code></pre>
 <p>I can also use RStudio’s Viewer to see this in a more familiar-looking format:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">View</span>(mtcars)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(mtcars)</code></pre>
 <p>This opens the fourth pane of the RStudio IDE; when you work in R you will have all four panes open so this will become a very comforting setup for you.</p>
 <p>In the Viewer I can do things like filter or sort. This does not do anything to the actual data, it just changes how you are viewing the data. So even as I explore it, I am not editing or manipulating the data.</p>
 <p>Like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we’ll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).</p>
 <p>So let’s look into some of these functions. In Excel, there is a “SUM” function to calculate a total. Let’s expect that there is the same in R. I will type this into the Console:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">?sum</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">?sum</code></pre>
 <p>A few important things to note:</p>
 <ol style="list-style-type: decimal">
 <li><p>R is case-sensitive. So “sum” is a completely different thing to “Sum” or “SUM”. And this is true for the names of functions, data sets, variable names, and data itself (“blue” vs “Blue”).</p></li>
@@ -416,14 +418,14 @@ Show data files, We will discuss our analysis plan (only enough to motivate!) Cr
 <p>When I look at a help page, I start with the description, which might be too in-the-weeds for the level of understanding I need at the offset. For the <code>sum</code> page, it is pretty straight-forward and lets me know that yup, this is the function I want.</p>
 <p>I next look at the usage and arguments, which give me a more concrete view into what the function does. This syntax looks a bit cryptic but what it means is that you use it by writing sum, and then passing whatever you want to it in terms of data: that is what the “…” means. And the “na.rm=FALSE” means that by default, it will not remove NAs (I read this as: “remove NAs? FALSE!”)</p>
 <p>Then, I usually scroll down to the bottom to the examples. This is where I can actually see how the function is used, and I can also paste those examples into the Console to see their output. Best way to learn what the function actually does is seeing it in action. Let’s try:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</code></pre>
 <p>So this is calculating the sum of the numbers from 1 and 5; that is what that <code>1:5</code> syntax means in this case. We can check it with the next example:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">sum</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</code></pre>
 <p>Awesome. Let’s try this on our <code>mtcars</code> data</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">sum</span>(mtcars)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(mtcars)</code></pre>
 <p>Alright. What is this number? It is the sum of ALL of the data in the mtcars dataset. Maybe in some analysis this would be a useful operation, but I would worry about the way your data is set up and your analyses if this is ever something you’d want to do. More likely, you’d want to take the sum of a specific column. In R, you can do that with the <code>$</code> operator.</p>
 <p>Let’s say we want to calculate the total number of gears that all these cars have:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">sum</span>(mtcars<span class="op">$</span>gear)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(mtcars<span class="op">$</span>gear)</code></pre>
 <!---
 TODO: should we get into this?
 Let's try another. In Excel there is a function called AVERAGE. Let's see if there is such a thing in R. 
@@ -439,21 +441,21 @@ Let's try another. In Excel there is a function called AVERAGE. Let's see if the
 <!---TODO add screenshots, build out more --->
 <p>File &gt; New File &gt; R Script.</p>
 <p>This is a blank slate for us to write our code; but there are some good practices we can start off with. Let’s add a useful header to the top of it. For example, at a minimum:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># --------------------------------</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co"># A descriptive title</span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co"># Your name</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co"># Contact information</span></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co"># Date</span></a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co"># --------------------------------</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># --------------------------------</span>
+<span class="co"># A descriptive title</span>
+<span class="co"># Your name</span>
+<span class="co"># Contact information</span>
+<span class="co"># Date</span>
+<span class="co"># --------------------------------</span></code></pre>
 <p>And then let’s save it, naming it something like “my_first_figure.R”. Let’s get into good habits now with this filename: no spaces! Use underscores <code>_</code> or dashes <code>-</code> or no space at all.</p>
 <p>Since we’re working in or Project, this script is now nicely saved in our Project. You can see our <code>.R</code> show up in our Files pane on the bottom right.</p>
 <p>Let’s attach a package. Since you’ve already installed tidyverse,</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># Attach the tidyverse</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Attach the tidyverse</span>
+<span class="kw">library</span>(tidyverse)</code></pre>
 <p>What is the tidyverse? <em>TODO</em>
 - ggplot2</p>
 <p>Let’s look at one of the datasets that is built into the ggplot2 package. Type this into your R script:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">View</span>(diamonds)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(diamonds)</code></pre>
 <p>So this is not immediately executed like when we were typing in the Console. That’s because an R script is really just a text file that doesn’t do anything on its own; you need to tell R to execute it. You do that in a few ways (let’s do each of them):</p>
 <ol style="list-style-type: decimal">
 <li>copy-paste this line into the console.</li>
@@ -461,40 +463,35 @@ Let's try another. In Excel there is a function called AVERAGE. Let's see if the
 <li>click Source (top right of your script) to run the whole script.</li>
 </ol>
 <p>Now let’s plot it. Type this or copy-paste and then we’ll discuss:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x =</span> carat, <span class="dt">y =</span> price)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x =</span> carat, <span class="dt">y =</span> price)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <div id="deep-thought-error-messages-are-your-friends" class="section level3">
 <h3><span class="header-section-number">2.6.1</span> Deep thought: Error messages are your friends</h3>
+<p>As <a href="https://stat545.com/r-basics.html">Jenny Bryan says</a>:</p>
+<blockquote>
 <p>Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Pay attention to how you type.</p>
+</blockquote>
 <p>Remember that this is a language, not unsimilar to English! There are times you aren’t understood – it’s going to happen. There are different ways this can happen. Sometimes you’ll get an error. This is like someone saying ‘What?’ or ‘Pardon’? Error messages can also be more useful, like when they say ‘I didn’t understand what you said, I was expecting you to say blah’. That is a great type of error message. Error messages are your friend. Google them (copy-and-paste!) to figure out what they mean.</p>
 <p>And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I am telling a story about suspenders that my British friend hears but silently interprets in a very different way (true story). This can leave me thinking I’ve gotten something across that the listener (or R) might silently interpreted very differently. And as I continue telling my story you get more and more confused… Clear communication is critical when you code: write clean, well documented code and check your work as you go to minimize these circumstances!</p>
 </div>
 </div>
-<div id="the-pipe" class="section level2">
-<h2><span class="header-section-number">2.7</span> The pipe %&gt;%</h2>
-</div>
 <div id="dont-save-the-workspace" class="section level2">
-<h2><span class="header-section-number">2.8</span> Don’t save the workspace</h2>
+<h2><span class="header-section-number">2.7</span> Don’t save the workspace</h2>
 </div>
 <div id="deep-thought-keep-the-raw-data-raw." class="section level2">
-<h2><span class="header-section-number">2.9</span> Deep thought: keep the raw data raw.</h2>
+<h2><span class="header-section-number">2.8</span> Deep thought: keep the raw data raw.</h2>
 <p>Discussing using Excel for variables.</p>
 <p>Horror Stories! Economist etc.</p>
 </div>
-<div id="interludes-deep-thoughtsopenscapes" class="section level2">
-<h2><span class="header-section-number">2.10</span> Interludes (deep thoughts/openscapes)</h2>
-<p>Comments! Organization (spacing, subsections, vertical structure, indentation, etc.)! Well-named variables! Also, well-named operations so analyses (select(data, columnname)) instead of data[1:6,5] and excel equivalent. (Ex with strings)
-Not so brittle/sensitive to minor changes.</p>
-</div>
 <div id="activity-1" class="section level2">
-<h2><span class="header-section-number">2.11</span> Activity 1</h2>
+<h2><span class="header-section-number">2.9</span> Activity 1</h2>
 </div>
 <div id="activity-2" class="section level2">
-<h2><span class="header-section-number">2.12</span> Activity 2</h2>
+<h2><span class="header-section-number">2.10</span> Activity 2</h2>
 </div>
 <div id="efficiency-tips" class="section level2">
-<h2><span class="header-section-number">2.13</span> Efficiency Tips</h2>
+<h2><span class="header-section-number">2.11</span> Efficiency Tips</h2>
 <!---
 
 ## Credit
@@ -524,13 +521,11 @@ References Brainstorm
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
