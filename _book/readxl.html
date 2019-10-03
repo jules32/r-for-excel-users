@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 readxl | R for the Excel User</title>
   <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.13.2 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 readxl | R for the Excel User" />
   <meta property="og:type" content="book" />
@@ -24,15 +24,15 @@
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
 
 
-<meta name="date" content="2019-09-30" />
+<meta name="date" content="2019-10-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="overview.html">
-<link rel="next" href="rmarkdown.html">
+<link rel="prev" href="overview.html"/>
+<link rel="next" href="rmarkdown.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -40,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -55,7 +58,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -310,19 +312,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="create-a-new-.r-script-attach-the-tidyverse-readxl-and-writexl-packages" class="section level3">
 <h3><span class="header-section-number">3.4.2</span> Create a new .R script, attach the <code>tidyverse</code>, <code>readxl</code> and <code>writexl</code> packages</h3>
 <p>In your RforExcelUsers project in RStudio, open a new .R script and add a useful header to the top of it. For example, at a minimum:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># --------------------------------</span>
-<span class="co"># A descriptive title</span>
-<span class="co"># Summary of what this script is for </span>
-<span class="co"># Your name</span>
-<span class="co"># Contact information</span>
-<span class="co"># --------------------------------</span>
-
-<span class="co"># Other things you might include: required packages or datasets, relevant links (e.g. to raw data source, GitHub repo, etc.), citations and sources.</span></code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># --------------------------------</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co"># A descriptive title</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co"># Summary of what this script is for </span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co"># Your name</span></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="co"># Contact information</span></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="co"># --------------------------------</span></a>
+<a class="sourceLine" id="cb13-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="co"># Other things you might include: required packages or datasets, relevant links (e.g. to raw data source, GitHub repo, etc.), citations and sources.</span></a></code></pre></div>
 <p>In this lesson, we’ll read in a CSV file with the <code>readr::read_csv()</code> function, so we need to have the <code>readr</code> package attached. Since it’s part of the <code>tidyverse</code>, we’ll go ahead and attach the <code>tidyverse</code> package below our script header using <code>library(package_name)</code>. It’s a good idea to attach all necessary packages near the top of a script, so we’ll also attach the <code>readxl</code> packages here.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Attach the tidyverse, readxl and writexl packages:</span>
-<span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(readxl)
-<span class="kw">library</span>(writexl)</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co"># Attach the tidyverse, readxl and writexl packages:</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="kw">library</span>(readxl)</a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="kw">library</span>(writexl)</a></code></pre></div>
 <p>Now, all of the packages and functions within the <code>tidyverse</code> and <code>readxl</code>, including <code>readr::read_csv()</code> and <code>readxl::read_excel()</code>, are available for use.</p>
 </div>
 <div id="use-readrread_csv-to-read-in-data-from-a-csv-file" class="section level3">
@@ -331,7 +333,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The CSV we’ll read in here is called “fish_counts_curated.csv”, and contains observations for “the abundance and size of fish species as part of SBCLTER’s kelp forest monitoring program to track long-term patterns in species abundance and diversity” from the <a href="http://sbc.lternet.edu/">Santa Barbara Channel Long Term Ecological Research</a> program.</p>
 <p><strong>Source:</strong> Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Fish abundance. Environmental Data Initiative. <a href="https://doi.org/10.6073/pasta/dbd1d5f0b225d903371ce89b09ee7379" class="uri">https://doi.org/10.6073/pasta/dbd1d5f0b225d903371ce89b09ee7379</a>. Dataset accessed 9/26/2019.</p>
 <p>Read in the “fish_counts_curated.csv” file <code>read_csv(&quot;file_name.csv&quot;)</code>, and store it in R as an object called <em>fish_counts</em>:</p>
-<pre class="sourceCode r"><code class="sourceCode r">fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;fish_counts_curated.csv&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;fish_counts_curated.csv&quot;</span>)</a></code></pre></div>
 <p>Notice that the name of the stored object (here, <em>fish_counts</em>) will show up in our Environment tab in RStudio.</p>
 <p>Click on the object in the Environment, and R will automatically run the <code>View()</code> function for you to pull up your data in a separate viewing tab. Now we can look at it in the spreadsheet format we’re used to.</p>
 <p>Here are a few other functions for quickly exploring imported data:</p>
@@ -343,10 +345,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>tail()</code>: Show the last x rows (default is 6 lines)</li>
 </ul>
 <p>Now let’s make a simple plot of some fish counts with <code>ggplot2</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(fish_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> tot_count)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> common_name)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>site)</code></pre>
-<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">ggplot</span>(fish_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> tot_count)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> common_name)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>site)</a></code></pre></div>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Now that we have our fish counts data ready to work with in R, let’s get the substrate cover and kelp data (both .xlsx files). In the following sections, we’ll learn that we can use <code>readxl::read_excel()</code> to read in Excel files directly.</p>
 </div>
 <div id="use-readxlread_excel-to-read-in-a-single-excel-worksheet" class="section level3">
@@ -360,10 +362,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Let’s go ahead and read in the data. If the file is in our working directory, we can read in a single worksheet .xlsx file using <code>readxl::read_excel(&quot;file_name.xlsx&quot;)</code>. <em>Note: readxl::read_excel() works for both .xlsx and .xls types</em>.</p>
 <p>Like this:</p>
-<pre class="sourceCode r"><code class="sourceCode r">substrate_cover &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;substrate_cover_curated.xlsx&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">substrate_cover &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;substrate_cover_curated.xlsx&quot;</span>)</a></code></pre></div>
 <p><strong>Tada? Not quite.</strong></p>
 <p>Click on the object name (<em>substrate_cover</em>) in the Environment to view the data in a new tab. A few things aren’t ideal:</p>
-<pre class="sourceCode r"><code class="sourceCode r">substrate_cover</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">substrate_cover</a></code></pre></div>
 <pre><code>## # A tibble: 23,942 x 9
 ##    `Substrate cover data… ...2  ...3   ...4  ...5   ...6  ...7  ...8  ...9 
 ##    &lt;chr&gt;                  &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
@@ -384,8 +386,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>There are -9999s that we want R to understand <code>NA</code> instead</li>
 </ul>
 <p>We can deal with those issues by adding arguments within <code>read_excel()</code>. Include argument <code>skip = n</code> to skip the first ‘n’ rows when importing data, and <code>na = &quot;this&quot;</code> to replace “this” with <code>NA</code> when importing:</p>
-<pre class="sourceCode r"><code class="sourceCode r">substrate_cover &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;curation/substrate_cover_curated.xlsx, skip = 4, na = &quot;</span><span class="op">-</span><span class="dv">9999</span><span class="st">&quot;)</span></code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">substrate_cover</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">substrate_cover &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;curation/substrate_cover_curated.xlsx, skip = 4, na = &quot;</span><span class="op">-</span><span class="dv">9999</span><span class="st">&quot;)</span></a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">substrate_cover</a></code></pre></div>
 <pre><code>## # A tibble: 23,938 x 9
 ##    year  month date  site  transect quad  side  substrate_type
 ##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;         
@@ -406,10 +408,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">3.4.5</span> Use <code>readxl::read_excel()</code> to read in only <em>part</em> of an Excel worksheet</h3>
 <p>We always advocate for leaving the raw data raw, and writing a complete script containing all steps of data wrangling &amp; transformation. But in <em>some</em> situations (be careful), you may want to specify a range of cells to read in from an Excel worksheet.</p>
 <p>You can specify a range of cells to read in using the <code>range =</code> argument in <code>read_excel()</code>. For example, if I want to read in the rectangle from D12:I15 in <em>substrate_cover_curated.xlsx</em> - only observations for Carpenteria Beach (Transect 2) in September 2000 - I can use:</p>
-<pre class="sourceCode r"><code class="sourceCode r">carp_cover_<span class="dv">2000</span> &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;substrate_cover_curated.xlsx&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;D12:I15&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">carp_cover_<span class="dv">2000</span> &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;substrate_cover_curated.xlsx&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;D12:I15&quot;</span>)</a></code></pre></div>
 <p>But yuck. Look at <em>carp_cover_2000</em> and you’ll notice that the first row <em>of that range</em> is automatically made the column headers. To keep all rows within a range and <strong>add your own column names</strong>, add a <code>col_names =</code> argument:</p>
-<pre class="sourceCode r"><code class="sourceCode r">carp_cover_<span class="dv">2000</span> &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;substrate_cover_curated.xlsx&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;D12:I15&quot;</span>, <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;site_name&quot;</span>, <span class="st">&quot;transect&quot;</span>, <span class="st">&quot;quad&quot;</span>, <span class="st">&quot;plot_side&quot;</span>, <span class="st">&quot;type&quot;</span>, <span class="st">&quot;coverage&quot;</span>))</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">carp_cover_<span class="dv">2000</span></code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">carp_cover_<span class="dv">2000</span> &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;substrate_cover_curated.xlsx&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;D12:I15&quot;</span>, <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;site_name&quot;</span>, <span class="st">&quot;transect&quot;</span>, <span class="st">&quot;quad&quot;</span>, <span class="st">&quot;plot_side&quot;</span>, <span class="st">&quot;type&quot;</span>, <span class="st">&quot;coverage&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">carp_cover_<span class="dv">2000</span></a></code></pre></div>
 <pre><code>## # A tibble: 4 x 6
 ##   site_name transect quad  plot_side type  coverage
 ##   &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;   
@@ -424,16 +426,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now, we’ll read in the kelp fronds data from file <em>kelp_counts_curated.xlsx</em>. If you open the Excel workbook, you’ll see that it contains multiple worksheets with giant kelp observations in the Santa Barbara Channel during July 2016, 2017, and 2018, with data collected at each <em>site</em> in a separate worksheet.</p>
 <p>To read in a single Excel worksheet from a workbook we’ll again use <code>readxl::read_excel(&quot;file_name.xlsx&quot;)</code>, but we’ll need to let R know which worksheet to get.</p>
 <p>Let’s read in the kelp data just like we did above, as an object called <em>kelp_counts</em>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">kelp_counts &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">kelp_counts &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>)</a></code></pre></div>
 <p>You might be thinking, “Hooray, I got all of my Excel workbook data!” But remember to always look at your data - you will see that actually only the first worksheet was read in. The default in <code>readxl::read_excel()</code> is to read in the <strong>first worksheet</strong> in a multi-sheet Excel workbook.</p>
 <p>To check the worksheet names in an Excel workbook, use <code>readxl::excel_sheets()</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r">readxl<span class="op">::</span><span class="kw">excel_sheets</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">readxl<span class="op">::</span><span class="kw">excel_sheets</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>)</a></code></pre></div>
 <p>If we want to read in data from a worksheet other than the first one in an Excel workbook, we can specify the correct worksheet by name or position by adding the <code>sheet</code> argument.</p>
 <p>Let’s read in data from the worksheet named <em>golb</em> (Goleta Beach) in the <em>kelp_counts_curated.xlsx</em> workbook:</p>
-<pre class="sourceCode r"><code class="sourceCode r">kelp_golb &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;golb&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">kelp_golb &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;golb&quot;</span>)</a></code></pre></div>
 <p>Note that you can also specify a worksheet by position: since <em>golb</em> is the 6<sup>th</sup> worksheet in the workbook, we could also use the following:</p>
-<pre class="sourceCode r"><code class="sourceCode r">kelp_golb &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="dv">6</span>)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">kelp_golb</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">kelp_golb &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="dv">6</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">kelp_golb</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 5
 ##   year  month site  common_name tot_fronds
 ##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
@@ -454,14 +456,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><strong>QUESTION: Have they learned the pipe operator at this point?</strong></p>
 <p><strong>Expect the question:</strong> Why do I need to use read_excel() instead of just giving it the file path (as below)?</p>
-<pre class="sourceCode r"><code class="sourceCode r">kelp_path &lt;-<span class="st"> &quot;kelp_counts_curated.xlsx&quot;</span>
-
-kelp_all_sites &lt;-<span class="st"> </span>kelp_path <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">excel_sheets</span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">set_names</span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span>purrr<span class="op">::</span><span class="kw">map_df</span>(read_excel, kelp_path)</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">kelp_path &lt;-<span class="st"> &quot;kelp_counts_curated.xlsx&quot;</span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb33-3" data-line-number="3">kelp_all_sites &lt;-<span class="st"> </span>kelp_path <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb33-4" data-line-number="4"><span class="st">  </span><span class="kw">excel_sheets</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb33-5" data-line-number="5"><span class="st">  </span><span class="kw">set_names</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb33-6" data-line-number="6"><span class="st">  </span>purrr<span class="op">::</span><span class="kw">map_df</span>(read_excel, kelp_path)</a></code></pre></div>
 <p>Check out <em>kelp_all_sites</em>, and notice that now the data from all 11 sites is now collected into a single data frame:</p>
-<pre class="sourceCode r"><code class="sourceCode r">kelp_all_sites</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">kelp_all_sites</a></code></pre></div>
 <pre><code>## # A tibble: 32 x 5
 ##    year  month site  common_name tot_fronds
 ##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
@@ -477,10 +479,10 @@ kelp_all_sites &lt;-<span class="st"> </span>kelp_path <span class="op">%&gt;%</
 ## 10 2016  7     bull  giant kelp        6706
 ## # … with 22 more rows</code></pre>
 <p>Awesome! Let’s make a graph with ggplot2:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(kelp_all_sites, <span class="kw">aes</span>(<span class="dt">x =</span> site, <span class="dt">y =</span> tot_fronds)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> year), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;purple&quot;</span>,<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;gray30&quot;</span>))</code></pre>
-<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">ggplot</span>(kelp_all_sites, <span class="kw">aes</span>(<span class="dt">x =</span> site, <span class="dt">y =</span> tot_fronds)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> year), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb36-3" data-line-number="3"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;purple&quot;</span>,<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;gray30&quot;</span>))</a></code></pre></div>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 </div>
 <div id="save-data-frames-as-.csv-or-.xlsx-with-readrwrite_csv-or-writexlwrite_xlsx" class="section level3">
 <h3><span class="header-section-number">3.4.8</span> Save data frames as .csv or .xlsx with <code>readr::write_csv()</code> or <code>writexl::write_xlsx()</code></h3>
@@ -493,15 +495,15 @@ kelp_all_sites &lt;-<span class="st"> </span>kelp_path <span class="op">%&gt;%</
 <p>Use <code>readr::write_csv(object, &quot;file_name.csv&quot;)</code> to write a data frame to a CSV, or <code>writexl::write_xlsx(object, &quot;file_name.xlsx&quot;)</code> to similarly export as a .xlsx (or .xls) worksheet.</p>
 <p>In the previous step, we combined all of our kelp frond observations into a single data frame. Wouldn’t it make sense to store a copy?</p>
 <p>As a CSV:</p>
-<pre class="sourceCode r"><code class="sourceCode r">readr<span class="op">::</span><span class="kw">write_csv</span>(kelp_all_sites, <span class="st">&quot;kelp_all_sites.csv&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">readr<span class="op">::</span><span class="kw">write_csv</span>(kelp_all_sites, <span class="st">&quot;kelp_all_sites.csv&quot;</span>)</a></code></pre></div>
 <p>A cool thing about <code>readr::read_csv()</code> is that it just quietly <em>works</em> without wrecking anything else you do in a sequence, so it’s great to add at the end of a piped sequence.</p>
 <p>For example, if I want to read in the ‘ivee’ worksheet from kelp_counts_curated.xlsx, select only columns ‘year’ and ‘tot_fronds’, then write that new subset to a .csv file, I can pipe all the way through:</p>
-<pre class="sourceCode r"><code class="sourceCode r">kelp_ivee &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;ivee&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(year, tot_fronds) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">write_csv</span>(<span class="st">&quot;kelp_ivee.csv&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">kelp_ivee &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;ivee&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(year, tot_fronds) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="st">  </span><span class="kw">write_csv</span>(<span class="st">&quot;kelp_ivee.csv&quot;</span>)</a></code></pre></div>
 <p>Now I’ve created <em>kelp_ivee.csv</em>, but the object <em>kelp_ivee</em> also exists for me to use in R.</p>
 <p>If needed, I can also export a data frame as an Excel (.xlsx) worksheet:</p>
-<pre class="sourceCode r"><code class="sourceCode r">writexl<span class="op">::</span><span class="kw">write_xlsx</span>(kelp_all_sites, <span class="st">&quot;kelp_all_sites.xlsx&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">writexl<span class="op">::</span><span class="kw">write_xlsx</span>(kelp_all_sites, <span class="st">&quot;kelp_all_sites.xlsx&quot;</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="fun-facts-ideas" class="section level2">
@@ -530,22 +532,22 @@ kelp_all_sites &lt;-<span class="st"> </span>kelp_path <span class="op">%&gt;%</
 <li><strong>Note:</strong> If your column name is a number (not great) you’ll probably want to rename it…but in the meantime, to call it as a variable make sure you put single or double quotes around it (e.g. <code>'2016'</code> or <code>&quot;2016&quot;</code>) so that R recognizes it’s a variable and not a value</li>
 </ul></li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Importing only &#39;site&#39; through &#39;2016&#39; columns: </span>
-inverts_july &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;curation/invert_counts_curated.xlsx&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;B1:D56&quot;</span>)
-
-<span class="co"># Do some basic exploring (why might we want to do this in the Console instead?):</span>
-<span class="co">#View(inverts_july)</span>
-<span class="kw">names</span>(inverts_july)
-<span class="kw">head</span>(inverts_july)
-<span class="kw">tail</span>(inverts_july)
-<span class="kw">ls</span>()
-
-<span class="co"># Make a gg-graph: </span>
-inverts_graph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(inverts_july, <span class="kw">aes</span>(<span class="dt">x =</span> site, <span class="dt">y =</span> <span class="st">`</span><span class="dt">2016</span><span class="st">`</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> common_name), 
-           <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">inverts_graph</code></pre>
-<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="co"># Importing only &#39;site&#39; through &#39;2016&#39; columns: </span></a>
+<a class="sourceLine" id="cb40-2" data-line-number="2">inverts_july &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;curation/invert_counts_curated.xlsx&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;B1:D56&quot;</span>)</a>
+<a class="sourceLine" id="cb40-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb40-4" data-line-number="4"><span class="co"># Do some basic exploring (why might we want to do this in the Console instead?):</span></a>
+<a class="sourceLine" id="cb40-5" data-line-number="5"><span class="co">#View(inverts_july)</span></a>
+<a class="sourceLine" id="cb40-6" data-line-number="6"><span class="kw">names</span>(inverts_july)</a>
+<a class="sourceLine" id="cb40-7" data-line-number="7"><span class="kw">head</span>(inverts_july)</a>
+<a class="sourceLine" id="cb40-8" data-line-number="8"><span class="kw">tail</span>(inverts_july)</a>
+<a class="sourceLine" id="cb40-9" data-line-number="9"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb40-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb40-11" data-line-number="11"><span class="co"># Make a gg-graph plot: </span></a>
+<a class="sourceLine" id="cb40-12" data-line-number="12">inverts_graph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(inverts_july, <span class="kw">aes</span>(<span class="dt">x =</span> site, <span class="dt">y =</span> <span class="st">`</span><span class="dt">2016</span><span class="st">`</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb40-13" data-line-number="13"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> common_name), </a>
+<a class="sourceLine" id="cb40-14" data-line-number="14">           <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">inverts_graph</a></code></pre></div>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 </div>
 <div id="efficiency-tips-1" class="section level2">
 <h2><span class="header-section-number">3.8</span> Efficiency Tips</h2>
@@ -568,11 +570,13 @@ inverts_graph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(inver
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({

@@ -402,7 +402,7 @@ head(inverts_july)
 tail(inverts_july)
 ls()
 
-# Make a gg-graph: 
+# Make a gg-graph plot: 
 inverts_graph <- ggplot(inverts_july, aes(x = site, y = `2016`)) +
   geom_col(aes(fill = common_name), 
            position = "dodge")
