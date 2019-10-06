@@ -11,6 +11,7 @@ R is not only a language, it is an active community of developers, users, and ed
 - [What They Forgot to Teach You About R](https://whattheyforgot.org/) — Jenny Bryan & Jim Hester
 - [Stat545](https://stat545.com/) — Jenny Bryan & Stat545 TAs
 - [Where do Things Live in R?](http://rex-analytics.com/things-live-r-r-excel-users/) REX Analytics
+- [](https://blog.shotwell.ca/posts/r_for_excel_users/)
 
 ## Overview
 
@@ -163,7 +164,9 @@ I can do math:
  
 But like Excel, the power comes not from doing small operations by hand (like 8*22.3), it's by being able to operate on whole suites of numbers and datasets. In Excel, data are stored in the spreadsheet. In R, they are stored in dataframes, and named as variables. 
 
-R stores data in variables, and that data can be a variety of formats, like numeric and text. 
+R stores data in variables, and you give them names. This is a big difference with Excel, where you usually identify data by by its location on the grid, like `$A1:D$20`. (You can do this with Excel by naming ranges of cells, but most people don’t do this.)
+
+Data can be a variety of formats, like numeric and text. 
 
 Let's have a look at some data in R. R has several built-in data sets that we can look at and work with. 
 
@@ -180,6 +183,8 @@ View(mtcars)
 ```
 
 This opens the fourth pane of the RStudio IDE; when you work in R you will have all four panes open so this will become a very comforting setup for you.
+
+>The basic R data structure is a vector. You can think of a vector like a column in an Excel spreadsheet with the limitation that all the data in that vector must be of the same type. If it is a character vector, every element must be a character; if it is a logical vector, every element must be TRUE or FALSE; if it’s numeric you can trust that every element is a number. There’s no such constraint in Excel: you might have a column which has a bunch of numbers, but then some explanatory test intermingled with the numbers. This isn’t allowed in R. - https://blog.shotwell.ca/posts/r_for_excel_users/
 
 In the Viewer I can do things like filter or sort. This does not do anything to the actual data, it just changes how you are viewing the data. So even as I explore it, I am not editing or manipulating the data. 
 
@@ -238,6 +243,13 @@ Let's say we want to calculate the total number of gears that all these cars hav
 ```{r sum-mtcars2, eval=FALSE}
 sum(mtcars$gear)
 ```
+
+## Deep thought
+
+How would you do this in Excel? 
+The calculations are usually the same shape as the data. In other words if you want to multiply 20 numbers stored in cells A1:An by 2, you will need 20 calculations: =A1 * 2, =A2 * 2, ...., =An * 2.
+
+<!---from https://blog.shotwell.ca/posts/r_for_excel_users/ --->
 
 <!---
 TODO: should we get into this?

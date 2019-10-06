@@ -6,6 +6,8 @@ First of two chapters on data wrangling, here focused on pivot tables.
 
 ## Objectives (more detailed, bulletpoints?)
 
+In R, we can use dplyr for pivot tables by using 2 main verbs in combination: `group_by` and `summarize`, and that's where we'll start. Then, we will learn 2 critical verbs that you will use all the time: `select` and `mutate`.
+
 - intro to wrangling with dplyr 
 - learn select
 - learn group_by + summarize for pivot tables
@@ -44,8 +46,7 @@ Let's talk about how this looks like in R.
 
 ## dplyr for pivot tables
 
-In R, we can use dplyr for pivot tables by using 2 main verbs in combination: `group_by` and `summarize`, and that's where we'll start. Then, we will learn 2 critical verbs that you will use all the time: `select` and `mutate`. Here is what this looks like:
-
+In R, we can use dplyr for pivot tables by using 2 main verbs in combination: `group_by` and `summarize`. Here is what this looks like:
 
 `group_by` and `summarize` are the main ingredients for pivot tables: 
 
@@ -56,6 +57,17 @@ In R, we can use dplyr for pivot tables by using 2 main verbs in combination: `g
 - **`summarize()`**: collapse many values down to a single summary 
 
   `r htmltools::img(src='img/rstudio-cheatsheet-summarise.png', width=300)`
+  
+  
+Let's try this on our fish_counts data. 
+
+```{r}
+
+fish_counts 
+
+```
+
+  
   
 
 - **`select()`**: pick variables by their names
