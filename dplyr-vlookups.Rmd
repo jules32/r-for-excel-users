@@ -19,9 +19,10 @@ In Session 5, we'll expand our data wrangling toolkit using:
 ## Objectives
 
 - Continue building R Markdown skills
-- Create subsets from data frames by setting conditions for **rows** using `dplyr::filter()`
+- Create subsets from data frames by setting conditions for **rows** using `dplyr::filter()` 
 - Use `dplyr::full_join()`, `dplyr::inner_join()`, and beyond to merge data frames by matching variables, with different endpoints in mind
 - Use `dplyr::anti_join()` to find things that **do not** exist in both data frames
+- Understand the similarities between dplyr::filter() + join() and Excel's `VLOOKUP` 
 
 ## Resources
 
@@ -29,14 +30,43 @@ In Session 5, we'll expand our data wrangling toolkit using:
 - [`dplyr::join()` documentation from tidyverse.org](https://dplyr.tidyverse.org/reference/join.html)
 - - [Chapters 5 and 13 in *R for Data Science* by Garrett Grolemund and Hadley Wickham](https://r4ds.had.co.nz/)
 
-
 ## Lessons
 
 **Session 5 set-up:** TODO
-- Create a new .Rmd
+
+- Create a new .Rmd within the r-and-excel directory (project) you created in Session 1
 - Add some descriptive text
-- Attach packages
-- Read in the necessary data 
+- Add new code chunks to: 
+    - Attach packages
+    - Read in the necessary data 
+    
+In this session we'll use the **fish_counts_curated.csv** and  **invert_counts_curated.xlsx** files. 
+
+```{r, include = FALSE}
+library(tidyverse)
+library(readxl)
+library(here) # They won't have this (files directly in top WD)
+
+# Read in the data
+invert_counts <- read_excel(here("curation","invert_counts_curated.xlsx"))
+
+fish_counts <- read_csv(here("curation", "fish_counts_curated.csv"))
+```
+
+```{r, eval = FALSE}
+# Attach packages:
+library(tidyverse)
+library(readxl)
+
+# Read in data: 
+invert_counts <- read_excel("invert_counts_curated.xlsx")
+fish_counts <- read_csv("fish_counts_curated.csv")
+
+```
+
+Remember to always explore the data you've read in using functions like `View()`, `names()`, `summary()`, `head()` and `tail()`. 
+
+Now, let's use `dplyr::filter()` to decide which observations (rows) we'll keep or exclude in new subsets, similar to using Excel's VLOOKUP function.
 
 ### `dplyr::filter()` to conditionally subset by rows
 
@@ -46,21 +76,91 @@ Use `dplyr::filter()` to let R know which **rows** you want to keep or exclude, 
 - "I want to keep all observations **except** those where the tree type is listed as **unknown**."
 - "I want to make a new subset with only data for mountain lions (the species variable) in California (the state variable)."
 
+TODO: {Add filter image here}
+
 When we use `dplyr::filter()`, we need to let R know a couple of things:
 
-- How to store the new subset we create (as relevant)
 - What data frame we're filtering from
 - What condition(s) we want observations to **match** and/or **not match** in order to keep them in the new subset
 
-Structurally, that looks like this: TODO - add screen shot w/procreate writing
+Follow along with the examples below to learn some common ways to use `dplyr::filter()`.
 
-(.png here)
+#### Example: filter rows by matching a single character string
 
-#### Example: Make a subset of the 
+Let's say we want to keep all observations from the fish_counts data frame where the common name is "garibaldi." Here, we need to tell R to only *keep rows* from the **fish_counts** data frame when the common name (**common_name** variable) exactly matches **garibaldi**. 
+
+Use `==` to ask R to look for matching strings:
+
+```{r, include = FALSE}
+fish_gari <- dplyr::filter(fish_counts, common_name == "garibaldi")
+```
+
+```{r, eval = FALSE}
+fish_gari <- dplyr::filter(fish_counts, common_name == "garibaldi")
+```
+
+Check out the **fish_gari** object to ensure that only *garibaldi* observations remain. 
+
+You could also do this using the pipe operator `%>%` (though for a single function, it doesn't save much effort or typing): 
+```{r, eval = FALSE}
+fish_gari <- fish_counts %>% 
+  dplyr::filter(common_name == "garibaldi")
+```
+
+#### Example: filter rows based on numeric conditions
+
+Use expected operators (>, <, >=, <=, =) to set conditions for a numeric variable when filtering. For this example, we only want to retain observations when the **tot_count** column value is >= 50:
+
+```{r, include = FALSE}
+fish_over50 <- dplyr::filter(fish_counts, tot_count >= 50)
+```
+
+```{r, eval = FALSE}
+fish_over50 <- dplyr::filter(fish_counts, tot_count >= 50)
+```
+
+Or, using the pipe: 
+```{r, eval = FALSE}
+fish_over50 <- fish_counts %>% 
+  dplyr::filter(tot_count >= 50)
+```
+
+
+#### Example: Make a subset of the fish_counts df that contains *garibaldi*, *blacksmith* OR *black surfperch*
+
+There are several ways to write an "OR" statement, which will keep any observations that match Condition A *or* Condition B *or* Condition C. In this example, we will create a subset from **fish_counts** that only contains rows where the **common_name** is *garibaldi* or *blacksmith* or *black surfperch*.
+
+Use `%in%` to ask R to look for *any matches* within a combined vector of strings: 
+
+```{r, include = FALSE}
+fish_3_sp <- fish_counts %>% 
+  dplyr::filter(common_name %in% c("garibaldi", "blacksmith", "black surfperch"))
+```
+
+
+#### Example: Make a subset of the fish_counts_curated that does NOT contain observations recorded at Site A
+
+#### Example: Conditionally subset with values
+
+#### Example: Combo w/ string matching & value condition
+
+#### Example: Some combo w/previous functions used
+
+We can also use `dplyr::filter()` in combination with the functions we learned for wrangling yesterday. If we have multiple sequential steps to perform, we can string them together using the *pipe operator* (`%>%`).
+
+
+
+
+####
 
 
 ## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
 ## Interludes (deep thoughts/openscapes)
+
+- Idea: not overusing the pipe in really long sequences. What are other options? Why is that a concern? What are some ways to always know that what's happening in a sequence is what you EXPECT is happening in a sequence? tidylog, check intermediate data frames, sometimes write intermediate data frames, etc. 
+
+
+
 ## Our Turn Your Turn 1
 ## Our Turn Your Turn 2
 ## Efficiency Tips

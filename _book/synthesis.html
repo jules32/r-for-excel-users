@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Synthesis | R for the Excel User</title>
   <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.13.2 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Synthesis | R for the Excel User" />
   <meta property="og:type" content="book" />
@@ -24,14 +24,14 @@
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
 
 
-<meta name="date" content="2019-10-03" />
+<meta name="date" content="2019-10-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="format.html">
+<link rel="prev" href="format.html"/>
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -40,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -55,7 +58,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -146,14 +148,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5.1" data-path="overview.html"><a href="overview.html#rstudio-projects"><i class="fa fa-check"></i><b>2.5.1</b> RStudio Projects</a></li>
 <li class="chapter" data-level="2.5.2" data-path="overview.html"><a href="overview.html#r-console"><i class="fa fa-check"></i><b>2.5.2</b> R Console</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="overview.html"><a href="overview.html#r-scripts"><i class="fa fa-check"></i><b>2.6</b> R Scripts</a><ul>
-<li class="chapter" data-level="2.6.1" data-path="overview.html"><a href="overview.html#deep-thought-error-messages-are-your-friends"><i class="fa fa-check"></i><b>2.6.1</b> Deep thought: Error messages are your friends</a></li>
+<li class="chapter" data-level="2.6" data-path="overview.html"><a href="overview.html#deep-thought"><i class="fa fa-check"></i><b>2.6</b> Deep thought</a></li>
+<li class="chapter" data-level="2.7" data-path="overview.html"><a href="overview.html#r-scripts"><i class="fa fa-check"></i><b>2.7</b> R Scripts</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="overview.html"><a href="overview.html#deep-thought-error-messages-are-your-friends"><i class="fa fa-check"></i><b>2.7.1</b> Deep thought: Error messages are your friends</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="overview.html"><a href="overview.html#dont-save-the-workspace"><i class="fa fa-check"></i><b>2.7</b> Don’t save the workspace</a></li>
-<li class="chapter" data-level="2.8" data-path="overview.html"><a href="overview.html#deep-thought-keep-the-raw-data-raw."><i class="fa fa-check"></i><b>2.8</b> Deep thought: keep the raw data raw.</a></li>
-<li class="chapter" data-level="2.9" data-path="overview.html"><a href="overview.html#activity-1"><i class="fa fa-check"></i><b>2.9</b> Activity 1</a></li>
-<li class="chapter" data-level="2.10" data-path="overview.html"><a href="overview.html#activity-2"><i class="fa fa-check"></i><b>2.10</b> Activity 2</a></li>
-<li class="chapter" data-level="2.11" data-path="overview.html"><a href="overview.html#efficiency-tips"><i class="fa fa-check"></i><b>2.11</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="2.8" data-path="overview.html"><a href="overview.html#dont-save-the-workspace"><i class="fa fa-check"></i><b>2.8</b> Don’t save the workspace</a></li>
+<li class="chapter" data-level="2.9" data-path="overview.html"><a href="overview.html#deep-thought-keep-the-raw-data-raw."><i class="fa fa-check"></i><b>2.9</b> Deep thought: keep the raw data raw.</a></li>
+<li class="chapter" data-level="2.10" data-path="overview.html"><a href="overview.html#activity-1"><i class="fa fa-check"></i><b>2.10</b> Activity 1</a></li>
+<li class="chapter" data-level="2.11" data-path="overview.html"><a href="overview.html#activity-2"><i class="fa fa-check"></i><b>2.11</b> Activity 2</a></li>
+<li class="chapter" data-level="2.12" data-path="overview.html"><a href="overview.html#efficiency-tips"><i class="fa fa-check"></i><b>2.12</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="readxl.html"><a href="readxl.html"><i class="fa fa-check"></i><b>3</b> <code>readxl</code></a><ul>
 <li class="chapter" data-level="3.1" data-path="readxl.html"><a href="readxl.html#summary"><i class="fa fa-check"></i><b>3.1</b> Summary</a></li>
@@ -195,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4" data-path="pivot.html"><a href="pivot.html#introduction-our-analytical-plan"><i class="fa fa-check"></i><b>5.4</b> Introduction / our analytical plan</a></li>
 <li class="chapter" data-level="5.5" data-path="pivot.html"><a href="pivot.html#what-are-pivot-tables"><i class="fa fa-check"></i><b>5.5</b> What are pivot tables?</a></li>
 <li class="chapter" data-level="5.6" data-path="pivot.html"><a href="pivot.html#dplyr-for-pivot-tables"><i class="fa fa-check"></i><b>5.6</b> dplyr for pivot tables</a></li>
-<li class="chapter" data-level="5.7" data-path="pivot.html"><a href="pivot.html#deep-thought"><i class="fa fa-check"></i><b>5.7</b> Deep thought</a></li>
+<li class="chapter" data-level="5.7" data-path="pivot.html"><a href="pivot.html#deep-thought-1"><i class="fa fa-check"></i><b>5.7</b> Deep thought</a></li>
 <li class="chapter" data-level="5.8" data-path="pivot.html"><a href="pivot.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1"><i class="fa fa-check"></i><b>5.8</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
 <li class="chapter" data-level="5.9" data-path="pivot.html"><a href="pivot.html#interludes-deep-thoughtsopenscapes-3"><i class="fa fa-check"></i><b>5.9</b> Interludes (deep thoughts/openscapes)</a></li>
 <li class="chapter" data-level="5.10" data-path="pivot.html"><a href="pivot.html#our-turn-your-turn-1-1"><i class="fa fa-check"></i><b>5.10</b> Our Turn Your Turn 1</a></li>
@@ -314,11 +317,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({

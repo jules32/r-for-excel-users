@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Dplyr and Pivot Tables | R for the Excel User</title>
   <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.13.2 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Dplyr and Pivot Tables | R for the Excel User" />
   <meta property="og:type" content="book" />
@@ -24,15 +24,15 @@
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
 
 
-<meta name="date" content="2019-10-03" />
+<meta name="date" content="2019-10-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="rmarkdown.html">
-<link rel="next" href="vlookup.html">
+<link rel="prev" href="rmarkdown.html"/>
+<link rel="next" href="vlookup.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -40,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -55,7 +58,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -146,14 +148,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5.1" data-path="overview.html"><a href="overview.html#rstudio-projects"><i class="fa fa-check"></i><b>2.5.1</b> RStudio Projects</a></li>
 <li class="chapter" data-level="2.5.2" data-path="overview.html"><a href="overview.html#r-console"><i class="fa fa-check"></i><b>2.5.2</b> R Console</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="overview.html"><a href="overview.html#r-scripts"><i class="fa fa-check"></i><b>2.6</b> R Scripts</a><ul>
-<li class="chapter" data-level="2.6.1" data-path="overview.html"><a href="overview.html#deep-thought-error-messages-are-your-friends"><i class="fa fa-check"></i><b>2.6.1</b> Deep thought: Error messages are your friends</a></li>
+<li class="chapter" data-level="2.6" data-path="overview.html"><a href="overview.html#deep-thought"><i class="fa fa-check"></i><b>2.6</b> Deep thought</a></li>
+<li class="chapter" data-level="2.7" data-path="overview.html"><a href="overview.html#r-scripts"><i class="fa fa-check"></i><b>2.7</b> R Scripts</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="overview.html"><a href="overview.html#deep-thought-error-messages-are-your-friends"><i class="fa fa-check"></i><b>2.7.1</b> Deep thought: Error messages are your friends</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="overview.html"><a href="overview.html#dont-save-the-workspace"><i class="fa fa-check"></i><b>2.7</b> Don’t save the workspace</a></li>
-<li class="chapter" data-level="2.8" data-path="overview.html"><a href="overview.html#deep-thought-keep-the-raw-data-raw."><i class="fa fa-check"></i><b>2.8</b> Deep thought: keep the raw data raw.</a></li>
-<li class="chapter" data-level="2.9" data-path="overview.html"><a href="overview.html#activity-1"><i class="fa fa-check"></i><b>2.9</b> Activity 1</a></li>
-<li class="chapter" data-level="2.10" data-path="overview.html"><a href="overview.html#activity-2"><i class="fa fa-check"></i><b>2.10</b> Activity 2</a></li>
-<li class="chapter" data-level="2.11" data-path="overview.html"><a href="overview.html#efficiency-tips"><i class="fa fa-check"></i><b>2.11</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="2.8" data-path="overview.html"><a href="overview.html#dont-save-the-workspace"><i class="fa fa-check"></i><b>2.8</b> Don’t save the workspace</a></li>
+<li class="chapter" data-level="2.9" data-path="overview.html"><a href="overview.html#deep-thought-keep-the-raw-data-raw."><i class="fa fa-check"></i><b>2.9</b> Deep thought: keep the raw data raw.</a></li>
+<li class="chapter" data-level="2.10" data-path="overview.html"><a href="overview.html#activity-1"><i class="fa fa-check"></i><b>2.10</b> Activity 1</a></li>
+<li class="chapter" data-level="2.11" data-path="overview.html"><a href="overview.html#activity-2"><i class="fa fa-check"></i><b>2.11</b> Activity 2</a></li>
+<li class="chapter" data-level="2.12" data-path="overview.html"><a href="overview.html#efficiency-tips"><i class="fa fa-check"></i><b>2.12</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="readxl.html"><a href="readxl.html"><i class="fa fa-check"></i><b>3</b> <code>readxl</code></a><ul>
 <li class="chapter" data-level="3.1" data-path="readxl.html"><a href="readxl.html#summary"><i class="fa fa-check"></i><b>3.1</b> Summary</a></li>
@@ -195,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4" data-path="pivot.html"><a href="pivot.html#introduction-our-analytical-plan"><i class="fa fa-check"></i><b>5.4</b> Introduction / our analytical plan</a></li>
 <li class="chapter" data-level="5.5" data-path="pivot.html"><a href="pivot.html#what-are-pivot-tables"><i class="fa fa-check"></i><b>5.5</b> What are pivot tables?</a></li>
 <li class="chapter" data-level="5.6" data-path="pivot.html"><a href="pivot.html#dplyr-for-pivot-tables"><i class="fa fa-check"></i><b>5.6</b> dplyr for pivot tables</a></li>
-<li class="chapter" data-level="5.7" data-path="pivot.html"><a href="pivot.html#deep-thought"><i class="fa fa-check"></i><b>5.7</b> Deep thought</a></li>
+<li class="chapter" data-level="5.7" data-path="pivot.html"><a href="pivot.html#deep-thought-1"><i class="fa fa-check"></i><b>5.7</b> Deep thought</a></li>
 <li class="chapter" data-level="5.8" data-path="pivot.html"><a href="pivot.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1"><i class="fa fa-check"></i><b>5.8</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
 <li class="chapter" data-level="5.9" data-path="pivot.html"><a href="pivot.html#interludes-deep-thoughtsopenscapes-3"><i class="fa fa-check"></i><b>5.9</b> Interludes (deep thoughts/openscapes)</a></li>
 <li class="chapter" data-level="5.10" data-path="pivot.html"><a href="pivot.html#our-turn-your-turn-1-1"><i class="fa fa-check"></i><b>5.10</b> Our Turn Your Turn 1</a></li>
@@ -280,6 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="objectives-more-detailed-bulletpoints-2" class="section level2">
 <h2><span class="header-section-number">5.2</span> Objectives (more detailed, bulletpoints?)</h2>
+<p>In R, we can use dplyr for pivot tables by using 2 main verbs in combination: <code>group_by</code> and <code>summarize</code>, and that’s where we’ll start. Then, we will learn 2 critical verbs that you will use all the time: <code>select</code> and <code>mutate</code>.</p>
 <ul>
 <li>intro to wrangling with dplyr</li>
 <li>learn select</li>
@@ -293,11 +297,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="introduction-our-analytical-plan" class="section level2">
 <h2><span class="header-section-number">5.4</span> Introduction / our analytical plan</h2>
 <p>We are going to continue with our analysis with the fish-counts data. So far, our RMarkdown has the following in the “setup” chunk: <!---TODO update after ch 3 complete ---></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## attach libraries</span>
-<span class="kw">library</span>(tidyverse)
-
-<span class="co">## read in data</span>
-fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;fish_counts_curated.csv&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="co">## attach libraries</span></a>
+<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb42-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb42-4" data-line-number="4"><span class="co">## read in data</span></a>
+<a class="sourceLine" id="cb42-5" data-line-number="5">fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;fish_counts_curated.csv&quot;</span>)</a></code></pre></div>
 <p>And we have explored the data by looking at some summary statistics and making a simple plot. Now, we are going to learn how to wrangle data in R, using the <code>dplyr</code> package which is included in the <code>tidyverse</code>. In this session, we’ll focus on the functions in <code>dplyr</code> that operate like pivot tables.</p>
 <p>This is because what we want to do with our fish_counts data is XXXXX.</p>
 </div>
@@ -311,13 +315,31 @@ fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span
 </div>
 <div id="dplyr-for-pivot-tables" class="section level2">
 <h2><span class="header-section-number">5.6</span> dplyr for pivot tables</h2>
-<p>In R, we can use dplyr for pivot tables by using 2 main verbs in combination: <code>group_by</code> and <code>summarize</code>, and that’s where we’ll start. Then, we will learn 2 critical verbs that you will use all the time: <code>select</code> and <code>mutate</code>. Here is what this looks like:</p>
+<p>In R, we can use dplyr for pivot tables by using 2 main verbs in combination: <code>group_by</code> and <code>summarize</code>. Here is what this looks like:</p>
 <p><code>group_by</code> and <code>summarize</code> are the main ingredients for pivot tables:</p>
 <ul>
 <li><p><strong><code>group_by()</code></strong>: TODO: words here, screenshot without computed column!</p>
 <img src="img/rstudio-cheatsheet-summarise.png" width="300"/></li>
 <li><p><strong><code>summarize()</code></strong>: collapse many values down to a single summary</p>
 <img src="img/rstudio-cheatsheet-summarise.png" width="300"/></li>
+</ul>
+<p>Let’s try this on our fish_counts data.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">fish_counts </a></code></pre></div>
+<pre><code>## # A tibble: 45 x 4
+##     year site  common_name     tot_count
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;               &lt;dbl&gt;
+##  1  2016 abur  black surfperch         2
+##  2  2016 abur  blacksmith              1
+##  3  2016 abur  garibaldi               1
+##  4  2016 abur  rock wrasse             2
+##  5  2016 abur  senorita               58
+##  6  2016 aque  black surfperch         1
+##  7  2016 aque  blacksmith              1
+##  8  2016 aque  garibaldi               1
+##  9  2016 aque  rock wrasse             1
+## 10  2016 aque  senorita               57
+## # … with 35 more rows</code></pre>
+<ul>
 <li><p><strong><code>select()</code></strong>: pick variables by their names</p>
 <img src="img/rstudio-cheatsheet-select.png" width="300"/></li>
 <li><p><strong><code>mutate()</code></strong>: create new variables with functions of existing variables</p>
@@ -332,7 +354,7 @@ fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span
 </ol>
 <p>Together these properties make it easy to chain together multiple simple steps to achieve a complex result.</p>
 </div>
-<div id="deep-thought" class="section level2">
+<div id="deep-thought-1" class="section level2">
 <h2><span class="header-section-number">5.7</span> Deep thought</h2>
 <p>group_by() %&gt;% summarize() vs
 group_by() %&gt;% mutate()</p>
@@ -365,11 +387,13 @@ group_by() %&gt;% mutate()</p>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Overview | R for the Excel User</title>
   <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.13.2 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Overview | R for the Excel User" />
   <meta property="og:type" content="book" />
@@ -24,15 +24,15 @@
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
 
 
-<meta name="date" content="2019-10-03" />
+<meta name="date" content="2019-10-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="readxl.html">
+<link rel="prev" href="index.html"/>
+<link rel="next" href="readxl.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -40,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -55,7 +58,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -146,14 +148,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5.1" data-path="overview.html"><a href="overview.html#rstudio-projects"><i class="fa fa-check"></i><b>2.5.1</b> RStudio Projects</a></li>
 <li class="chapter" data-level="2.5.2" data-path="overview.html"><a href="overview.html#r-console"><i class="fa fa-check"></i><b>2.5.2</b> R Console</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="overview.html"><a href="overview.html#r-scripts"><i class="fa fa-check"></i><b>2.6</b> R Scripts</a><ul>
-<li class="chapter" data-level="2.6.1" data-path="overview.html"><a href="overview.html#deep-thought-error-messages-are-your-friends"><i class="fa fa-check"></i><b>2.6.1</b> Deep thought: Error messages are your friends</a></li>
+<li class="chapter" data-level="2.6" data-path="overview.html"><a href="overview.html#deep-thought"><i class="fa fa-check"></i><b>2.6</b> Deep thought</a></li>
+<li class="chapter" data-level="2.7" data-path="overview.html"><a href="overview.html#r-scripts"><i class="fa fa-check"></i><b>2.7</b> R Scripts</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="overview.html"><a href="overview.html#deep-thought-error-messages-are-your-friends"><i class="fa fa-check"></i><b>2.7.1</b> Deep thought: Error messages are your friends</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="overview.html"><a href="overview.html#dont-save-the-workspace"><i class="fa fa-check"></i><b>2.7</b> Don’t save the workspace</a></li>
-<li class="chapter" data-level="2.8" data-path="overview.html"><a href="overview.html#deep-thought-keep-the-raw-data-raw."><i class="fa fa-check"></i><b>2.8</b> Deep thought: keep the raw data raw.</a></li>
-<li class="chapter" data-level="2.9" data-path="overview.html"><a href="overview.html#activity-1"><i class="fa fa-check"></i><b>2.9</b> Activity 1</a></li>
-<li class="chapter" data-level="2.10" data-path="overview.html"><a href="overview.html#activity-2"><i class="fa fa-check"></i><b>2.10</b> Activity 2</a></li>
-<li class="chapter" data-level="2.11" data-path="overview.html"><a href="overview.html#efficiency-tips"><i class="fa fa-check"></i><b>2.11</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="2.8" data-path="overview.html"><a href="overview.html#dont-save-the-workspace"><i class="fa fa-check"></i><b>2.8</b> Don’t save the workspace</a></li>
+<li class="chapter" data-level="2.9" data-path="overview.html"><a href="overview.html#deep-thought-keep-the-raw-data-raw."><i class="fa fa-check"></i><b>2.9</b> Deep thought: keep the raw data raw.</a></li>
+<li class="chapter" data-level="2.10" data-path="overview.html"><a href="overview.html#activity-1"><i class="fa fa-check"></i><b>2.10</b> Activity 1</a></li>
+<li class="chapter" data-level="2.11" data-path="overview.html"><a href="overview.html#activity-2"><i class="fa fa-check"></i><b>2.11</b> Activity 2</a></li>
+<li class="chapter" data-level="2.12" data-path="overview.html"><a href="overview.html#efficiency-tips"><i class="fa fa-check"></i><b>2.12</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="readxl.html"><a href="readxl.html"><i class="fa fa-check"></i><b>3</b> <code>readxl</code></a><ul>
 <li class="chapter" data-level="3.1" data-path="readxl.html"><a href="readxl.html#summary"><i class="fa fa-check"></i><b>3.1</b> Summary</a></li>
@@ -195,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4" data-path="pivot.html"><a href="pivot.html#introduction-our-analytical-plan"><i class="fa fa-check"></i><b>5.4</b> Introduction / our analytical plan</a></li>
 <li class="chapter" data-level="5.5" data-path="pivot.html"><a href="pivot.html#what-are-pivot-tables"><i class="fa fa-check"></i><b>5.5</b> What are pivot tables?</a></li>
 <li class="chapter" data-level="5.6" data-path="pivot.html"><a href="pivot.html#dplyr-for-pivot-tables"><i class="fa fa-check"></i><b>5.6</b> dplyr for pivot tables</a></li>
-<li class="chapter" data-level="5.7" data-path="pivot.html"><a href="pivot.html#deep-thought"><i class="fa fa-check"></i><b>5.7</b> Deep thought</a></li>
+<li class="chapter" data-level="5.7" data-path="pivot.html"><a href="pivot.html#deep-thought-1"><i class="fa fa-check"></i><b>5.7</b> Deep thought</a></li>
 <li class="chapter" data-level="5.8" data-path="pivot.html"><a href="pivot.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1"><i class="fa fa-check"></i><b>5.8</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
 <li class="chapter" data-level="5.9" data-path="pivot.html"><a href="pivot.html#interludes-deep-thoughtsopenscapes-3"><i class="fa fa-check"></i><b>5.9</b> Interludes (deep thoughts/openscapes)</a></li>
 <li class="chapter" data-level="5.10" data-path="pivot.html"><a href="pivot.html#our-turn-your-turn-1-1"><i class="fa fa-check"></i><b>5.10</b> Our Turn Your Turn 1</a></li>
@@ -287,6 +290,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="https://whattheyforgot.org/">What They Forgot to Teach You About R</a> — Jenny Bryan &amp; Jim Hester</li>
 <li><a href="https://stat545.com/">Stat545</a> — Jenny Bryan &amp; Stat545 TAs</li>
 <li><a href="http://rex-analytics.com/things-live-r-r-excel-users/">Where do Things Live in R?</a> REX Analytics</li>
+<li><a href="https://blog.shotwell.ca/posts/r_for_excel_users/"></a></li>
 </ul>
 </div>
 <div id="overview-1" class="section level2">
@@ -384,21 +388,25 @@ Show data files, We will discuss our analysis plan (only enough to motivate!) Cr
 <h3><span class="header-section-number">2.5.2</span> R Console</h3>
 <p>Watch me work in the Console.</p>
 <p>I can do math:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">52</span><span class="op">*</span><span class="dv">40</span>
-<span class="dv">365</span><span class="op">/</span><span class="dv">12</span></code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dv">52</span><span class="op">*</span><span class="dv">40</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="dv">365</span><span class="op">/</span><span class="dv">12</span></a></code></pre></div>
 <p><em>TODO: refine</em></p>
 <p>But like Excel, the power comes not from doing small operations by hand (like 8*22.3), it’s by being able to operate on whole suites of numbers and datasets. In Excel, data are stored in the spreadsheet. In R, they are stored in dataframes, and named as variables.</p>
-<p>R stores data in variables, and that data can be a variety of formats, like numeric and text.</p>
+<p>R stores data in variables, and you give them names. This is a big difference with Excel, where you usually identify data by by its location on the grid, like <code>$A1:D$20</code>. (You can do this with Excel by naming ranges of cells, but most people don’t do this.)</p>
+<p>Data can be a variety of formats, like numeric and text.</p>
 <p>Let’s have a look at some data in R. R has several built-in data sets that we can look at and work with.</p>
 <p>One of these datasets is called <code>mtcars</code>. If I write this in the Console, it will print the data in the console.</p>
-<pre class="sourceCode r"><code class="sourceCode r">mtcars</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">mtcars</a></code></pre></div>
 <p>I can also use RStudio’s Viewer to see this in a more familiar-looking format:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(mtcars)</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">View</span>(mtcars)</a></code></pre></div>
 <p>This opens the fourth pane of the RStudio IDE; when you work in R you will have all four panes open so this will become a very comforting setup for you.</p>
+<blockquote>
+<p>The basic R data structure is a vector. You can think of a vector like a column in an Excel spreadsheet with the limitation that all the data in that vector must be of the same type. If it is a character vector, every element must be a character; if it is a logical vector, every element must be TRUE or FALSE; if it’s numeric you can trust that every element is a number. There’s no such constraint in Excel: you might have a column which has a bunch of numbers, but then some explanatory test intermingled with the numbers. This isn’t allowed in R. - <a href="https://blog.shotwell.ca/posts/r_for_excel_users/" class="uri">https://blog.shotwell.ca/posts/r_for_excel_users/</a></p>
+</blockquote>
 <p>In the Viewer I can do things like filter or sort. This does not do anything to the actual data, it just changes how you are viewing the data. So even as I explore it, I am not editing or manipulating the data.</p>
 <p>Like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we’ll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).</p>
 <p>So let’s look into some of these functions. In Excel, there is a “SUM” function to calculate a total. Let’s expect that there is the same in R. I will type this into the Console:</p>
-<pre class="sourceCode r"><code class="sourceCode r">?sum</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">?sum</a></code></pre></div>
 <p>A few important things to note:</p>
 <ol style="list-style-type: decimal">
 <li><p>R is case-sensitive. So “sum” is a completely different thing to “Sum” or “SUM”. And this is true for the names of functions, data sets, variable names, and data itself (“blue” vs “Blue”).</p></li>
@@ -418,44 +426,50 @@ Show data files, We will discuss our analysis plan (only enough to motivate!) Cr
 <p>When I look at a help page, I start with the description, which might be too in-the-weeds for the level of understanding I need at the offset. For the <code>sum</code> page, it is pretty straight-forward and lets me know that yup, this is the function I want.</p>
 <p>I next look at the usage and arguments, which give me a more concrete view into what the function does. This syntax looks a bit cryptic but what it means is that you use it by writing sum, and then passing whatever you want to it in terms of data: that is what the “…” means. And the “na.rm=FALSE” means that by default, it will not remove NAs (I read this as: “remove NAs? FALSE!”)</p>
 <p>Then, I usually scroll down to the bottom to the examples. This is where I can actually see how the function is used, and I can also paste those examples into the Console to see their output. Best way to learn what the function actually does is seeing it in action. Let’s try:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</a></code></pre></div>
 <p>So this is calculating the sum of the numbers from 1 and 5; that is what that <code>1:5</code> syntax means in this case. We can check it with the next example:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">sum</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</a></code></pre></div>
 <p>Awesome. Let’s try this on our <code>mtcars</code> data</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(mtcars)</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">sum</span>(mtcars)</a></code></pre></div>
 <p>Alright. What is this number? It is the sum of ALL of the data in the mtcars dataset. Maybe in some analysis this would be a useful operation, but I would worry about the way your data is set up and your analyses if this is ever something you’d want to do. More likely, you’d want to take the sum of a specific column. In R, you can do that with the <code>$</code> operator.</p>
 <p>Let’s say we want to calculate the total number of gears that all these cars have:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(mtcars<span class="op">$</span>gear)</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">sum</span>(mtcars<span class="op">$</span>gear)</a></code></pre></div>
+</div>
+</div>
+<div id="deep-thought" class="section level2">
+<h2><span class="header-section-number">2.6</span> Deep thought</h2>
+<p>How would you do this in Excel?
+The calculations are usually the same shape as the data. In other words if you want to multiply 20 numbers stored in cells A1:An by 2, you will need 20 calculations: =A1 * 2, =A2 * 2, …., =An * 2.</p>
+<!---from https://blog.shotwell.ca/posts/r_for_excel_users/ --->
 <!---
 TODO: should we get into this?
 Let's try another. In Excel there is a function called AVERAGE. Let's see if there is such a thing in R. 
 --->
 <p>OK so now that we’ve got a little bit of a feel for R and RStudio, let’s do something much more interesting and really start feeling its power.</p>
 </div>
-</div>
 <div id="r-scripts" class="section level2">
-<h2><span class="header-section-number">2.6</span> R Scripts</h2>
+<h2><span class="header-section-number">2.7</span> R Scripts</h2>
 <p>OK so working in the Console is great for quick things, but it gets messy. Keeping track at what I’ve done and trying to build upon it would be a nightmare.</p>
 <p>Instead of working in the Console, we can be more organized by writing analyses in a script. This is a really powerful way to work in R. <em>TODO dev more</em> Scripts are a written record of the analyses you do, unlike Excel. And they can be re-run easily…</p>
 <p>In this script, we’re going to make our first figure in R. Let’s all do this together.</p>
 <!---TODO add screenshots, build out more --->
 <p>File &gt; New File &gt; R Script.</p>
 <p>This is a blank slate for us to write our code; but there are some good practices we can start off with. Let’s add a useful header to the top of it. For example, at a minimum:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># --------------------------------</span>
-<span class="co"># A descriptive title</span>
-<span class="co"># Your name</span>
-<span class="co"># Contact information</span>
-<span class="co"># Date</span>
-<span class="co"># --------------------------------</span></code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># --------------------------------</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co"># A descriptive title</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co"># Your name</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co"># Contact information</span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co"># Date</span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co"># --------------------------------</span></a></code></pre></div>
 <p>And then let’s save it, naming it something like “my_first_figure.R”. Let’s get into good habits now with this filename: no spaces! Use underscores <code>_</code> or dashes <code>-</code> or no space at all.</p>
 <p>Since we’re working in or Project, this script is now nicely saved in our Project. You can see our <code>.R</code> show up in our Files pane on the bottom right.</p>
 <p>Let’s attach a package. Since you’ve already installed tidyverse,</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Attach the tidyverse</span>
-<span class="kw">library</span>(tidyverse)</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># Attach the tidyverse</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
 <p>What is the tidyverse? <em>TODO</em>
 - ggplot2</p>
 <p>Let’s look at one of the datasets that is built into the ggplot2 package. Type this into your R script:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(diamonds)</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">View</span>(diamonds)</a></code></pre></div>
 <p>So this is not immediately executed like when we were typing in the Console. That’s because an R script is really just a text file that doesn’t do anything on its own; you need to tell R to execute it. You do that in a few ways (let’s do each of them):</p>
 <ol style="list-style-type: decimal">
 <li>copy-paste this line into the console.</li>
@@ -463,11 +477,11 @@ Let's try another. In Excel there is a function called AVERAGE. Let's see if the
 <li>click Source (top right of your script) to run the whole script.</li>
 </ol>
 <p>Now let’s plot it. Type this or copy-paste and then we’ll discuss:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x =</span> carat, <span class="dt">y =</span> price)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>()</code></pre>
-<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x =</span> carat, <span class="dt">y =</span> price)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <div id="deep-thought-error-messages-are-your-friends" class="section level3">
-<h3><span class="header-section-number">2.6.1</span> Deep thought: Error messages are your friends</h3>
+<h3><span class="header-section-number">2.7.1</span> Deep thought: Error messages are your friends</h3>
 <p>As <a href="https://stat545.com/r-basics.html">Jenny Bryan says</a>:</p>
 <blockquote>
 <p>Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Pay attention to how you type.</p>
@@ -477,21 +491,21 @@ Let's try another. In Excel there is a function called AVERAGE. Let's see if the
 </div>
 </div>
 <div id="dont-save-the-workspace" class="section level2">
-<h2><span class="header-section-number">2.7</span> Don’t save the workspace</h2>
+<h2><span class="header-section-number">2.8</span> Don’t save the workspace</h2>
 </div>
 <div id="deep-thought-keep-the-raw-data-raw." class="section level2">
-<h2><span class="header-section-number">2.8</span> Deep thought: keep the raw data raw.</h2>
+<h2><span class="header-section-number">2.9</span> Deep thought: keep the raw data raw.</h2>
 <p>Discussing using Excel for variables.</p>
 <p>Horror Stories! Economist etc.</p>
 </div>
 <div id="activity-1" class="section level2">
-<h2><span class="header-section-number">2.9</span> Activity 1</h2>
+<h2><span class="header-section-number">2.10</span> Activity 1</h2>
 </div>
 <div id="activity-2" class="section level2">
-<h2><span class="header-section-number">2.10</span> Activity 2</h2>
+<h2><span class="header-section-number">2.11</span> Activity 2</h2>
 </div>
 <div id="efficiency-tips" class="section level2">
-<h2><span class="header-section-number">2.11</span> Efficiency Tips</h2>
+<h2><span class="header-section-number">2.12</span> Efficiency Tips</h2>
 <!---
 
 ## Credit
@@ -521,11 +535,13 @@ References Brainstorm
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
