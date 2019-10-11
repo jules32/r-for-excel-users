@@ -4,6 +4,8 @@
 ## Summary (a few sentences)
 ## Objectives (more detailed, bulletpoints?)
 
+- working with data that are not your own. 
+
 ## Resources
 
 R is not only a language, it is an active community of developers, users, and educators (often these traits are in each person). This workshop and book based on many excellent materials created by other members in the R community, who share their work freely to help others learn. Using community materials is how WE learned R, and each chapter of the book will have Resources listed for further reading into the topics we discuss. And, when there is no better way to explain something (ahem Jenny Bryan), we will quote or reference that work directly.
