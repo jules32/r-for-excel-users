@@ -721,7 +721,7 @@ Now let's make a simple plot of some fish counts with \texttt{ggplot2}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(fish_counts, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ year, }\DataTypeTok{y =}\NormalTok{ tot_count)) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(fish_counts, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ year, }\DataTypeTok{y =}\NormalTok{ total_count)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill =}\NormalTok{ common_name)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{site)}
 \end{Highlighting}
@@ -917,12 +917,12 @@ Note that you can also specify a worksheet by position: since \emph{golb} is the
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 3 x 5
-##   year  month site  common_name tot_fronds
-##   <chr> <chr> <chr> <chr>            <dbl>
-## 1 2016  7     golb  giant kelp        2557
-## 2 2017  7     golb  giant kelp        1575
-## 3 2018  7     golb  giant kelp        1629
+## # A tibble: 3 x 4
+##   year  month site  total_fronds
+##   <chr> <chr> <chr>        <dbl>
+## 1 2016  7     golb          2557
+## 2 2017  7     golb          1575
+## 3 2018  7     golb          1629
 \end{verbatim}
 
 \hypertarget{read-in-and-combine-data-from-multiple-worksheets-into-a-data-frame-simultaneously-with-purrrmap_df}{%
@@ -970,19 +970,19 @@ Check out \emph{kelp\_all\_sites}, and notice that now the data from all 11 site
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 32 x 5
-##    year  month site  common_name tot_fronds
-##    <chr> <chr> <chr> <chr>            <dbl>
-##  1 2016  7     abur  giant kelp         307
-##  2 2017  7     abur  giant kelp         604
-##  3 2018  7     abur  giant kelp        3532
-##  4 2016  7     ahnd  giant kelp        2572
-##  5 2017  7     ahnd  giant kelp          16
-##  6 2018  7     ahnd  giant kelp          16
-##  7 2016  7     aque  giant kelp       11152
-##  8 2017  7     aque  giant kelp        9194
-##  9 2018  7     aque  giant kelp        7754
-## 10 2016  7     bull  giant kelp        6706
+## # A tibble: 32 x 4
+##    year  month site  total_fronds
+##    <chr> <chr> <chr>        <dbl>
+##  1 2016  7     abur           307
+##  2 2017  7     abur           604
+##  3 2018  7     abur          3532
+##  4 2016  7     ahnd          2572
+##  5 2017  7     ahnd            16
+##  6 2018  7     ahnd            16
+##  7 2016  7     aque         11152
+##  8 2017  7     aque          9194
+##  9 2018  7     aque          7754
+## 10 2016  7     bull          6706
 ## # ... with 22 more rows
 \end{verbatim}
 
@@ -990,7 +990,7 @@ Awesome! Let's make a graph with ggplot2:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(kelp_all_sites, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ site, }\DataTypeTok{y =}\NormalTok{ tot_fronds)) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(kelp_all_sites, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ site, }\DataTypeTok{y =}\NormalTok{ total_fronds)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill =}\NormalTok{ year), }\DataTypeTok{position =} \StringTok{"dodge"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"purple"}\NormalTok{,}\StringTok{"orange"}\NormalTok{,}\StringTok{"gray30"}\NormalTok{))}
 \end{Highlighting}
@@ -1027,12 +1027,12 @@ As a CSV:
 
 A cool thing about \texttt{readr::read\_csv()} is that it just quietly \emph{works} without wrecking anything else you do in a sequence, so it's great to add at the end of a piped sequence.
 
-For example, if I want to read in the `ivee' worksheet from kelp\_counts\_curated.xlsx, select only columns `year' and `tot\_fronds', then write that new subset to a .csv file, I can pipe all the way through:
+For example, if I want to read in the `ivee' worksheet from kelp\_counts\_curated.xlsx, select only columns `year' and `total\_fronds', then write that new subset to a .csv file, I can pipe all the way through:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{kelp_ivee <-}\StringTok{ }\NormalTok{readxl}\OperatorTok{::}\KeywordTok{read_excel}\NormalTok{(}\StringTok{"kelp_counts_curated.xlsx"}\NormalTok{, }\DataTypeTok{sheet =} \StringTok{"ivee"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{select}\NormalTok{(year, tot_fronds) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(year, total_fronds) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{write_csv}\NormalTok{(}\StringTok{"kelp_ivee.csv"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -1286,26 +1286,118 @@ In R, we can use dplyr for pivot tables by using 2 main verbs in combination: \t
   \textbf{\texttt{summarize()}}: collapse many values down to a single summary
 \end{itemize}
 
-Let's try this on our fish\_counts data. Let's summarize the total number of fish at each site.
+\hypertarget{group_by-summarize}{%
+\subsection{group\_by() summarize()}\label{group_by-summarize}}
+
+Say it with me: pivot tables are ``group\_by summarize''. And just like pivot tables, you have flexibility with how you are going to summarize. For example, we can calculate an average, or a total.
+
+Let's try this on our fish\_counts data. Let's summarize this data by calculting the the total number of fish by type, which in our dataframe is called \texttt{common\_name}. We'll use the pipe operator \texttt{\%\textgreater{}\%}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{fish_counts }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(site) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{total_fish =} \KeywordTok{sum}\NormalTok{(tot_count))}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(common_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{total_fish =} \KeywordTok{sum}\NormalTok{(total_count)) }\CommentTok{# within summarize, we name a new column and calculate the sum.}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## # A tibble: 3 x 2
-##   site  total_fish
-##   <chr>      <dbl>
-## 1 abur         196
-## 2 aque         110
-## 3 mohk         205
-\end{verbatim}
+Way more seniorita fish than any other kind!
 
-Awesome! And we can still \texttt{View(fish\_counts)} and see that we haven't changed any of our original data. But maybe we do want to save this summary as a variable so we can refer to it or even include it in further analyses
+Notice how together, group\_by and summarize collapse the amount of information we see. We lose the other columns that aren't involved here; we no longer have \texttt{year}, \texttt{common\_name}, or \texttt{total\_count}.
+
+Awesome! And we can still \texttt{View(fish\_counts)} and see that we haven't changed any of our original data. But maybe we do want to save this summary as a variable so we can refer to it or even include it in further analyses. So let's add a variable assignment to that first line:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{common_name_summary <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(common_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{total_fish =} \KeywordTok{sum}\NormalTok{(total_count))}
+\end{Highlighting}
+\end{Shaded}
+
+Now let's summarize by site. We will assign it to a variable called \texttt{site\_summary}. How do we do that?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{site_summary <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(site) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{total_fish =} \KeywordTok{sum}\NormalTok{(total_count))}
+\end{Highlighting}
+\end{Shaded}
+
+Great. It can be useful to summarize by both site and year, so that we can learn a little more about how things change over time across sites. And we are able to group\_by more than one variable. Let's do this together, and assign this to a new variable called \texttt{site\_year\_summary}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{site_year_summary <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(site, year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{total_fish =} \KeywordTok{sum}\NormalTok{(total_count))}
+\end{Highlighting}
+\end{Shaded}
+
+OK, so this is awesome. We can see the total counts for each site by year, and have this saved here in a nice variable.
+
+We will revisit this in a moment, but now let's move on to our next dplyr verb.
+
+\hypertarget{mutate}{%
+\subsection{mutate()}\label{mutate}}
+
+We use the \texttt{mutate()} function to add columns to a data frame. This is one of the most common things that I do in Excel: you need to name the new column, and then you can fill it with new values.
+
+Let's say we need to a column with the type of observation this was, and all of them were by SCUBA. We use the mutate function, and inside it we will first name the column (\texttt{observation\_type}) and set the value (``SCUBA''). We'll have to put SCUBA in quotes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fish_counts }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{observer_name =} \StringTok{"SCUBA"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+When you just set one value like ``SCUBA'', mutate will repeate this value for you; it's the equivalent in Excel to when you grab the bottom right corner of a cell and drag down.
+
+So there are many things you could add to a new column; but I want to demonstrate how powerful mutate can be in combination with group by. So just like we were just doing ``group\_by summarize'', we can do ``group\_by mutate''.
+
+So to use mutate in combination with group\_by. We are going to add a new column with total counts, calculated after grouping by site and year. Let's have a look at it first, and then we will assign it as a variable in a moment.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fish_counts }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(site, year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{total_fish =} \KeywordTok{sum}\NormalTok{(total_count))}
+\end{Highlighting}
+\end{Shaded}
+
+We now have an additional column in our dataframe called \texttt{total\_fish}. If we recall from our \texttt{site\_year\_summary}, this has all the same information. But instead of collapsing our dataframe, we retain all of the information from the other columns, and the \texttt{total\_fish} column will have values that are repeated.
+
+\hypertarget{activity}{%
+\subsection{Activity}\label{activity}}
+
+Take 3 minutes to add a new column to the data frame; discuss with your neighbor for ideas!
+
+\hypertarget{mutate-vs-summarize}{%
+\subsection{mutate() vs summarize()}\label{mutate-vs-summarize}}
+
+So in a case like this, hy would you use mutate instead of summarize? Why would you ever want to have this \texttt{total\_fish} column with values repeated? Why wouldn't you always do group\_by summarize rather than group\_by mutate? Let's explore this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{group_by}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarize}\NormalTok{()}
+\KeywordTok{group_by}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Now let's say we want to calculate the percentage of fish type at each site. This means we are going to do a calculation using both the raw and summary data. And we're going to do it in 2 ways.
+
+I actually like to do this kind of calculation in a
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fish_counts }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(site, year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{total_fish =} \KeywordTok{sum}\NormalTok{(total_count)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{perc_fish =}\NormalTok{ total_count}\OperatorTok{/}\NormalTok{total_fish}\OperatorTok{*}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{itemize}
 \item
@@ -1333,9 +1425,6 @@ Together these properties make it easy to chain together multiple simple steps t
 
 \hypertarget{deep-thought-1}{%
 \section{Deep thought}\label{deep-thought-1}}
-
-group\_by() \%\textgreater{}\% summarize() vs
-group\_by() \%\textgreater{}\% mutate()
 
 \hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1}{%
 \section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1}}
@@ -1513,11 +1602,11 @@ You could also do this using the pipe operator \texttt{\%\textgreater{}\%} (thou
 \hypertarget{filter-rows-based-on-numeric-conditions}{%
 \subsubsection{Filter rows based on numeric conditions}\label{filter-rows-based-on-numeric-conditions}}
 
-Use expected operators (\textgreater{}, \textless{}, \textgreater{}=, \textless{}=, =) to set conditions for a numeric variable when filtering. For this example, we only want to retain observations when the \textbf{tot\_count} column value is \textgreater{}= 50:
+Use expected operators (\textgreater{}, \textless{}, \textgreater{}=, \textless{}=, =) to set conditions for a numeric variable when filtering. For this example, we only want to retain observations when the \textbf{total\_count} column value is \textgreater{}= 50:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{fish_over50 <-}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(fish_counts, tot_count }\OperatorTok{>=}\StringTok{ }\DecValTok{50}\NormalTok{)}
+\NormalTok{fish_over50 <-}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(fish_counts, total_count }\OperatorTok{>=}\StringTok{ }\DecValTok{50}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1526,9 +1615,11 @@ Or, using the pipe:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{fish_over50 <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(tot_count }\OperatorTok{>=}\StringTok{ }\DecValTok{50}\NormalTok{)}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(total_count }\OperatorTok{>=}\StringTok{ }\DecValTok{50}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+TODO: show example of between and exact =
 
 \hypertarget{filter-to-return-rows-that-match-this-or-that-or-that}{%
 \subsubsection{\texorpdfstring{Filter to return rows that match \emph{this} OR \emph{that} OR \emph{that}}{Filter to return rows that match this OR that OR that}}\label{filter-to-return-rows-that-match-this-or-that-or-that}}
@@ -1629,7 +1720,7 @@ For example, if we want to return all observations \emph{except} those where the
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{fish_more_one <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(tot_count }\OperatorTok{!=}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(total_count }\OperatorTok{!=}\StringTok{ }\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1654,14 +1745,14 @@ Which then only returns observations for the other fish species in the dataset.
 
 \begin{verbatim}
 ## # A tibble: 6 x 4
-##    year site  common_name     tot_count
-##   <dbl> <chr> <chr>               <dbl>
-## 1  2016 abur  black surfperch         2
-## 2  2016 abur  blacksmith              1
-## 3  2016 abur  senorita               58
-## 4  2016 aque  black surfperch         1
-## 5  2016 aque  blacksmith              1
-## 6  2016 aque  senorita               57
+##    year site  common_name     total_count
+##   <dbl> <chr> <chr>                 <dbl>
+## 1  2016 abur  black surfperch           2
+## 2  2016 abur  blacksmith                1
+## 3  2016 abur  senorita                 58
+## 4  2016 aque  black surfperch           1
+## 5  2016 aque  blacksmith                1
+## 6  2016 aque  senorita                 57
 \end{verbatim}
 
 \hypertarget{example-some-combo-wprevious-functions-used}{%
@@ -1674,17 +1765,30 @@ We can also use \texttt{dplyr::filter()} in combination with the functions we le
 
 Excel's \texttt{VLOOKUP} can also be used to merge data from separate tables or worksheets. Here, we'll use the \texttt{dplyr::*\_join()} functions to merge separate data frames in R.
 
-There are a number of ways to merge data frames in R. We'll use \texttt{full\_join()} and \texttt{inner\_join()} in this session.
+There are a number of ways to merge data frames in R. We'll use \texttt{full\_join()}, \texttt{left\_join()}, and \texttt{inner\_join()} in this session.
 
 From R Documentation (\texttt{?join}):
 
 \begin{itemize}
 \tightlist
 \item
-  \texttt{dplyr::full\_join()}: ``returns all rows and all columns from both x and y. Where there are not matching values, returns NA for the one missing.'' Basically, nothing gets thrown out, even if a match doesn't exist - making \texttt{full\_join()} the safest option for merging data frames.
+  \texttt{dplyr::full\_join()}: ``returns all rows and all columns from both x and y. Where there are not matching values, returns NA for the one missing.'' Basically, nothing gets thrown out, even if a match doesn't exist - making \texttt{full\_join()} the safest option for merging data frames. When in doubt, \texttt{full\_join()}.
 \item
-  \texttt{dplyr::inner\_join()}: ``returns all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned.'' This will drop observations that don't have a match between the merged data frames, which makes it a riskier merging option if you're not sure what you're trying to do. When in doubt, \texttt{full\_join()}.
+  \texttt{dplyr::left\_join()}: ``return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned.''
+\item
+  \texttt{dplyr::inner\_join()}: ``returns all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned.'' This will drop observations that don't have a match between the merged data frames, which makes it a riskier merging option if you're not sure what you're trying to do.
 \end{itemize}
+
+To clarify what the different joins are doing, let's first make a subset of the \emph{fish\_counts} data frame that only contains observations from 2016 and 2017.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fish_}\DecValTok{2016}\NormalTok{_}\DecValTok{2017}\NormalTok{ <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(year }\OperatorTok{==}\StringTok{ }\DecValTok{2016} \OperatorTok{|}\StringTok{ }\NormalTok{year }\OperatorTok{==}\StringTok{ }\DecValTok{2017}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Take a look to ensure that only those years are included with \texttt{View(fish\_2016\_2017)}. Now, let's merge it with our kelp fronds data in different ways.
 
 \hypertarget{dplyrfull_join-to-merge-data-frames-keeping-everything}{%
 \subsubsection{\texorpdfstring{\texttt{dplyr::full\_join()} to merge data frames, keeping everything}{dplyr::full\_join() to merge data frames, keeping everything}}\label{dplyrfull_join-to-merge-data-frames-keeping-everything}}
@@ -1701,8 +1805,163 @@ When we join data frames in R, we need to tell R a couple of things (and it does
 
 Note: If there are \textbf{exactly matching} column names in the data frames you're merging, the \texttt{*\_join()} functions will assume that you want to join by those columns. If there are \emph{no} matching column names, you can specify which columns to join by manually. We'll do both here.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Join the fish_counts and kelp_counts_abur together: }
+\NormalTok{abur_kelp_join <-}\StringTok{ }\NormalTok{fish_}\DecValTok{2016}\NormalTok{_}\DecValTok{2017} \OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{full_join}\NormalTok{(kelp_counts_abur) }\CommentTok{# Uh oh. An error message.}
+\end{Highlighting}
+\end{Shaded}
+
+When we try to do that join, we get an error message:
+\texttt{Error:\ Can\textquotesingle{}t\ join\ on\ \textquotesingle{}year\textquotesingle{}\ x\ \textquotesingle{}year\textquotesingle{}\ because\ of\ incompatible\ types\ (character\ /\ numeric)}
+
+What's going on here? First, there's something fishy (ha) going on with the class of the \emph{year} variable in \texttt{kelp\_counts\_abur}. Use the \texttt{class()} function to see how R understands that variable (remember, we use \texttt{\$} to return a specific column from a data frame).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(kelp_counts_abur}\OperatorTok{$}\NormalTok{year)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+So the variable is currently stored as a character. Why?
+
+If we go back to the kelp\_counts\_curated.xlsx file, we'll see that the numbers in both the year and month column have been stored as \emph{text}. There are several hints Excel gives us:
+
+\begin{itemize}
+\tightlist
+\item
+  Cells are left aligned, when values stored as numbers are right aligned
+\item
+  The green triangles in the corner indicate some formatting
+\item
+  The warning sign shows up when you click on one of the values with text formatting, and lets you know that the cell has been stored as text. We are given the option to reformat as numeric in Excel, but we'll do it here in R so we have a reproducible record of the change to the variable class.
+\end{itemize}
+
+There are a number of ways to do this in R. We'll use \texttt{dplyr::mutate()} to overwrite the existing \texttt{year} column while coercing it to class \emph{numeric} using the \texttt{as.numeric()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Coerce the class of 'year' to numeric}
+\NormalTok{kelp_counts_abur <-}\StringTok{ }\NormalTok{kelp_counts_abur }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{year =} \KeywordTok{as.numeric}\NormalTok{(year))}
+\end{Highlighting}
+\end{Shaded}
+
+Now if we check the class of the \emph{year} variable in \texttt{kelp\_counts\_abur}, we'll see that it has been coerced to `numeric':
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(kelp_counts_abur}\OperatorTok{$}\NormalTok{year)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+\textbf{Question: Isn't it bad practice to overwrite variables, instead of just making a new one?} Great question, and usually the answer is yes. Here, we feel fine with ``overwriting'' the year column because we're not changing anything about what's contained within the column, we're only changing how R understands it. Always use caution if overwriting variables, and if in doubt, add one instead!
+
+OK, so now the class of \emph{year} in the data frames we're joining is the same. Let's try that \texttt{full\_join()} again:
+
+TODO: consider using fish\_2016\_2017 here to really show that full\_join() keeps everything?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{abur_kelp_join <-}\StringTok{ }\NormalTok{fish_}\DecValTok{2016}\NormalTok{_}\DecValTok{2017} \OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{full_join}\NormalTok{(kelp_counts_abur)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = c("year", "site")
+\end{verbatim}
+
+First, notice that R tells us which sites it is joining by - in this case, \emph{year} and \emph{site} since those were the two matching variables in both data frames.
+
+Now look at the merged data frame with \texttt{View(abur\_kelp\_join)}. A few things to notice about how \texttt{full\_join()} has worked:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  All columns that existed in \textbf{both data frames} still exist.
+\item
+  All observations are retained, even if they don't have a match. In this case, notice that for other sites (not `abur') the observation for fish still exists, even though there was no corresponding kelp data to merge with it. The kelp frond data from 2018 is also returned, even though the fish counts dataset did not have `year == 2018' in it.
+\item
+  The kelp frond data is joined to \emph{all observations} where the joining variables (\emph{year}, \emph{site}) are a match, which is why it is repeated 5 times for each year (once for each fish species).
+\end{enumerate}
+
+Because all data (observations \& columns) are retained, \texttt{full\_join()} is the safest option if you're unclear about how to merge data frames.
+
+\hypertarget{dplyrleft_join-to-merge-data-frames-keeping-everything-in-the-x-data-frame-and-only-matches-from-the-y-data-frame}{%
+\subsubsection{\texorpdfstring{\texttt{dplyr::left\_join()} to merge data frames, keeping everything in the `x' data frame and only matches from the `y' data frame}{dplyr::left\_join() to merge data frames, keeping everything in the `x' data frame and only matches from the `y' data frame}}\label{dplyrleft_join-to-merge-data-frames-keeping-everything-in-the-x-data-frame-and-only-matches-from-the-y-data-frame}}
+
+TODO: think about a way to make left\_join() clear. Need to join data frame `y' that has something not contained in `x', like a site or something, to show that it is dropped when left joining.
+
+Now, we want to keep all observations in \emph{fish\_2016\_2017}, and merge them with \emph{kelp\_counts\_abur} while only keeping observations from \emph{kelp\_counts\_abur} that match an observation within \emph{fish\_2016\_2017}. So when we use a left\_join, any information on kelp counts from 2018 should be dropped.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fish_kelp_}\DecValTok{2016}\NormalTok{_}\DecValTok{2017}\NormalTok{ <-}\StringTok{ }\NormalTok{fish_}\DecValTok{2016}\NormalTok{_}\DecValTok{2017} \OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(kelp_counts_abur)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = c("year", "site")
+\end{verbatim}
+
 \hypertarget{dplyrinner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both}{%
 \subsubsection{\texorpdfstring{\texttt{dplyr::inner\_join()} to merge data frames, only keeping observations with a match in both}{dplyr::inner\_join() to merge data frames, only keeping observations with a match in both}}\label{dplyrinner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both}}
+
+Use \texttt{inner\_join()} if you know that you \textbf{only} want to retain observations when they match across both data frames. Caution: this is built to exclude any observations that don't match across data frames by joined variables - double check to make sure this is actually what you want to do!
+
+For example, if we use \texttt{inner\_join()} to merge fish\_counts and kelp\_counts\_abur, then we are asking R to \textbf{only return observations where the joining variables (\emph{year} and \emph{site}) have matches in both data frames.} Let's see what the outcome is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{abur_kelp_inner_join <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{inner_join}\NormalTok{(kelp_counts_abur)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = c("year", "site")
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{abur_kelp_inner_join}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 15 x 6
+##     year site  common_name     total_count month total_fronds
+##    <dbl> <chr> <chr>                 <dbl> <chr>        <dbl>
+##  1  2016 abur  black surfperch           2 7              307
+##  2  2016 abur  blacksmith                1 7              307
+##  3  2016 abur  garibaldi                 1 7              307
+##  4  2016 abur  rock wrasse               2 7              307
+##  5  2016 abur  senorita                 58 7              307
+##  6  2017 abur  black surfperch           4 7              604
+##  7  2017 abur  blacksmith                1 7              604
+##  8  2017 abur  garibaldi                 1 7              604
+##  9  2017 abur  rock wrasse              57 7              604
+## 10  2017 abur  senorita                 64 7              604
+## 11  2018 abur  black surfperch           1 7             3532
+## 12  2018 abur  blacksmith                1 7             3532
+## 13  2018 abur  garibaldi                 1 7             3532
+## 14  2018 abur  rock wrasse               1 7             3532
+## 15  2018 abur  senorita                  1 7             3532
+\end{verbatim}
+
+Here, we see that only observations where there is a match for \emph{year} and \emph{site} are returned.
 
 \hypertarget{fun-facts}{%
 \section{Fun facts}\label{fun-facts}}

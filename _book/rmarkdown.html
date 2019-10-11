@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 RMarkdown | R for the Excel User</title>
   <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
-  <meta name="generator" content="bookdown 0.13.2 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 RMarkdown | R for the Excel User" />
   <meta property="og:type" content="book" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="readxl.html"/>
-<link rel="next" href="pivot.html"/>
+<link rel="prev" href="readxl.html">
+<link rel="next" href="pivot.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -40,9 +40,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
 
 
 
@@ -58,6 +55,7 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -197,7 +195,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="pivot.html"><a href="pivot.html#resources-3"><i class="fa fa-check"></i><b>5.3</b> Resources</a></li>
 <li class="chapter" data-level="5.4" data-path="pivot.html"><a href="pivot.html#introduction-our-analytical-plan"><i class="fa fa-check"></i><b>5.4</b> Introduction / our analytical plan</a></li>
 <li class="chapter" data-level="5.5" data-path="pivot.html"><a href="pivot.html#what-are-pivot-tables"><i class="fa fa-check"></i><b>5.5</b> What are pivot tables?</a></li>
-<li class="chapter" data-level="5.6" data-path="pivot.html"><a href="pivot.html#dplyr-for-pivot-tables"><i class="fa fa-check"></i><b>5.6</b> dplyr for pivot tables</a></li>
+<li class="chapter" data-level="5.6" data-path="pivot.html"><a href="pivot.html#dplyr-for-pivot-tables"><i class="fa fa-check"></i><b>5.6</b> dplyr for pivot tables</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="pivot.html"><a href="pivot.html#group_by-summarize"><i class="fa fa-check"></i><b>5.6.1</b> group_by() summarize()</a></li>
+<li class="chapter" data-level="5.6.2" data-path="pivot.html"><a href="pivot.html#mutate"><i class="fa fa-check"></i><b>5.6.2</b> mutate()</a></li>
+<li class="chapter" data-level="5.6.3" data-path="pivot.html"><a href="pivot.html#activity"><i class="fa fa-check"></i><b>5.6.3</b> Activity</a></li>
+<li class="chapter" data-level="5.6.4" data-path="pivot.html"><a href="pivot.html#mutate-vs-summarize"><i class="fa fa-check"></i><b>5.6.4</b> mutate() vs summarize()</a></li>
+</ul></li>
 <li class="chapter" data-level="5.7" data-path="pivot.html"><a href="pivot.html#deep-thought-1"><i class="fa fa-check"></i><b>5.7</b> Deep thought</a></li>
 <li class="chapter" data-level="5.8" data-path="pivot.html"><a href="pivot.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1"><i class="fa fa-check"></i><b>5.8</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
 <li class="chapter" data-level="5.9" data-path="pivot.html"><a href="pivot.html#interludes-deep-thoughtsopenscapes-3"><i class="fa fa-check"></i><b>5.9</b> Interludes (deep thoughts/openscapes)</a></li>
@@ -347,13 +350,11 @@ Not so brittle/sensitive to minor changes.</p>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({

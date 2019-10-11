@@ -115,16 +115,18 @@ We will revisit this in a moment, but now let's move on to our next dplyr verb.
 
 We use the `mutate()` function to add columns to a data frame. This is one of the most common things that I do in Excel: you need to name the new column, and then you can fill it with new values. 
 
-Let's say we need to a column with the observers SCUBA diver's who observed all these fish. We use the mutate function, and inside it we will first name the column (`observer_name`) and then we'll name the observer (`"`) We put the name of this person in quote
+Let's say we need to a column with the type of observation this was, and all of them were by SCUBA. We use the mutate function, and inside it we will first name the column (`observation_type`) and set the value ("SCUBA"). We'll have to put SCUBA in quotes:
 
 ```{r, eval=FALSE}
 fish_counts %>%
-  mutate(observer_name = "Julie")
-
+  mutate(observer_name = "SCUBA")
 ```
 
+When you just set one value like "SCUBA", mutate will repeate this value for you; it's the equivalent in Excel to when you grab the bottom right corner of a cell and drag down. 
 
-Now let's use mutate in combination with group_by. We are going to add a new column with total counts, calculated after grouping by site and year. Let's have a look at it first, and then we will assign it as a variable in a moment.
+So there are many things you could add to a new column; but I want to demonstrate how powerful mutate can be in combination with group by. So just like we were just doing "group_by summarize", we can do "group_by mutate". 
+
+So to use mutate in combination with group_by. We are going to add a new column with total counts, calculated after grouping by site and year. Let's have a look at it first, and then we will assign it as a variable in a moment.
 
 ```{r, eval=FALSE}
 fish_counts %>%
@@ -134,11 +136,14 @@ fish_counts %>%
 
 We now have an additional column in our dataframe called `total_fish`. If we recall from our `site_year_summary`, this has all the same information. But instead of collapsing our dataframe, we retain all of the information from the other columns, and the `total_fish` column will have values that are repeated. 
 
-So in a case like this, why would you ever want to have this `total_fish` column with values repeated? Why wouldn't you always do group_by summarize rather than group_by mutate?
+### Activity
+
+Take 3 minutes to add a new column to the data frame; discuss with your neighbor for ideas! 
 
 ### mutate() vs summarize()
 
-Why would you use mutate instead of summarize?
+So in a case like this, hy would you use mutate instead of summarize? Why would you ever want to have this `total_fish` column with values repeated? Why wouldn't you always do group_by summarize rather than group_by mutate? Let's explore this: 
+
 
 ```{r, eval=FALSE}
 group_by() %>% summarize()

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Dplyr and Pivot Tables | R for the Excel User</title>
   <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
-  <meta name="generator" content="bookdown 0.13.2 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Dplyr and Pivot Tables | R for the Excel User" />
   <meta property="og:type" content="book" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="rmarkdown.html"/>
-<link rel="next" href="vlookup.html"/>
+<link rel="prev" href="rmarkdown.html">
+<link rel="next" href="vlookup.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -40,9 +40,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
 
 
 
@@ -58,6 +55,7 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -197,7 +195,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="pivot.html"><a href="pivot.html#resources-3"><i class="fa fa-check"></i><b>5.3</b> Resources</a></li>
 <li class="chapter" data-level="5.4" data-path="pivot.html"><a href="pivot.html#introduction-our-analytical-plan"><i class="fa fa-check"></i><b>5.4</b> Introduction / our analytical plan</a></li>
 <li class="chapter" data-level="5.5" data-path="pivot.html"><a href="pivot.html#what-are-pivot-tables"><i class="fa fa-check"></i><b>5.5</b> What are pivot tables?</a></li>
-<li class="chapter" data-level="5.6" data-path="pivot.html"><a href="pivot.html#dplyr-for-pivot-tables"><i class="fa fa-check"></i><b>5.6</b> dplyr for pivot tables</a></li>
+<li class="chapter" data-level="5.6" data-path="pivot.html"><a href="pivot.html#dplyr-for-pivot-tables"><i class="fa fa-check"></i><b>5.6</b> dplyr for pivot tables</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="pivot.html"><a href="pivot.html#group_by-summarize"><i class="fa fa-check"></i><b>5.6.1</b> group_by() summarize()</a></li>
+<li class="chapter" data-level="5.6.2" data-path="pivot.html"><a href="pivot.html#mutate"><i class="fa fa-check"></i><b>5.6.2</b> mutate()</a></li>
+<li class="chapter" data-level="5.6.3" data-path="pivot.html"><a href="pivot.html#activity"><i class="fa fa-check"></i><b>5.6.3</b> Activity</a></li>
+<li class="chapter" data-level="5.6.4" data-path="pivot.html"><a href="pivot.html#mutate-vs-summarize"><i class="fa fa-check"></i><b>5.6.4</b> mutate() vs summarize()</a></li>
+</ul></li>
 <li class="chapter" data-level="5.7" data-path="pivot.html"><a href="pivot.html#deep-thought-1"><i class="fa fa-check"></i><b>5.7</b> Deep thought</a></li>
 <li class="chapter" data-level="5.8" data-path="pivot.html"><a href="pivot.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1"><i class="fa fa-check"></i><b>5.8</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
 <li class="chapter" data-level="5.9" data-path="pivot.html"><a href="pivot.html#interludes-deep-thoughtsopenscapes-3"><i class="fa fa-check"></i><b>5.9</b> Interludes (deep thoughts/openscapes)</a></li>
@@ -298,11 +301,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="introduction-our-analytical-plan" class="section level2">
 <h2><span class="header-section-number">5.4</span> Introduction / our analytical plan</h2>
 <p>We are going to continue with our analysis with the fish-counts data. So far, our RMarkdown has the following in the “setup” chunk: <!---TODO update after ch 3 complete ---></p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="co">## attach libraries</span></a>
-<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb42-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb42-4" data-line-number="4"><span class="co">## read in data</span></a>
-<a class="sourceLine" id="cb42-5" data-line-number="5">fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;fish_counts_curated.csv&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## attach libraries</span>
+<span class="kw">library</span>(tidyverse)
+
+<span class="co">## read in data</span>
+fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;fish_counts_curated.csv&quot;</span>)</code></pre>
 <p>And we have explored the data by looking at some summary statistics and making a simple plot. Now, we are going to learn how to wrangle data in R, using the <code>dplyr</code> package which is included in the <code>tidyverse</code>. In this session, we’ll focus on the functions in <code>dplyr</code> that operate like pivot tables.</p>
 <p>This is because what we want to do with our fish_counts data is XXXXX.</p>
 </div>
@@ -324,17 +327,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong><code>summarize()</code></strong>: collapse many values down to a single summary</p>
 <img src="img/rstudio-cheatsheet-summarise.png" width="300"/></li>
 </ul>
-<p>Let’s try this on our fish_counts data. Let’s summarize the total number of fish at each site.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">fish_counts <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(tot_count))</a></code></pre></div>
-<pre><code>## # A tibble: 3 x 2
-##   site  total_fish
-##   &lt;chr&gt;      &lt;dbl&gt;
-## 1 abur         196
-## 2 aque         110
-## 3 mohk         205</code></pre>
-<p>Awesome! And we can still <code>View(fish_counts)</code> and see that we haven’t changed any of our original data. But maybe we do want to save this summary as a variable so we can refer to it or even include it in further analyses</p>
+<div id="group_by-summarize" class="section level3">
+<h3><span class="header-section-number">5.6.1</span> group_by() summarize()</h3>
+<p>Say it with me: pivot tables are “group_by summarize”. And just like pivot tables, you have flexibility with how you are going to summarize. For example, we can calculate an average, or a total.</p>
+<p>Let’s try this on our fish_counts data. Let’s summarize this data by calculting the the total number of fish by type, which in our dataframe is called <code>common_name</code>. We’ll use the pipe operator <code>%&gt;%</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">fish_counts <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(common_name) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(total_count)) <span class="co"># within summarize, we name a new column and calculate the sum.</span></code></pre>
+<p>Way more seniorita fish than any other kind!</p>
+<p>Notice how together, group_by and summarize collapse the amount of information we see. We lose the other columns that aren’t involved here; we no longer have <code>year</code>, <code>common_name</code>, or <code>total_count</code>.</p>
+<!---
+Question: What if you *don't* group_by first?
+
+```
+fish_counts %>%
+  summarize(total_fish = sum(total_count))
+```
+--->
+<p>Awesome! And we can still <code>View(fish_counts)</code> and see that we haven’t changed any of our original data. But maybe we do want to save this summary as a variable so we can refer to it or even include it in further analyses. So let’s add a variable assignment to that first line:</p>
+<pre class="sourceCode r"><code class="sourceCode r">common_name_summary &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(common_name) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(total_count))</code></pre>
+<p>Now let’s summarize by site. We will assign it to a variable called <code>site_summary</code>. How do we do that?</p>
+<pre class="sourceCode r"><code class="sourceCode r">site_summary &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(site) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(total_count))</code></pre>
+<p>Great. It can be useful to summarize by both site and year, so that we can learn a little more about how things change over time across sites. And we are able to group_by more than one variable. Let’s do this together, and assign this to a new variable called <code>site_year_summary</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r">site_year_summary &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(total_count))</code></pre>
+<p>OK, so this is awesome. We can see the total counts for each site by year, and have this saved here in a nice variable.</p>
+<p>We will revisit this in a moment, but now let’s move on to our next dplyr verb.</p>
+</div>
+<div id="mutate" class="section level3">
+<h3><span class="header-section-number">5.6.2</span> mutate()</h3>
+<p>We use the <code>mutate()</code> function to add columns to a data frame. This is one of the most common things that I do in Excel: you need to name the new column, and then you can fill it with new values.</p>
+<p>Let’s say we need to a column with the type of observation this was, and all of them were by SCUBA. We use the mutate function, and inside it we will first name the column (<code>observation_type</code>) and set the value (“SCUBA”). We’ll have to put SCUBA in quotes:</p>
+<pre class="sourceCode r"><code class="sourceCode r">fish_counts <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">observer_name =</span> <span class="st">&quot;SCUBA&quot;</span>)</code></pre>
+<p>When you just set one value like “SCUBA”, mutate will repeate this value for you; it’s the equivalent in Excel to when you grab the bottom right corner of a cell and drag down.</p>
+<p>So there are many things you could add to a new column; but I want to demonstrate how powerful mutate can be in combination with group by. So just like we were just doing “group_by summarize”, we can do “group_by mutate”.</p>
+<p>So to use mutate in combination with group_by. We are going to add a new column with total counts, calculated after grouping by site and year. Let’s have a look at it first, and then we will assign it as a variable in a moment.</p>
+<pre class="sourceCode r"><code class="sourceCode r">fish_counts <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(total_count))</code></pre>
+<p>We now have an additional column in our dataframe called <code>total_fish</code>. If we recall from our <code>site_year_summary</code>, this has all the same information. But instead of collapsing our dataframe, we retain all of the information from the other columns, and the <code>total_fish</code> column will have values that are repeated.</p>
+</div>
+<div id="activity" class="section level3">
+<h3><span class="header-section-number">5.6.3</span> Activity</h3>
+<p>Take 3 minutes to add a new column to the data frame; discuss with your neighbor for ideas!</p>
+</div>
+<div id="mutate-vs-summarize" class="section level3">
+<h3><span class="header-section-number">5.6.4</span> mutate() vs summarize()</h3>
+<p>So in a case like this, hy would you use mutate instead of summarize? Why would you ever want to have this <code>total_fish</code> column with values repeated? Why wouldn’t you always do group_by summarize rather than group_by mutate? Let’s explore this:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">group_by</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize</span>()
+<span class="kw">group_by</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>()</code></pre>
+<p>Now let’s say we want to calculate the percentage of fish type at each site. This means we are going to do a calculation using both the raw and summary data. And we’re going to do it in 2 ways.</p>
+<p>I actually like to do this kind of calculation in a</p>
+<pre class="sourceCode r"><code class="sourceCode r">fish_counts <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(total_count)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">perc_fish =</span> total_count<span class="op">/</span>total_fish<span class="op">*</span><span class="dv">100</span>)</code></pre>
 <ul>
 <li><p><strong><code>select()</code></strong>: pick variables by their names</p>
 <img src="img/rstudio-cheatsheet-select.png" width="300"/></li>
@@ -350,10 +403,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>Together these properties make it easy to chain together multiple simple steps to achieve a complex result.</p>
 </div>
+</div>
 <div id="deep-thought-1" class="section level2">
 <h2><span class="header-section-number">5.7</span> Deep thought</h2>
-<p>group_by() %&gt;% summarize() vs
-group_by() %&gt;% mutate()</p>
 </div>
 <div id="fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1" class="section level2">
 <h2><span class="header-section-number">5.8</span> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</h2>
@@ -383,13 +435,11 @@ group_by() %&gt;% mutate()</p>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({

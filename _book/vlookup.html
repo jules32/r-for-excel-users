@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Dplyr and vlookups | R for the Excel User</title>
   <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
-  <meta name="generator" content="bookdown 0.13.2 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Dplyr and vlookups | R for the Excel User" />
   <meta property="og:type" content="book" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="pivot.html"/>
-<link rel="next" href="tidying.html"/>
+<link rel="prev" href="pivot.html">
+<link rel="next" href="tidying.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -40,9 +40,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
 
 
 
@@ -58,6 +55,7 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -157,7 +155,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.10" data-path="overview.html"><a href="overview.html#activity-1"><i class="fa fa-check"></i><b>2.10</b> Activity 1</a></li>
 <li class="chapter" data-level="2.11" data-path="overview.html"><a href="overview.html#activity-2"><i class="fa fa-check"></i><b>2.11</b> Activity 2</a></li>
 <li class="chapter" data-level="2.12" data-path="overview.html"><a href="overview.html#efficiency-tips"><i class="fa fa-check"></i><b>2.12</b> Efficiency Tips</a></li>
-<li class="chapter" data-level="2.13" data-path="overview.html"><a href="overview.html#credit"><i class="fa fa-check"></i><b>2.13</b> Credit</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="readxl.html"><a href="readxl.html"><i class="fa fa-check"></i><b>3</b> <code>readxl</code></a><ul>
 <li class="chapter" data-level="3.1" data-path="readxl.html"><a href="readxl.html#summary"><i class="fa fa-check"></i><b>3.1</b> Summary</a></li>
@@ -198,7 +195,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="pivot.html"><a href="pivot.html#resources-3"><i class="fa fa-check"></i><b>5.3</b> Resources</a></li>
 <li class="chapter" data-level="5.4" data-path="pivot.html"><a href="pivot.html#introduction-our-analytical-plan"><i class="fa fa-check"></i><b>5.4</b> Introduction / our analytical plan</a></li>
 <li class="chapter" data-level="5.5" data-path="pivot.html"><a href="pivot.html#what-are-pivot-tables"><i class="fa fa-check"></i><b>5.5</b> What are pivot tables?</a></li>
-<li class="chapter" data-level="5.6" data-path="pivot.html"><a href="pivot.html#dplyr-for-pivot-tables"><i class="fa fa-check"></i><b>5.6</b> dplyr for pivot tables</a></li>
+<li class="chapter" data-level="5.6" data-path="pivot.html"><a href="pivot.html#dplyr-for-pivot-tables"><i class="fa fa-check"></i><b>5.6</b> dplyr for pivot tables</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="pivot.html"><a href="pivot.html#group_by-summarize"><i class="fa fa-check"></i><b>5.6.1</b> group_by() summarize()</a></li>
+<li class="chapter" data-level="5.6.2" data-path="pivot.html"><a href="pivot.html#mutate"><i class="fa fa-check"></i><b>5.6.2</b> mutate()</a></li>
+<li class="chapter" data-level="5.6.3" data-path="pivot.html"><a href="pivot.html#activity"><i class="fa fa-check"></i><b>5.6.3</b> Activity</a></li>
+<li class="chapter" data-level="5.6.4" data-path="pivot.html"><a href="pivot.html#mutate-vs-summarize"><i class="fa fa-check"></i><b>5.6.4</b> mutate() vs summarize()</a></li>
+</ul></li>
 <li class="chapter" data-level="5.7" data-path="pivot.html"><a href="pivot.html#deep-thought-1"><i class="fa fa-check"></i><b>5.7</b> Deep thought</a></li>
 <li class="chapter" data-level="5.8" data-path="pivot.html"><a href="pivot.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1"><i class="fa fa-check"></i><b>5.8</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
 <li class="chapter" data-level="5.9" data-path="pivot.html"><a href="pivot.html#interludes-deep-thoughtsopenscapes-3"><i class="fa fa-check"></i><b>5.9</b> Interludes (deep thoughts/openscapes)</a></li>
@@ -327,14 +329,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 <p>In this session we’ll use the <strong>fish_counts_curated.csv</strong> and <strong>invert_counts_curated.xlsx</strong> files, and the first worksheet from <strong>kelp_counts_curated.xlsx</strong>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># Attach packages:</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(readxl)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co"># Read in data: </span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">invert_counts &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;invert_counts_curated.xlsx&quot;</span>)</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;fish_counts_curated.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">kelp_counts_abur &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Attach packages:</span>
+<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(readxl)
+
+<span class="co"># Read in data: </span>
+invert_counts &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;invert_counts_curated.xlsx&quot;</span>)
+fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;fish_counts_curated.csv&quot;</span>)
+kelp_counts_abur &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>)</code></pre>
 <p>Remember to always explore the data you’ve read in using functions like <code>View()</code>, <code>names()</code>, <code>summary()</code>, <code>head()</code> and <code>tail()</code> to ensure that the data you <em>think</em> you read in is <em>actually</em> the data you read in.</p>
 <p>Now, let’s use <code>dplyr::filter()</code> to decide which observations (rows) we’ll keep or exclude in new subsets, similar to using Excel’s VLOOKUP function.</p>
 <div id="dplyrfilter-to-conditionally-subset-by-rows" class="section level3">
@@ -356,19 +358,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">6.4.1.1</span> Filter rows by matching a single character string</h4>
 <p>Let’s say we want to keep all observations from the fish_counts data frame where the common name is “garibaldi.” Here, we need to tell R to only <em>keep rows</em> from the <strong>fish_counts</strong> data frame when the common name (<strong>common_name</strong> variable) exactly matches <strong>garibaldi</strong>.
 Use <code>==</code> to ask R to look for matching strings:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">fish_gari &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(fish_counts, common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">fish_gari &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(fish_counts, common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span>)</code></pre>
 <p>Check out the <strong>fish_gari</strong> object to ensure that only <em>garibaldi</em> observations remain.</p>
 <p>You could also do this using the pipe operator <code>%&gt;%</code> (though for a single function, it doesn’t save much effort or typing):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">fish_gari &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">fish_gari &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span>)</code></pre>
 </div>
 <div id="filter-rows-based-on-numeric-conditions" class="section level4">
 <h4><span class="header-section-number">6.4.1.2</span> Filter rows based on numeric conditions</h4>
 <p>Use expected operators (&gt;, &lt;, &gt;=, &lt;=, =) to set conditions for a numeric variable when filtering. For this example, we only want to retain observations when the <strong>total_count</strong> column value is &gt;= 50:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">fish_over50 &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(fish_counts, total_count <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">fish_over50 &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(fish_counts, total_count <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>)</code></pre>
 <p>Or, using the pipe:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">fish_over50 &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(total_count <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">fish_over50 &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(total_count <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>)</code></pre>
 <p>TODO: show example of between and exact =</p>
 </div>
 <div id="filter-to-return-rows-that-match-this-or-that-or-that" class="section level4">
@@ -376,53 +378,53 @@ Use <code>==</code> to ask R to look for matching strings:</p>
 <p>What if we want to return a subset of the fish_counts df that contains <em>garibaldi</em>, <em>blacksmith</em> OR <em>black surfperch</em>?</p>
 <p>There are several ways to write an “OR” statement for filtering, which will keep any observations that match Condition A <em>or</em> Condition B <em>or</em> Condition C. In this example, we will create a subset from <strong>fish_counts</strong> that only contains rows where the <strong>common_name</strong> is <em>garibaldi</em> or <em>blacksmith</em> or <em>black surfperch</em>.</p>
 <p>Use <code>%in%</code> to ask R to look for <em>any matches</em> within a combined vector of strings:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">fish_3sp &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(common_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;garibaldi&quot;</span>, <span class="st">&quot;blacksmith&quot;</span>, <span class="st">&quot;black surfperch&quot;</span>))</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">fish_3sp &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(common_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;garibaldi&quot;</span>, <span class="st">&quot;blacksmith&quot;</span>, <span class="st">&quot;black surfperch&quot;</span>))</code></pre>
 <p>Alternatively, you can indicate <strong>OR</strong> using the vertical line operator <code>|</code> to do the same thing (but you can see that it’s more repetitive when looking for matches within the same variable):</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">fish_3sp &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span> <span class="op">|</span><span class="st"> </span>common_name <span class="op">==</span><span class="st"> &quot;blacksmith&quot;</span> <span class="op">|</span><span class="st"> </span>common_name <span class="op">==</span><span class="st"> &quot;black surfperch&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">fish_3sp &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span> <span class="op">|</span><span class="st"> </span>common_name <span class="op">==</span><span class="st"> &quot;blacksmith&quot;</span> <span class="op">|</span><span class="st"> </span>common_name <span class="op">==</span><span class="st"> &quot;black surfperch&quot;</span>)</code></pre>
 </div>
 <div id="filter-to-return-rows-that-match-conditions-for-multiple-variables" class="section level4">
 <h4><span class="header-section-number">6.4.1.4</span> Filter to return rows that match conditions for multiple variables</h4>
 <p>In the previous examples, we set filter conditions based on a single variable (e.g. common_name). What if we want to return observations that satisfy conditions for multiple variables?</p>
 <p>For example: We want to create a subset that only returns rows from ‘invert_counts’ where the <strong>site</strong> is “abur” or “mohk” <em>and</em> the <strong>common_name</strong> is “purple urchin.” In <code>dplyr::filter()</code>, add a comma (or ampersand, &amp;) between arguments for multiple <em>AND</em> conditions:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">urchin_abur_mohk &lt;-<span class="st"> </span>invert_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(site <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;abur&quot;</span>,<span class="st">&quot;mohk&quot;</span>), common_name <span class="op">==</span><span class="st"> &quot;purple urchin&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">head</span>(urchin_abur_mohk)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">urchin_abur_mohk &lt;-<span class="st"> </span>invert_counts <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(site <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;abur&quot;</span>,<span class="st">&quot;mohk&quot;</span>), common_name <span class="op">==</span><span class="st"> &quot;purple urchin&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(urchin_abur_mohk)</code></pre>
 <pre><code>## # A tibble: 2 x 6
 ##   month site  common_name   `2016` `2017` `2018`
 ##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1 7     abur  purple urchin     48     48     48
 ## 2 7     mohk  purple urchin    620    505    323</code></pre>
 <p>Like most things in R, there are other ways to do the same thing. For example, you could do the same thing using <code>&amp;</code> (instead of a comma) between “and” conditions:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># Use the ampersand (&amp;) to add another condition &quot;and this must be true&quot;:</span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3">urchin_abur_mohk &lt;-<span class="st"> </span>invert_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(site <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;abur&quot;</span>,<span class="st">&quot;mohk&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>common_name <span class="op">==</span><span class="st"> &quot;purple urchin&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use the ampersand (&amp;) to add another condition &quot;and this must be true&quot;:</span>
+
+urchin_abur_mohk &lt;-<span class="st"> </span>invert_counts <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(site <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;abur&quot;</span>,<span class="st">&quot;mohk&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>common_name <span class="op">==</span><span class="st"> &quot;purple urchin&quot;</span>)</code></pre>
 <p>Or you could just do two filter steps in sequence:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co"># Written as multiple filter steps:</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3">urchin_abur_mohk &lt;-<span class="st"> </span>invert_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(site <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;abur&quot;</span>, <span class="st">&quot;mohk&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;purple urchin&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Written as multiple filter steps:</span>
+
+urchin_abur_mohk &lt;-<span class="st"> </span>invert_counts <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(site <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;abur&quot;</span>, <span class="st">&quot;mohk&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;purple urchin&quot;</span>)</code></pre>
 </div>
 <div id="filter-to-return-rows-that-do-not-match-conditions" class="section level4">
 <h4><span class="header-section-number">6.4.1.5</span> Filter to return rows that <em>do not</em> match conditions</h4>
 <p>Sometimes we might want to exclude observations. Here, let’s say we want to make a subset that contains all rows from <strong>fish_counts</strong> except those recorded at the Mohawk Reef site (“mohk” in the <em>site</em> variable).</p>
 <p>We use <code>!=</code> to return observations that <strong>do not match</strong> a condition.</p>
 <p>Like this:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">fish_no_mohk &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(site <span class="op">!=</span><span class="st"> &quot;mohk&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">fish_no_mohk &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(site <span class="op">!=</span><span class="st"> &quot;mohk&quot;</span>)</code></pre>
 <p>This similarly works to exclude observations by a value.</p>
 <p>For example, if we want to return all observations <em>except</em> those where the total fish count is 1, we use:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">fish_more_one &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(total_count <span class="op">!=</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">fish_more_one &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(total_count <span class="op">!=</span><span class="st"> </span><span class="dv">1</span>)</code></pre>
 <p>What if we want to exclude observations for multiple conditions? For example, here we want to return all rows where the fish species <strong>is not</strong> garibaldi <strong>or</strong> rock wrasse.</p>
 <p>We can use <code>filter(!variable %in% c(&quot;apple&quot;, &quot;orange&quot;))</code> to return rows where the variable does <strong>not</strong> match “apple” or “orange”. For our fish example, that looks like this:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">fish_subset &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="op">!</span>common_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;garibaldi&quot;</span>, <span class="st">&quot;rock wrasse&quot;</span>))</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">fish_subset &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="op">!</span>common_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;garibaldi&quot;</span>, <span class="st">&quot;rock wrasse&quot;</span>))</code></pre>
 <p>Which then only returns observations for the other fish species in the dataset.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">head</span>(fish_subset)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(fish_subset)</code></pre>
 <pre><code>## # A tibble: 6 x 4
 ##    year site  common_name     total_count
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;
@@ -441,12 +443,17 @@ Use <code>==</code> to ask R to look for matching strings:</p>
 <div id="merging-data-frames-with-dplyr_join" class="section level3">
 <h3><span class="header-section-number">6.4.2</span> Merging data frames with <code>dplyr::*_join()</code></h3>
 <p>Excel’s <code>VLOOKUP</code> can also be used to merge data from separate tables or worksheets. Here, we’ll use the <code>dplyr::*_join()</code> functions to merge separate data frames in R.</p>
-<p>There are a number of ways to merge data frames in R. We’ll use <code>full_join()</code> and <code>inner_join()</code> in this session.</p>
+<p>There are a number of ways to merge data frames in R. We’ll use <code>full_join()</code>, <code>left_join()</code>, and <code>inner_join()</code> in this session.</p>
 <p>From R Documentation (<code>?join</code>):</p>
 <ul>
-<li><code>dplyr::full_join()</code>: “returns all rows and all columns from both x and y. Where there are not matching values, returns NA for the one missing.” Basically, nothing gets thrown out, even if a match doesn’t exist - making <code>full_join()</code> the safest option for merging data frames.</li>
-<li><code>dplyr::inner_join()</code>: “returns all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned.” This will drop observations that don’t have a match between the merged data frames, which makes it a riskier merging option if you’re not sure what you’re trying to do. When in doubt, <code>full_join()</code>.</li>
+<li><code>dplyr::full_join()</code>: “returns all rows and all columns from both x and y. Where there are not matching values, returns NA for the one missing.” Basically, nothing gets thrown out, even if a match doesn’t exist - making <code>full_join()</code> the safest option for merging data frames. When in doubt, <code>full_join()</code>.</li>
+<li><code>dplyr::left_join()</code>: “return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned.”</li>
+<li><code>dplyr::inner_join()</code>: “returns all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned.” This will drop observations that don’t have a match between the merged data frames, which makes it a riskier merging option if you’re not sure what you’re trying to do.</li>
 </ul>
+<p>To clarify what the different joins are doing, let’s first make a subset of the <em>fish_counts</em> data frame that only contains observations from 2016 and 2017.</p>
+<pre class="sourceCode r"><code class="sourceCode r">fish_<span class="dv">2016</span>_<span class="dv">2017</span> &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2016</span> <span class="op">|</span><span class="st"> </span>year <span class="op">==</span><span class="st"> </span><span class="dv">2017</span>)</code></pre>
+<p>Take a look to ensure that only those years are included with <code>View(fish_2016_2017)</code>. Now, let’s merge it with our kelp fronds data in different ways.</p>
 <div id="dplyrfull_join-to-merge-data-frames-keeping-everything" class="section level4">
 <h4><span class="header-section-number">6.4.2.1</span> <code>dplyr::full_join()</code> to merge data frames, keeping everything</h4>
 <p>When we join data frames in R, we need to tell R a couple of things (and it does the hard joining work for us):</p>
@@ -455,13 +462,13 @@ Use <code>==</code> to ask R to look for matching strings:</p>
 <li>Which variables* to merge by</li>
 </ul>
 <p>Note: If there are <strong>exactly matching</strong> column names in the data frames you’re merging, the <code>*_join()</code> functions will assume that you want to join by those columns. If there are <em>no</em> matching column names, you can specify which columns to join by manually. We’ll do both here.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># Join the fish_counts and kelp_counts_abur together: </span></a>
-<a class="sourceLine" id="cb18-2" data-line-number="2">abur_kelp_join &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="st">  </span><span class="kw">full_join</span>(kelp_counts_abur) <span class="co"># Uh oh. An error message.</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Join the fish_counts and kelp_counts_abur together: </span>
+abur_kelp_join &lt;-<span class="st"> </span>fish_<span class="dv">2016</span>_<span class="dv">2017</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">full_join</span>(kelp_counts_abur) <span class="co"># Uh oh. An error message.</span></code></pre>
 <p>When we try to do that join, we get an error message:
 <code>Error: Can't join on 'year' x 'year' because of incompatible types (character / numeric)</code></p>
 <p>What’s going on here? First, there’s something fishy (ha) going on with the class of the <em>year</em> variable in <code>kelp_counts_abur</code>. Use the <code>class()</code> function to see how R understands that variable (remember, we use <code>$</code> to return a specific column from a data frame).</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">class</span>(kelp_counts_abur<span class="op">$</span>year)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(kelp_counts_abur<span class="op">$</span>year)</code></pre>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>So the variable is currently stored as a character. Why?</p>
 <p>If we go back to the kelp_counts_curated.xlsx file, we’ll see that the numbers in both the year and month column have been stored as <em>text</em>. There are several hints Excel gives us:</p>
@@ -471,22 +478,62 @@ Use <code>==</code> to ask R to look for matching strings:</p>
 <li>The warning sign shows up when you click on one of the values with text formatting, and lets you know that the cell has been stored as text. We are given the option to reformat as numeric in Excel, but we’ll do it here in R so we have a reproducible record of the change to the variable class.</li>
 </ul>
 <p>There are a number of ways to do this in R. We’ll use <code>dplyr::mutate()</code> to overwrite the existing <code>year</code> column while coercing it to class <em>numeric</em> using the <code>as.numeric()</code> function.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># Coerce the class of &#39;year&#39; to numeric</span></a>
-<a class="sourceLine" id="cb21-2" data-line-number="2">kelp_counts_abur &lt;-<span class="st"> </span>kelp_counts_abur <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.numeric</span>(year))</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Coerce the class of &#39;year&#39; to numeric</span>
+kelp_counts_abur &lt;-<span class="st"> </span>kelp_counts_abur <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.numeric</span>(year))</code></pre>
 <p>Now if we check the class of the <em>year</em> variable in <code>kelp_counts_abur</code>, we’ll see that it has been coerced to ‘numeric’:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">class</span>(kelp_counts_abur<span class="op">$</span>year)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(kelp_counts_abur<span class="op">$</span>year)</code></pre>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <p><strong>Question: Isn’t it bad practice to overwrite variables, instead of just making a new one?</strong> Great question, and usually the answer is yes. Here, we feel fine with “overwriting” the year column because we’re not changing anything about what’s contained within the column, we’re only changing how R understands it. Always use caution if overwriting variables, and if in doubt, add one instead!</p>
 <p>OK, so now the class of <em>year</em> in the data frames we’re joining is the same. Let’s try that <code>full_join()</code> again:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">abur_kelp_join &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="st">  </span><span class="kw">full_join</span>(kelp_counts_abur)</a></code></pre></div>
+<p>TODO: consider using fish_2016_2017 here to really show that full_join() keeps everything?</p>
+<pre class="sourceCode r"><code class="sourceCode r">abur_kelp_join &lt;-<span class="st"> </span>fish_<span class="dv">2016</span>_<span class="dv">2017</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">full_join</span>(kelp_counts_abur)</code></pre>
 <pre><code>## Joining, by = c(&quot;year&quot;, &quot;site&quot;)</code></pre>
 <p>First, notice that R tells us which sites it is joining by - in this case, <em>year</em> and <em>site</em> since those were the two matching variables in both data frames.</p>
-<p>Now look at the merged data frame with <code>View(abur_kelp_join)</code>.</p>
+<p>Now look at the merged data frame with <code>View(abur_kelp_join)</code>. A few things to notice about how <code>full_join()</code> has worked:</p>
+<ol style="list-style-type: decimal">
+<li>All columns that existed in <strong>both data frames</strong> still exist.</li>
+<li>All observations are retained, even if they don’t have a match. In this case, notice that for other sites (not ‘abur’) the observation for fish still exists, even though there was no corresponding kelp data to merge with it. The kelp frond data from 2018 is also returned, even though the fish counts dataset did not have ‘year == 2018’ in it.</li>
+<li>The kelp frond data is joined to <em>all observations</em> where the joining variables (<em>year</em>, <em>site</em>) are a match, which is why it is repeated 5 times for each year (once for each fish species).</li>
+</ol>
+<p>Because all data (observations &amp; columns) are retained, <code>full_join()</code> is the safest option if you’re unclear about how to merge data frames.</p>
+</div>
+<div id="dplyrleft_join-to-merge-data-frames-keeping-everything-in-the-x-data-frame-and-only-matches-from-the-y-data-frame" class="section level4">
+<h4><span class="header-section-number">6.4.2.2</span> <code>dplyr::left_join()</code> to merge data frames, keeping everything in the ‘x’ data frame and only matches from the ‘y’ data frame</h4>
+<p>TODO: think about a way to make left_join() clear. Need to join data frame ‘y’ that has something not contained in ‘x’, like a site or something, to show that it is dropped when left joining.</p>
+<p>Now, we want to keep all observations in <em>fish_2016_2017</em>, and merge them with <em>kelp_counts_abur</em> while only keeping observations from <em>kelp_counts_abur</em> that match an observation within <em>fish_2016_2017</em>. So when we use a left_join, any information on kelp counts from 2018 should be dropped.</p>
+<pre class="sourceCode r"><code class="sourceCode r">fish_kelp_<span class="dv">2016</span>_<span class="dv">2017</span> &lt;-<span class="st"> </span>fish_<span class="dv">2016</span>_<span class="dv">2017</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">left_join</span>(kelp_counts_abur)</code></pre>
+<pre><code>## Joining, by = c(&quot;year&quot;, &quot;site&quot;)</code></pre>
 </div>
 <div id="dplyrinner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both" class="section level4">
-<h4><span class="header-section-number">6.4.2.2</span> <code>dplyr::inner_join()</code> to merge data frames, only keeping observations with a match in both</h4>
+<h4><span class="header-section-number">6.4.2.3</span> <code>dplyr::inner_join()</code> to merge data frames, only keeping observations with a match in both</h4>
+<p>Use <code>inner_join()</code> if you know that you <strong>only</strong> want to retain observations when they match across both data frames. Caution: this is built to exclude any observations that don’t match across data frames by joined variables - double check to make sure this is actually what you want to do!</p>
+<p>For example, if we use <code>inner_join()</code> to merge fish_counts and kelp_counts_abur, then we are asking R to <strong>only return observations where the joining variables (<em>year</em> and <em>site</em>) have matches in both data frames.</strong> Let’s see what the outcome is:</p>
+<pre class="sourceCode r"><code class="sourceCode r">abur_kelp_inner_join &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">inner_join</span>(kelp_counts_abur)</code></pre>
+<pre><code>## Joining, by = c(&quot;year&quot;, &quot;site&quot;)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">abur_kelp_inner_join</code></pre>
+<pre><code>## # A tibble: 15 x 6
+##     year site  common_name     total_count month total_fronds
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
+##  1  2016 abur  black surfperch           2 7              307
+##  2  2016 abur  blacksmith                1 7              307
+##  3  2016 abur  garibaldi                 1 7              307
+##  4  2016 abur  rock wrasse               2 7              307
+##  5  2016 abur  senorita                 58 7              307
+##  6  2017 abur  black surfperch           4 7              604
+##  7  2017 abur  blacksmith                1 7              604
+##  8  2017 abur  garibaldi                 1 7              604
+##  9  2017 abur  rock wrasse              57 7              604
+## 10  2017 abur  senorita                 64 7              604
+## 11  2018 abur  black surfperch           1 7             3532
+## 12  2018 abur  blacksmith                1 7             3532
+## 13  2018 abur  garibaldi                 1 7             3532
+## 14  2018 abur  rock wrasse               1 7             3532
+## 15  2018 abur  senorita                  1 7             3532</code></pre>
+<p>Here, we see that only observations where there is a match for <em>year</em> and <em>site</em> are returned.</p>
 </div>
 </div>
 </div>
@@ -528,13 +575,11 @@ Use <code>==</code> to ask R to look for matching strings:</p>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
