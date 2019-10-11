@@ -24,7 +24,7 @@
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
 
 
-<meta name="date" content="2019-10-10" />
+<meta name="date" content="2019-10-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -326,15 +326,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Read in the necessary data</li>
 </ul></li>
 </ul>
-<p>In this session we’ll use the <strong>fish_counts_curated.csv</strong> and <strong>invert_counts_curated.xlsx</strong> files.</p>
+<p>In this session we’ll use the <strong>fish_counts_curated.csv</strong> and <strong>invert_counts_curated.xlsx</strong> files, and the first worksheet from <strong>kelp_counts_curated.xlsx</strong>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># Attach packages:</span></a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(readxl)</a>
 <a class="sourceLine" id="cb1-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co"># Read in data: </span></a>
 <a class="sourceLine" id="cb1-6" data-line-number="6">invert_counts &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;invert_counts_curated.xlsx&quot;</span>)</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;fish_counts_curated.csv&quot;</span>)</a></code></pre></div>
-<p>Remember to always explore the data you’ve read in using functions like <code>View()</code>, <code>names()</code>, <code>summary()</code>, <code>head()</code> and <code>tail()</code>.</p>
+<a class="sourceLine" id="cb1-7" data-line-number="7">fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;fish_counts_curated.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">kelp_counts_abur &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>)</a></code></pre></div>
+<p>Remember to always explore the data you’ve read in using functions like <code>View()</code>, <code>names()</code>, <code>summary()</code>, <code>head()</code> and <code>tail()</code> to ensure that the data you <em>think</em> you read in is <em>actually</em> the data you read in.</p>
 <p>Now, let’s use <code>dplyr::filter()</code> to decide which observations (rows) we’ll keep or exclude in new subsets, similar to using Excel’s VLOOKUP function.</p>
 <div id="dplyrfilter-to-conditionally-subset-by-rows" class="section level3">
 <h3><span class="header-section-number">6.4.1</span> <code>dplyr::filter()</code> to conditionally subset by rows</h3>
@@ -445,6 +446,18 @@ Use <code>==</code> to ask R to look for matching strings:</p>
 <li><code>dplyr::full_join()</code>: “returns all rows and all columns from both x and y. Where there are not matching values, returns NA for the one missing.” Basically, nothing gets thrown out, even if a match doesn’t exist - making <code>full_join()</code> the safest option for merging data frames.</li>
 <li><code>dplyr::inner_join()</code>: “returns all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned.” This will drop observations that don’t have a match between the merged data frames, which makes it a riskier merging option if you’re not sure what you’re trying to do. When in doubt, <code>full_join()</code>.</li>
 </ul>
+<div id="dplyrfull_join-to-merge-data-frames-keeping-everything" class="section level4">
+<h4><span class="header-section-number">6.4.2.1</span> <code>dplyr::full_join()</code> to merge data frames, keeping everything</h4>
+<p>When we join data frames in R, we need to tell R a couple of things (and it does the hard joining work for us):</p>
+<ul>
+<li>Which data frames we want to merge together</li>
+<li>Which variables* to merge by</li>
+</ul>
+<p>Note: If there are <strong>exactly matching</strong> column names in the data frames you’re merging, the <code>*_join()</code> functions will assume that you want to join by those columns. If there are <em>no</em> matching column names, you can specify which columns to join by manually. We’ll do both here.</p>
+</div>
+<div id="dplyrinner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both" class="section level4">
+<h4><span class="header-section-number">6.4.2.2</span> <code>dplyr::inner_join()</code> to merge data frames, only keeping observations with a match in both</h4>
+</div>
 </div>
 </div>
 <div id="fun-facts" class="section level2">

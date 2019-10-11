@@ -42,7 +42,7 @@ The combination of `dplyr::filter()` and `dplyr::join()` - to return rows satisf
     - Attach packages
     - Read in the necessary data 
     
-In this session we'll use the **fish_counts_curated.csv** and  **invert_counts_curated.xlsx** files. 
+In this session we'll use the **fish_counts_curated.csv** and  **invert_counts_curated.xlsx** files, and the first worksheet from **kelp_counts_curated.xlsx**. 
 
 ```{r, include = FALSE}
 library(tidyverse)
@@ -52,8 +52,8 @@ library(here) # They won't have this (files directly in top WD)
 
 # Read in the data
 invert_counts <- read_excel(here("curation","invert_counts_curated.xlsx"))
-
 fish_counts <- read_csv(here("curation", "fish_counts_curated.csv"))
+kelp_counts_abur <- read_excel(here("curation","kelp_counts_curated.xlsx"))
 ```
 
 ```{r, eval = FALSE}
@@ -64,10 +64,11 @@ library(readxl)
 # Read in data: 
 invert_counts <- read_excel("invert_counts_curated.xlsx")
 fish_counts <- read_csv("fish_counts_curated.csv")
+kelp_counts_abur <- read_excel("kelp_counts_curated.xlsx")
 
 ```
 
-Remember to always explore the data you've read in using functions like `View()`, `names()`, `summary()`, `head()` and `tail()`. 
+Remember to always explore the data you've read in using functions like `View()`, `names()`, `summary()`, `head()` and `tail()` to ensure that the data you *think* you read in is *actually* the data you read in. 
 
 Now, let's use `dplyr::filter()` to decide which observations (rows) we'll keep or exclude in new subsets, similar to using Excel's VLOOKUP function.
 
@@ -267,6 +268,12 @@ When we join data frames in R, we need to tell R a couple of things (and it does
 - Which variables* to merge by
 
 Note: If there are **exactly matching** column names in the data frames you're merging, the `*_join()` functions will assume that you want to join by those columns. If there are *no* matching column names, you can specify which columns to join by manually. We'll do both here. 
+
+```{r, include = FALSE, eval = FALSE}
+abur_kelp_join <- fish_counts %>% 
+  full_join(kelp_counts_abur) # Hmmm year isn't numeric in kelp_counts_aburr (deal with this or use something else?) Can do a mutate(as.numeric()) here to update year in kelp_counts? TODO too much?
+```
+
 
 #### `dplyr::inner_join()` to merge data frames, only keeping observations with a match in both
 
