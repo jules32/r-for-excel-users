@@ -59,15 +59,15 @@ In R, we can use dplyr for pivot tables by using 2 main verbs in combination: `g
   `r htmltools::img(src='img/rstudio-cheatsheet-summarise.png', width=300)`
   
   
-Let's try this on our fish_counts data. 
+Let's try this on our fish_counts data. Let's summarize the total number of fish at each site. 
 
 ```{r}
-
-fish_counts 
-
+fish_counts %>%
+  group_by(site) %>%
+  summarize(total_fish = sum(tot_count))
 ```
 
-  
+Awesome! And we can still `View(fish_counts)` and see that we haven't changed any of our original data. But maybe we do want to save this summary as a variable so we can refer to it or even include it in further analyses  
   
 
 - **`select()`**: pick variables by their names

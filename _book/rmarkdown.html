@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 RMarkdown | R for the Excel User</title>
   <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
-  <meta name="generator" content="bookdown 0.13.2 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 RMarkdown | R for the Excel User" />
   <meta property="og:type" content="book" />
@@ -24,15 +24,15 @@
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
 
 
-<meta name="date" content="2019-10-10" />
+<meta name="date" content="2019-10-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="readxl.html"/>
-<link rel="next" href="pivot.html"/>
+<link rel="prev" href="readxl.html">
+<link rel="next" href="pivot.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -40,9 +40,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
 
 
 
@@ -58,6 +55,7 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -206,13 +204,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.12" data-path="pivot.html"><a href="pivot.html#efficiency-tips-3"><i class="fa fa-check"></i><b>5.12</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="vlookup.html"><a href="vlookup.html"><i class="fa fa-check"></i><b>6</b> Dplyr and vlookups</a><ul>
-<li class="chapter" data-level="6.1" data-path="vlookup.html"><a href="vlookup.html#summary-a-few-sentences-3"><i class="fa fa-check"></i><b>6.1</b> Summary (a few sentences)</a></li>
+<li class="chapter" data-level="6.1" data-path="vlookup.html"><a href="vlookup.html#summary-1"><i class="fa fa-check"></i><b>6.1</b> Summary</a></li>
 <li class="chapter" data-level="6.2" data-path="vlookup.html"><a href="vlookup.html#objectives-1"><i class="fa fa-check"></i><b>6.2</b> Objectives</a></li>
 <li class="chapter" data-level="6.3" data-path="vlookup.html"><a href="vlookup.html#resources-4"><i class="fa fa-check"></i><b>6.3</b> Resources</a></li>
 <li class="chapter" data-level="6.4" data-path="vlookup.html"><a href="vlookup.html#lessons"><i class="fa fa-check"></i><b>6.4</b> Lessons</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="vlookup.html"><a href="vlookup.html#dplyrfilter-to-conditionally-subset-by-rows"><i class="fa fa-check"></i><b>6.4.1</b> <code>dplyr::filter()</code> to conditionally subset by rows</a></li>
+<li class="chapter" data-level="6.4.2" data-path="vlookup.html"><a href="vlookup.html#merging-data-frames-with-dplyr_join"><i class="fa fa-check"></i><b>6.4.2</b> Merging data frames with <code>dplyr::*_join()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="vlookup.html"><a href="vlookup.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2"><i class="fa fa-check"></i><b>6.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="6.5" data-path="vlookup.html"><a href="vlookup.html#fun-facts"><i class="fa fa-check"></i><b>6.5</b> Fun facts</a></li>
 <li class="chapter" data-level="6.6" data-path="vlookup.html"><a href="vlookup.html#interludes-deep-thoughtsopenscapes-4"><i class="fa fa-check"></i><b>6.6</b> Interludes (deep thoughts/openscapes)</a></li>
 <li class="chapter" data-level="6.7" data-path="vlookup.html"><a href="vlookup.html#our-turn-your-turn-1-2"><i class="fa fa-check"></i><b>6.7</b> Our Turn Your Turn 1</a></li>
 <li class="chapter" data-level="6.8" data-path="vlookup.html"><a href="vlookup.html#our-turn-your-turn-2-2"><i class="fa fa-check"></i><b>6.8</b> Our Turn Your Turn 2</a></li>
@@ -220,7 +219,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>7</b> Tidying</a><ul>
 <li class="chapter" data-level="7.1" data-path="tidying.html"><a href="tidying.html#better-practices-needs-a-better-name"><i class="fa fa-check"></i><b>7.1</b> Better practices [needs a better name]</a></li>
-<li class="chapter" data-level="7.2" data-path="tidying.html"><a href="tidying.html#summary-a-few-sentences-4"><i class="fa fa-check"></i><b>7.2</b> Summary (a few sentences)</a></li>
+<li class="chapter" data-level="7.2" data-path="tidying.html"><a href="tidying.html#summary-a-few-sentences-3"><i class="fa fa-check"></i><b>7.2</b> Summary (a few sentences)</a></li>
 <li class="chapter" data-level="7.3" data-path="tidying.html"><a href="tidying.html#objectives-more-detailed-bulletpoints-3"><i class="fa fa-check"></i><b>7.3</b> Objectives (more detailed, bulletpoints?)</a></li>
 <li class="chapter" data-level="7.4" data-path="tidying.html"><a href="tidying.html#resources-5"><i class="fa fa-check"></i><b>7.4</b> Resources</a></li>
 <li class="chapter" data-level="7.5" data-path="tidying.html"><a href="tidying.html#lessons-teaching-for-each-objective..-objectives-examples-1"><i class="fa fa-check"></i><b>7.5</b> Lessons teaching for each objective….. (objectives, examples)</a><ul>
@@ -228,28 +227,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5.2" data-path="tidying.html"><a href="tidying.html#janitor"><i class="fa fa-check"></i><b>7.5.2</b> Janitor</a></li>
 <li class="chapter" data-level="7.5.3" data-path="tidying.html"><a href="tidying.html#example-how-to-google"><i class="fa fa-check"></i><b>7.5.3</b> Example: How to Google</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="tidying.html"><a href="tidying.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3"><i class="fa fa-check"></i><b>7.6</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="7.6" data-path="tidying.html"><a href="tidying.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2"><i class="fa fa-check"></i><b>7.6</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
 <li class="chapter" data-level="7.7" data-path="tidying.html"><a href="tidying.html#interludes-deep-thoughtsopenscapes-5"><i class="fa fa-check"></i><b>7.7</b> Interludes (deep thoughts/openscapes)</a></li>
 <li class="chapter" data-level="7.8" data-path="tidying.html"><a href="tidying.html#our-turn-your-turn-2-3"><i class="fa fa-check"></i><b>7.8</b> Our Turn Your Turn 2</a></li>
 <li class="chapter" data-level="7.9" data-path="tidying.html"><a href="tidying.html#efficiency-tips-5"><i class="fa fa-check"></i><b>7.9</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="format.html"><a href="format.html"><i class="fa fa-check"></i><b>8</b> Formatting and Sharing</a><ul>
-<li class="chapter" data-level="8.1" data-path="format.html"><a href="format.html#summary-a-few-sentences-5"><i class="fa fa-check"></i><b>8.1</b> Summary (a few sentences)</a></li>
+<li class="chapter" data-level="8.1" data-path="format.html"><a href="format.html#summary-a-few-sentences-4"><i class="fa fa-check"></i><b>8.1</b> Summary (a few sentences)</a></li>
 <li class="chapter" data-level="8.2" data-path="format.html"><a href="format.html#objectives-more-detailed-bulletpoints-4"><i class="fa fa-check"></i><b>8.2</b> Objectives (more detailed, bulletpoints?)</a></li>
 <li class="chapter" data-level="8.3" data-path="format.html"><a href="format.html#resources-6"><i class="fa fa-check"></i><b>8.3</b> Resources</a></li>
 <li class="chapter" data-level="8.4" data-path="format.html"><a href="format.html#lessons-teaching-for-each-objective..-objectives-examples-2"><i class="fa fa-check"></i><b>8.4</b> Lessons teaching for each objective….. (objectives, examples)</a></li>
-<li class="chapter" data-level="8.5" data-path="format.html"><a href="format.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4"><i class="fa fa-check"></i><b>8.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="8.5" data-path="format.html"><a href="format.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3"><i class="fa fa-check"></i><b>8.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
 <li class="chapter" data-level="8.6" data-path="format.html"><a href="format.html#interludes-deep-thoughtsopenscapes-6"><i class="fa fa-check"></i><b>8.6</b> Interludes (deep thoughts/openscapes)</a></li>
 <li class="chapter" data-level="8.7" data-path="format.html"><a href="format.html#our-turn-your-turn-1-3"><i class="fa fa-check"></i><b>8.7</b> Our Turn Your Turn 1</a></li>
 <li class="chapter" data-level="8.8" data-path="format.html"><a href="format.html#our-turn-your-turn-2-4"><i class="fa fa-check"></i><b>8.8</b> Our Turn Your Turn 2</a></li>
 <li class="chapter" data-level="8.9" data-path="format.html"><a href="format.html#efficiency-tips-6"><i class="fa fa-check"></i><b>8.9</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="synthesis.html"><a href="synthesis.html"><i class="fa fa-check"></i><b>9</b> Synthesis</a><ul>
-<li class="chapter" data-level="9.1" data-path="synthesis.html"><a href="synthesis.html#summary-a-few-sentences-6"><i class="fa fa-check"></i><b>9.1</b> Summary (a few sentences)</a></li>
+<li class="chapter" data-level="9.1" data-path="synthesis.html"><a href="synthesis.html#summary-a-few-sentences-5"><i class="fa fa-check"></i><b>9.1</b> Summary (a few sentences)</a></li>
 <li class="chapter" data-level="9.2" data-path="synthesis.html"><a href="synthesis.html#objectives-more-detailed-bulletpoints-5"><i class="fa fa-check"></i><b>9.2</b> Objectives (more detailed, bulletpoints?)</a></li>
 <li class="chapter" data-level="9.3" data-path="synthesis.html"><a href="synthesis.html#resources-7"><i class="fa fa-check"></i><b>9.3</b> Resources</a></li>
 <li class="chapter" data-level="9.4" data-path="synthesis.html"><a href="synthesis.html#lessons-teaching-for-each-objective..-objectives-examples-3"><i class="fa fa-check"></i><b>9.4</b> Lessons teaching for each objective….. (objectives, examples)</a></li>
-<li class="chapter" data-level="9.5" data-path="synthesis.html"><a href="synthesis.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-5"><i class="fa fa-check"></i><b>9.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="9.5" data-path="synthesis.html"><a href="synthesis.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4"><i class="fa fa-check"></i><b>9.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
 <li class="chapter" data-level="9.6" data-path="synthesis.html"><a href="synthesis.html#interludes-deep-thoughtsopenscapes-7"><i class="fa fa-check"></i><b>9.6</b> Interludes (deep thoughts/openscapes)</a></li>
 <li class="chapter" data-level="9.7" data-path="synthesis.html"><a href="synthesis.html#our-turn-your-turn-1-4"><i class="fa fa-check"></i><b>9.7</b> Our Turn Your Turn 1</a></li>
 <li class="chapter" data-level="9.8" data-path="synthesis.html"><a href="synthesis.html#our-turn-your-turn-2-5"><i class="fa fa-check"></i><b>9.8</b> Our Turn Your Turn 2</a></li>
@@ -346,13 +345,11 @@ Not so brittle/sensitive to minor changes.</p>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
