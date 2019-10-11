@@ -44,7 +44,8 @@ kelp_subset <- data_clean %>%
   summarize(
     tot_fronds = sum(fronds)
   ) %>%
-  ungroup()
+  ungroup() %>% 
+  select(-common_name)
 
 unique(kelp_subset$site) 
 

@@ -128,6 +128,7 @@ fish_over50 <- fish_counts %>%
   dplyr::filter(tot_count >= 50)
 ```
 
+TODO: show example of between and exact =
 
 #### Filter to return rows that match *this* OR *that* OR *that*
 
@@ -280,11 +281,45 @@ abur_kelp_join <- fish_counts %>%
 When we try to do that join, we get an error message: 
 `Error: Can't join on 'year' x 'year' because of incompatible types (character / numeric)`
 
-What's going on here? If we go back to the kelp_counts_curated.xlsx file, we'll see that the numbers in both the year and month column have been stored as *text*. There are several hints Excel gives us: 
+What's going on here? First, there's something fishy (ha) going on with the class of the *year* variable in `kelp_counts_abur`. Use the `class()` function to see how R understands that variable (remember, we use `$` to return a specific column from a data frame). 
 
-- Notice that those cells are left aligned, when values stored as numbers are right aligned
+```{r}
+class(kelp_counts_abur$year)
+```
+
+So the variable is currently stored as a character. Why? 
+
+If we go back to the kelp_counts_curated.xlsx file, we'll see that the numbers in both the year and month column have been stored as *text*. There are several hints Excel gives us: 
+
+- Cells are left aligned, when values stored as numbers are right aligned
 - The green triangles in the corner indicate some formatting
-- The warning sign shows up when you click on one of the values with text formatting, and lets you know that the cell has been stored as text. **Note**: you are given the option to reformat as numeric in Excel, but we'll do in here in R so we have a reproducible record of the change. 
+- The warning sign shows up when you click on one of the values with text formatting, and lets you know that the cell has been stored as text. We are given the option to reformat as numeric in Excel, but we'll do it here in R so we have a reproducible record of the change to the variable class. 
+
+There are a number of ways to do this in R. We'll use `dplyr::mutate()` to overwrite the existing `year` column while coercing it to class *numeric* using the `as.numeric()` function. 
+
+```{r}
+# Coerce the class of 'year' to numeric
+kelp_counts_abur <- kelp_counts_abur %>% 
+  mutate(year = as.numeric(year))
+```
+
+Now if we check the class of the *year* variable in `kelp_counts_abur`, we'll see that it has been coerced to 'numeric':
+```{r}
+class(kelp_counts_abur$year)
+```
+
+**Question: Isn't it bad practice to overwrite variables, instead of just making a new one?** Great question, and usually the answer is yes. Here, we feel fine with "overwriting" the year column because we're not changing anything about what's contained within the column, we're only changing how R understands it. Always use caution if overwriting variables, and if in doubt, add one instead! 
+
+OK, so now the class of *year* in the data frames we're joining is the same. Let's try that `full_join()` again:
+```{r}
+abur_kelp_join <- fish_counts %>% 
+  full_join(kelp_counts_abur)
+```
+
+First, notice that R tells us which sites it is joining by. 
+
+
+
 
 
 #### `dplyr::inner_join()` to merge data frames, only keeping observations with a match in both
