@@ -316,7 +316,9 @@ abur_kelp_join <- fish_counts %>%
   full_join(kelp_counts_abur)
 ```
 
-First, notice that R tells us which sites it is joining by. 
+First, notice that R tells us which sites it is joining by - in this case, *year* and *site* since those were the two matching variables in both data frames. 
+
+Now look at the merged data frame with `View(abur_kelp_join)`. 
 
 
 
