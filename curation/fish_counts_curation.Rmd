@@ -73,7 +73,7 @@ fish_subset <- fish_counts %>%
   mutate(count = as.numeric(count)) %>% 
   group_by(year, site, common_name) %>% 
   summarize(
-    tot_count = sum(count)
+    total_count = sum(count)
   ) %>% 
   ungroup()
 
@@ -83,7 +83,7 @@ write_csv(fish_subset, "fish_counts_curated.csv")
 # Make a graph of the numbers by location, year & species?
 # Probably want to work on this a bit more ()
 
-ggplot(fish_subset, aes(x = year, y = tot_count, fill = common_name)) +
+ggplot(fish_subset, aes(x = year, y = total_count, fill = common_name)) +
   geom_col(position = "dodge") +
   facet_wrap(~site)
 
