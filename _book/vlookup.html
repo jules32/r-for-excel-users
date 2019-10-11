@@ -454,6 +454,15 @@ Use <code>==</code> to ask R to look for matching strings:</p>
 <li>Which variables* to merge by</li>
 </ul>
 <p>Note: If there are <strong>exactly matching</strong> column names in the data frames you’re merging, the <code>*_join()</code> functions will assume that you want to join by those columns. If there are <em>no</em> matching column names, you can specify which columns to join by manually. We’ll do both here.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># Join the fish_counts and kelp_counts_abur together: </span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">abur_kelp_join &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="st">  </span><span class="kw">full_join</span>(kelp_counts_abur) <span class="co"># Uh oh</span></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="co"># An interesting error we haven&#39;t dealt with before</span></a>
+<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="co"># The &#39;year&#39; variable in &#39;kelp_counts_abur&#39; is a &quot;character&quot; class! </span></a>
+<a class="sourceLine" id="cb18-7" data-line-number="7"><span class="co"># Why? Because the values in the Excel worksheet were stored as text</span></a>
+<a class="sourceLine" id="cb18-8" data-line-number="8"><span class="co"># Open the Excel file &amp; see warning/left alignment - not a value</span></a>
+<a class="sourceLine" id="cb18-9" data-line-number="9"><span class="co"># But that&#39;s OK, because we can tell R to understand that variable as numeric</span></a></code></pre></div>
 </div>
 <div id="dplyrinner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both" class="section level4">
 <h4><span class="header-section-number">6.4.2.2</span> <code>dplyr::inner_join()</code> to merge data frames, only keeping observations with a match in both</h4>

@@ -269,10 +269,22 @@ When we join data frames in R, we need to tell R a couple of things (and it does
 
 Note: If there are **exactly matching** column names in the data frames you're merging, the `*_join()` functions will assume that you want to join by those columns. If there are *no* matching column names, you can specify which columns to join by manually. We'll do both here. 
 
-```{r, include = FALSE, eval = FALSE}
+```{r, eval = FALSE}
+
+# Join the fish_counts and kelp_counts_abur together: 
 abur_kelp_join <- fish_counts %>% 
-  full_join(kelp_counts_abur) # Hmmm year isn't numeric in kelp_counts_aburr (deal with this or use something else?) Can do a mutate(as.numeric()) here to update year in kelp_counts? TODO too much?
+  full_join(kelp_counts_abur) # Uh oh. An error message.
+
 ```
+
+When we try to do that join, we get an error message: 
+`Error: Can't join on 'year' x 'year' because of incompatible types (character / numeric)`
+
+What's going on here? If we go back to the kelp_counts_curated.xlsx file, we'll see that the numbers in both the year and month column have been stored as *text*. There are several hints Excel gives us: 
+
+- Notice that those cells are left aligned, when values stored as numbers are right aligned
+- The green triangles in the corner indicate some formatting
+- The warning sign shows up when you click on one of the values with text formatting, and lets you know that the cell has been stored as text. **Note**: you are given the option to reformat as numeric in Excel, but we'll do in here in R so we have a reproducible record of the change. 
 
 
 #### `dplyr::inner_join()` to merge data frames, only keeping observations with a match in both
