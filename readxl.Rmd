@@ -102,7 +102,7 @@ Here are a few other functions for quickly exploring imported data:
 Now let's make a simple plot of some fish counts with `ggplot2`. 
 
 ```{r}
-ggplot(fish_counts, aes(x = year, y = tot_count)) +
+ggplot(fish_counts, aes(x = year, y = total_count)) +
   geom_col(aes(fill = common_name)) +
   facet_wrap(~site)
 ```
@@ -295,7 +295,7 @@ kelp_all_sites
 Awesome! Let's make a graph with ggplot2: 
 ```{r}
 
-ggplot(kelp_all_sites, aes(x = site, y = tot_fronds)) +
+ggplot(kelp_all_sites, aes(x = site, y = total_fronds)) +
   geom_col(aes(fill = year), position = "dodge") +
   scale_fill_manual(values = c("purple","orange","gray30"))
 ```
@@ -308,7 +308,7 @@ kelp_complete <- kelp_all_sites %>%
 
 # Now, instead of the "bull 2018" observations not existing, it now has 'NA' values. Cool! Then let's try plotting again: 
 
-ggplot(kelp_complete, aes(x = site, y = tot_fronds)) +
+ggplot(kelp_complete, aes(x = site, y = total_fronds)) +
   geom_col(aes(fill = year), position = "dodge") +
   scale_fill_manual(values = c("purple","orange","gray30"))
 
@@ -335,11 +335,11 @@ readr::write_csv(kelp_all_sites, "kelp_all_sites.csv")
 
 A cool thing about `readr::read_csv()` is that it just quietly *works* without wrecking anything else you do in a sequence, so it's great to add at the end of a piped sequence.
 
-For example, if I want to read in the 'ivee' worksheet from kelp_counts_curated.xlsx, select only columns 'year' and 'tot_fronds', then write that new subset to a .csv file, I can pipe all the way through:
+For example, if I want to read in the 'ivee' worksheet from kelp_counts_curated.xlsx, select only columns 'year' and 'total_fronds', then write that new subset to a .csv file, I can pipe all the way through:
 ```{r, eval = FALSE}
 
 kelp_ivee <- readxl::read_excel("kelp_counts_curated.xlsx", sheet = "ivee") %>% 
-  select(year, tot_fronds) %>% 
+  select(year, total_fronds) %>% 
   write_csv("kelp_ivee.csv")
 
 ```
