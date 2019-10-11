@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-10-10}
+    \date{2019-10-11}
 
 \usepackage{booktabs}
 
@@ -185,6 +185,12 @@ Before the training, please make sure you have done the following:
 
 \hypertarget{objectives-more-detailed-bulletpoints}{%
 \section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints}}
+
+\begin{itemize}
+\tightlist
+\item
+  working with data that are not your own.
+\end{itemize}
 
 \hypertarget{resources}{%
 \section{Resources}\label{resources}}
@@ -911,12 +917,12 @@ Note that you can also specify a worksheet by position: since \emph{golb} is the
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 3 x 5
-##   year  month site  common_name tot_fronds
-##   <chr> <chr> <chr> <chr>            <dbl>
-## 1 2016  7     golb  giant kelp        2557
-## 2 2017  7     golb  giant kelp        1575
-## 3 2018  7     golb  giant kelp        1629
+## # A tibble: 3 x 4
+##   year  month site  tot_fronds
+##   <chr> <chr> <chr>      <dbl>
+## 1 2016  7     golb        2557
+## 2 2017  7     golb        1575
+## 3 2018  7     golb        1629
 \end{verbatim}
 
 \hypertarget{read-in-and-combine-data-from-multiple-worksheets-into-a-data-frame-simultaneously-with-purrrmap_df}{%
@@ -964,19 +970,19 @@ Check out \emph{kelp\_all\_sites}, and notice that now the data from all 11 site
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 32 x 5
-##    year  month site  common_name tot_fronds
-##    <chr> <chr> <chr> <chr>            <dbl>
-##  1 2016  7     abur  giant kelp         307
-##  2 2017  7     abur  giant kelp         604
-##  3 2018  7     abur  giant kelp        3532
-##  4 2016  7     ahnd  giant kelp        2572
-##  5 2017  7     ahnd  giant kelp          16
-##  6 2018  7     ahnd  giant kelp          16
-##  7 2016  7     aque  giant kelp       11152
-##  8 2017  7     aque  giant kelp        9194
-##  9 2018  7     aque  giant kelp        7754
-## 10 2016  7     bull  giant kelp        6706
+## # A tibble: 32 x 4
+##    year  month site  tot_fronds
+##    <chr> <chr> <chr>      <dbl>
+##  1 2016  7     abur         307
+##  2 2017  7     abur         604
+##  3 2018  7     abur        3532
+##  4 2016  7     ahnd        2572
+##  5 2017  7     ahnd          16
+##  6 2018  7     ahnd          16
+##  7 2016  7     aque       11152
+##  8 2017  7     aque        9194
+##  9 2018  7     aque        7754
+## 10 2016  7     bull        6706
 ## # ... with 22 more rows
 \end{verbatim}
 
@@ -1280,30 +1286,26 @@ In R, we can use dplyr for pivot tables by using 2 main verbs in combination: \t
   \textbf{\texttt{summarize()}}: collapse many values down to a single summary
 \end{itemize}
 
-Let's try this on our fish\_counts data.
+Let's try this on our fish\_counts data. Let's summarize the total number of fish at each site.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{fish_counts }
+\NormalTok{fish_counts }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(site) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{total_fish =} \KeywordTok{sum}\NormalTok{(tot_count))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 45 x 4
-##     year site  common_name     tot_count
-##    <dbl> <chr> <chr>               <dbl>
-##  1  2016 abur  black surfperch         2
-##  2  2016 abur  blacksmith              1
-##  3  2016 abur  garibaldi               1
-##  4  2016 abur  rock wrasse             2
-##  5  2016 abur  senorita               58
-##  6  2016 aque  black surfperch         1
-##  7  2016 aque  blacksmith              1
-##  8  2016 aque  garibaldi               1
-##  9  2016 aque  rock wrasse             1
-## 10  2016 aque  senorita               57
-## # ... with 35 more rows
+## # A tibble: 3 x 2
+##   site  total_fish
+##   <chr>      <dbl>
+## 1 abur         196
+## 2 aque         110
+## 3 mohk         205
 \end{verbatim}
+
+Awesome! And we can still \texttt{View(fish\_counts)} and see that we haven't changed any of our original data. But maybe we do want to save this summary as a variable so we can refer to it or even include it in further analyses
 
 \begin{itemize}
 \item
@@ -1353,8 +1355,8 @@ group\_by() \%\textgreater{}\% mutate()
 \hypertarget{vlookup}{%
 \chapter{Dplyr and vlookups}\label{vlookup}}
 
-\hypertarget{summary-a-few-sentences-3}{%
-\section{Summary (a few sentences)}\label{summary-a-few-sentences-3}}
+\hypertarget{summary-1}{%
+\section{Summary}\label{summary-1}}
 
 In Session 4, we learned how to do some basic wrangling and find summary information with functions in the \texttt{dplyr} package, which exists within the \texttt{tidyverse}. Those were:
 
@@ -1382,6 +1384,8 @@ In Session 5, we'll expand our data wrangling toolkit using:
   \texttt{dplyr::join()} functions to merge data frames together
 \end{itemize}
 
+The combination of \texttt{dplyr::filter()} and \texttt{dplyr::join()} - to return rows satisfying a condition we specify, and merging data frames by like variables - is analogous to the useful VLOOKUP function in Excel.
+
 \hypertarget{objectives-1}{%
 \section{Objectives}\label{objectives-1}}
 
@@ -1390,29 +1394,26 @@ In Session 5, we'll expand our data wrangling toolkit using:
 \item
   Continue building R Markdown skills
 \item
-  Create subsets from data frames by setting conditions for \textbf{rows} using \texttt{dplyr::filter()}
+  Return \textbf{rows} that satisfy variable conditions using \texttt{dplyr::filter()}
 \item
   Use \texttt{dplyr::full\_join()}, \texttt{dplyr::inner\_join()}, and beyond to merge data frames by matching variables, with different endpoints in mind
 \item
   Use \texttt{dplyr::anti\_join()} to find things that \textbf{do not} exist in both data frames
 \item
-  Understand the similarities between dplyr::filter() + join() and Excel's \texttt{VLOOKUP}
+  Understand the similarities between \texttt{dplyr::filter()} + \texttt{join()} and Excel's \texttt{VLOOKUP}
 \end{itemize}
 
 \hypertarget{resources-4}{%
 \section{Resources}\label{resources-4}}
 
 \begin{itemize}
+\tightlist
 \item
   \href{https://dplyr.tidyverse.org/reference/filter.html}{\texttt{dplyr::filter()} documentation from tidyverse.org}
 \item
   \href{https://dplyr.tidyverse.org/reference/join.html}{\texttt{dplyr::join()} documentation from tidyverse.org}
 \item
-  \begin{itemize}
-  \tightlist
-  \item
-    \href{https://r4ds.had.co.nz/}{Chapters 5 and 13 in \emph{R for Data Science} by Garrett Grolemund and Hadley Wickham}
-  \end{itemize}
+  \href{https://r4ds.had.co.nz/}{Chapters 5 and 13 in \emph{R for Data Science} by Garrett Grolemund and Hadley Wickham}
 \end{itemize}
 
 \hypertarget{lessons}{%
@@ -1438,7 +1439,7 @@ In Session 5, we'll expand our data wrangling toolkit using:
   \end{itemize}
 \end{itemize}
 
-In this session we'll use the \textbf{fish\_counts\_curated.csv} and \textbf{invert\_counts\_curated.xlsx} files.
+In this session we'll use the \textbf{fish\_counts\_curated.csv} and \textbf{invert\_counts\_curated.xlsx} files, and the first worksheet from \textbf{kelp\_counts\_curated.xlsx}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1449,10 +1450,11 @@ In this session we'll use the \textbf{fish\_counts\_curated.csv} and \textbf{inv
 \CommentTok{# Read in data: }
 \NormalTok{invert_counts <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\StringTok{"invert_counts_curated.xlsx"}\NormalTok{)}
 \NormalTok{fish_counts <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"fish_counts_curated.csv"}\NormalTok{)}
+\NormalTok{kelp_counts_abur <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\StringTok{"kelp_counts_curated.xlsx"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-Remember to always explore the data you've read in using functions like \texttt{View()}, \texttt{names()}, \texttt{summary()}, \texttt{head()} and \texttt{tail()}.
+Remember to always explore the data you've read in using functions like \texttt{View()}, \texttt{names()}, \texttt{summary()}, \texttt{head()} and \texttt{tail()} to ensure that the data you \emph{think} you read in is \emph{actually} the data you read in.
 
 Now, let's use \texttt{dplyr::filter()} to decide which observations (rows) we'll keep or exclude in new subsets, similar to using Excel's VLOOKUP function.
 
@@ -1485,11 +1487,10 @@ When we use \texttt{dplyr::filter()}, we need to let R know a couple of things:
 
 Follow along with the examples below to learn some common ways to use \texttt{dplyr::filter()}.
 
-\hypertarget{example-filter-rows-by-matching-a-single-character-string}{%
-\subsubsection{Example: filter rows by matching a single character string}\label{example-filter-rows-by-matching-a-single-character-string}}
+\hypertarget{filter-rows-by-matching-a-single-character-string}{%
+\subsubsection{Filter rows by matching a single character string}\label{filter-rows-by-matching-a-single-character-string}}
 
 Let's say we want to keep all observations from the fish\_counts data frame where the common name is ``garibaldi.'' Here, we need to tell R to only \emph{keep rows} from the \textbf{fish\_counts} data frame when the common name (\textbf{common\_name} variable) exactly matches \textbf{garibaldi}.
-
 Use \texttt{==} to ask R to look for matching strings:
 
 \begin{Shaded}
@@ -1509,8 +1510,8 @@ You could also do this using the pipe operator \texttt{\%\textgreater{}\%} (thou
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{example-filter-rows-based-on-numeric-conditions}{%
-\subsubsection{Example: filter rows based on numeric conditions}\label{example-filter-rows-based-on-numeric-conditions}}
+\hypertarget{filter-rows-based-on-numeric-conditions}{%
+\subsubsection{Filter rows based on numeric conditions}\label{filter-rows-based-on-numeric-conditions}}
 
 Use expected operators (\textgreater{}, \textless{}, \textgreater{}=, \textless{}=, =) to set conditions for a numeric variable when filtering. For this example, we only want to retain observations when the \textbf{tot\_count} column value is \textgreater{}= 50:
 
@@ -1529,32 +1530,274 @@ Or, using the pipe:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{example-make-a-subset-of-the-fish_counts-df-that-contains-garibaldi-blacksmith-or-black-surfperch}{%
-\subsubsection{\texorpdfstring{Example: Make a subset of the fish\_counts df that contains \emph{garibaldi}, \emph{blacksmith} OR \emph{black surfperch}}{Example: Make a subset of the fish\_counts df that contains garibaldi, blacksmith OR black surfperch}}\label{example-make-a-subset-of-the-fish_counts-df-that-contains-garibaldi-blacksmith-or-black-surfperch}}
+TODO: show example of between and exact =
 
-There are several ways to write an ``OR'' statement, which will keep any observations that match Condition A \emph{or} Condition B \emph{or} Condition C. In this example, we will create a subset from \textbf{fish\_counts} that only contains rows where the \textbf{common\_name} is \emph{garibaldi} or \emph{blacksmith} or \emph{black surfperch}.
+\hypertarget{filter-to-return-rows-that-match-this-or-that-or-that}{%
+\subsubsection{\texorpdfstring{Filter to return rows that match \emph{this} OR \emph{that} OR \emph{that}}{Filter to return rows that match this OR that OR that}}\label{filter-to-return-rows-that-match-this-or-that-or-that}}
+
+What if we want to return a subset of the fish\_counts df that contains \emph{garibaldi}, \emph{blacksmith} OR \emph{black surfperch}?
+
+There are several ways to write an ``OR'' statement for filtering, which will keep any observations that match Condition A \emph{or} Condition B \emph{or} Condition C. In this example, we will create a subset from \textbf{fish\_counts} that only contains rows where the \textbf{common\_name} is \emph{garibaldi} or \emph{blacksmith} or \emph{black surfperch}.
 
 Use \texttt{\%in\%} to ask R to look for \emph{any matches} within a combined vector of strings:
 
-\hypertarget{example-make-a-subset-of-the-fish_counts_curated-that-does-not-contain-observations-recorded-at-site-a}{%
-\subsubsection{Example: Make a subset of the fish\_counts\_curated that does NOT contain observations recorded at Site A}\label{example-make-a-subset-of-the-fish_counts_curated-that-does-not-contain-observations-recorded-at-site-a}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fish_3sp <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(common_name }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"garibaldi"}\NormalTok{, }\StringTok{"blacksmith"}\NormalTok{, }\StringTok{"black surfperch"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
 
-\hypertarget{example-conditionally-subset-with-values}{%
-\subsubsection{Example: Conditionally subset with values}\label{example-conditionally-subset-with-values}}
+Alternatively, you can indicate \textbf{OR} using the vertical line operator \texttt{\textbar{}} to do the same thing (but you can see that it's more repetitive when looking for matches within the same variable):
 
-\hypertarget{example-combo-w-string-matching-value-condition}{%
-\subsubsection{Example: Combo w/ string matching \& value condition}\label{example-combo-w-string-matching-value-condition}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fish_3sp <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(common_name }\OperatorTok{==}\StringTok{ "garibaldi"} \OperatorTok{|}\StringTok{ }\NormalTok{common_name }\OperatorTok{==}\StringTok{ "blacksmith"} \OperatorTok{|}\StringTok{ }\NormalTok{common_name }\OperatorTok{==}\StringTok{ "black surfperch"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{filter-to-return-rows-that-match-conditions-for-multiple-variables}{%
+\subsubsection{Filter to return rows that match conditions for multiple variables}\label{filter-to-return-rows-that-match-conditions-for-multiple-variables}}
+
+In the previous examples, we set filter conditions based on a single variable (e.g.~common\_name). What if we want to return observations that satisfy conditions for multiple variables?
+
+For example: We want to create a subset that only returns rows from `invert\_counts' where the \textbf{site} is ``abur'' or ``mohk'' \emph{and} the \textbf{common\_name} is ``purple urchin.'' In \texttt{dplyr::filter()}, add a comma (or ampersand, \&) between arguments for multiple \emph{AND} conditions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{urchin_abur_mohk <-}\StringTok{ }\NormalTok{invert_counts }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(site }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"abur"}\NormalTok{,}\StringTok{"mohk"}\NormalTok{), common_name }\OperatorTok{==}\StringTok{ "purple urchin"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(urchin_abur_mohk)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 6
+##   month site  common_name   `2016` `2017` `2018`
+##   <chr> <chr> <chr>          <dbl>  <dbl>  <dbl>
+## 1 7     abur  purple urchin     48     48     48
+## 2 7     mohk  purple urchin    620    505    323
+\end{verbatim}
+
+Like most things in R, there are other ways to do the same thing. For example, you could do the same thing using \texttt{\&} (instead of a comma) between ``and'' conditions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Use the ampersand (&) to add another condition "and this must be true":}
+
+\NormalTok{urchin_abur_mohk <-}\StringTok{ }\NormalTok{invert_counts }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(site }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"abur"}\NormalTok{,}\StringTok{"mohk"}\NormalTok{) }\OperatorTok{&}\StringTok{ }\NormalTok{common_name }\OperatorTok{==}\StringTok{ "purple urchin"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Or you could just do two filter steps in sequence:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Written as multiple filter steps:}
+
+\NormalTok{urchin_abur_mohk <-}\StringTok{ }\NormalTok{invert_counts }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(site }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"abur"}\NormalTok{, }\StringTok{"mohk"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(common_name }\OperatorTok{==}\StringTok{ "purple urchin"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{filter-to-return-rows-that-do-not-match-conditions}{%
+\subsubsection{\texorpdfstring{Filter to return rows that \emph{do not} match conditions}{Filter to return rows that do not match conditions}}\label{filter-to-return-rows-that-do-not-match-conditions}}
+
+Sometimes we might want to exclude observations. Here, let's say we want to make a subset that contains all rows from \textbf{fish\_counts} except those recorded at the Mohawk Reef site (``mohk'' in the \emph{site} variable).
+
+We use \texttt{!=} to return observations that \textbf{do not match} a condition.
+
+Like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fish_no_mohk <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(site }\OperatorTok{!=}\StringTok{ "mohk"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+This similarly works to exclude observations by a value.
+
+For example, if we want to return all observations \emph{except} those where the total fish count is 1, we use:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fish_more_one <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(tot_count }\OperatorTok{!=}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+What if we want to exclude observations for multiple conditions? For example, here we want to return all rows where the fish species \textbf{is not} garibaldi \textbf{or} rock wrasse.
+
+We can use \texttt{filter(!variable\ \%in\%\ c("apple",\ "orange"))} to return rows where the variable does \textbf{not} match ``apple'' or ``orange''. For our fish example, that looks like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fish_subset <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\NormalTok{common_name }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"garibaldi"}\NormalTok{, }\StringTok{"rock wrasse"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Which then only returns observations for the other fish species in the dataset.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(fish_subset)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 4
+##    year site  common_name     tot_count
+##   <dbl> <chr> <chr>               <dbl>
+## 1  2016 abur  black surfperch         2
+## 2  2016 abur  blacksmith              1
+## 3  2016 abur  senorita               58
+## 4  2016 aque  black surfperch         1
+## 5  2016 aque  blacksmith              1
+## 6  2016 aque  senorita               57
+\end{verbatim}
 
 \hypertarget{example-some-combo-wprevious-functions-used}{%
 \subsubsection{Example: Some combo w/previous functions used}\label{example-some-combo-wprevious-functions-used}}
 
 We can also use \texttt{dplyr::filter()} in combination with the functions we learned for wrangling yesterday. If we have multiple sequential steps to perform, we can string them together using the \emph{pipe operator} (\texttt{\%\textgreater{}\%}).
 
-\hypertarget{section}{%
-\subsubsection{}\label{section}}
+\hypertarget{merging-data-frames-with-dplyr_join}{%
+\subsection{\texorpdfstring{Merging data frames with \texttt{dplyr::*\_join()}}{Merging data frames with dplyr::*\_join()}}\label{merging-data-frames-with-dplyr_join}}
 
-\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}{%
-\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}}
+Excel's \texttt{VLOOKUP} can also be used to merge data from separate tables or worksheets. Here, we'll use the \texttt{dplyr::*\_join()} functions to merge separate data frames in R.
+
+There are a number of ways to merge data frames in R. We'll use \texttt{full\_join()} and \texttt{inner\_join()} in this session.
+
+From R Documentation (\texttt{?join}):
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{dplyr::full\_join()}: ``returns all rows and all columns from both x and y. Where there are not matching values, returns NA for the one missing.'' Basically, nothing gets thrown out, even if a match doesn't exist - making \texttt{full\_join()} the safest option for merging data frames.
+\item
+  \texttt{dplyr::inner\_join()}: ``returns all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned.'' This will drop observations that don't have a match between the merged data frames, which makes it a riskier merging option if you're not sure what you're trying to do. When in doubt, \texttt{full\_join()}.
+\end{itemize}
+
+\hypertarget{dplyrfull_join-to-merge-data-frames-keeping-everything}{%
+\subsubsection{\texorpdfstring{\texttt{dplyr::full\_join()} to merge data frames, keeping everything}{dplyr::full\_join() to merge data frames, keeping everything}}\label{dplyrfull_join-to-merge-data-frames-keeping-everything}}
+
+When we join data frames in R, we need to tell R a couple of things (and it does the hard joining work for us):
+
+\begin{itemize}
+\tightlist
+\item
+  Which data frames we want to merge together
+\item
+  Which variables* to merge by
+\end{itemize}
+
+Note: If there are \textbf{exactly matching} column names in the data frames you're merging, the \texttt{*\_join()} functions will assume that you want to join by those columns. If there are \emph{no} matching column names, you can specify which columns to join by manually. We'll do both here.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Join the fish_counts and kelp_counts_abur together: }
+\NormalTok{abur_kelp_join <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{full_join}\NormalTok{(kelp_counts_abur) }\CommentTok{# Uh oh. An error message.}
+\end{Highlighting}
+\end{Shaded}
+
+When we try to do that join, we get an error message:
+\texttt{Error:\ Can\textquotesingle{}t\ join\ on\ \textquotesingle{}year\textquotesingle{}\ x\ \textquotesingle{}year\textquotesingle{}\ because\ of\ incompatible\ types\ (character\ /\ numeric)}
+
+What's going on here? First, there's something fishy (ha) going on with the class of the \emph{year} variable in \texttt{kelp\_counts\_abur}. Use the \texttt{class()} function to see how R understands that variable (remember, we use \texttt{\$} to return a specific column from a data frame).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(kelp_counts_abur}\OperatorTok{$}\NormalTok{year)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+So the variable is currently stored as a character. Why?
+
+If we go back to the kelp\_counts\_curated.xlsx file, we'll see that the numbers in both the year and month column have been stored as \emph{text}. There are several hints Excel gives us:
+
+\begin{itemize}
+\tightlist
+\item
+  Cells are left aligned, when values stored as numbers are right aligned
+\item
+  The green triangles in the corner indicate some formatting
+\item
+  The warning sign shows up when you click on one of the values with text formatting, and lets you know that the cell has been stored as text. We are given the option to reformat as numeric in Excel, but we'll do it here in R so we have a reproducible record of the change to the variable class.
+\end{itemize}
+
+There are a number of ways to do this in R. We'll use \texttt{dplyr::mutate()} to overwrite the existing \texttt{year} column while coercing it to class \emph{numeric} using the \texttt{as.numeric()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Coerce the class of 'year' to numeric}
+\NormalTok{kelp_counts_abur <-}\StringTok{ }\NormalTok{kelp_counts_abur }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{year =} \KeywordTok{as.numeric}\NormalTok{(year))}
+\end{Highlighting}
+\end{Shaded}
+
+Now if we check the class of the \emph{year} variable in \texttt{kelp\_counts\_abur}, we'll see that it has been coerced to `numeric':
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(kelp_counts_abur}\OperatorTok{$}\NormalTok{year)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+\textbf{Question: Isn't it bad practice to overwrite variables, instead of just making a new one?} Great question, and usually the answer is yes. Here, we feel fine with ``overwriting'' the year column because we're not changing anything about what's contained within the column, we're only changing how R understands it. Always use caution if overwriting variables, and if in doubt, add one instead!
+
+OK, so now the class of \emph{year} in the data frames we're joining is the same. Let's try that \texttt{full\_join()} again:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{abur_kelp_join <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{full_join}\NormalTok{(kelp_counts_abur)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = c("year", "site")
+\end{verbatim}
+
+First, notice that R tells us which sites it is joining by.
+
+\hypertarget{dplyrinner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both}{%
+\subsubsection{\texorpdfstring{\texttt{dplyr::inner\_join()} to merge data frames, only keeping observations with a match in both}{dplyr::inner\_join() to merge data frames, only keeping observations with a match in both}}\label{dplyrinner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both}}
+
+\hypertarget{fun-facts}{%
+\section{Fun facts}\label{fun-facts}}
+
+\textbf{How is this similar to \texttt{VLOOKUP} in Excel? How does it differ?}
+
+From \href{https://support.office.com/en-us/article/vlookup-function-0bbc8083-26fe-4963-8ab8-93a18ad188a1}{Microsoft Office Support}, ``use VLOOKUP when you need to find things in a table or a range by row.''
+
+So, both \texttt{filter()} and \texttt{VLOOKUP} look through your data frame (or spreadsheet, in Excel) to look for observations that match your conditions. But they also differ in important ways:
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\item
+  By default \texttt{VLOOKUP} looks for and returns an observation for \emph{approximate} matches (and you have to change the final argument to FALSE to look for an exact match). In contrast, by default \texttt{dplyr::filter()} will look for exact conditional matches.
+\item
+  \texttt{VLOOKUP} will look for and return information from the \emph{first observation} that matches (or approximately matches) a condition. \texttt{dplyr::filter()} will return all observations (rows) that exactly match a condition.
+\end{enumerate}
 
 \hypertarget{interludes-deep-thoughtsopenscapes-4}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-4}}
@@ -1585,8 +1828,8 @@ Modern useRs are nimble internet useRs
 something clever about cleaning
 I am the worst at naming things
 
-\hypertarget{summary-a-few-sentences-4}{%
-\section{Summary (a few sentences)}\label{summary-a-few-sentences-4}}
+\hypertarget{summary-a-few-sentences-3}{%
+\section{Summary (a few sentences)}\label{summary-a-few-sentences-3}}
 
 R ecosystem evolves and improves due to contributed work by the community, and this is a good thing. Being a nimble useR means being able to navigate/keep tabs on this ecosystem and find what you need. It also means working reproducibly, so you can re-run and update things more easily. Here we will teach you how to expect things and help yourself. Pay attention to urls.
 
@@ -1687,8 +1930,8 @@ Pay attention to URLs, build github/rmarkdown savviness (ex: raw.githubuserconte
   1st thing: most recent commit was a year ago. Can poke around more, are there issues open, are they taken care of? Etc. I will probably not pursue using this right now. But good to have learned about it.
 \end{itemize}
 
-\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3}{%
-\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3}}
+\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}{%
+\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}}
 
 \hypertarget{interludes-deep-thoughtsopenscapes-5}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-5}}
@@ -1724,8 +1967,8 @@ Recreate it
 \hypertarget{format}{%
 \chapter{Formatting and Sharing}\label{format}}
 
-\hypertarget{summary-a-few-sentences-5}{%
-\section{Summary (a few sentences)}\label{summary-a-few-sentences-5}}
+\hypertarget{summary-a-few-sentences-4}{%
+\section{Summary (a few sentences)}\label{summary-a-few-sentences-4}}
 
 \hypertarget{objectives-more-detailed-bulletpoints-4}{%
 \section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-4}}
@@ -1743,8 +1986,8 @@ Recreate it
   Create a GitHub account: \url{https://github.com} \emph{Note! Shorter names that kind of identify you are better, and use your work email!}
 \end{enumerate}
 
-\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4}{%
-\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4}}
+\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3}{%
+\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3}}
 
 \hypertarget{interludes-deep-thoughtsopenscapes-6}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-6}}
@@ -1761,8 +2004,8 @@ Recreate it
 \hypertarget{synthesis}{%
 \chapter{Synthesis}\label{synthesis}}
 
-\hypertarget{summary-a-few-sentences-6}{%
-\section{Summary (a few sentences)}\label{summary-a-few-sentences-6}}
+\hypertarget{summary-a-few-sentences-5}{%
+\section{Summary (a few sentences)}\label{summary-a-few-sentences-5}}
 
 \hypertarget{objectives-more-detailed-bulletpoints-5}{%
 \section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-5}}
@@ -1773,8 +2016,8 @@ Recreate it
 \hypertarget{lessons-teaching-for-each-objective..-objectives-examples-3}{%
 \section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-3}}
 
-\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-5}{%
-\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-5}}
+\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4}{%
+\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4}}
 
 \hypertarget{interludes-deep-thoughtsopenscapes-7}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-7}}

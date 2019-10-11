@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Dplyr and Pivot Tables | R for the Excel User</title>
   <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.13.2 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Dplyr and Pivot Tables | R for the Excel User" />
   <meta property="og:type" content="book" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="rmarkdown.html">
-<link rel="next" href="vlookup.html">
+<link rel="prev" href="rmarkdown.html"/>
+<link rel="next" href="vlookup.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -40,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -55,7 +58,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -296,11 +298,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="introduction-our-analytical-plan" class="section level2">
 <h2><span class="header-section-number">5.4</span> Introduction / our analytical plan</h2>
 <p>We are going to continue with our analysis with the fish-counts data. So far, our RMarkdown has the following in the “setup” chunk: <!---TODO update after ch 3 complete ---></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## attach libraries</span>
-<span class="kw">library</span>(tidyverse)
-
-<span class="co">## read in data</span>
-fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;fish_counts_curated.csv&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="co">## attach libraries</span></a>
+<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb42-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb42-4" data-line-number="4"><span class="co">## read in data</span></a>
+<a class="sourceLine" id="cb42-5" data-line-number="5">fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;fish_counts_curated.csv&quot;</span>)</a></code></pre></div>
 <p>And we have explored the data by looking at some summary statistics and making a simple plot. Now, we are going to learn how to wrangle data in R, using the <code>dplyr</code> package which is included in the <code>tidyverse</code>. In this session, we’ll focus on the functions in <code>dplyr</code> that operate like pivot tables.</p>
 <p>This is because what we want to do with our fish_counts data is XXXXX.</p>
 </div>
@@ -323,9 +325,9 @@ fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span
 <img src="img/rstudio-cheatsheet-summarise.png" width="300"/></li>
 </ul>
 <p>Let’s try this on our fish_counts data. Let’s summarize the total number of fish at each site.</p>
-<pre class="sourceCode r"><code class="sourceCode r">fish_counts <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(site) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(tot_count))</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">fish_counts <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(tot_count))</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 2
 ##   site  total_fish
 ##   &lt;chr&gt;      &lt;dbl&gt;
@@ -381,11 +383,13 @@ group_by() %&gt;% mutate()</p>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
