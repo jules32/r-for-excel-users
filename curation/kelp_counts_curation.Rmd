@@ -42,7 +42,7 @@ kelp_subset <- data_clean %>%
   mutate(fronds = as.numeric(fronds)) %>% 
   group_by(year, month, site, common_name) %>% 
   summarize(
-    tot_fronds = sum(fronds)
+    total_fronds = sum(fronds)
   ) %>%
   ungroup() %>% 
   select(-common_name)

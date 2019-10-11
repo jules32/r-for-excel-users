@@ -364,11 +364,11 @@ Use <code>==</code> to ask R to look for matching strings:</p>
 </div>
 <div id="filter-rows-based-on-numeric-conditions" class="section level4">
 <h4><span class="header-section-number">6.4.1.2</span> Filter rows based on numeric conditions</h4>
-<p>Use expected operators (&gt;, &lt;, &gt;=, &lt;=, =) to set conditions for a numeric variable when filtering. For this example, we only want to retain observations when the <strong>tot_count</strong> column value is &gt;= 50:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">fish_over50 &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(fish_counts, tot_count <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>)</a></code></pre></div>
+<p>Use expected operators (&gt;, &lt;, &gt;=, &lt;=, =) to set conditions for a numeric variable when filtering. For this example, we only want to retain observations when the <strong>total_count</strong> column value is &gt;= 50:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">fish_over50 &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(fish_counts, total_count <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>)</a></code></pre></div>
 <p>Or, using the pipe:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">fish_over50 &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(tot_count <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(total_count <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>)</a></code></pre></div>
 <p>TODO: show example of between and exact =</p>
 </div>
 <div id="filter-to-return-rows-that-match-this-or-that-or-that" class="section level4">
@@ -416,7 +416,7 @@ Use <code>==</code> to ask R to look for matching strings:</p>
 <p>This similarly works to exclude observations by a value.</p>
 <p>For example, if we want to return all observations <em>except</em> those where the total fish count is 1, we use:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">fish_more_one &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(tot_count <span class="op">!=</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(total_count <span class="op">!=</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
 <p>What if we want to exclude observations for multiple conditions? For example, here we want to return all rows where the fish species <strong>is not</strong> garibaldi <strong>or</strong> rock wrasse.</p>
 <p>We can use <code>filter(!variable %in% c(&quot;apple&quot;, &quot;orange&quot;))</code> to return rows where the variable does <strong>not</strong> match “apple” or “orange”. For our fish example, that looks like this:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">fish_subset &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -424,14 +424,14 @@ Use <code>==</code> to ask R to look for matching strings:</p>
 <p>Which then only returns observations for the other fish species in the dataset.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">head</span>(fish_subset)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
-##    year site  common_name     tot_count
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;               &lt;dbl&gt;
-## 1  2016 abur  black surfperch         2
-## 2  2016 abur  blacksmith              1
-## 3  2016 abur  senorita               58
-## 4  2016 aque  black surfperch         1
-## 5  2016 aque  blacksmith              1
-## 6  2016 aque  senorita               57</code></pre>
+##    year site  common_name     total_count
+##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;
+## 1  2016 abur  black surfperch           2
+## 2  2016 abur  blacksmith                1
+## 3  2016 abur  senorita                 58
+## 4  2016 aque  black surfperch           1
+## 5  2016 aque  blacksmith                1
+## 6  2016 aque  senorita                 57</code></pre>
 </div>
 <div id="example-some-combo-wprevious-functions-used" class="section level4">
 <h4><span class="header-section-number">6.4.1.6</span> Example: Some combo w/previous functions used</h4>

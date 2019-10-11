@@ -112,20 +112,20 @@ fish_gari <- fish_counts %>%
 
 #### Filter rows based on numeric conditions
 
-Use expected operators (>, <, >=, <=, =) to set conditions for a numeric variable when filtering. For this example, we only want to retain observations when the **tot_count** column value is >= 50:
+Use expected operators (>, <, >=, <=, =) to set conditions for a numeric variable when filtering. For this example, we only want to retain observations when the **total_count** column value is >= 50:
 
 ```{r, include = FALSE}
-fish_over50 <- dplyr::filter(fish_counts, tot_count >= 50)
+fish_over50 <- dplyr::filter(fish_counts, total_count >= 50)
 ```
 
 ```{r, eval = FALSE}
-fish_over50 <- dplyr::filter(fish_counts, tot_count >= 50)
+fish_over50 <- dplyr::filter(fish_counts, total_count >= 50)
 ```
 
 Or, using the pipe: 
 ```{r, eval = FALSE}
 fish_over50 <- fish_counts %>% 
-  dplyr::filter(tot_count >= 50)
+  dplyr::filter(total_count >= 50)
 ```
 
 TODO: show example of between and exact =
@@ -218,12 +218,12 @@ This similarly works to exclude observations by a value.
 For example, if we want to return all observations *except* those where the total fish count is 1, we use:
 ```{r, include = FALSE}
 fish_more_one <- fish_counts %>% 
-  dplyr::filter(tot_count != 1)
+  dplyr::filter(total_count != 1)
 ```
 
 ```{r, eval = FALSE}
 fish_more_one <- fish_counts %>% 
-  dplyr::filter(tot_count != 1)
+  dplyr::filter(total_count != 1)
 ```
 
 What if we want to exclude observations for multiple conditions? For example, here we want to return all rows where the fish species **is not** garibaldi **or** rock wrasse. 
