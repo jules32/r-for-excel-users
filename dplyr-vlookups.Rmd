@@ -262,6 +262,14 @@ From R Documentation (`?join`):
 - `dplyr::left_join()`: "return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned."
 - `dplyr::inner_join()`: "returns all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned." This will drop observations that don't have a match between the merged data frames, which makes it a riskier merging option if you're not sure what you're trying to do. 
 
+To clarify what the different joins are doing, let's first make a subset of the *fish_counts* data frame that only contains observations from 2016 and 2017. 
+
+```{r}
+fish_2016_2017 <- fish_counts %>% 
+  filter(year == 2016 | year == 2017)
+```
+
+Take a look to ensure that only those years are included with `View(fish_2016_2017)`. Now, let's merge it with our kelp fronds data in different ways. 
 
 #### `dplyr::full_join()` to merge data frames, keeping everything
 
@@ -275,7 +283,7 @@ Note: If there are **exactly matching** column names in the data frames you're m
 ```{r, eval = FALSE}
 
 # Join the fish_counts and kelp_counts_abur together: 
-abur_kelp_join <- fish_counts %>% 
+abur_kelp_join <- fish_2016_2017 %>% 
   full_join(kelp_counts_abur) # Uh oh. An error message.
 
 ```
@@ -313,8 +321,10 @@ class(kelp_counts_abur$year)
 **Question: Isn't it bad practice to overwrite variables, instead of just making a new one?** Great question, and usually the answer is yes. Here, we feel fine with "overwriting" the year column because we're not changing anything about what's contained within the column, we're only changing how R understands it. Always use caution if overwriting variables, and if in doubt, add one instead! 
 
 OK, so now the class of *year* in the data frames we're joining is the same. Let's try that `full_join()` again:
+
+TODO: consider using fish_2016_2017 here to really show that full_join() keeps everything? 
 ```{r}
-abur_kelp_join <- fish_counts %>% 
+abur_kelp_join <- fish_2016_2017 %>% 
   full_join(kelp_counts_abur)
 ```
 
@@ -323,7 +333,7 @@ First, notice that R tells us which sites it is joining by - in this case, *year
 Now look at the merged data frame with `View(abur_kelp_join)`. A few things to notice about how `full_join()` has worked: 
 
 1. All columns that existed in **both data frames** still exist.
-2. All observations are retained, even if they don't have a match. In this case, notice that for other sites (not 'abur') the observation for fish still exists, even though there was no corresponding kelp data to merge with it. An `NA` is stored for those sites without matching kelp frond data. 
+2. All observations are retained, even if they don't have a match. In this case, notice that for other sites (not 'abur') the observation for fish still exists, even though there was no corresponding kelp data to merge with it. The kelp frond data from 2018 is also returned, even though the fish counts dataset did not have 'year == 2018' in it. 
 3. The kelp frond data is joined to *all observations* where the joining variables (*year*, *site*) are a match, which is why it is repeated 5 times for each year (once for each fish species).
 
 Because all data (observations & columns) are retained, `full_join()` is the safest option if you're unclear about how to merge data frames. 
@@ -331,6 +341,15 @@ Because all data (observations & columns) are retained, `full_join()` is the saf
 #### `dplyr::left_join()` to merge data frames, keeping everything in the 'x' data frame and only matches from the 'y' data frame
 
 TODO: think about a way to make left_join() clear. Need to join data frame 'y' that has something not contained in 'x', like a site or something, to show that it is dropped when left joining. 
+
+Now, we want to keep all observations in *fish_2016_2017*, and merge them with *kelp_counts_abur* while only keeping observations from *kelp_counts_abur* that match an observation within *fish_2016_2017*. So when we use a left_join, any information on kelp counts from 2018 should be dropped. 
+
+```{r}
+fish_kelp_2016_2017 <- fish_2016_2017 %>% 
+  left_join(kelp_counts_abur)
+```
+
+
 
 #### `dplyr::inner_join()` to merge data frames, only keeping observations with a match in both
 
