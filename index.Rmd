@@ -1,5 +1,5 @@
 --- 
-title: "R for the Excel User"
+title: "R for Excel Users"
 author: "Julie Lowndes & Allison Horst"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site

@@ -336,7 +336,7 @@ And also know that there are errors that can creep in more subtly, when you are 
 
 Discussing using Excel for variables. 
 
-Horror Stories! Economist etc. 
+Horror Stories! Economist etc. -- Mine: genetics example doesn't hit home as much as Durham bike  accidents where age groups are converted to dates just by opening the bloody csv in excel
 
 ## Activity 1
 ## Activity 2
