@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Dplyr and vlookups | R for the Excel User</title>
+  <title>Chapter 6 Dplyr and vlookups | R for Excel Users</title>
   <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Dplyr and vlookups | R for the Excel User" />
+  <meta property="og:title" content="Chapter 6 Dplyr and vlookups | R for Excel Users" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Dplyr and vlookups | R for the Excel User" />
+  <meta name="twitter:title" content="Chapter 6 Dplyr and vlookups | R for Excel Users" />
   
   <meta name="twitter:description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
 
 
-<meta name="date" content="2019-10-11" />
+<meta name="date" content="2019-10-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,24 +189,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.11" data-path="rmarkdown.html"><a href="rmarkdown.html#our-turn-your-turn-2"><i class="fa fa-check"></i><b>4.11</b> Our Turn Your Turn 2</a></li>
 <li class="chapter" data-level="4.12" data-path="rmarkdown.html"><a href="rmarkdown.html#efficiency-tips-2"><i class="fa fa-check"></i><b>4.12</b> Efficiency Tips</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="pivot.html"><a href="pivot.html"><i class="fa fa-check"></i><b>5</b> Dplyr and Pivot Tables</a><ul>
+<li class="chapter" data-level="5" data-path="pivot.html"><a href="pivot.html"><i class="fa fa-check"></i><b>5</b> <code>dplyr</code> and Pivot Tables</a><ul>
 <li class="chapter" data-level="5.1" data-path="pivot.html"><a href="pivot.html#summary-a-few-sentences-2"><i class="fa fa-check"></i><b>5.1</b> Summary (a few sentences)</a></li>
 <li class="chapter" data-level="5.2" data-path="pivot.html"><a href="pivot.html#objectives-more-detailed-bulletpoints-2"><i class="fa fa-check"></i><b>5.2</b> Objectives (more detailed, bulletpoints?)</a></li>
 <li class="chapter" data-level="5.3" data-path="pivot.html"><a href="pivot.html#resources-3"><i class="fa fa-check"></i><b>5.3</b> Resources</a></li>
 <li class="chapter" data-level="5.4" data-path="pivot.html"><a href="pivot.html#introduction-our-analytical-plan"><i class="fa fa-check"></i><b>5.4</b> Introduction / our analytical plan</a></li>
 <li class="chapter" data-level="5.5" data-path="pivot.html"><a href="pivot.html#what-are-pivot-tables"><i class="fa fa-check"></i><b>5.5</b> What are pivot tables?</a></li>
-<li class="chapter" data-level="5.6" data-path="pivot.html"><a href="pivot.html#dplyr-for-pivot-tables"><i class="fa fa-check"></i><b>5.6</b> dplyr for pivot tables</a><ul>
-<li class="chapter" data-level="5.6.1" data-path="pivot.html"><a href="pivot.html#group_by-summarize"><i class="fa fa-check"></i><b>5.6.1</b> group_by() summarize()</a></li>
-<li class="chapter" data-level="5.6.2" data-path="pivot.html"><a href="pivot.html#mutate"><i class="fa fa-check"></i><b>5.6.2</b> mutate()</a></li>
-<li class="chapter" data-level="5.6.3" data-path="pivot.html"><a href="pivot.html#activity"><i class="fa fa-check"></i><b>5.6.3</b> Activity</a></li>
-<li class="chapter" data-level="5.6.4" data-path="pivot.html"><a href="pivot.html#mutate-vs-summarize"><i class="fa fa-check"></i><b>5.6.4</b> mutate() vs summarize()</a></li>
+<li class="chapter" data-level="5.6" data-path="pivot.html"><a href="pivot.html#dplyr-overview"><i class="fa fa-check"></i><b>5.6</b> <code>dplyr</code> overview</a></li>
+<li class="chapter" data-level="5.7" data-path="pivot.html"><a href="pivot.html#pivot-tables-group_by-summarize"><i class="fa fa-check"></i><b>5.7</b> pivot tables: <code>group_by() %&gt;% summarize()</code></a></li>
+<li class="chapter" data-level="5.8" data-path="pivot.html"><a href="pivot.html#mutate"><i class="fa fa-check"></i><b>5.8</b> <code>mutate()</code></a><ul>
+<li class="chapter" data-level="5.8.1" data-path="pivot.html"><a href="pivot.html#activity"><i class="fa fa-check"></i><b>5.8.1</b> Activity</a></li>
+<li class="chapter" data-level="5.8.2" data-path="pivot.html"><a href="pivot.html#group_by-mutate"><i class="fa fa-check"></i><b>5.8.2</b> <code>group_by() %&gt;% mutate()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="pivot.html"><a href="pivot.html#deep-thought-1"><i class="fa fa-check"></i><b>5.7</b> Deep thought</a></li>
-<li class="chapter" data-level="5.8" data-path="pivot.html"><a href="pivot.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1"><i class="fa fa-check"></i><b>5.8</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
-<li class="chapter" data-level="5.9" data-path="pivot.html"><a href="pivot.html#interludes-deep-thoughtsopenscapes-3"><i class="fa fa-check"></i><b>5.9</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="5.10" data-path="pivot.html"><a href="pivot.html#our-turn-your-turn-1-1"><i class="fa fa-check"></i><b>5.10</b> Our Turn Your Turn 1</a></li>
-<li class="chapter" data-level="5.11" data-path="pivot.html"><a href="pivot.html#our-turn-your-turn-2-1"><i class="fa fa-check"></i><b>5.11</b> Our Turn Your Turn 2</a></li>
-<li class="chapter" data-level="5.12" data-path="pivot.html"><a href="pivot.html#efficiency-tips-3"><i class="fa fa-check"></i><b>5.12</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="5.9" data-path="pivot.html"><a href="pivot.html#mutate-vs-summarize"><i class="fa fa-check"></i><b>5.9</b> mutate() vs summarize()</a></li>
+<li class="chapter" data-level="5.10" data-path="pivot.html"><a href="pivot.html#deep-thoughts"><i class="fa fa-check"></i><b>5.10</b> Deep thoughts</a></li>
+<li class="chapter" data-level="5.11" data-path="pivot.html"><a href="pivot.html#efficiency-tips-3"><i class="fa fa-check"></i><b>5.11</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="vlookup.html"><a href="vlookup.html"><i class="fa fa-check"></i><b>6</b> Dplyr and vlookups</a><ul>
 <li class="chapter" data-level="6.1" data-path="vlookup.html"><a href="vlookup.html#summary-1"><i class="fa fa-check"></i><b>6.1</b> Summary</a></li>
@@ -217,9 +214,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4.2" data-path="vlookup.html"><a href="vlookup.html#merging-data-frames-with-dplyr_join"><i class="fa fa-check"></i><b>6.4.2</b> Merging data frames with <code>dplyr::*_join()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="vlookup.html"><a href="vlookup.html#fun-facts"><i class="fa fa-check"></i><b>6.5</b> Fun facts</a></li>
-<li class="chapter" data-level="6.6" data-path="vlookup.html"><a href="vlookup.html#interludes-deep-thoughtsopenscapes-4"><i class="fa fa-check"></i><b>6.6</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="6.7" data-path="vlookup.html"><a href="vlookup.html#our-turn-your-turn-1-2"><i class="fa fa-check"></i><b>6.7</b> Our Turn Your Turn 1</a></li>
-<li class="chapter" data-level="6.8" data-path="vlookup.html"><a href="vlookup.html#our-turn-your-turn-2-2"><i class="fa fa-check"></i><b>6.8</b> Our Turn Your Turn 2</a></li>
+<li class="chapter" data-level="6.6" data-path="vlookup.html"><a href="vlookup.html#interludes-deep-thoughtsopenscapes-3"><i class="fa fa-check"></i><b>6.6</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="6.7" data-path="vlookup.html"><a href="vlookup.html#our-turn-your-turn-1-1"><i class="fa fa-check"></i><b>6.7</b> Our Turn Your Turn 1</a></li>
+<li class="chapter" data-level="6.8" data-path="vlookup.html"><a href="vlookup.html#our-turn-your-turn-2-1"><i class="fa fa-check"></i><b>6.8</b> Our Turn Your Turn 2</a></li>
 <li class="chapter" data-level="6.9" data-path="vlookup.html"><a href="vlookup.html#efficiency-tips-4"><i class="fa fa-check"></i><b>6.9</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>7</b> Tidying</a><ul>
@@ -232,9 +229,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5.2" data-path="tidying.html"><a href="tidying.html#janitor"><i class="fa fa-check"></i><b>7.5.2</b> Janitor</a></li>
 <li class="chapter" data-level="7.5.3" data-path="tidying.html"><a href="tidying.html#example-how-to-google"><i class="fa fa-check"></i><b>7.5.3</b> Example: How to Google</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="tidying.html"><a href="tidying.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2"><i class="fa fa-check"></i><b>7.6</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
-<li class="chapter" data-level="7.7" data-path="tidying.html"><a href="tidying.html#interludes-deep-thoughtsopenscapes-5"><i class="fa fa-check"></i><b>7.7</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="7.8" data-path="tidying.html"><a href="tidying.html#our-turn-your-turn-2-3"><i class="fa fa-check"></i><b>7.8</b> Our Turn Your Turn 2</a></li>
+<li class="chapter" data-level="7.6" data-path="tidying.html"><a href="tidying.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1"><i class="fa fa-check"></i><b>7.6</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="7.7" data-path="tidying.html"><a href="tidying.html#interludes-deep-thoughtsopenscapes-4"><i class="fa fa-check"></i><b>7.7</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="7.8" data-path="tidying.html"><a href="tidying.html#our-turn-your-turn-2-2"><i class="fa fa-check"></i><b>7.8</b> Our Turn Your Turn 2</a></li>
 <li class="chapter" data-level="7.9" data-path="tidying.html"><a href="tidying.html#efficiency-tips-5"><i class="fa fa-check"></i><b>7.9</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="format.html"><a href="format.html"><i class="fa fa-check"></i><b>8</b> Formatting and Sharing</a><ul>
@@ -242,10 +239,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2" data-path="format.html"><a href="format.html#objectives-more-detailed-bulletpoints-4"><i class="fa fa-check"></i><b>8.2</b> Objectives (more detailed, bulletpoints?)</a></li>
 <li class="chapter" data-level="8.3" data-path="format.html"><a href="format.html#resources-6"><i class="fa fa-check"></i><b>8.3</b> Resources</a></li>
 <li class="chapter" data-level="8.4" data-path="format.html"><a href="format.html#lessons-teaching-for-each-objective..-objectives-examples-2"><i class="fa fa-check"></i><b>8.4</b> Lessons teaching for each objective….. (objectives, examples)</a></li>
-<li class="chapter" data-level="8.5" data-path="format.html"><a href="format.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3"><i class="fa fa-check"></i><b>8.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
-<li class="chapter" data-level="8.6" data-path="format.html"><a href="format.html#interludes-deep-thoughtsopenscapes-6"><i class="fa fa-check"></i><b>8.6</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="8.7" data-path="format.html"><a href="format.html#our-turn-your-turn-1-3"><i class="fa fa-check"></i><b>8.7</b> Our Turn Your Turn 1</a></li>
-<li class="chapter" data-level="8.8" data-path="format.html"><a href="format.html#our-turn-your-turn-2-4"><i class="fa fa-check"></i><b>8.8</b> Our Turn Your Turn 2</a></li>
+<li class="chapter" data-level="8.5" data-path="format.html"><a href="format.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2"><i class="fa fa-check"></i><b>8.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="8.6" data-path="format.html"><a href="format.html#interludes-deep-thoughtsopenscapes-5"><i class="fa fa-check"></i><b>8.6</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="8.7" data-path="format.html"><a href="format.html#our-turn-your-turn-1-2"><i class="fa fa-check"></i><b>8.7</b> Our Turn Your Turn 1</a></li>
+<li class="chapter" data-level="8.8" data-path="format.html"><a href="format.html#our-turn-your-turn-2-3"><i class="fa fa-check"></i><b>8.8</b> Our Turn Your Turn 2</a></li>
 <li class="chapter" data-level="8.9" data-path="format.html"><a href="format.html#efficiency-tips-6"><i class="fa fa-check"></i><b>8.9</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="synthesis.html"><a href="synthesis.html"><i class="fa fa-check"></i><b>9</b> Synthesis</a><ul>
@@ -253,10 +250,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2" data-path="synthesis.html"><a href="synthesis.html#objectives-more-detailed-bulletpoints-5"><i class="fa fa-check"></i><b>9.2</b> Objectives (more detailed, bulletpoints?)</a></li>
 <li class="chapter" data-level="9.3" data-path="synthesis.html"><a href="synthesis.html#resources-7"><i class="fa fa-check"></i><b>9.3</b> Resources</a></li>
 <li class="chapter" data-level="9.4" data-path="synthesis.html"><a href="synthesis.html#lessons-teaching-for-each-objective..-objectives-examples-3"><i class="fa fa-check"></i><b>9.4</b> Lessons teaching for each objective….. (objectives, examples)</a></li>
-<li class="chapter" data-level="9.5" data-path="synthesis.html"><a href="synthesis.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4"><i class="fa fa-check"></i><b>9.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
-<li class="chapter" data-level="9.6" data-path="synthesis.html"><a href="synthesis.html#interludes-deep-thoughtsopenscapes-7"><i class="fa fa-check"></i><b>9.6</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="9.7" data-path="synthesis.html"><a href="synthesis.html#our-turn-your-turn-1-4"><i class="fa fa-check"></i><b>9.7</b> Our Turn Your Turn 1</a></li>
-<li class="chapter" data-level="9.8" data-path="synthesis.html"><a href="synthesis.html#our-turn-your-turn-2-5"><i class="fa fa-check"></i><b>9.8</b> Our Turn Your Turn 2</a></li>
+<li class="chapter" data-level="9.5" data-path="synthesis.html"><a href="synthesis.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3"><i class="fa fa-check"></i><b>9.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="9.6" data-path="synthesis.html"><a href="synthesis.html#interludes-deep-thoughtsopenscapes-6"><i class="fa fa-check"></i><b>9.6</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="9.7" data-path="synthesis.html"><a href="synthesis.html#our-turn-your-turn-1-3"><i class="fa fa-check"></i><b>9.7</b> Our Turn Your Turn 1</a></li>
+<li class="chapter" data-level="9.8" data-path="synthesis.html"><a href="synthesis.html#our-turn-your-turn-2-4"><i class="fa fa-check"></i><b>9.8</b> Our Turn Your Turn 2</a></li>
 <li class="chapter" data-level="9.9" data-path="synthesis.html"><a href="synthesis.html#efficiency-tips-7"><i class="fa fa-check"></i><b>9.9</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -271,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for the Excel User</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Excel Users</a>
           </h1>
         </div>
 
@@ -547,16 +544,16 @@ kelp_counts_abur &lt;-<span class="st"> </span>kelp_counts_abur <span class="op"
 <li><p><code>VLOOKUP</code> will look for and return information from the <em>first observation</em> that matches (or approximately matches) a condition. <code>dplyr::filter()</code> will return all observations (rows) that exactly match a condition.</p></li>
 </ol>
 </div>
-<div id="interludes-deep-thoughtsopenscapes-4" class="section level2">
+<div id="interludes-deep-thoughtsopenscapes-3" class="section level2">
 <h2><span class="header-section-number">6.6</span> Interludes (deep thoughts/openscapes)</h2>
 <ul>
 <li>Idea: not overusing the pipe in really long sequences. What are other options? Why is that a concern? What are some ways to always know that what’s happening in a sequence is what you EXPECT is happening in a sequence? tidylog, check intermediate data frames, sometimes write intermediate data frames, etc.</li>
 </ul>
 </div>
-<div id="our-turn-your-turn-1-2" class="section level2">
+<div id="our-turn-your-turn-1-1" class="section level2">
 <h2><span class="header-section-number">6.7</span> Our Turn Your Turn 1</h2>
 </div>
-<div id="our-turn-your-turn-2-2" class="section level2">
+<div id="our-turn-your-turn-2-1" class="section level2">
 <h2><span class="header-section-number">6.8</span> Our Turn Your Turn 2</h2>
 </div>
 <div id="efficiency-tips-4" class="section level2">

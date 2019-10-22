@@ -23,7 +23,7 @@
 }{}
 \usepackage{hyperref}
 \hypersetup{unicode=true,
-            pdftitle={R for the Excel User},
+            pdftitle={R for Excel Users},
             pdfauthor={Julie Lowndes \& Allison Horst},
             pdfborder={0 0 0},
             breaklinks=true}
@@ -116,7 +116,7 @@
 
 \setlength{\droptitle}{-2em}
 
-  \title{R for the Excel User}
+  \title{R for Excel Users}
     \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
     \author{Julie Lowndes \& Allison Horst}
@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-10-11}
+    \date{2019-10-22}
 
 \usepackage{booktabs}
 
@@ -570,7 +570,7 @@ And also know that there are errors that can creep in more subtly, when you are 
 
 Discussing using Excel for variables.
 
-Horror Stories! Economist etc.
+Horror Stories! Economist etc. -- Mine: genetics example doesn't hit home as much as Durham bike accidents where age groups are converted to dates just by opening the bloody csv in excel
 
 \hypertarget{activity-1}{%
 \section{Activity 1}\label{activity-1}}
@@ -1213,7 +1213,7 @@ Not so brittle/sensitive to minor changes.
 \section{Efficiency Tips}\label{efficiency-tips-2}}
 
 \hypertarget{pivot}{%
-\chapter{Dplyr and Pivot Tables}\label{pivot}}
+\chapter{\texorpdfstring{\texttt{dplyr} and Pivot Tables}{dplyr and Pivot Tables}}\label{pivot}}
 
 \hypertarget{summary-a-few-sentences-2}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences-2}}
@@ -1223,22 +1223,20 @@ First of two chapters on data wrangling, here focused on pivot tables.
 \hypertarget{objectives-more-detailed-bulletpoints-2}{%
 \section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-2}}
 
-In R, we can use dplyr for pivot tables by using 2 main verbs in combination: \texttt{group\_by} and \texttt{summarize}, and that's where we'll start. Then, we will learn 2 critical verbs that you will use all the time: \texttt{select} and \texttt{mutate}.
+In R, we can use dplyr for pivot tables by using 2 main verbs in combination: \texttt{group\_by} and \texttt{summarize}, and that's where we'll start. Then, we will learn 2 critical verbs that are powerful for data wrangling: \texttt{mutate} and \texttt{select}.
+
+We will also continue to emphasize reproducibility in all our analyses.
+
+\hypertarget{resources-3}{%
+\section{Resources}\label{resources-3}}
 
 \begin{itemize}
 \tightlist
 \item
-  intro to wrangling with dplyr
+  \href{https://dplyr.tidyverse.org/}{dplyr.tidyverse.org}
 \item
-  learn select
-\item
-  learn group\_by + summarize for pivot tables
-\item
-  emphasize reproducible research
+  \href{https://r4ds.had.co.nz/transform.html}{R for Data Science: Transform Chapter}
 \end{itemize}
-
-\hypertarget{resources-3}{%
-\section{Resources}\label{resources-3}}
 
 \hypertarget{introduction-our-analytical-plan}{%
 \section{Introduction / our analytical plan}\label{introduction-our-analytical-plan}}
@@ -1262,6 +1260,8 @@ This is because what we want to do with our fish\_counts data is XXXXX.
 \hypertarget{what-are-pivot-tables}{%
 \section{What are pivot tables?}\label{what-are-pivot-tables}}
 
+TODO:
+
 \begin{itemize}
 \tightlist
 \item
@@ -1272,143 +1272,27 @@ This is because what we want to do with our fish\_counts data is XXXXX.
 
 Let's talk about how this looks like in R.
 
-\hypertarget{dplyr-for-pivot-tables}{%
-\section{dplyr for pivot tables}\label{dplyr-for-pivot-tables}}
+\hypertarget{dplyr-overview}{%
+\section{\texorpdfstring{\texttt{dplyr} overview}{dplyr overview}}\label{dplyr-overview}}
 
-In R, we can use dplyr for pivot tables by using 2 main verbs in combination: \texttt{group\_by} and \texttt{summarize}. Here is what this looks like:
-
-\texttt{group\_by} and \texttt{summarize} are the main ingredients for pivot tables:
+\texttt{dplyr} is a grammar of data manipulation that provides a consistent set of verbs that help you solve the most common data manipulation challenges. These common verbs are:
 
 \begin{itemize}
 \item
-  \textbf{\texttt{group\_by()}}: TODO: words here, screenshot without computed column!
-\item
-  \textbf{\texttt{summarize()}}: collapse many values down to a single summary
-\end{itemize}
-
-\hypertarget{group_by-summarize}{%
-\subsection{group\_by() summarize()}\label{group_by-summarize}}
-
-Say it with me: pivot tables are ``group\_by summarize''. And just like pivot tables, you have flexibility with how you are going to summarize. For example, we can calculate an average, or a total.
-
-Let's try this on our fish\_counts data. Let's summarize this data by calculting the the total number of fish by type, which in our dataframe is called \texttt{common\_name}. We'll use the pipe operator \texttt{\%\textgreater{}\%}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{fish_counts }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(common_name) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{total_fish =} \KeywordTok{sum}\NormalTok{(total_count)) }\CommentTok{# within summarize, we name a new column and calculate the sum.}
-\end{Highlighting}
-\end{Shaded}
-
-Way more seniorita fish than any other kind!
-
-Notice how together, group\_by and summarize collapse the amount of information we see. We lose the other columns that aren't involved here; we no longer have \texttt{year}, \texttt{common\_name}, or \texttt{total\_count}.
-
-Awesome! And we can still \texttt{View(fish\_counts)} and see that we haven't changed any of our original data. But maybe we do want to save this summary as a variable so we can refer to it or even include it in further analyses. So let's add a variable assignment to that first line:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{common_name_summary <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(common_name) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{total_fish =} \KeywordTok{sum}\NormalTok{(total_count))}
-\end{Highlighting}
-\end{Shaded}
-
-Now let's summarize by site. We will assign it to a variable called \texttt{site\_summary}. How do we do that?
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{site_summary <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(site) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{total_fish =} \KeywordTok{sum}\NormalTok{(total_count))}
-\end{Highlighting}
-\end{Shaded}
-
-Great. It can be useful to summarize by both site and year, so that we can learn a little more about how things change over time across sites. And we are able to group\_by more than one variable. Let's do this together, and assign this to a new variable called \texttt{site\_year\_summary}:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{site_year_summary <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(site, year) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{total_fish =} \KeywordTok{sum}\NormalTok{(total_count))}
-\end{Highlighting}
-\end{Shaded}
-
-OK, so this is awesome. We can see the total counts for each site by year, and have this saved here in a nice variable.
-
-We will revisit this in a moment, but now let's move on to our next dplyr verb.
-
-\hypertarget{mutate}{%
-\subsection{mutate()}\label{mutate}}
-
-We use the \texttt{mutate()} function to add columns to a data frame. This is one of the most common things that I do in Excel: you need to name the new column, and then you can fill it with new values.
-
-Let's say we need to a column with the type of observation this was, and all of them were by SCUBA. We use the mutate function, and inside it we will first name the column (\texttt{observation\_type}) and set the value (``SCUBA''). We'll have to put SCUBA in quotes:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{fish_counts }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{observer_name =} \StringTok{"SCUBA"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-When you just set one value like ``SCUBA'', mutate will repeate this value for you; it's the equivalent in Excel to when you grab the bottom right corner of a cell and drag down.
-
-So there are many things you could add to a new column; but I want to demonstrate how powerful mutate can be in combination with group by. So just like we were just doing ``group\_by summarize'', we can do ``group\_by mutate''.
-
-So to use mutate in combination with group\_by. We are going to add a new column with total counts, calculated after grouping by site and year. Let's have a look at it first, and then we will assign it as a variable in a moment.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{fish_counts }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(site, year) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{total_fish =} \KeywordTok{sum}\NormalTok{(total_count))}
-\end{Highlighting}
-\end{Shaded}
-
-We now have an additional column in our dataframe called \texttt{total\_fish}. If we recall from our \texttt{site\_year\_summary}, this has all the same information. But instead of collapsing our dataframe, we retain all of the information from the other columns, and the \texttt{total\_fish} column will have values that are repeated.
-
-\hypertarget{activity}{%
-\subsection{Activity}\label{activity}}
-
-Take 3 minutes to add a new column to the data frame; discuss with your neighbor for ideas!
-
-\hypertarget{mutate-vs-summarize}{%
-\subsection{mutate() vs summarize()}\label{mutate-vs-summarize}}
-
-So in a case like this, hy would you use mutate instead of summarize? Why would you ever want to have this \texttt{total\_fish} column with values repeated? Why wouldn't you always do group\_by summarize rather than group\_by mutate? Let's explore this:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{group_by}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarize}\NormalTok{()}
-\KeywordTok{group_by}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-Now let's say we want to calculate the percentage of fish type at each site. This means we are going to do a calculation using both the raw and summary data. And we're going to do it in 2 ways.
-
-I actually like to do this kind of calculation in a
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{fish_counts }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(site, year) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{total_fish =} \KeywordTok{sum}\NormalTok{(total_count)) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{perc_fish =}\NormalTok{ total_count}\OperatorTok{/}\NormalTok{total_fish}\OperatorTok{*}\DecValTok{100}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
+  \textbf{\texttt{filter()}}: pick observations by their values
 \item
   \textbf{\texttt{select()}}: pick variables by their names
 \item
   \textbf{\texttt{mutate()}}: create new variables with functions of existing variables
+\item
+  \textbf{\texttt{summarise()}}: collapse many values down to a single summary
+\item
+  \textbf{\texttt{arrange()}}: reorder the rows
 \end{itemize}
 
-All dplyr verbs can be used in conjunction with \texttt{group\_by()} which changes the scope of each function from operating on the entire dataset to operating on it group-by-group.
+These can all be used in conjunction with \texttt{group\_by()} which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the verbs for a language of data manipulation.
 
-All dplyr verbs work similarly:
+All verbs work similarly:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1421,25 +1305,280 @@ All dplyr verbs work similarly:
   The result is a new data frame.
 \end{enumerate}
 
-Together these properties make it easy to chain together multiple simple steps to achieve a complex result.
+Together these properties make it easy to chain together multiple simple steps to achieve a complex result using the pipe operator \texttt{\%\textgreater{}\%}.
 
-\hypertarget{deep-thought-1}{%
-\section{Deep thought}\label{deep-thought-1}}
+I love thinking of these \texttt{dplyr} verbs and the pipe operator \texttt{\%\textgreater{}\%} as telling a story. When I see \texttt{\%\textgreater{}\%} I think ``and then'':
 
-\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1}{%
-\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data }\OperatorTok{%>%}\StringTok{          }\CommentTok{# start with data, and then}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{() }\OperatorTok{%>%}\StringTok{  }\CommentTok{# group by a variable, and then}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{() }\OperatorTok{%>%}\StringTok{    }\CommentTok{# mutate to add a new column, and then}
+\StringTok{  }\KeywordTok{select}\NormalTok{()        }\CommentTok{# select specific columns}
+\end{Highlighting}
+\end{Shaded}
 
-\hypertarget{interludes-deep-thoughtsopenscapes-3}{%
-\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-3}}
+\hypertarget{pivot-tables-group_by-summarize}{%
+\section{\texorpdfstring{pivot tables: \texttt{group\_by()\ \%\textgreater{}\%\ summarize()}}{pivot tables: group\_by() \%\textgreater{}\% summarize()}}\label{pivot-tables-group_by-summarize}}
 
-\hypertarget{our-turn-your-turn-1-1}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-1}}
+In R, we can create the functionality of pivot tables by using 2 main \texttt{dplyr} verbs in combination: \texttt{group\_by} and \texttt{summarize}.
 
-\hypertarget{our-turn-your-turn-2-1}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-1}}
+Say it with me: ``pivot tables are group\_by and then summarize''. And just like pivot tables, you have flexibility with how you are going to summarize. For example, we can calculate an average, or a total.
+
+Let's try this on our \texttt{fish\_counts} data. Let's summarize this data by calculating the the total number of fish by type, which in our dataframe is called \texttt{common\_name}. We'll use the pipe operator \texttt{\%\textgreater{}\%}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fish_counts }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(common_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{total_fish =} \KeywordTok{sum}\NormalTok{(total_count)) }\CommentTok{# within summarize, we name a new column and calculate the sum.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 2
+##   common_name     total_fish
+##   <chr>                <dbl>
+## 1 black surfperch         94
+## 2 blacksmith              46
+## 3 garibaldi               24
+## 4 rock wrasse             91
+## 5 senorita               256
+\end{verbatim}
+
+This returns output summarizing the total\_fish for each fish. There are way more senorita fish than any other kind!
+
+Notice how together, group\_by and summarize collapse the amount of information we see. We lose the other columns that aren't involved here; we no longer have \texttt{year}, \texttt{common\_name}, or \texttt{total\_count}. This is also what you would expect from a pivot table.
+
+Question: What if you \emph{don't} group\_by first? Let's try it and discuss what's going on.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fish_counts }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{total_fish =} \KeywordTok{sum}\NormalTok{(total_count))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##   total_fish
+##        <dbl>
+## 1        511
+\end{verbatim}
+
+So if we don't \texttt{group\_by} first, we will get a single summary statistic (total in this case) for the whole dataset. Useful in some cases for sure. But being able to do it so easily by group can be very powerful.
+
+Let's now check the \texttt{fish\_counts} variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{View}\NormalTok{(fish_counts)}
+\end{Highlighting}
+\end{Shaded}
+
+We see that we haven't changed any of our original data that was stored in this variable. But maybe we do want to save this summary as a variable so we can refer to it or even include it in further analyses. So let's add a variable assignment to that first line:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{common_name_summary <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(common_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{total_fish =} \KeywordTok{sum}\NormalTok{(total_count))}
+\end{Highlighting}
+\end{Shaded}
+
+Now let's summarize by site. We will assign it to a variable called \texttt{site\_summary}. How do we do that? Let's do it together:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{site_summary <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(site) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{total_fish =} \KeywordTok{sum}\NormalTok{(total_count))}
+\end{Highlighting}
+\end{Shaded}
+
+Great. It can be useful to summarize by both site and year, so that we can learn a little more about how things change over time across sites. And, awesomely, we are able to \texttt{group\_by} more than one variable. Let's do this together, and assign this to a new variable called \texttt{site\_year\_summary}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{site_year_summary <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(site, year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{total_fish =} \KeywordTok{sum}\NormalTok{(total_count))}
+
+\NormalTok{site_year_summary}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 9 x 3
+## # Groups:   site [3]
+##   site   year total_fish
+##   <chr> <dbl>      <dbl>
+## 1 abur   2016         64
+## 2 abur   2017        127
+## 3 abur   2018          5
+## 4 aque   2016         61
+## 5 aque   2017          5
+## 6 aque   2018         44
+## 7 mohk   2016         25
+## 8 mohk   2017         99
+## 9 mohk   2018         81
+\end{verbatim}
+
+OK, so this is awesome. We can see the total counts for each site by year, and have this saved here in a nice variable.
+
+We will revisit this in a moment, but now let's move on to our next \texttt{dplyr} verb.
+
+\hypertarget{mutate}{%
+\section{\texorpdfstring{\texttt{mutate()}}{mutate()}}\label{mutate}}
+
+We use the \texttt{mutate()} function to add columns to a data frame. This is one of the most common things that I do in Excel: you need to name the new column, and then you can fill it with new values. From the help pages, we learn that unlike \texttt{summarize()}, \texttt{mutate()} preserves the number of rows of the input. Additionally, new variables overwrite existing variables of the same name.
+
+Let's say we need to add a column that indicates that these observations were made by SCUBA diving. To do this, first we tell R we want to add a new column using the \texttt{mutate()} function. Then, we tell it the name of the column we want, let's call it \texttt{observation\_type}. Then, we tell it the value we want in the cells: let's say \texttt{"SCUBA"}. We need to put SCUBA in quotes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fish_counts }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{observation_type =} \StringTok{"SCUBA"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 45 x 5
+##     year site  common_name     total_count observation_type
+##    <dbl> <chr> <chr>                 <dbl> <chr>           
+##  1  2016 abur  black surfperch           2 SCUBA           
+##  2  2016 abur  blacksmith                1 SCUBA           
+##  3  2016 abur  garibaldi                 1 SCUBA           
+##  4  2016 abur  rock wrasse               2 SCUBA           
+##  5  2016 abur  senorita                 58 SCUBA           
+##  6  2016 aque  black surfperch           1 SCUBA           
+##  7  2016 aque  blacksmith                1 SCUBA           
+##  8  2016 aque  garibaldi                 1 SCUBA           
+##  9  2016 aque  rock wrasse               1 SCUBA           
+## 10  2016 aque  senorita                 57 SCUBA           
+## # ... with 35 more rows
+\end{verbatim}
+
+Notice that when you just give one value like ``SCUBA'', mutate will repeat this value for you; it's the equivalent in Excel to when you grab the bottom right corner of a cell and drag down.
+
+Let's try a calculation. Let's calculate the total count for the whole data site as we did above. We add a new column named \texttt{total\_fish}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fish_counts }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{total_fish =} \KeywordTok{sum}\NormalTok{(total_count))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 45 x 5
+##     year site  common_name     total_count total_fish
+##    <dbl> <chr> <chr>                 <dbl>      <dbl>
+##  1  2016 abur  black surfperch           2        511
+##  2  2016 abur  blacksmith                1        511
+##  3  2016 abur  garibaldi                 1        511
+##  4  2016 abur  rock wrasse               2        511
+##  5  2016 abur  senorita                 58        511
+##  6  2016 aque  black surfperch           1        511
+##  7  2016 aque  blacksmith                1        511
+##  8  2016 aque  garibaldi                 1        511
+##  9  2016 aque  rock wrasse               1        511
+## 10  2016 aque  senorita                 57        511
+## # ... with 35 more rows
+\end{verbatim}
+
+And notice that this was the same calculated value as when we did this with summarize, but here it is repeated for every row instead of being collapsed.
+
+\hypertarget{activity}{%
+\subsection{Activity}\label{activity}}
+
+Take 3 minutes to add a new column to the data frame; discuss with your neighbor for ideas!
+
+\hypertarget{group_by-mutate}{%
+\subsection{\texorpdfstring{\texttt{group\_by()\ \%\textgreater{}\%\ mutate()}}{group\_by() \%\textgreater{}\% mutate()}}\label{group_by-mutate}}
+
+So there are many things you could add to a new column; but let's focus on how powerful mutate can be in combination with \texttt{group\_by}. So just like we were just doing \texttt{group\_by()\ \%\textgreater{}\%\ summarize()}, we can do \texttt{group\_by()\ \%\textgreater{}\%\ mutate()}.
+
+Let's add a new column named \texttt{siteyear\_counts}, and we will calculated after grouping by site and year. Let's have a look at it first, and then we will assign it as a variable in a moment.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fish_counts }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(site, year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{siteyear_counts =} \KeywordTok{sum}\NormalTok{(total_count))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 45 x 5
+## # Groups:   site, year [9]
+##     year site  common_name     total_count siteyear_counts
+##    <dbl> <chr> <chr>                 <dbl>           <dbl>
+##  1  2016 abur  black surfperch           2              64
+##  2  2016 abur  blacksmith                1              64
+##  3  2016 abur  garibaldi                 1              64
+##  4  2016 abur  rock wrasse               2              64
+##  5  2016 abur  senorita                 58              64
+##  6  2016 aque  black surfperch           1              61
+##  7  2016 aque  blacksmith                1              61
+##  8  2016 aque  garibaldi                 1              61
+##  9  2016 aque  rock wrasse               1              61
+## 10  2016 aque  senorita                 57              61
+## # ... with 35 more rows
+\end{verbatim}
+
+We now have an additional column in our dataframe called \texttt{siteyear\_counts}. And again, if we recall from our \texttt{site\_year\_summary} above, it has calculated the same information. But instead of collapsing our dataframe, we retain all of the information from the other columns, and the \texttt{siteyear\_counts} column will have values that are repeated.
+
+\hypertarget{mutate-vs-summarize}{%
+\section{mutate() vs summarize()}\label{mutate-vs-summarize}}
+
+Why would you use \texttt{mutate} instead of \texttt{summarize}? Why would you ever want to have that \texttt{siteyear\_counts} column with values repeated like we just did? Why wouldn't you always do \texttt{group\_by()\ \%\textgreater{}\%\ summarize()} rather than \texttt{group\_by()\ \%\textgreater{}\%\ mutate()}? The truth is, there is no one way to do anything in R, but there are ways to make your analyses have fewer steps or read more nicely. Let's explore this by doing a bit of analysis.
+
+Let's say we want to calculate the percentage of fish type at each site. This means we are going to do a calculation using both the raw and summary data. And we're going to do it in 2 ways, first using \texttt{group\_by()\ \%\textgreater{}\%\ summarize()} and then \texttt{group\_by()\ \%\textgreater{}\%\ mutate()}.
+
+Let's start off doing this as a \texttt{group\_by()\ \%\textgreater{}\%\ mutate()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fish_percs <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(site, year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{siteyear_counts =} \KeywordTok{sum}\NormalTok{(total_count)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{perc_fish =}\NormalTok{ total_count}\OperatorTok{/}\NormalTok{siteyear_counts}\OperatorTok{*}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+When I'm doing analyses, I like \texttt{group\_by()\ \%\textgreater{}\%\ mutate()} because I can build out the logic step-by-step and actually look at it as it builds. It's both comforting and good for error-checks; I can do what we call ``spot checks'' of calculating a few values by hand to make sure it's working. This would also be relatively easy for someone else to follow.
+
+(Again here we can see that senorita fish really dominate each site-year combination).
+
+If we wanted to do this with \texttt{group\_by()\ \%\textgreater{}\%\ summarize()} we would need a few more steps. We can write it up as pseudo-code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## first calculate fish siteyear_counts}
+\NormalTok{x <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(site, year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{siteyear_counts =} \KeywordTok{sum}\NormalTok{(total_count)) }
+
+\CommentTok{## then somehow join or merge that information to the fish_counts data }
+\NormalTok{x }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{perc_fish =}\NormalTok{ total_count}\OperatorTok{/}\NormalTok{siteyear_counts}\OperatorTok{*}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+In order to calculate the percentages with the appropriate values, we need to somehow join the summarized data back to the fish\_counts. This actually requires a few more dplyr verbs: filter and *\_join; we will do this tomorrow!
+
+\hypertarget{deep-thoughts}{%
+\section{Deep thoughts}\label{deep-thoughts}}
+
+Highly recommended read: \href{https://peerj.com/preprints/3183/}{Broman \& Woo: Data organization in spreadsheets}. Practical tips to make spreadsheets less error-prone, easier for computers to process, easier to share
+
+Great opening line: ``Spreadsheets, for all of their mundane rectangularness, have been the subject of angst and controversy for decades.''
 
 \hypertarget{efficiency-tips-3}{%
 \section{Efficiency Tips}\label{efficiency-tips-3}}
+
+arrow keys with shift, option, command
 
 \hypertarget{vlookup}{%
 \chapter{Dplyr and vlookups}\label{vlookup}}
@@ -1980,8 +2119,8 @@ So, both \texttt{filter()} and \texttt{VLOOKUP} look through your data frame (or
   \texttt{VLOOKUP} will look for and return information from the \emph{first observation} that matches (or approximately matches) a condition. \texttt{dplyr::filter()} will return all observations (rows) that exactly match a condition.
 \end{enumerate}
 
-\hypertarget{interludes-deep-thoughtsopenscapes-4}{%
-\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-4}}
+\hypertarget{interludes-deep-thoughtsopenscapes-3}{%
+\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-3}}
 
 \begin{itemize}
 \tightlist
@@ -1989,11 +2128,11 @@ So, both \texttt{filter()} and \texttt{VLOOKUP} look through your data frame (or
   Idea: not overusing the pipe in really long sequences. What are other options? Why is that a concern? What are some ways to always know that what's happening in a sequence is what you EXPECT is happening in a sequence? tidylog, check intermediate data frames, sometimes write intermediate data frames, etc.
 \end{itemize}
 
-\hypertarget{our-turn-your-turn-1-2}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-2}}
+\hypertarget{our-turn-your-turn-1-1}{%
+\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-1}}
 
-\hypertarget{our-turn-your-turn-2-2}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-2}}
+\hypertarget{our-turn-your-turn-2-1}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-1}}
 
 \hypertarget{efficiency-tips-4}{%
 \section{Efficiency Tips}\label{efficiency-tips-4}}
@@ -2111,14 +2250,14 @@ Pay attention to URLs, build github/rmarkdown savviness (ex: raw.githubuserconte
   1st thing: most recent commit was a year ago. Can poke around more, are there issues open, are they taken care of? Etc. I will probably not pursue using this right now. But good to have learned about it.
 \end{itemize}
 
-\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}{%
-\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}}
+\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1}{%
+\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1}}
 
-\hypertarget{interludes-deep-thoughtsopenscapes-5}{%
-\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-5}}
+\hypertarget{interludes-deep-thoughtsopenscapes-4}{%
+\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-4}}
 
-\hypertarget{our-turn-your-turn-2-3}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-3}}
+\hypertarget{our-turn-your-turn-2-2}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-2}}
 
 \hypertarget{efficiency-tips-5}{%
 \section{Efficiency Tips}\label{efficiency-tips-5}}
@@ -2167,17 +2306,17 @@ Recreate it
   Create a GitHub account: \url{https://github.com} \emph{Note! Shorter names that kind of identify you are better, and use your work email!}
 \end{enumerate}
 
-\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3}{%
-\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3}}
+\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}{%
+\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}}
 
-\hypertarget{interludes-deep-thoughtsopenscapes-6}{%
-\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-6}}
+\hypertarget{interludes-deep-thoughtsopenscapes-5}{%
+\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-5}}
 
-\hypertarget{our-turn-your-turn-1-3}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-3}}
+\hypertarget{our-turn-your-turn-1-2}{%
+\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-2}}
 
-\hypertarget{our-turn-your-turn-2-4}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-4}}
+\hypertarget{our-turn-your-turn-2-3}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-3}}
 
 \hypertarget{efficiency-tips-6}{%
 \section{Efficiency Tips}\label{efficiency-tips-6}}
@@ -2197,17 +2336,17 @@ Recreate it
 \hypertarget{lessons-teaching-for-each-objective..-objectives-examples-3}{%
 \section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-3}}
 
-\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4}{%
-\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4}}
+\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3}{%
+\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3}}
 
-\hypertarget{interludes-deep-thoughtsopenscapes-7}{%
-\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-7}}
+\hypertarget{interludes-deep-thoughtsopenscapes-6}{%
+\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-6}}
 
-\hypertarget{our-turn-your-turn-1-4}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-4}}
+\hypertarget{our-turn-your-turn-1-3}{%
+\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-3}}
 
-\hypertarget{our-turn-your-turn-2-5}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-5}}
+\hypertarget{our-turn-your-turn-2-4}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-4}}
 
 \hypertarget{efficiency-tips-7}{%
 \section{Efficiency Tips}\label{efficiency-tips-7}}

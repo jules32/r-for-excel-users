@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Dplyr and Pivot Tables | R for the Excel User</title>
+  <title>Chapter 5 dplyr and Pivot Tables | R for Excel Users</title>
   <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Dplyr and Pivot Tables | R for the Excel User" />
+  <meta property="og:title" content="Chapter 5 dplyr and Pivot Tables | R for Excel Users" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Dplyr and Pivot Tables | R for the Excel User" />
+  <meta name="twitter:title" content="Chapter 5 dplyr and Pivot Tables | R for Excel Users" />
   
   <meta name="twitter:description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
 
 
-<meta name="date" content="2019-10-11" />
+<meta name="date" content="2019-10-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,24 +189,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.11" data-path="rmarkdown.html"><a href="rmarkdown.html#our-turn-your-turn-2"><i class="fa fa-check"></i><b>4.11</b> Our Turn Your Turn 2</a></li>
 <li class="chapter" data-level="4.12" data-path="rmarkdown.html"><a href="rmarkdown.html#efficiency-tips-2"><i class="fa fa-check"></i><b>4.12</b> Efficiency Tips</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="pivot.html"><a href="pivot.html"><i class="fa fa-check"></i><b>5</b> Dplyr and Pivot Tables</a><ul>
+<li class="chapter" data-level="5" data-path="pivot.html"><a href="pivot.html"><i class="fa fa-check"></i><b>5</b> <code>dplyr</code> and Pivot Tables</a><ul>
 <li class="chapter" data-level="5.1" data-path="pivot.html"><a href="pivot.html#summary-a-few-sentences-2"><i class="fa fa-check"></i><b>5.1</b> Summary (a few sentences)</a></li>
 <li class="chapter" data-level="5.2" data-path="pivot.html"><a href="pivot.html#objectives-more-detailed-bulletpoints-2"><i class="fa fa-check"></i><b>5.2</b> Objectives (more detailed, bulletpoints?)</a></li>
 <li class="chapter" data-level="5.3" data-path="pivot.html"><a href="pivot.html#resources-3"><i class="fa fa-check"></i><b>5.3</b> Resources</a></li>
 <li class="chapter" data-level="5.4" data-path="pivot.html"><a href="pivot.html#introduction-our-analytical-plan"><i class="fa fa-check"></i><b>5.4</b> Introduction / our analytical plan</a></li>
 <li class="chapter" data-level="5.5" data-path="pivot.html"><a href="pivot.html#what-are-pivot-tables"><i class="fa fa-check"></i><b>5.5</b> What are pivot tables?</a></li>
-<li class="chapter" data-level="5.6" data-path="pivot.html"><a href="pivot.html#dplyr-for-pivot-tables"><i class="fa fa-check"></i><b>5.6</b> dplyr for pivot tables</a><ul>
-<li class="chapter" data-level="5.6.1" data-path="pivot.html"><a href="pivot.html#group_by-summarize"><i class="fa fa-check"></i><b>5.6.1</b> group_by() summarize()</a></li>
-<li class="chapter" data-level="5.6.2" data-path="pivot.html"><a href="pivot.html#mutate"><i class="fa fa-check"></i><b>5.6.2</b> mutate()</a></li>
-<li class="chapter" data-level="5.6.3" data-path="pivot.html"><a href="pivot.html#activity"><i class="fa fa-check"></i><b>5.6.3</b> Activity</a></li>
-<li class="chapter" data-level="5.6.4" data-path="pivot.html"><a href="pivot.html#mutate-vs-summarize"><i class="fa fa-check"></i><b>5.6.4</b> mutate() vs summarize()</a></li>
+<li class="chapter" data-level="5.6" data-path="pivot.html"><a href="pivot.html#dplyr-overview"><i class="fa fa-check"></i><b>5.6</b> <code>dplyr</code> overview</a></li>
+<li class="chapter" data-level="5.7" data-path="pivot.html"><a href="pivot.html#pivot-tables-group_by-summarize"><i class="fa fa-check"></i><b>5.7</b> pivot tables: <code>group_by() %&gt;% summarize()</code></a></li>
+<li class="chapter" data-level="5.8" data-path="pivot.html"><a href="pivot.html#mutate"><i class="fa fa-check"></i><b>5.8</b> <code>mutate()</code></a><ul>
+<li class="chapter" data-level="5.8.1" data-path="pivot.html"><a href="pivot.html#activity"><i class="fa fa-check"></i><b>5.8.1</b> Activity</a></li>
+<li class="chapter" data-level="5.8.2" data-path="pivot.html"><a href="pivot.html#group_by-mutate"><i class="fa fa-check"></i><b>5.8.2</b> <code>group_by() %&gt;% mutate()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="pivot.html"><a href="pivot.html#deep-thought-1"><i class="fa fa-check"></i><b>5.7</b> Deep thought</a></li>
-<li class="chapter" data-level="5.8" data-path="pivot.html"><a href="pivot.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1"><i class="fa fa-check"></i><b>5.8</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
-<li class="chapter" data-level="5.9" data-path="pivot.html"><a href="pivot.html#interludes-deep-thoughtsopenscapes-3"><i class="fa fa-check"></i><b>5.9</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="5.10" data-path="pivot.html"><a href="pivot.html#our-turn-your-turn-1-1"><i class="fa fa-check"></i><b>5.10</b> Our Turn Your Turn 1</a></li>
-<li class="chapter" data-level="5.11" data-path="pivot.html"><a href="pivot.html#our-turn-your-turn-2-1"><i class="fa fa-check"></i><b>5.11</b> Our Turn Your Turn 2</a></li>
-<li class="chapter" data-level="5.12" data-path="pivot.html"><a href="pivot.html#efficiency-tips-3"><i class="fa fa-check"></i><b>5.12</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="5.9" data-path="pivot.html"><a href="pivot.html#mutate-vs-summarize"><i class="fa fa-check"></i><b>5.9</b> mutate() vs summarize()</a></li>
+<li class="chapter" data-level="5.10" data-path="pivot.html"><a href="pivot.html#deep-thoughts"><i class="fa fa-check"></i><b>5.10</b> Deep thoughts</a></li>
+<li class="chapter" data-level="5.11" data-path="pivot.html"><a href="pivot.html#efficiency-tips-3"><i class="fa fa-check"></i><b>5.11</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="vlookup.html"><a href="vlookup.html"><i class="fa fa-check"></i><b>6</b> Dplyr and vlookups</a><ul>
 <li class="chapter" data-level="6.1" data-path="vlookup.html"><a href="vlookup.html#summary-1"><i class="fa fa-check"></i><b>6.1</b> Summary</a></li>
@@ -217,9 +214,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4.2" data-path="vlookup.html"><a href="vlookup.html#merging-data-frames-with-dplyr_join"><i class="fa fa-check"></i><b>6.4.2</b> Merging data frames with <code>dplyr::*_join()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="vlookup.html"><a href="vlookup.html#fun-facts"><i class="fa fa-check"></i><b>6.5</b> Fun facts</a></li>
-<li class="chapter" data-level="6.6" data-path="vlookup.html"><a href="vlookup.html#interludes-deep-thoughtsopenscapes-4"><i class="fa fa-check"></i><b>6.6</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="6.7" data-path="vlookup.html"><a href="vlookup.html#our-turn-your-turn-1-2"><i class="fa fa-check"></i><b>6.7</b> Our Turn Your Turn 1</a></li>
-<li class="chapter" data-level="6.8" data-path="vlookup.html"><a href="vlookup.html#our-turn-your-turn-2-2"><i class="fa fa-check"></i><b>6.8</b> Our Turn Your Turn 2</a></li>
+<li class="chapter" data-level="6.6" data-path="vlookup.html"><a href="vlookup.html#interludes-deep-thoughtsopenscapes-3"><i class="fa fa-check"></i><b>6.6</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="6.7" data-path="vlookup.html"><a href="vlookup.html#our-turn-your-turn-1-1"><i class="fa fa-check"></i><b>6.7</b> Our Turn Your Turn 1</a></li>
+<li class="chapter" data-level="6.8" data-path="vlookup.html"><a href="vlookup.html#our-turn-your-turn-2-1"><i class="fa fa-check"></i><b>6.8</b> Our Turn Your Turn 2</a></li>
 <li class="chapter" data-level="6.9" data-path="vlookup.html"><a href="vlookup.html#efficiency-tips-4"><i class="fa fa-check"></i><b>6.9</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>7</b> Tidying</a><ul>
@@ -232,9 +229,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5.2" data-path="tidying.html"><a href="tidying.html#janitor"><i class="fa fa-check"></i><b>7.5.2</b> Janitor</a></li>
 <li class="chapter" data-level="7.5.3" data-path="tidying.html"><a href="tidying.html#example-how-to-google"><i class="fa fa-check"></i><b>7.5.3</b> Example: How to Google</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="tidying.html"><a href="tidying.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2"><i class="fa fa-check"></i><b>7.6</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
-<li class="chapter" data-level="7.7" data-path="tidying.html"><a href="tidying.html#interludes-deep-thoughtsopenscapes-5"><i class="fa fa-check"></i><b>7.7</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="7.8" data-path="tidying.html"><a href="tidying.html#our-turn-your-turn-2-3"><i class="fa fa-check"></i><b>7.8</b> Our Turn Your Turn 2</a></li>
+<li class="chapter" data-level="7.6" data-path="tidying.html"><a href="tidying.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1"><i class="fa fa-check"></i><b>7.6</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="7.7" data-path="tidying.html"><a href="tidying.html#interludes-deep-thoughtsopenscapes-4"><i class="fa fa-check"></i><b>7.7</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="7.8" data-path="tidying.html"><a href="tidying.html#our-turn-your-turn-2-2"><i class="fa fa-check"></i><b>7.8</b> Our Turn Your Turn 2</a></li>
 <li class="chapter" data-level="7.9" data-path="tidying.html"><a href="tidying.html#efficiency-tips-5"><i class="fa fa-check"></i><b>7.9</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="format.html"><a href="format.html"><i class="fa fa-check"></i><b>8</b> Formatting and Sharing</a><ul>
@@ -242,10 +239,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2" data-path="format.html"><a href="format.html#objectives-more-detailed-bulletpoints-4"><i class="fa fa-check"></i><b>8.2</b> Objectives (more detailed, bulletpoints?)</a></li>
 <li class="chapter" data-level="8.3" data-path="format.html"><a href="format.html#resources-6"><i class="fa fa-check"></i><b>8.3</b> Resources</a></li>
 <li class="chapter" data-level="8.4" data-path="format.html"><a href="format.html#lessons-teaching-for-each-objective..-objectives-examples-2"><i class="fa fa-check"></i><b>8.4</b> Lessons teaching for each objective….. (objectives, examples)</a></li>
-<li class="chapter" data-level="8.5" data-path="format.html"><a href="format.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3"><i class="fa fa-check"></i><b>8.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
-<li class="chapter" data-level="8.6" data-path="format.html"><a href="format.html#interludes-deep-thoughtsopenscapes-6"><i class="fa fa-check"></i><b>8.6</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="8.7" data-path="format.html"><a href="format.html#our-turn-your-turn-1-3"><i class="fa fa-check"></i><b>8.7</b> Our Turn Your Turn 1</a></li>
-<li class="chapter" data-level="8.8" data-path="format.html"><a href="format.html#our-turn-your-turn-2-4"><i class="fa fa-check"></i><b>8.8</b> Our Turn Your Turn 2</a></li>
+<li class="chapter" data-level="8.5" data-path="format.html"><a href="format.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2"><i class="fa fa-check"></i><b>8.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="8.6" data-path="format.html"><a href="format.html#interludes-deep-thoughtsopenscapes-5"><i class="fa fa-check"></i><b>8.6</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="8.7" data-path="format.html"><a href="format.html#our-turn-your-turn-1-2"><i class="fa fa-check"></i><b>8.7</b> Our Turn Your Turn 1</a></li>
+<li class="chapter" data-level="8.8" data-path="format.html"><a href="format.html#our-turn-your-turn-2-3"><i class="fa fa-check"></i><b>8.8</b> Our Turn Your Turn 2</a></li>
 <li class="chapter" data-level="8.9" data-path="format.html"><a href="format.html#efficiency-tips-6"><i class="fa fa-check"></i><b>8.9</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="synthesis.html"><a href="synthesis.html"><i class="fa fa-check"></i><b>9</b> Synthesis</a><ul>
@@ -253,10 +250,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2" data-path="synthesis.html"><a href="synthesis.html#objectives-more-detailed-bulletpoints-5"><i class="fa fa-check"></i><b>9.2</b> Objectives (more detailed, bulletpoints?)</a></li>
 <li class="chapter" data-level="9.3" data-path="synthesis.html"><a href="synthesis.html#resources-7"><i class="fa fa-check"></i><b>9.3</b> Resources</a></li>
 <li class="chapter" data-level="9.4" data-path="synthesis.html"><a href="synthesis.html#lessons-teaching-for-each-objective..-objectives-examples-3"><i class="fa fa-check"></i><b>9.4</b> Lessons teaching for each objective….. (objectives, examples)</a></li>
-<li class="chapter" data-level="9.5" data-path="synthesis.html"><a href="synthesis.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4"><i class="fa fa-check"></i><b>9.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
-<li class="chapter" data-level="9.6" data-path="synthesis.html"><a href="synthesis.html#interludes-deep-thoughtsopenscapes-7"><i class="fa fa-check"></i><b>9.6</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="9.7" data-path="synthesis.html"><a href="synthesis.html#our-turn-your-turn-1-4"><i class="fa fa-check"></i><b>9.7</b> Our Turn Your Turn 1</a></li>
-<li class="chapter" data-level="9.8" data-path="synthesis.html"><a href="synthesis.html#our-turn-your-turn-2-5"><i class="fa fa-check"></i><b>9.8</b> Our Turn Your Turn 2</a></li>
+<li class="chapter" data-level="9.5" data-path="synthesis.html"><a href="synthesis.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3"><i class="fa fa-check"></i><b>9.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="9.6" data-path="synthesis.html"><a href="synthesis.html#interludes-deep-thoughtsopenscapes-6"><i class="fa fa-check"></i><b>9.6</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="9.7" data-path="synthesis.html"><a href="synthesis.html#our-turn-your-turn-1-3"><i class="fa fa-check"></i><b>9.7</b> Our Turn Your Turn 1</a></li>
+<li class="chapter" data-level="9.8" data-path="synthesis.html"><a href="synthesis.html#our-turn-your-turn-2-4"><i class="fa fa-check"></i><b>9.8</b> Our Turn Your Turn 2</a></li>
 <li class="chapter" data-level="9.9" data-path="synthesis.html"><a href="synthesis.html#efficiency-tips-7"><i class="fa fa-check"></i><b>9.9</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -271,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for the Excel User</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Excel Users</a>
           </h1>
         </div>
 
@@ -280,23 +277,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="pivot" class="section level1">
-<h1><span class="header-section-number">Chapter 5</span> Dplyr and Pivot Tables</h1>
+<h1><span class="header-section-number">Chapter 5</span> <code>dplyr</code> and Pivot Tables</h1>
 <div id="summary-a-few-sentences-2" class="section level2">
 <h2><span class="header-section-number">5.1</span> Summary (a few sentences)</h2>
 <p>First of two chapters on data wrangling, here focused on pivot tables.</p>
 </div>
 <div id="objectives-more-detailed-bulletpoints-2" class="section level2">
 <h2><span class="header-section-number">5.2</span> Objectives (more detailed, bulletpoints?)</h2>
-<p>In R, we can use dplyr for pivot tables by using 2 main verbs in combination: <code>group_by</code> and <code>summarize</code>, and that’s where we’ll start. Then, we will learn 2 critical verbs that you will use all the time: <code>select</code> and <code>mutate</code>.</p>
-<ul>
-<li>intro to wrangling with dplyr</li>
-<li>learn select</li>
-<li>learn group_by + summarize for pivot tables</li>
-<li>emphasize reproducible research</li>
-</ul>
+<p>In R, we can use dplyr for pivot tables by using 2 main verbs in combination: <code>group_by</code> and <code>summarize</code>, and that’s where we’ll start. Then, we will learn 2 critical verbs that are powerful for data wrangling: <code>mutate</code> and <code>select</code>.</p>
+<p>We will also continue to emphasize reproducibility in all our analyses.</p>
 </div>
 <div id="resources-3" class="section level2">
 <h2><span class="header-section-number">5.3</span> Resources</h2>
+<ul>
+<li><a href="https://dplyr.tidyverse.org/">dplyr.tidyverse.org</a></li>
+<li><a href="https://r4ds.had.co.nz/transform.html">R for Data Science: Transform Chapter</a></li>
+</ul>
 </div>
 <div id="introduction-our-analytical-plan" class="section level2">
 <h2><span class="header-section-number">5.4</span> Introduction / our analytical plan</h2>
@@ -311,116 +307,201 @@ fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span
 </div>
 <div id="what-are-pivot-tables" class="section level2">
 <h2><span class="header-section-number">5.5</span> What are pivot tables?</h2>
+<p>TODO:</p>
 <ul>
 <li>what they are</li>
 <li>what they allow you to do</li>
 </ul>
 <p>Let’s talk about how this looks like in R.</p>
 </div>
-<div id="dplyr-for-pivot-tables" class="section level2">
-<h2><span class="header-section-number">5.6</span> dplyr for pivot tables</h2>
-<p>In R, we can use dplyr for pivot tables by using 2 main verbs in combination: <code>group_by</code> and <code>summarize</code>. Here is what this looks like:</p>
-<p><code>group_by</code> and <code>summarize</code> are the main ingredients for pivot tables:</p>
-<ul>
-<li><p><strong><code>group_by()</code></strong>: TODO: words here, screenshot without computed column!</p>
-<img src="img/rstudio-cheatsheet-summarise.png" width="300"/></li>
-<li><p><strong><code>summarize()</code></strong>: collapse many values down to a single summary</p>
-<img src="img/rstudio-cheatsheet-summarise.png" width="300"/></li>
-</ul>
-<div id="group_by-summarize" class="section level3">
-<h3><span class="header-section-number">5.6.1</span> group_by() summarize()</h3>
-<p>Say it with me: pivot tables are “group_by summarize”. And just like pivot tables, you have flexibility with how you are going to summarize. For example, we can calculate an average, or a total.</p>
-<p>Let’s try this on our fish_counts data. Let’s summarize this data by calculting the the total number of fish by type, which in our dataframe is called <code>common_name</code>. We’ll use the pipe operator <code>%&gt;%</code></p>
-<pre class="sourceCode r"><code class="sourceCode r">fish_counts <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(common_name) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(total_count)) <span class="co"># within summarize, we name a new column and calculate the sum.</span></code></pre>
-<p>Way more seniorita fish than any other kind!</p>
-<p>Notice how together, group_by and summarize collapse the amount of information we see. We lose the other columns that aren’t involved here; we no longer have <code>year</code>, <code>common_name</code>, or <code>total_count</code>.</p>
+<div id="dplyr-overview" class="section level2">
+<h2><span class="header-section-number">5.6</span> <code>dplyr</code> overview</h2>
 <!---
-Question: What if you *don't* group_by first?
-
-```
-fish_counts %>%
-  summarize(total_fish = sum(total_count))
-```
+> Data scientists, according to interviews and expert estimates, spend from 50 percent to 80 percent of their time mired in the mundane labor of collecting and preparing data, before it can be explored for useful information. - [NYTimes (2014)](http://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html)
 --->
-<p>Awesome! And we can still <code>View(fish_counts)</code> and see that we haven’t changed any of our original data. But maybe we do want to save this summary as a variable so we can refer to it or even include it in further analyses. So let’s add a variable assignment to that first line:</p>
-<pre class="sourceCode r"><code class="sourceCode r">common_name_summary &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(common_name) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(total_count))</code></pre>
-<p>Now let’s summarize by site. We will assign it to a variable called <code>site_summary</code>. How do we do that?</p>
-<pre class="sourceCode r"><code class="sourceCode r">site_summary &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(site) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(total_count))</code></pre>
-<p>Great. It can be useful to summarize by both site and year, so that we can learn a little more about how things change over time across sites. And we are able to group_by more than one variable. Let’s do this together, and assign this to a new variable called <code>site_year_summary</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r">site_year_summary &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(total_count))</code></pre>
-<p>OK, so this is awesome. We can see the total counts for each site by year, and have this saved here in a nice variable.</p>
-<p>We will revisit this in a moment, but now let’s move on to our next dplyr verb.</p>
-</div>
-<div id="mutate" class="section level3">
-<h3><span class="header-section-number">5.6.2</span> mutate()</h3>
-<p>We use the <code>mutate()</code> function to add columns to a data frame. This is one of the most common things that I do in Excel: you need to name the new column, and then you can fill it with new values.</p>
-<p>Let’s say we need to a column with the type of observation this was, and all of them were by SCUBA. We use the mutate function, and inside it we will first name the column (<code>observation_type</code>) and set the value (“SCUBA”). We’ll have to put SCUBA in quotes:</p>
-<pre class="sourceCode r"><code class="sourceCode r">fish_counts <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">observer_name =</span> <span class="st">&quot;SCUBA&quot;</span>)</code></pre>
-<p>When you just set one value like “SCUBA”, mutate will repeate this value for you; it’s the equivalent in Excel to when you grab the bottom right corner of a cell and drag down.</p>
-<p>So there are many things you could add to a new column; but I want to demonstrate how powerful mutate can be in combination with group by. So just like we were just doing “group_by summarize”, we can do “group_by mutate”.</p>
-<p>So to use mutate in combination with group_by. We are going to add a new column with total counts, calculated after grouping by site and year. Let’s have a look at it first, and then we will assign it as a variable in a moment.</p>
-<pre class="sourceCode r"><code class="sourceCode r">fish_counts <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(total_count))</code></pre>
-<p>We now have an additional column in our dataframe called <code>total_fish</code>. If we recall from our <code>site_year_summary</code>, this has all the same information. But instead of collapsing our dataframe, we retain all of the information from the other columns, and the <code>total_fish</code> column will have values that are repeated.</p>
-</div>
-<div id="activity" class="section level3">
-<h3><span class="header-section-number">5.6.3</span> Activity</h3>
-<p>Take 3 minutes to add a new column to the data frame; discuss with your neighbor for ideas!</p>
-</div>
-<div id="mutate-vs-summarize" class="section level3">
-<h3><span class="header-section-number">5.6.4</span> mutate() vs summarize()</h3>
-<p>So in a case like this, hy would you use mutate instead of summarize? Why would you ever want to have this <code>total_fish</code> column with values repeated? Why wouldn’t you always do group_by summarize rather than group_by mutate? Let’s explore this:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">group_by</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize</span>()
-<span class="kw">group_by</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>()</code></pre>
-<p>Now let’s say we want to calculate the percentage of fish type at each site. This means we are going to do a calculation using both the raw and summary data. And we’re going to do it in 2 ways.</p>
-<p>I actually like to do this kind of calculation in a</p>
-<pre class="sourceCode r"><code class="sourceCode r">fish_counts <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(total_count)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">perc_fish =</span> total_count<span class="op">/</span>total_fish<span class="op">*</span><span class="dv">100</span>)</code></pre>
+<p><code>dplyr</code> is a grammar of data manipulation that provides a consistent set of verbs that help you solve the most common data manipulation challenges. These common verbs are:</p>
 <ul>
+<li><p><strong><code>filter()</code></strong>: pick observations by their values</p>
+<img src="img/rstudio-cheatsheet-filter.png" width="300"/></li>
 <li><p><strong><code>select()</code></strong>: pick variables by their names</p>
 <img src="img/rstudio-cheatsheet-select.png" width="300"/></li>
 <li><p><strong><code>mutate()</code></strong>: create new variables with functions of existing variables</p>
 <img src="img/rstudio-cheatsheet-mutate.png" width="300"/></li>
+<li><p><strong><code>summarise()</code></strong>: collapse many values down to a single summary</p>
+<img src="img/rstudio-cheatsheet-summarise.png" width="300"/></li>
+<li><p><strong><code>arrange()</code></strong>: reorder the rows</p></li>
 </ul>
-<p>All dplyr verbs can be used in conjunction with <code>group_by()</code> which changes the scope of each function from operating on the entire dataset to operating on it group-by-group.</p>
-<p>All dplyr verbs work similarly:</p>
+<p>These can all be used in conjunction with <code>group_by()</code> which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the verbs for a language of data manipulation.</p>
+<p>All verbs work similarly:</p>
 <ol style="list-style-type: decimal">
 <li>The first argument is a data frame.</li>
 <li>The subsequent arguments describe what to do with the data frame. You can refer to columns in the data frame directly without using <code>$</code>.</li>
 <li>The result is a new data frame.</li>
 </ol>
-<p>Together these properties make it easy to chain together multiple simple steps to achieve a complex result.</p>
+<p>Together these properties make it easy to chain together multiple simple steps to achieve a complex result using the pipe operator <code>%&gt;%</code>.</p>
+<p>I love thinking of these <code>dplyr</code> verbs and the pipe operator <code>%&gt;%</code> as telling a story. When I see <code>%&gt;%</code> I think “and then”:</p>
+<pre class="sourceCode r"><code class="sourceCode r">data <span class="op">%&gt;%</span><span class="st">          </span><span class="co"># start with data, and then</span>
+<span class="st">  </span><span class="kw">group_by</span>() <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># group by a variable, and then</span>
+<span class="st">  </span><span class="kw">mutate</span>() <span class="op">%&gt;%</span><span class="st">    </span><span class="co"># mutate to add a new column, and then</span>
+<span class="st">  </span><span class="kw">select</span>()        <span class="co"># select specific columns</span></code></pre>
+</div>
+<div id="pivot-tables-group_by-summarize" class="section level2">
+<h2><span class="header-section-number">5.7</span> pivot tables: <code>group_by() %&gt;% summarize()</code></h2>
+<p>In R, we can create the functionality of pivot tables by using 2 main <code>dplyr</code> verbs in combination: <code>group_by</code> and <code>summarize</code>.</p>
+<p>Say it with me: “pivot tables are group_by and then summarize”. And just like pivot tables, you have flexibility with how you are going to summarize. For example, we can calculate an average, or a total.</p>
+<p>Let’s try this on our <code>fish_counts</code> data. Let’s summarize this data by calculating the the total number of fish by type, which in our dataframe is called <code>common_name</code>. We’ll use the pipe operator <code>%&gt;%</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">fish_counts <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(common_name) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(total_count)) <span class="co"># within summarize, we name a new column and calculate the sum.</span></code></pre>
+<pre><code>## # A tibble: 5 x 2
+##   common_name     total_fish
+##   &lt;chr&gt;                &lt;dbl&gt;
+## 1 black surfperch         94
+## 2 blacksmith              46
+## 3 garibaldi               24
+## 4 rock wrasse             91
+## 5 senorita               256</code></pre>
+<p>This returns output summarizing the total_fish for each fish. There are way more senorita fish than any other kind!</p>
+<p>Notice how together, group_by and summarize collapse the amount of information we see. We lose the other columns that aren’t involved here; we no longer have <code>year</code>, <code>common_name</code>, or <code>total_count</code>. This is also what you would expect from a pivot table.</p>
+<p>Question: What if you <em>don’t</em> group_by first? Let’s try it and discuss what’s going on.</p>
+<pre class="sourceCode r"><code class="sourceCode r">fish_counts <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(total_count))</code></pre>
+<pre><code>## # A tibble: 1 x 1
+##   total_fish
+##        &lt;dbl&gt;
+## 1        511</code></pre>
+<p>So if we don’t <code>group_by</code> first, we will get a single summary statistic (total in this case) for the whole dataset. Useful in some cases for sure. But being able to do it so easily by group can be very powerful.</p>
+<p>Let’s now check the <code>fish_counts</code> variable.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(fish_counts)</code></pre>
+<p>We see that we haven’t changed any of our original data that was stored in this variable. But maybe we do want to save this summary as a variable so we can refer to it or even include it in further analyses. So let’s add a variable assignment to that first line:</p>
+<pre class="sourceCode r"><code class="sourceCode r">common_name_summary &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(common_name) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(total_count))</code></pre>
+<p>Now let’s summarize by site. We will assign it to a variable called <code>site_summary</code>. How do we do that? Let’s do it together: <!---also could be an activity---></p>
+<pre class="sourceCode r"><code class="sourceCode r">site_summary &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(site) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(total_count))</code></pre>
+<p>Great. It can be useful to summarize by both site and year, so that we can learn a little more about how things change over time across sites. And, awesomely, we are able to <code>group_by</code> more than one variable. Let’s do this together, and assign this to a new variable called <code>site_year_summary</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r">site_year_summary &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(total_count))
+
+site_year_summary</code></pre>
+<pre><code>## # A tibble: 9 x 3
+## # Groups:   site [3]
+##   site   year total_fish
+##   &lt;chr&gt; &lt;dbl&gt;      &lt;dbl&gt;
+## 1 abur   2016         64
+## 2 abur   2017        127
+## 3 abur   2018          5
+## 4 aque   2016         61
+## 5 aque   2017          5
+## 6 aque   2018         44
+## 7 mohk   2016         25
+## 8 mohk   2017         99
+## 9 mohk   2018         81</code></pre>
+<p>OK, so this is awesome. We can see the total counts for each site by year, and have this saved here in a nice variable.</p>
+<p>We will revisit this in a moment, but now let’s move on to our next <code>dplyr</code> verb.</p>
+</div>
+<div id="mutate" class="section level2">
+<h2><span class="header-section-number">5.8</span> <code>mutate()</code></h2>
+<p>We use the <code>mutate()</code> function to add columns to a data frame. This is one of the most common things that I do in Excel: you need to name the new column, and then you can fill it with new values. From the help pages, we learn that unlike <code>summarize()</code>, <code>mutate()</code> preserves the number of rows of the input. Additionally, new variables overwrite existing variables of the same name.</p>
+<p>Let’s say we need to add a column that indicates that these observations were made by SCUBA diving. To do this, first we tell R we want to add a new column using the <code>mutate()</code> function. Then, we tell it the name of the column we want, let’s call it <code>observation_type</code>. Then, we tell it the value we want in the cells: let’s say <code>&quot;SCUBA&quot;</code>. We need to put SCUBA in quotes:</p>
+<pre class="sourceCode r"><code class="sourceCode r">fish_counts <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">observation_type =</span> <span class="st">&quot;SCUBA&quot;</span>)</code></pre>
+<pre><code>## # A tibble: 45 x 5
+##     year site  common_name     total_count observation_type
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;           
+##  1  2016 abur  black surfperch           2 SCUBA           
+##  2  2016 abur  blacksmith                1 SCUBA           
+##  3  2016 abur  garibaldi                 1 SCUBA           
+##  4  2016 abur  rock wrasse               2 SCUBA           
+##  5  2016 abur  senorita                 58 SCUBA           
+##  6  2016 aque  black surfperch           1 SCUBA           
+##  7  2016 aque  blacksmith                1 SCUBA           
+##  8  2016 aque  garibaldi                 1 SCUBA           
+##  9  2016 aque  rock wrasse               1 SCUBA           
+## 10  2016 aque  senorita                 57 SCUBA           
+## # … with 35 more rows</code></pre>
+<p>Notice that when you just give one value like “SCUBA”, mutate will repeat this value for you; it’s the equivalent in Excel to when you grab the bottom right corner of a cell and drag down.</p>
+<p>Let’s try a calculation. Let’s calculate the total count for the whole data site as we did above. We add a new column named <code>total_fish</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r">fish_counts <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total_fish =</span> <span class="kw">sum</span>(total_count))</code></pre>
+<pre><code>## # A tibble: 45 x 5
+##     year site  common_name     total_count total_fish
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;      &lt;dbl&gt;
+##  1  2016 abur  black surfperch           2        511
+##  2  2016 abur  blacksmith                1        511
+##  3  2016 abur  garibaldi                 1        511
+##  4  2016 abur  rock wrasse               2        511
+##  5  2016 abur  senorita                 58        511
+##  6  2016 aque  black surfperch           1        511
+##  7  2016 aque  blacksmith                1        511
+##  8  2016 aque  garibaldi                 1        511
+##  9  2016 aque  rock wrasse               1        511
+## 10  2016 aque  senorita                 57        511
+## # … with 35 more rows</code></pre>
+<p>And notice that this was the same calculated value as when we did this with summarize, but here it is repeated for every row instead of being collapsed.</p>
+<div id="activity" class="section level3">
+<h3><span class="header-section-number">5.8.1</span> Activity</h3>
+<p>Take 3 minutes to add a new column to the data frame; discuss with your neighbor for ideas!</p>
+</div>
+<div id="group_by-mutate" class="section level3">
+<h3><span class="header-section-number">5.8.2</span> <code>group_by() %&gt;% mutate()</code></h3>
+<p>So there are many things you could add to a new column; but let’s focus on how powerful mutate can be in combination with <code>group_by</code>. So just like we were just doing <code>group_by() %&gt;% summarize()</code>, we can do <code>group_by() %&gt;% mutate()</code>.</p>
+<p>Let’s add a new column named <code>siteyear_counts</code>, and we will calculated after grouping by site and year. Let’s have a look at it first, and then we will assign it as a variable in a moment.</p>
+<pre class="sourceCode r"><code class="sourceCode r">fish_counts <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">siteyear_counts =</span> <span class="kw">sum</span>(total_count))</code></pre>
+<pre><code>## # A tibble: 45 x 5
+## # Groups:   site, year [9]
+##     year site  common_name     total_count siteyear_counts
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;           &lt;dbl&gt;
+##  1  2016 abur  black surfperch           2              64
+##  2  2016 abur  blacksmith                1              64
+##  3  2016 abur  garibaldi                 1              64
+##  4  2016 abur  rock wrasse               2              64
+##  5  2016 abur  senorita                 58              64
+##  6  2016 aque  black surfperch           1              61
+##  7  2016 aque  blacksmith                1              61
+##  8  2016 aque  garibaldi                 1              61
+##  9  2016 aque  rock wrasse               1              61
+## 10  2016 aque  senorita                 57              61
+## # … with 35 more rows</code></pre>
+<p>We now have an additional column in our dataframe called <code>siteyear_counts</code>. And again, if we recall from our <code>site_year_summary</code> above, it has calculated the same information. But instead of collapsing our dataframe, we retain all of the information from the other columns, and the <code>siteyear_counts</code> column will have values that are repeated.</p>
 </div>
 </div>
-<div id="deep-thought-1" class="section level2">
-<h2><span class="header-section-number">5.7</span> Deep thought</h2>
+<div id="mutate-vs-summarize" class="section level2">
+<h2><span class="header-section-number">5.9</span> mutate() vs summarize()</h2>
+<p>Why would you use <code>mutate</code> instead of <code>summarize</code>? Why would you ever want to have that <code>siteyear_counts</code> column with values repeated like we just did? Why wouldn’t you always do <code>group_by() %&gt;% summarize()</code> rather than <code>group_by() %&gt;% mutate()</code>? The truth is, there is no one way to do anything in R, but there are ways to make your analyses have fewer steps or read more nicely. Let’s explore this by doing a bit of analysis.</p>
+<p>Let’s say we want to calculate the percentage of fish type at each site. This means we are going to do a calculation using both the raw and summary data. And we’re going to do it in 2 ways, first using <code>group_by() %&gt;% summarize()</code> and then <code>group_by() %&gt;% mutate()</code>.</p>
+<p>Let’s start off doing this as a <code>group_by() %&gt;% mutate()</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">fish_percs &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">siteyear_counts =</span> <span class="kw">sum</span>(total_count)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">perc_fish =</span> total_count<span class="op">/</span>siteyear_counts<span class="op">*</span><span class="dv">100</span>)</code></pre>
+<p>When I’m doing analyses, I like <code>group_by() %&gt;% mutate()</code> because I can build out the logic step-by-step and actually look at it as it builds. It’s both comforting and good for error-checks; I can do what we call “spot checks” of calculating a few values by hand to make sure it’s working. This would also be relatively easy for someone else to follow.</p>
+<p>(Again here we can see that senorita fish really dominate each site-year combination).</p>
+<p>If we wanted to do this with <code>group_by() %&gt;% summarize()</code> we would need a few more steps. We can write it up as pseudo-code:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## first calculate fish siteyear_counts</span>
+x &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">siteyear_counts =</span> <span class="kw">sum</span>(total_count)) 
+
+<span class="co">## then somehow join or merge that information to the fish_counts data </span>
+x <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">perc_fish =</span> total_count<span class="op">/</span>siteyear_counts<span class="op">*</span><span class="dv">100</span>)</code></pre>
+<p>In order to calculate the percentages with the appropriate values, we need to somehow join the summarized data back to the fish_counts. This actually requires a few more dplyr verbs: filter and *_join; we will do this tomorrow! <!---TODISCUSS w/ Allison: does this cliffhanger make sense?---></p>
 </div>
-<div id="fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1" class="section level2">
-<h2><span class="header-section-number">5.8</span> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</h2>
-</div>
-<div id="interludes-deep-thoughtsopenscapes-3" class="section level2">
-<h2><span class="header-section-number">5.9</span> Interludes (deep thoughts/openscapes)</h2>
-</div>
-<div id="our-turn-your-turn-1-1" class="section level2">
-<h2><span class="header-section-number">5.10</span> Our Turn Your Turn 1</h2>
-</div>
-<div id="our-turn-your-turn-2-1" class="section level2">
-<h2><span class="header-section-number">5.11</span> Our Turn Your Turn 2</h2>
+<div id="deep-thoughts" class="section level2">
+<h2><span class="header-section-number">5.10</span> Deep thoughts</h2>
+<p>Highly recommended read: <a href="https://peerj.com/preprints/3183/">Broman &amp; Woo: Data organization in spreadsheets</a>. Practical tips to make spreadsheets less error-prone, easier for computers to process, easier to share</p>
+<p>Great opening line: “Spreadsheets, for all of their mundane rectangularness, have been the subject of angst and controversy for decades.”</p>
 </div>
 <div id="efficiency-tips-3" class="section level2">
-<h2><span class="header-section-number">5.12</span> Efficiency Tips</h2>
+<h2><span class="header-section-number">5.11</span> Efficiency Tips</h2>
+<p>arrow keys with shift, option, command</p>
+<!---And that's the end of Day 1! --->
 
 </div>
 </div>
