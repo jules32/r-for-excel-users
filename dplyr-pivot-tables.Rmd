@@ -135,6 +135,8 @@ common_name_summary <- fish_counts %>%
   group_by(common_name) %>%
   summarize(total_fish = sum(total_count))
 ```
+
+<!---TODO::: uncount %>% group_by %>% summarize by mean and sd --->
   
 Now let's summarize by site. We will assign it to a variable called `site_summary`. How do we do that? Let's do it together: <!---also could be an activity--->
 
@@ -232,6 +234,8 @@ x %>%
 ```
 
 In order to calculate the percentages with the appropriate values, we need to somehow join the summarized data back to the fish_counts. This actually requires a few more dplyr verbs: filter and *_join; we will do this tomorrow! <!---TODISCUSS w/ Allison: does this cliffhanger make sense?---> 
+
+count column (would have to uncount first)
 
 ## Deep thoughts
 
