@@ -35,7 +35,7 @@ Wrangle data
 
 Now let's knit! Let's make this table look a bit nicer. 
 
-## Formatting tables
+## Formatting tables (15 minutes)
 
 
 
@@ -69,76 +69,6 @@ We are going to work with GitHub from the browser only, because it makes the bes
 
 GitHub can reduce friction collaboration: it gives us avenues for communicating and publishing methods, blogs, interactive graphics and more, without a lot of heavy lifting!
 
-### What is GitHub? — Traditional answer
-
-GitHub means GitHub.com; it’s a company that is an online collaborative platform, with some features familiar to social media users.
-
-GitHub centers around git, which is powerful version control software for your local computer. This has been around for years, taking care of bookkeeping for you locally on your computer. 
-
-GitHub makes git's local bookkeeping collaborative through its powerful online platform. It will weave together all the version control from your local computer with other collaborators you work with. 
-
-It is used for code and files: organize,  archive, bookkeeping, searchable, changes visualized, etc. In the figure below, notice the familiar red and green to denote deletions and additions line-by-line, with darker shading to identify  specific text within a line. Also notice the differencing in the image's color bar!
-
-<br> 
-
-```{r, echo=FALSE, out.width="80%", out.extra='style="background-color: gray; padding:2px; display: inline-block;"'}
-knitr::include_graphics("img/github-differencing.png")  
-# https://github.com/OHI-Science/arc/commit/931d967ee0b85992f2f6cd37ee79c705f9f056b2?short_path=6a78fa2#diff-6a78fa24f588c99eca20ff4d8c9071f8
-```
-
-<br> 
-
-
-We aren’t going to teach traditional git/GitHub today, but here are some recommendations if you'd like to learn. First, get a sense of what is possible with GitHub by reading Jenny Bryan's "Excuse Me, Do You Have a Moment to Talk About Version Control?" (open-access pre-print from [PeerJ](https://peerj.com/preprints/3159/), published in [The American Statistican](https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1399928)). Next, to setup and use GitHub with R, the absolute best resource is Jenny Bryan's [Happy Git With R](https://happygitwithr.com/). This is a comprehensive, friendly step-by-step process of how to do so, and is an awesome reference for seasoned git/GitHub users as well. 
-
-### What is GitHub? — Non-traditional answer
-
-GitHub is a publishing platform, for single-paged RMarkdown documents like we've been creating, or for books like this one:  ([r-for-excel-users](https://jules32.github.io/series)). You can also publish simple websites and interactive dashboards! 
-
-
-## GitHub framework in a nutshell
-
-This is a demo: 
-
-<br> 
-
-```{r, out.width="80%", out.extra='style="background-color: gray; padding:2px; display: inline-block;"'}
-knitr::include_graphics("img/github-orientation.png")  
-```
-
-<br> 
-
-
-### Users vs. organizations
-
-Example: [jules32](https://github.com/jules32) is a user account, [rstudio-conf-2020](https://github.com/rstudio-conf-2020) is an organization group. 
-
-You can think of them like other social media accounts: I can be an individual or part of a group, and there are permissions associated with both.
-
-### Repositories (“repos”)
-
-Repos are GitHub’s main unit. They are essentially a folder, and you'll put files and folders in them. They are contained, with permissions specific to each one. 
-
-It makes it easier to navigate through and find stuff — so you are "not sifting through a zoo of files" as one of our colleagues says. 
-
-### “Commits” & “commit messages”
-
-Unlike Dropbox or Google Drive that constantly and automatically sync to the cloud, you have to deliberately tell git/GitHub when you have an amount of work that you want to be versioned and synced. You have to commit to telling them. GitHub takes care of the backend bookkeeping involved, but you have to write a human-readable message to your future self and others. That is the commit message. 
-
-There is no absolute guidance for how often to commit, but I think of it as leaving breadcrumbs for yourself. How much work and on what things/in what combination would you like to be able to reverse? What kind of information will make it easier for Future You to work with?
-
-### Public vs private
-
-You can have both public (the free default) and private repositories, and change these permissions later on. I mostly work in public repos, but if I work in private ones, I often have the expectation that they will be made public some day. So I practice good habits with commits and documentation, and keep conversations on-topic.
-
-### The search feature is awesome
-
-You are able to search within a GitHub repository, across repositories in an organization, or across all GitHub public repositories. I find this helps me find things quickly if I'm looking for how I've used a function in the past, or if I remember a word that would stand out that I included in a commit message as a breadcrumb to myself. It will also search Issues within the repositories, so you can look for specific words in conversations as well. 
-
-### Branches & Forks
-
-We're not going to talk about branches and forks. These are a core feature of what makes GitHub super powerful for software development, and one of the first things you'll see in GitHub tutorials geared towards software engineers. But I do not think that is the most relevant or smoothest entryway for those of us who are scientists fairly new to collaborative coding and version control. 
-
 ### Issues
 
 Every GitHub repository (shortened to "repo") has a feature called Issues. Issues is GitHub's project management and task-tracking feature. 
@@ -160,7 +90,9 @@ OK that's all for the hands-off portion, let's get back to our computers.
 
 You will need to create **Github** account at <http://github.com>, if you don't already have one. For username, I recommend all lower-case letters, short as you can. 
 
-*Note! Shorter names that kind of identify you are better, and use your work email!*
+*Note! Shorter names that kind of identify you are better, and use your work email!* 
+(See Jenny Bryan's username advice in [Happy Git with R](https://happygitwithr.com/github-acct.html)). 
+
 
 ## Create a repo 
 
@@ -168,11 +100,16 @@ You can name it anything. Since it is going to be about our substrate analysis, 
 
 ### Create a gh-pages branch
 
-I know I said we weren't going to talk about branches. Except for this. By default, when you create a new repo you begin with one branch, and it is named `master`. When you create new branches, you can name them whatever you want. However, if you name one `gh-pages` (all lowercase, with a `-` and no spaces), this will let you create a website. And that's our plan. Everyone, do the following to create a `gh-pages` branch: 
+We're not going to talk about branches and forks, except for one specific thing here. Branches and forks are a core feature of what makes GitHub super powerful for software development, and one of the first things you'll see in GitHub tutorials geared towards software engineers. But I do not think that is the most relevant or smoothest entryway for those of us who are scientists fairly new to collaborative coding and version control. 
+
+That said, by default, when you create a new repo you begin with one branch, and it is named `master`. When you create new branches, you can name them whatever you want. However, if you name one `gh-pages` (all lowercase, with a `-` and no spaces), this will let you create a website. And that's our plan. Everyone, do the following to create a `gh-pages` branch: 
 
 On the homepage for your repo on GitHub.com, click the button that says "Branch:master". Here, you can switch to another branch (right now there aren't any others besides `master`), or create one by typing a new name. 
 
-<img src="img/github-branch.png" width="350px">
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/github-branch.png")  
+```
+
 
 <br>
 
@@ -180,23 +117,80 @@ Let's type `gh-pages`.
 
 <br>
 
-<img src="img/github_create-branch_gh-pages.png" width="350px"> 
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/github_create-branch_gh-pages.png")  
+```
 
 Let's also change `gh-pages` to the default branch and delete the master branch: this will be a one-time-only thing that we do here: 
 
 First click to control branches:
 
-<img src="img/github-branch2.png" width="350px"> 
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/github-branch2.png")  
+```
+
 
 And then click to change the default branch to `gh-pages`. I like to then delete the `master` branch when it has the little red trash can next to it. It will make you confirm that you really want to delete it, which I do!
 
-<img src="img/github-change-branch.png" width="450px"> 
 
-TODO: CONTINUE!
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/github-change-branch.png")  
+```
 
-## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
+
+## Drag and Drop 
+
+Drag and drop your Rmd and html files. 
+
+Next, you'll need to commit to uploading them by writing a commit message. GitHub provides a suggested default message, but get into the habit of writing an actual message to yourself/others (breadcrumbs). Great! Now your files are listed as files in the repository. 
+
+(These are static; if you make a change to the Rmd it won't reflect on the html because you'd need to knit it again.)
+
+## Visit your website!
+
+Go to *YOUR-USER-NAME*.github.io/*REPO-NAME*
+
+Trouble?
+
+- 404 error? Remove trailing / from the url 
+- didn't name your file `index.Rmd`? Go to *YOUR-USER-NAME*.github.io/*REPO-NAME*/*FILENAME*
+- TODO? Remove trailing .Rmd from the url
+<!---Wants you to download? Remove trailing .md from the url--->
+
+## Edit the README
+
+The last thing we'll do here is to update our README file. READMEs are important because they are essentially a home page for your project, and GitHub displays them nicely and GitHub users expect to see them with high-level information about your project. 
+
+And, they should be useful for you and your collaborators, whether that is "future you" or "future us".  
+
+First a Disclaimer: you don’t want to edit from the browser for most things – you would want to “clone” the repo to your local computer and leverage more goodies & power. However, you will sometimes edit in the browser, and it’s a good entry point for us today, and maybe for onboarding folks in your lab in the future.
+
+Why not edit in the browser? You don’t want to overwrite each other or forget yourself. Good for quick md editing, not script editing.
+
+So let's click on the pencil and write a bit of information about our project. I'm going to write: 
+
+```
+A short exploration of substrate data from the California LTER. 
+
+[Rendered html file](my-url). TODO
+
+```
+
+This is great because now you don't need to remember everything about what we did with the DT package if you can remember your GitHub username and how to navigate to this repo. And you can share this URL with others! Hooray!
+
+## Activity (5 min)
+
+- Add your name to the README and commit it. 
+- MORE
+
+## recap
+
+Intentionally "lightweight" entry to GitHub. But more powerful than this. We wanted to give you a taste of what is possible with GitHub. 
+
+To take your analyses to the next level and use GitHub with R for version control, read Jenny Bryan's [Happy Git with R](https://happygitwithr.com/) when you're home.
+
 ## Interludes (deep thoughts/openscapes)
-## Our Turn Your Turn 1
-## Our Turn Your Turn 2
+
 ## Efficiency Tips
 

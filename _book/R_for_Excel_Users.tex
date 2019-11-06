@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-10-22}
+    \date{2019-11-06}
 
 \usepackage{booktabs}
 
@@ -570,7 +570,9 @@ And also know that there are errors that can creep in more subtly, when you are 
 
 Discussing using Excel for variables.
 
-Horror Stories! Economist etc. -- Mine: genetics example doesn't hit home as much as Durham bike accidents where age groups are converted to dates just by opening the bloody csv in excel
+Horror Stories! Economist etc. --
+
+Mine: genetics example doesn't hit home as much as Durham bike accidents where age groups are converted to dates just by opening the bloody csv in excel
 
 \hypertarget{activity-1}{%
 \section{Activity 1}\label{activity-1}}
@@ -580,6 +582,23 @@ Horror Stories! Economist etc. -- Mine: genetics example doesn't hit home as muc
 
 \hypertarget{efficiency-tips}{%
 \section{Efficiency Tips}\label{efficiency-tips}}
+
+\hypertarget{troubleshooting}{%
+\section{Troubleshooting}\label{troubleshooting}}
+
+Here are some additional things we didn't have time to discuss:
+
+\hypertarget{i-entered-a-command-and-nothings-happening}{%
+\subsection{I entered a command and nothing's happening}\label{i-entered-a-command-and-nothings-happening}}
+
+It may be because you didn't complete a command: is there a little \texttt{+} in your console? R is saying that it is waiting for you to finish. In the example below, I need to close that parenthesis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{10}
+\OperatorTok{+}\StringTok{ }
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{readxl}{%
 \chapter{\texorpdfstring{\texttt{readxl}}{readxl}}\label{readxl}}
@@ -727,7 +746,7 @@ Now let's make a simple plot of some fish counts with \texttt{ggplot2}.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R_for_Excel_Users_files/figure-latex/unnamed-chunk-13-1.pdf}
+\includegraphics{R_for_Excel_Users_files/figure-latex/unnamed-chunk-14-1.pdf}
 
 Now that we have our fish counts data ready to work with in R, let's get the substrate cover and kelp data (both .xlsx files). In the following sections, we'll learn that we can use \texttt{readxl::read\_excel()} to read in Excel files directly.
 
@@ -996,7 +1015,7 @@ Awesome! Let's make a graph with ggplot2:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R_for_Excel_Users_files/figure-latex/unnamed-chunk-37-1.pdf}
+\includegraphics{R_for_Excel_Users_files/figure-latex/unnamed-chunk-38-1.pdf}
 
 \hypertarget{save-data-frames-as-.csv-or-.xlsx-with-readrwrite_csv-or-writexlwrite_xlsx}{%
 \subsection{\texorpdfstring{Save data frames as .csv or .xlsx with \texttt{readr::write\_csv()} or \texttt{writexl::write\_xlsx()}}{Save data frames as .csv or .xlsx with readr::write\_csv() or writexl::write\_xlsx()}}\label{save-data-frames-as-.csv-or-.xlsx-with-readrwrite_csv-or-writexlwrite_xlsx}}
@@ -1117,7 +1136,7 @@ There's one dataset we haven't imported or explored yet: invertebrate counts for
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R_for_Excel_Users_files/figure-latex/unnamed-chunk-44-1.pdf}
+\includegraphics{R_for_Excel_Users_files/figure-latex/unnamed-chunk-45-1.pdf}
 
 \hypertarget{efficiency-tips-1}{%
 \section{Efficiency Tips}\label{efficiency-tips-1}}
@@ -1138,14 +1157,124 @@ There's one dataset we haven't imported or explored yet: invertebrate counts for
 \hypertarget{summary-a-few-sentences-1}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences-1}}
 
+Here we'll learn RMarkdown, which helps you tell a story with your data analysis because you can write text alongside the code.
+
 \hypertarget{objectives-more-detailed-bulletpoints-1}{%
 \section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-1}}
 
 \hypertarget{resources-2}{%
 \section{Resources}\label{resources-2}}
 
-\hypertarget{lessons-teaching-for-each-objective..-objectives-examples}{%
-\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples}}
+\hypertarget{intro-to-rmarkdown}{%
+\section{Intro to RMarkdown}\label{intro-to-rmarkdown}}
+
+TODO (write out):
+Intro, knitting
+How it's different from R Script (which we just created)
+How in-line figures are awesome (no copy-pasting from excel to word)
+Reproducibility is important (this might be new to some people). Reproducible research/self-contained Rmd files: read in data at the top. Read\_csv.
+
+An RMarkdown file will allow us to weave markdown text with chunks of R code to be evaluated and output content like tables and plots.
+
+File -\textgreater{} New File -\textgreater{} RMarkdown\ldots{} -\textgreater{} Document of output format HTML, OK.
+
+\includegraphics[width=0.8\linewidth]{img/rstudio_new-rmd-doc-html}
+
+You can give it a Title like ``My Analysis''. Then click OK.
+
+OK, first off: by opening a file, we are seeing the 4th pane of the RStudio console, which is essentially a text editor. This lets us organize our files within RStudio instead of having a bunch of different windows open.
+
+Let's have a look at this file --- it's not blank; there is some initial text is already provided for you. Notice a few things about it:
+
+\begin{itemize}
+\tightlist
+\item
+  There are white and grey sections. R code is in grey sections, and other text is in white.
+\end{itemize}
+
+\includegraphics[width=0.8\linewidth]{img/rmarkdown}
+
+Let's go ahead and ``Knit HTML'' by clicking the blue yarn at the top of the RMarkdown file.
+
+\includegraphics[width=0.8\linewidth]{img/rmarkdown_side_by_side}
+
+What do you notice between the two? So much of learning to code is looking for patterns.
+
+Notice how the grey \textbf{R code chunks} are surrounded by 3 backticks and \texttt{\{r\ LABEL\}}. These are evaluated and return the output text in the case of \texttt{summary(cars)} and the output plot in the case of \texttt{plot(pressure)}.
+
+Notice how the code \texttt{plot(pressure)} is not shown in the HTML output because of the R code chunk option \texttt{echo=FALSE}.
+
+The hashtag (\#) at lines 12 and 22 cause the following text to be displayed larger and in bold.
+
+This RMarkdown file has 2 different languages within it: \textbf{R} and \textbf{Markdown}.
+
+We don't know that much R yet, but you can see that we are taking a summary of some data called `cars', and then plotting. We will focus on R for the rest of the workshop, but for the rest of this morning let's focus on the second language.
+
+The second language is Markdown. This is a formatting language for plain text, and there are only about 15 rules to know.
+
+Notice the syntax for:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{headers} get rendered at multiple levels: \texttt{\#}, \texttt{\#\#}
+\item
+  \textbf{bold}: \texttt{**word**}
+\end{itemize}
+
+There are some good \href{https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet}{cheatsheets} to get you started, and here is one built into RStudio: Go to Help \textgreater{} Markdown Quick Reference
+
+\textbf{Important}: note that the hashtag \texttt{\#} is used differently in Markdown and in R:
+
+\begin{itemize}
+\tightlist
+\item
+  in R, a hashtag indicates a comment that will not be evaluated. You can use as many as you want: \texttt{\#} is equivalent to \texttt{\#\#\#\#\#\#}. It's a matter of style. I use two \texttt{\#\#} to indicate a comment so that it's clearer what is a comment versus what I don't want to run at the moment.
+\item
+  in Markdown, a hashtag indicates a level of a header. And the number you use matters: \texttt{\#} is a ``level one header'', meaning the biggest font and the top of the hierarchy. \texttt{\#\#\#} is a level three header, and will show up nested below the \texttt{\#} and \texttt{\#\#} headers.
+\end{itemize}
+
+If this seems confusing, take comfort in the fact that you are already used to using \texttt{\#}s differently in real life: it can mean ``number'' or ``pound'' or hashtags on social media.
+
+Learn more: \url{http://rmarkdown.rstudio.com/}
+
+\hypertarget{activity}{%
+\subsection{Activity}\label{activity}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In Markdown write some italic text, make a numbered list, and add a few subheaders.
+  Use the Markdown Quick Reference (in the menu bar: Help \textgreater{} Markdown Quick Reference).
+\item
+  Reknit your html file.
+\end{enumerate}
+
+\hypertarget{code-chunks}{%
+\subsection{Code chunks}\label{code-chunks}}
+
+OK. Now let's practice with some of those commands that we were working on this morning.
+
+Create a new chunk in your RMarkdown first in one of these ways:
+
+\begin{itemize}
+\tightlist
+\item
+  click ``Insert \textgreater{} R'' at the top of the editor pane
+\item
+  type by hand
+  ```\{r\}
+  ```
+\item
+  if you haven't deleted a chunk that came with the new file, edit that one
+\end{itemize}
+
+Now, let's write some R code.
+
+\begin{verbatim}
+x <- seq(1:15)
+\end{verbatim}
 
 Now, hitting return does not execute this command; remember, it's a text file in the text editor, it's not associated with the R engine. To execute it, we need to get what we typed in the the R chunk (the grey R code) down into the console. How do we do it? There are several ways (let's do each of them):
 
@@ -1171,8 +1300,17 @@ Now, hitting return does not execute this command; remember, it's a text file in
   click the green arrow at the right of the code chunk
 \end{enumerate}
 
+\hypertarget{activity-3}{%
+\subsection{Activity}\label{activity-3}}
+
+\begin{quote}
+Add a few more commands to your file from this morning. Execute them by trying the three ways above. Then, knit your R Markdown file, which will also save the Rmd by default.
+\end{quote}
+
 \hypertarget{create-a-rmd-for-our-fish-analysis}{%
-\section{Create a Rmd for our Fish analysis}\label{create-a-rmd-for-our-fish-analysis}}
+\section{Create a Rmd for our fish analysis}\label{create-a-rmd-for-our-fish-analysis}}
+
+OK now let's open a new RMarkdown file and begin some analyses.
 
 \begin{itemize}
 \tightlist
@@ -1189,7 +1327,25 @@ fish\_counts are what we call Tidy Data.
 
 Tidy data has a simple convention: put variables in the columns and observations in the rows.
 
-\includegraphics{img/tidy_data.png}
+\includegraphics[width=0.8\linewidth]{img/tidy_data}
+
+TODO:
+Explore data:
+summaries/data table
+Uncount and count
+Why would you ever want to uncount? You don't want to assume how future you will want to use this data
+How easy is it to get these counts by different groupings
+Simplest ggplot (introduced in readxl chapter)
+
+\hypertarget{activity-4}{%
+\section{Activity}\label{activity-4}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  knit!
+\end{enumerate}
 
 \hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections}{%
 \section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections}}
@@ -1203,11 +1359,12 @@ Tidy data has a simple convention: put variables in the columns and observations
 Comments! Organization (spacing, subsections, vertical structure, indentation, etc.)! Well-named variables! Also, well-named operations so analyses (select(data, columnname)) instead of data{[}1:6,5{]} and excel equivalent. (Ex with strings)
 Not so brittle/sensitive to minor changes.
 
-\hypertarget{our-turn-your-turn-1}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1}}
+\hypertarget{rmarkdown-video-1-minute}{%
+\subsection{RMarkdown video (1-minute)}\label{rmarkdown-video-1-minute}}
 
-\hypertarget{our-turn-your-turn-2}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2}}
+Let's watch this to demonstrate all the amazing things you can now do:
+
+\href{https://vimeo.com/178485416}{What is RMarkdown?}
 
 \hypertarget{efficiency-tips-2}{%
 \section{Efficiency Tips}\label{efficiency-tips-2}}
@@ -1489,8 +1646,8 @@ Let's try a calculation. Let's calculate the total count for the whole data site
 
 And notice that this was the same calculated value as when we did this with summarize, but here it is repeated for every row instead of being collapsed.
 
-\hypertarget{activity}{%
-\subsection{Activity}\label{activity}}
+\hypertarget{activity-5}{%
+\subsection{Activity}\label{activity-5}}
 
 Take 3 minutes to add a new column to the data frame; discuss with your neighbor for ideas!
 
@@ -1567,6 +1724,8 @@ If we wanted to do this with \texttt{group\_by()\ \%\textgreater{}\%\ summarize(
 \end{Shaded}
 
 In order to calculate the percentages with the appropriate values, we need to somehow join the summarized data back to the fish\_counts. This actually requires a few more dplyr verbs: filter and *\_join; we will do this tomorrow!
+
+count column (would have to uncount first)
 
 \hypertarget{deep-thoughts}{%
 \section{Deep thoughts}\label{deep-thoughts}}
@@ -2128,11 +2287,11 @@ So, both \texttt{filter()} and \texttt{VLOOKUP} look through your data frame (or
   Idea: not overusing the pipe in really long sequences. What are other options? Why is that a concern? What are some ways to always know that what's happening in a sequence is what you EXPECT is happening in a sequence? tidylog, check intermediate data frames, sometimes write intermediate data frames, etc.
 \end{itemize}
 
-\hypertarget{our-turn-your-turn-1-1}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-1}}
+\hypertarget{our-turn-your-turn-1}{%
+\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1}}
 
-\hypertarget{our-turn-your-turn-2-1}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-1}}
+\hypertarget{our-turn-your-turn-2}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2}}
 
 \hypertarget{efficiency-tips-4}{%
 \section{Efficiency Tips}\label{efficiency-tips-4}}
@@ -2207,8 +2366,8 @@ R ecosystem evolves and improves due to contributed work by the community, and t
   Wilson et al.~2014 ``Good enough practices''
 \end{itemize}
 
-\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-1}{%
-\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-1}}
+\hypertarget{lessons-teaching-for-each-objective..-objectives-examples}{%
+\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples}}
 
 \hypertarget{expect-theres-a-better-way-chat}{%
 \subsection{Expect there's a better way chat}\label{expect-theres-a-better-way-chat}}
@@ -2256,8 +2415,8 @@ Pay attention to URLs, build github/rmarkdown savviness (ex: raw.githubuserconte
 \hypertarget{interludes-deep-thoughtsopenscapes-4}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-4}}
 
-\hypertarget{our-turn-your-turn-2-2}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-2}}
+\hypertarget{our-turn-your-turn-2-1}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-1}}
 
 \hypertarget{efficiency-tips-5}{%
 \section{Efficiency Tips}\label{efficiency-tips-5}}
@@ -2290,33 +2449,210 @@ Recreate it
 \hypertarget{summary-a-few-sentences-4}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences-4}}
 
+We are going to focus on formatting a table nicely and sharing it by publishing it to GitHub.
+
 \hypertarget{objectives-more-detailed-bulletpoints-4}{%
 \section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-4}}
 
 \hypertarget{resources-6}{%
 \section{Resources}\label{resources-6}}
 
-\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-2}{%
-\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-2}}
+\begin{itemize}
+\tightlist
+\item
+  \href{https://happygitwithr.com/}{Happy Git With R}
+\item
+  \href{https://openscapes.github.io/series}{Openscapes lesson series}
+\end{itemize}
+
+\hypertarget{introduction-our-analytical-plan-1}{%
+\section{Introduction / our analytical plan}\label{introduction-our-analytical-plan-1}}
+
+Generally, you can name things whatever you want; we try to do this is a way that is meaningful to you and others but is also succinct. But in this lesson there are going to be 2 things that must have specific names, which will let us create a website. These 2 things are \texttt{index.Rmd} and \texttt{gh-pages}. We'll see them soon.
+
+\textless{}TODO: More here\textgreater{}
+
+We'll create a new RMarkdown document --- and this is the first of these 2 names we mentioned above. \textbf{Name your new R Markdown file \texttt{index.Rmd}}. Lowercase ``i''.
+
+TODO: read in data from googlesheets. Substrate cover?
+
+Wrangle data
+
+Now let's knit! Let's make this table look a bit nicer.
+
+\hypertarget{formatting-tables-15-minutes}{%
+\section{Formatting tables (15 minutes)}\label{formatting-tables-15-minutes}}
+
+\hypertarget{dt}{%
+\subsection{DT}\label{dt}}
+
+TODO
+
+\hypertarget{kable-and-kablextra}{%
+\subsection{kable and kablextra}\label{kable-and-kablextra}}
+
+TODO
+
+\hypertarget{activity-5-min}{%
+\section{Activity (5 min)}\label{activity-5-min}}
+
+Do the following:
+TODO
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Create a GitHub account: \url{https://github.com} \emph{Note! Shorter names that kind of identify you are better, and use your work email!}
+  wrangle xyz
+\item
+  something
+\item
+  knit to html
 \end{enumerate}
 
-\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}{%
-\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}}
+Great! Now we want to share this. We'll move beyond emailing Excel Files or sharing them via dropbox or google drive.
+
+Let's talk about what GitHub is. You can sit back and close your laptops for a moment and we'll have a little tour.
+
+\hypertarget{github-for-publishing}{%
+\section{GitHub for Publishing}\label{github-for-publishing}}
+
+GitHub is a powerful tool for collaborative coding with version control, but we are going to focus on some of its lesser-celebrated awesomeness: GitHub for publication.
+
+We are going to work with GitHub from the browser only, because it makes the best use of our short time together. It is also a powerful way for folks to contribute and collaborate even if they are not involved in day-to-day hands-on analysis. So this might be good for you and your colleagues to have a gentle entryway into GitHub together.
+
+GitHub can reduce friction collaboration: it gives us avenues for communicating and publishing methods, blogs, interactive graphics and more, without a lot of heavy lifting!
+
+\hypertarget{issues}{%
+\subsection{Issues}\label{issues}}
+
+Every GitHub repository (shortened to ``repo'') has a feature called Issues. Issues is GitHub's project management and task-tracking feature.
+
+\begin{quote}
+Issues ``track ideas, enhancements, tasks, or bugs for work on GitHub.'' - \href{https://help.github.com/en/articles/about-issues}{GitHub}
+\end{quote}
+
+You create an Issue for a topic, and use it track progress or ask questions. You can provide links, describe updates, link to other Issues, and you can close the Issue when it is completed. You can also re-open previously-closed Issues.
+
+Every GitHub repository has this Issues feature. This means that sometimes Issues are public and sometimes they are private.
+
+\begin{itemize}
+\tightlist
+\item
+  In a public repo, anyone with a GitHub username can create and comment on issues.
+\item
+  In a private repo, only users with permission can create and comment on issues, or see them at all
+\end{itemize}
+
+We won't talk about Issues more today in this course but if you're interested read Jenny Bryan's \href{https://peerj.com/preprints/3159/}{``Excuse Me, Do You Have a Moment to Talk About Version Control?''} and Openscapes' \href{https://openscapes.github.io/series/github-issues}{GitHub for Project Management} chapter.
+
+OK that's all for the hands-off portion, let's get back to our computers.
+
+\hypertarget{create-a-github-user-account}{%
+\section{Create a GitHub user account}\label{create-a-github-user-account}}
+
+You will need to create \textbf{Github} account at \url{http://github.com}, if you don't already have one. For username, I recommend all lower-case letters, short as you can.
+
+\emph{Note! Shorter names that kind of identify you are better, and use your work email!}
+(See Jenny Bryan's username advice in \href{https://happygitwithr.com/github-acct.html}{Happy Git with R}).
+
+\hypertarget{create-a-repo}{%
+\section{Create a repo}\label{create-a-repo}}
+
+You can name it anything. Since it is going to be about our substrate analysis, I'll name mine \texttt{substrate-report}.
+
+\hypertarget{create-a-gh-pages-branch}{%
+\subsection{Create a gh-pages branch}\label{create-a-gh-pages-branch}}
+
+We're not going to talk about branches and forks, except for one specific thing here. Branches and forks are a core feature of what makes GitHub super powerful for software development, and one of the first things you'll see in GitHub tutorials geared towards software engineers. But I do not think that is the most relevant or smoothest entryway for those of us who are scientists fairly new to collaborative coding and version control.
+
+That said, by default, when you create a new repo you begin with one branch, and it is named \texttt{master}. When you create new branches, you can name them whatever you want. However, if you name one \texttt{gh-pages} (all lowercase, with a \texttt{-} and no spaces), this will let you create a website. And that's our plan. Everyone, do the following to create a \texttt{gh-pages} branch:
+
+On the homepage for your repo on GitHub.com, click the button that says ``Branch:master''. Here, you can switch to another branch (right now there aren't any others besides \texttt{master}), or create one by typing a new name.
+
+\includegraphics[width=0.8\linewidth]{img/github-branch}
+
+Let's type \texttt{gh-pages}.
+
+\includegraphics[width=0.8\linewidth]{img/github_create-branch_gh-pages}
+
+Let's also change \texttt{gh-pages} to the default branch and delete the master branch: this will be a one-time-only thing that we do here:
+
+First click to control branches:
+
+\includegraphics[width=0.8\linewidth]{img/github-branch2}
+
+And then click to change the default branch to \texttt{gh-pages}. I like to then delete the \texttt{master} branch when it has the little red trash can next to it. It will make you confirm that you really want to delete it, which I do!
+
+\includegraphics[width=0.8\linewidth]{img/github-change-branch}
+
+\hypertarget{drag-and-drop}{%
+\section{Drag and Drop}\label{drag-and-drop}}
+
+Drag and drop your Rmd and html files.
+
+Next, you'll need to commit to uploading them by writing a commit message. GitHub provides a suggested default message, but get into the habit of writing an actual message to yourself/others (breadcrumbs). Great! Now your files are listed as files in the repository.
+
+(These are static; if you make a change to the Rmd it won't reflect on the html because you'd need to knit it again.)
+
+\hypertarget{visit-your-website}{%
+\section{Visit your website!}\label{visit-your-website}}
+
+Go to \emph{YOUR-USER-NAME}.github.io/\emph{REPO-NAME}
+
+Trouble?
+
+\begin{itemize}
+\tightlist
+\item
+  404 error? Remove trailing / from the url
+\item
+  didn't name your file \texttt{index.Rmd}? Go to \emph{YOUR-USER-NAME}.github.io/\emph{REPO-NAME}/\emph{FILENAME}
+\item
+  TODO? Remove trailing .Rmd from the url
+\end{itemize}
+
+\hypertarget{edit-the-readme}{%
+\section{Edit the README}\label{edit-the-readme}}
+
+The last thing we'll do here is to update our README file. READMEs are important because they are essentially a home page for your project, and GitHub displays them nicely and GitHub users expect to see them with high-level information about your project.
+
+And, they should be useful for you and your collaborators, whether that is ``future you'' or ``future us''.
+
+First a Disclaimer: you don't want to edit from the browser for most things -- you would want to ``clone'' the repo to your local computer and leverage more goodies \& power. However, you will sometimes edit in the browser, and it's a good entry point for us today, and maybe for onboarding folks in your lab in the future.
+
+Why not edit in the browser? You don't want to overwrite each other or forget yourself. Good for quick md editing, not script editing.
+
+So let's click on the pencil and write a bit of information about our project. I'm going to write:
+
+\begin{verbatim}
+A short exploration of substrate data from the California LTER. 
+
+[Rendered html file](my-url). TODO
+\end{verbatim}
+
+This is great because now you don't need to remember everything about what we did with the DT package if you can remember your GitHub username and how to navigate to this repo. And you can share this URL with others! Hooray!
+
+\hypertarget{activity-5-min-1}{%
+\section{Activity (5 min)}\label{activity-5-min-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Add your name to the README and commit it.
+\item
+  MORE
+\end{itemize}
+
+\hypertarget{recap}{%
+\section{recap}\label{recap}}
+
+Intentionally ``lightweight'' entry to GitHub. But more powerful than this. We wanted to give you a taste of what is possible with GitHub.
+
+To take your analyses to the next level and use GitHub with R for version control, read Jenny Bryan's \href{https://happygitwithr.com/}{Happy Git with R} when you're home.
 
 \hypertarget{interludes-deep-thoughtsopenscapes-5}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-5}}
-
-\hypertarget{our-turn-your-turn-1-2}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-2}}
-
-\hypertarget{our-turn-your-turn-2-3}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-3}}
 
 \hypertarget{efficiency-tips-6}{%
 \section{Efficiency Tips}\label{efficiency-tips-6}}
@@ -2333,20 +2669,20 @@ Recreate it
 \hypertarget{resources-7}{%
 \section{Resources}\label{resources-7}}
 
-\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-3}{%
-\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-3}}
+\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-1}{%
+\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-1}}
 
-\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3}{%
-\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3}}
+\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}{%
+\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}}
 
 \hypertarget{interludes-deep-thoughtsopenscapes-6}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-6}}
 
-\hypertarget{our-turn-your-turn-1-3}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-3}}
+\hypertarget{our-turn-your-turn-1-1}{%
+\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-1}}
 
-\hypertarget{our-turn-your-turn-2-4}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-4}}
+\hypertarget{our-turn-your-turn-2-2}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-2}}
 
 \hypertarget{efficiency-tips-7}{%
 \section{Efficiency Tips}\label{efficiency-tips-7}}
