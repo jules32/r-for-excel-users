@@ -138,6 +138,8 @@ knitr::include_graphics("img/tidy_data.png")
 ```
 
 
+Uncount this data so that we can use it with pivot tables
+
 TODO: 
 Explore data: 
 summaries/data table

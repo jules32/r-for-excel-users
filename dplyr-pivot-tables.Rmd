@@ -1,5 +1,7 @@
 # `dplyr` and Pivot Tables {#pivot}
 
+. Julie rewrite with summarize(mean, sd, n) on the uncounted fish_uncount
+
 ## Summary (a few sentences)
 
 First of two chapters on data wrangling, here focused on pivot tables. 

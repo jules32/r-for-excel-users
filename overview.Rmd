@@ -19,7 +19,9 @@ R is not only a language, it is an active community of developers, users, and ed
 
 Welcome. 
 
-<!---introduce ourselves, how this workshop will work. ---> 
+<!---introduce ourselves, how this workshop will work.
+
+Also: show some data. And then talk to your neighbor about how this data is and is not like some data that you've worked with. 3 mins, and then share out. ---> 
 
 This workshop you will learn hands-on how to begin to interoperate between Excel and R. 
 

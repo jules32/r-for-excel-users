@@ -10,7 +10,7 @@ rmd_files: [
   "dplyr-pivot-tables.Rmd",
   "dplyr-vlookups.Rmd",
   "tidying.Rmd",
-  "formatting-and-sharing.Rmd",
+  "tables-and-sharing.Rmd",
   "synthesis.Rmd"
  ]
 delete_merged_file: true

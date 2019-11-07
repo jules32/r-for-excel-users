@@ -121,7 +121,7 @@ Let's type `gh-pages`.
 knitr::include_graphics("img/github_create-branch_gh-pages.png")  
 ```
 
-Let's also change `gh-pages` to the default branch and delete the master branch: this will be a one-time-only thing that we do here: 
+Let's also change `gh-pages` to the default branch will be a one-time-only thing that we do here: 
 
 First click to control branches:
 
@@ -141,7 +141,7 @@ knitr::include_graphics("img/github-change-branch.png")
 
 ## Drag and Drop 
 
-Drag and drop your Rmd and html files. 
+Drag and drop your Rmd and html files. Make sure you 
 
 Next, you'll need to commit to uploading them by writing a commit message. GitHub provides a suggested default message, but get into the habit of writing an actual message to yourself/others (breadcrumbs). Great! Now your files are listed as files in the repository. 
 
@@ -186,7 +186,12 @@ This is great because now you don't need to remember everything about what we di
 
 ## recap
 
-Intentionally "lightweight" entry to GitHub. But more powerful than this. We wanted to give you a taste of what is possible with GitHub. 
+Let's just reflect for a moment on what we've done and why we've done it. 
+
+Formatted tables
+
+Focused on sharing. We're not using the full power of GitHub here because we didn't set it up locally on your computers, but we have given you an intentionally "lightweight" entry to GitHub. You now have experience in a world where you don't attach excel files to emails. You can write them in R and as they evolve, share a URL on GitHub. 
+
 
 To take your analyses to the next level and use GitHub with R for version control, read Jenny Bryan's [Happy Git with R](https://happygitwithr.com/) when you're home.
 
