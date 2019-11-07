@@ -1,9 +1,111 @@
 # RMarkdown {#rmarkdown}
 
 ## Summary (a few sentences)
+
+Here we'll learn RMarkdown, which helps you tell a story with your data analysis because you can write text alongside the code.
+
 ## Objectives (more detailed, bulletpoints?)
+
 ## Resources
-## Lessons teaching for each objective….. (objectives, examples)
+
+## Intro to RMarkdown
+
+TODO (write out): 
+Intro, knitting
+How it’s different from R Script (which  we just created)
+How in-line figures are awesome (no copy-pasting from excel to word)
+Reproducibility is important (this might be new to some people). Reproducible research/self-contained Rmd files: read in data at the top. Read_csv.
+
+An RMarkdown file will allow us to weave markdown text with chunks of R code to be evaluated and output content like tables and plots.
+
+File -> New File -> RMarkdown... -> Document of output format HTML, OK.
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/rstudio_new-rmd-doc-html.png")  
+```
+
+
+You can give it a Title like "My Analysis". Then click OK. 
+
+OK, first off: by opening a file, we are seeing the 4th pane of the RStudio console, which is essentially a text editor. This lets us organize our files within RStudio instead of having a bunch of different windows open.
+
+Let's have a look at this file — it's not blank; there is some initial text is already provided for you. Notice a few things about it: 
+
+- There are white and grey sections. R code is in grey sections, and other text is in white. 
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/rmarkdown.png")  
+```
+
+
+<br>
+
+Let's go ahead and "Knit HTML" by clicking the blue yarn at the top of the RMarkdown file. 
+
+<br>
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/rmarkdown_side_by_side.png")  
+```
+
+
+What do you notice between the two? So much of learning to code is looking for patterns.
+
+Notice how the grey **R code chunks** are surrounded by 3 backticks and `{r LABEL}`. These are evaluated and return the output text in the case of `summary(cars)` and the output plot in the case of `plot(pressure)`.
+
+Notice how the code `plot(pressure)` is not shown in the HTML output because of the R code chunk option `echo=FALSE`. 
+
+The hashtag (#) at lines 12 and 22 cause the following text to be displayed larger and in bold. 
+
+This RMarkdown file has 2 different languages within it: **R** and **Markdown**. 
+
+We don't know that much R yet, but you can see that we are taking a summary of some data called 'cars', and then plotting. We will focus on R for the rest of the workshop, but for the rest of this morning let's focus on the second language.
+
+The second language is Markdown. This is a formatting language for plain text, and there are only about 15 rules to know. 
+
+Notice the syntax for:
+
+- **headers** get rendered at multiple levels: `#`, `##`
+- **bold**: `**word**`
+
+There are some good [cheatsheets](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet) to get you started, and here is one built into RStudio: Go to Help > Markdown Quick Reference
+
+<br>
+<br>
+
+**Important**: note that the hashtag `#` is used differently in Markdown and in R: 
+
+- in R, a hashtag indicates a comment that will not be evaluated. You can use as many as you want: `#` is equivalent to `######`. It's a matter of style. I use two `##` to indicate a comment so that it's clearer what is a comment versus what I don't want to run at the moment.
+- in Markdown, a hashtag indicates a level of a header. And the number you use matters: `#` is a "level one header", meaning the biggest font and the top of the hierarchy. `###` is a level three header, and will show up nested below the `#` and `##` headers.
+
+If this seems confusing, take comfort in the fact that you are already used to using `#`s differently in real life: it can mean "number" or "pound" or hashtags on social media.
+
+Learn more: http://rmarkdown.rstudio.com/
+
+### Activity
+
+1. In Markdown write some italic text, make a numbered list, and add a few subheaders.
+ Use the Markdown Quick Reference (in the menu bar: Help > Markdown Quick Reference). 
+1. Reknit your html file. 
+
+
+### Code chunks
+
+OK. Now let's practice with some of those commands that we were working on this morning.
+
+Create a new chunk in your RMarkdown first in one of these ways: 
+
+- click "Insert > R" at the top of the editor pane
+- type by hand 
+   \```{r}
+   \```
+- if you haven't deleted a chunk that came with the new file, edit that one
+
+Now, let's write some R code. 
+
+```
+x <- seq(1:15)
+```
 
 Now, hitting return does not execute this command; remember, it's a text file in the text editor, it's not associated with the R engine. To execute it, we need to get what we typed in the the R chunk (the grey R code) down into the console. How do we do it? There are several ways (let's do each of them):
 
@@ -14,7 +116,13 @@ Now, hitting return does not execute this command; remember, it's a text file in
     c. keyboard shortcut: command-return
 1. click the green arrow at the right of the code chunk
 
-## Create a Rmd for our Fish analysis
+### Activity
+
+> Add a few more commands to your file from this morning. Execute them by trying the three ways above. Then, knit your R Markdown file, which will also save the Rmd by default. 
+
+## Create a Rmd for our fish analysis
+
+OK now let's open a new RMarkdown file and begin some analyses. 
 
 - read in
 - View()
@@ -25,8 +133,22 @@ fish_counts are what we call Tidy Data.
 
 Tidy data has a simple convention: put variables in the columns and observations in the rows.
 
-![](img/tidy_data.png)
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/tidy_data.png")  
+```
 
+
+TODO: 
+Explore data: 
+summaries/data table
+Uncount and count
+Why would you ever want to uncount? You don’t want to assume how future you will want to use this data
+How easy is it to get these counts by different groupings
+Simplest ggplot (introduced in readxl chapter)
+
+## Activity
+
+1. knit!
 
 ## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
 ## Interludes (deep thoughts/openscapes)
@@ -35,7 +157,12 @@ Tidy data has a simple convention: put variables in the columns and observations
 Comments! Organization (spacing, subsections, vertical structure, indentation, etc.)! Well-named variables! Also, well-named operations so analyses (select(data, columnname)) instead of data[1:6,5] and excel equivalent. (Ex with strings)
 Not so brittle/sensitive to minor changes.
 
-## Our Turn Your Turn 1
-## Our Turn Your Turn 2
+### RMarkdown video (1-minute)
+
+Let's watch this to demonstrate all the amazing things you can now do: 
+
+[What is RMarkdown?](https://vimeo.com/178485416)
+
+
 ## Efficiency Tips
 

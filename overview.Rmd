@@ -345,6 +345,19 @@ Mine: genetics example doesn't hit home as much as Durham bike  accidents where 
 ## Efficiency Tips
 
 
+## Troubleshooting
+
+Here are some additional things we didn't have time to discuss:
+
+### I entered a command and nothing's happening
+
+It may be because you didn't complete a command: is there a little `+` in your console? R is saying that it is waiting for you to finish. In the example below, I need to close that parenthesis.
+
+```{r, eval=FALSE}
+> x <- seq(1, 10
++ 
+```
+
 
 
 
