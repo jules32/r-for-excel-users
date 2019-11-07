@@ -1,9 +1,48 @@
 # Synthesis
 
+Allison section
+
 ## Summary (a few sentences)
-## Objectives (more detailed, bulletpoints?)
+
+In this session, we'll put together the skills that we've learned so far to create a new document from scratch, and learn a few new ways to import and work with spreadsheet data along the way. 
+
+![r4ds_drawing](img/r4ds_data-science.png)
+
+## Objectives
+
+- Read in data from a Google sheet with the `googlesheets4` package in R
+- 
+
 ## Resources
-## Lessons teaching for each objective….. (objectives, examples)
+
+- Googlesheets4 link
+
+## Lessons
+
+Lesson set up: 
+
+- Log in to your GitHub account and create a new repository called `sea-creature-synthesis`
+- Clone the repo to create a version controlled project (remember, copy & paste the URL from the GitHub Clone / Download)
+- Copy and paste the `fish_counts_curated.csv` and `lobster_abundance.csv` into the project folder
+- Create a new R Markdown document within your `sea-creature-synthesis` project
+- Knit your .Rmd to html, saving as `sb_sea_creatures.Rmd`
+
+
+
+
+### Reading 
+
+- Read in lobster data with googlesheets4
+- Join with another existing data frame (or 2?)
+- Pivoting
+- Transforming / subsetting
+- Grouping & summarizing (for means, sd, count)
+- Make a table 
+- Make a graph
+
+Possible new things: 
+complete() 
+
 ## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
 ## Interludes (deep thoughts/openscapes)
 ## Our Turn Your Turn 1

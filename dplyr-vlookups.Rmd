@@ -7,7 +7,6 @@ In previous sessions, we've learned to do some basic wrangling and find summary 
 TODO: Check these to make sure what we do in 1 - 4!
 
 - `dplyr::count()` and `dplyr::uncount()` to get counts of observations for groupings we specify (or the reverse!)
-- `dplyr::select()`: select which **columns** to retain or exclude
 - `dplyr::mutate()`: **add** a new column, while keeping the existing ones
 - `dplyr::group_by()`: let R know that **groups** exist within the dataset, by variable(s)
 - `dplyr::summarize()`: calculate a value (that you specify) for each group, then report each group's value in a table
@@ -255,6 +254,8 @@ We can also use `dplyr::filter()` in combination with the functions we previousl
 
 Here, we'll start with the `invert_counts` data frame and create a subset that:
 
+TODO: NOPE, can't do this, they don't learn `pivot_longer()` until the next section (tidying) 
+
 - Converts to long format with `pivot_longer()`
 - Only keeps observations for rock scallops
 - Calculates the total count of rock scallops by site only
@@ -492,7 +493,7 @@ So, both `filter()` and `VLOOKUP` look through your data frame (or spreadsheet, 
 
 - Not overusing the pipe in really long sequences. What are other options? Why is that a concern? What are some ways to always know that what's happening in a sequence is what you EXPECT is happening in a sequence? tidylog, check intermediate data frames, sometimes write intermediate data frames, etc. 
 
-- The risk of partial joins (& the case for full_join + drop_na instead)
+- The risk of partial joins (& a case for full_join + drop_na instead?)
 
 ## Efficiency Tips
 
