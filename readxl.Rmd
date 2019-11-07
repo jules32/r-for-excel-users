@@ -420,3 +420,9 @@ inverts_graph
 - Undo shortcut: Command + Z 
 - Redo shortcut: Command + Shift + Z
 
+## Deep thoughts
+
+- Economist article about gene > dates issue in Excel
+- Mine: data frame of bike casualities in NC, column names are age ranges but some of them import as dates
+- Excel makes some wrong assumptions and doesn't give you a heads up about its decision making 
+

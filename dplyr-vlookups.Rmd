@@ -2,10 +2,11 @@
 
 ## Summary
 
-In Session 4, we learned how to do some basic wrangling and find summary information with functions in the `dplyr` package, which exists within the `tidyverse`. Those were: 
+In previous sessions, we've learned to do some basic wrangling and find summary information with functions in the `dplyr` package, which exists within the `tidyverse`. We've used: 
 
-TODO: Check this list (to see what actually gets covered in Session 4)
+TODO: Check these to make sure what we do in 1 - 4!
 
+- `dplyr::count()` and `dplyr::uncount()` to get counts of observations for groupings we specify (or the reverse!)
 - `dplyr::select()`: select which **columns** to retain or exclude
 - `dplyr::mutate()`: **add** a new column, while keeping the existing ones
 - `dplyr::group_by()`: let R know that **groups** exist within the dataset, by variable(s)
@@ -14,17 +15,17 @@ TODO: Check this list (to see what actually gets covered in Session 4)
 In Session 5, we'll expand our data wrangling toolkit using: 
 
 - `dplyr::filter()` to conditionally subset our data by **rows**, and
-- `dplyr::join()` functions to merge data frames together
+- `dplyr::*_join()` functions to merge data frames together
 
-The combination of `dplyr::filter()` and `dplyr::join()` - to return rows satisfying a condition we specify, and merging data frames by like variables - is analogous to the useful VLOOKUP function in Excel. 
+The combination of `dplyr::filter()` and `dplyr::*_join()` - to return rows satisfying a condition we specify, and merging data frames by like variables - is analogous to the useful VLOOKUP function in Excel. 
 
 ## Objectives
 
 - Continue building R Markdown skills
 - Return **rows** that satisfy variable conditions using `dplyr::filter()` 
-- Use `dplyr::full_join()`, `dplyr::inner_join()`, and beyond to merge data frames by matching variables, with different endpoints in mind
+- Use `dplyr::full_join()`, `dplyr::left_join()`, and `dplyr::inner_join()` to merge data frames by matching variables, with different endpoints in mind
 - Use `dplyr::anti_join()` to find things that **do not** exist in both data frames
-- Understand the similarities between `dplyr::filter()` + `join()` and Excel's `VLOOKUP` 
+- Understand the similarities between `dplyr::filter()` + `dplyr::*_join()` and Excel's VLOOKUP function
 
 ## Resources
 
@@ -74,13 +75,15 @@ Now, let's use `dplyr::filter()` to decide which observations (rows) we'll keep 
 
 ### `dplyr::filter()` to conditionally subset by rows
 
-Use `dplyr::filter()` to let R know which **rows** you want to keep or exclude, based on what they contain. Some examples in words: 
+Use `dplyr::filter()` to let R know which **rows** you want to keep or exclude, based whether or not their contents match conditions that you set for one or more variables. 
+
+![dplyr::filter()](img/rstudio-cheatsheet-filter.png)
+
+Some examples in words that might inspire you to use `dplyr::filter()`: 
 
 - "I only want to keep rows where the temperature is greater than 90&deg;F."
 - "I want to keep all observations **except** those where the tree type is listed as **unknown**."
 - "I want to make a new subset with only data for mountain lions (the species variable) in California (the state variable)."
-
-TODO: {Add filter image here}
 
 When we use `dplyr::filter()`, we need to let R know a couple of things:
 
@@ -246,9 +249,66 @@ head(fish_subset)
 ```
 
 
-#### Example: Some combo w/previous functions used
+#### Example: combining `filter()` with other functions using the pipe operator (`%>%`)
 
-We can also use `dplyr::filter()` in combination with the functions we learned for wrangling yesterday. If we have multiple sequential steps to perform, we can string them together using the *pipe operator* (`%>%`).
+We can also use `dplyr::filter()` in combination with the functions we previously learned for wrangling. If we have multiple sequential steps to perform, we can string them together using the *pipe operator* (`%>%`).
+
+Here, we'll start with the `invert_counts` data frame and create a subset that:
+
+- Converts to long format with `pivot_longer()`
+- Only keeps observations for rock scallops
+- Calculates the total count of rock scallops by site only
+
+```{r, include = FALSE}
+
+# Counts of scallops by site (all years included):
+
+scallop_count_by_site <- invert_counts %>% 
+  pivot_longer(cols = '2016':'2018', 
+               names_to = "year", 
+               values_to = "sp_count") %>% 
+  filter(common_name == "rock scallop") %>% 
+  group_by(site) %>% 
+  summarize(tot_count = sum(sp_count, na.rm = TRUE))
+  
+```
+
+```{r, eval = FALSE}
+
+# Counts of scallops by site (all years included):
+
+scallop_count_by_site <- invert_counts %>% 
+  pivot_longer(cols = '2016':'2018', 
+               names_to = "year", 
+               values_to = "sp_count") %>% 
+  filter(common_name == "rock scallop") %>% 
+  group_by(site) %>% 
+  summarize(tot_count = sum(sp_count, na.rm = TRUE))
+```
+
+```{r}
+scallop_count_by_site
+```
+
+#### Activity 1: using `filter()` in a wrangling sequence
+
+Write a sequence of code (connected by the pipe operator, `%>% `), to complete the following and store the output as object `my_fish_wrangling`:
+
+- Starting from the `fish_counts` data frame (stored earlier)
+- Only keep observations from *Arroyo Burro* (site 'abur')
+- Group by *common_name* (species)
+- Find total fish counts (by species) across all years
+
+```{r, include = FALSE}
+
+my_fish_wrangling <- fish_counts %>% 
+  filter(site == "abur") %>% 
+  group_by(common_name) %>% 
+  summarize(
+    total_fish_all_years = sum(total_count)
+  )
+
+```
 
 ### Merging data frames with `dplyr::*_join()` 
 
@@ -259,8 +319,13 @@ There are a number of ways to merge data frames in R. We'll use `full_join()`, `
 From R Documentation (`?join`): 
 
 - `dplyr::full_join()`: "returns all rows and all columns from both x and y. Where there are not matching values, returns NA for the one missing." Basically, nothing gets thrown out, even if a match doesn't exist - making `full_join()` the safest option for merging data frames. When in doubt, `full_join()`.
+
 - `dplyr::left_join()`: "return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned."
+
 - `dplyr::inner_join()`: "returns all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned." This will drop observations that don't have a match between the merged data frames, which makes it a riskier merging option if you're not sure what you're trying to do. 
+
+Schematic (from RStudio data wrangling cheat sheet): 
+![dplyr::joins](img/rstudio-cheatsheet-combine-options1.png)
 
 To clarify what the different joins are doing, let's first make a subset of the *fish_counts* data frame that only contains observations from 2016 and 2017. 
 
@@ -276,9 +341,9 @@ Take a look to ensure that only those years are included with `View(fish_2016_20
 When we join data frames in R, we need to tell R a couple of things (and it does the hard joining work for us):
 
 - Which data frames we want to merge together
-- Which variables* to merge by
+- Which variables to merge by
 
-Note: If there are **exactly matching** column names in the data frames you're merging, the `*_join()` functions will assume that you want to join by those columns. If there are *no* matching column names, you can specify which columns to join by manually. We'll do both here. 
+**Note:** If there are **exactly matching** column names in the data frames you're merging, the `*_join()` functions will assume that you want to join by those columns. If there are *no* matching column names, you can specify which columns to join by manually. We'll do both here. 
 
 ```{r, eval = FALSE}
 
@@ -322,7 +387,6 @@ class(kelp_counts_abur$year)
 
 OK, so now the class of *year* in the data frames we're joining is the same. Let's try that `full_join()` again:
 
-TODO: consider using fish_2016_2017 here to really show that full_join() keeps everything? 
 ```{r}
 abur_kelp_join <- fish_2016_2017 %>% 
   full_join(kelp_counts_abur)
@@ -340,20 +404,20 @@ Because all data (observations & columns) are retained, `full_join()` is the saf
 
 #### `dplyr::left_join()` to merge data frames, keeping everything in the 'x' data frame and only matches from the 'y' data frame
 
-TODO: think about a way to make left_join() clear. Need to join data frame 'y' that has something not contained in 'x', like a site or something, to show that it is dropped when left joining. 
-
-Now, we want to keep all observations in *fish_2016_2017*, and merge them with *kelp_counts_abur* while only keeping observations from *kelp_counts_abur* that match an observation within *fish_2016_2017*. So when we use a left_join, any information on kelp counts from 2018 should be dropped. 
+Now, we want to keep all observations in *fish_2016_2017*, and merge them with *kelp_counts_abur* while only keeping observations from *kelp_counts_abur* that match an observation within *fish_2016_2017*. So when we use `dplyr::left_join()`, any information on kelp counts from 2018 should be dropped. 
 
 ```{r}
 fish_kelp_2016_2017 <- fish_2016_2017 %>% 
   left_join(kelp_counts_abur)
 ```
 
+Notice when you look at `fish_kelp_2016_2017`, the 2018 data that **does** exist in `kelp_counts_abur` does **not** get joined to the `fish_2016_2017` data frame, because `left_join(df_a, df_b)` will only keep observations from `df_b` if they have a match in `df_a`! 
 
+#### `dplyr::inner_join()` to merge data frames, only keeping observations with a match in **both**
 
-#### `dplyr::inner_join()` to merge data frames, only keeping observations with a match in both
+When we used `left_join(df_a, df_b)`, we kept all observations in `df_a` but *only observations from `df_b` that matched an entry in `df_a`* (in other words, some entries from `df_b` were excluded).
 
-Use `inner_join()` if you know that you **only** want to retain observations when they match across both data frames. Caution: this is built to exclude any observations that don't match across data frames by joined variables - double check to make sure this is actually what you want to do! 
+Use `inner_join()` if you know that you **only** want to retain observations when they match across **both data** frames. Caution: this is built to exclude any observations that don't match across data frames by joined variables - double check to make sure this is actually what you want to do! 
 
 For example, if we use `inner_join()` to merge fish_counts and kelp_counts_abur, then we are asking R to **only return observations where the joining variables (*year* and *site*) have matches in both data frames.** Let's see what the outcome is: 
 ```{r}
@@ -363,9 +427,56 @@ abur_kelp_inner_join <- fish_counts %>%
 abur_kelp_inner_join
 ```
 
-Here, we see that only observations where there is a match for *year* and *site* are returned.
+Here, we see that only observations where there is a match for *year* and *site* in both data frames are returned.
 
-## Fun facts
+#### `dplyr::*_join()` in a sequence
+
+We can also merge data frames as part of a sequence of wrangling steps. 
+
+As an example: Starting with the `invert_counts` data frame, we want to:
+
+- First, use `pivot_longer()` to get year and counts each into a single column
+- Convert the class of *year* to numeric (so it can join with another numeric year variable)
+- Then, only keep observations for "california spiny lobster"
+- Next, join the `kelp_counts_abur` to the resulting subset above, **only keeping observations that have a match in both data frames**
+
+That might look like this: 
+
+```{r}
+
+abur_lobster_kelp <- invert_counts %>% 
+  pivot_longer('2016':'2018', names_to = "year", values_to = "total_counts") %>% 
+  mutate(year = as.numeric(year)) %>% 
+  filter(common_name == "california spiny lobster") %>% 
+  dplyr::inner_join(kelp_counts_abur)
+
+```
+
+```{r}
+abur_lobster_kelp
+```
+
+
+#### Activity 2
+
+Now let's combine what we've learned about piping, filtering and joining!
+
+Complete the following as part of a single sequence (remember, check to see what you've produced after each step) to create a new data frame called `my_fish_join`:
+
+- Start with `fish_counts` data frame
+- Filter to only including observations for 2017 at Arroyo Burro
+- Join the `kelp_counts_abur` data frame to the resulting subset using `left_join()`
+- Add a new column that contains the 'fish per kelp fronds' density (total_count / total_fronds)
+```{r, include = FALSE}
+
+my_fish_join <- fish_counts %>% 
+  filter(year == 2017, site == "abur") %>% 
+  left_join(kelp_counts_abur) %>% 
+  mutate(fish_per_frond = total_count / total_fronds)
+
+```
+
+## Fun / kind of scary facts
 
 **How is this similar to `VLOOKUP` in Excel? How does it differ?**
 
@@ -379,11 +490,9 @@ So, both `filter()` and `VLOOKUP` look through your data frame (or spreadsheet, 
 
 ## Interludes (deep thoughts/openscapes)
 
-- Idea: not overusing the pipe in really long sequences. What are other options? Why is that a concern? What are some ways to always know that what's happening in a sequence is what you EXPECT is happening in a sequence? tidylog, check intermediate data frames, sometimes write intermediate data frames, etc. 
+- Not overusing the pipe in really long sequences. What are other options? Why is that a concern? What are some ways to always know that what's happening in a sequence is what you EXPECT is happening in a sequence? tidylog, check intermediate data frames, sometimes write intermediate data frames, etc. 
 
+- The risk of partial joins (& the case for full_join + drop_na instead)
 
-
-## Our Turn Your Turn 1
-## Our Turn Your Turn 2
 ## Efficiency Tips
 
