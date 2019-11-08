@@ -1,6 +1,13 @@
 # `dplyr` and Pivot Tables {#pivot}
 
-. Julie rewrite with summarize(mean, sd, n) on the uncounted fish_uncount
+TODO: 
+use lobster data
+Count and uncount, summary statistics
+Use uncounted lobster data
+summarize(mean, sd, n) with uncounted fish data (stdev in excel?)
+DT, kable
+if time, could we show count vs n but if you want to get other statistics
+
 
 ## Summary (a few sentences)
 

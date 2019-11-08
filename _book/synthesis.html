@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Synthesis | R for Excel Users</title>
+  <title>Chapter 10 Synthesis | R for Excel Users</title>
   <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 Synthesis | R for Excel Users" />
+  <meta property="og:title" content="Chapter 10 Synthesis | R for Excel Users" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Synthesis | R for Excel Users" />
+  <meta name="twitter:title" content="Chapter 10 Synthesis | R for Excel Users" />
   
   <meta name="twitter:description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   
@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="format.html">
+<link rel="prev" href="tidying.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -159,125 +159,126 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.13.1" data-path="overview.html"><a href="overview.html#i-entered-a-command-and-nothings-happening"><i class="fa fa-check"></i><b>2.13.1</b> I entered a command and nothing’s happening</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="readxl.html"><a href="readxl.html"><i class="fa fa-check"></i><b>3</b> <code>readxl</code></a><ul>
-<li class="chapter" data-level="3.1" data-path="readxl.html"><a href="readxl.html#summary"><i class="fa fa-check"></i><b>3.1</b> Summary</a></li>
-<li class="chapter" data-level="3.2" data-path="readxl.html"><a href="readxl.html#objectives"><i class="fa fa-check"></i><b>3.2</b> Objectives</a></li>
-<li class="chapter" data-level="3.3" data-path="readxl.html"><a href="readxl.html#resources-1"><i class="fa fa-check"></i><b>3.3</b> Resources</a></li>
-<li class="chapter" data-level="3.4" data-path="readxl.html"><a href="readxl.html#lesson"><i class="fa fa-check"></i><b>3.4</b> Lesson</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="readxl.html"><a href="readxl.html#lesson-prep-get-data-files-into-your-working-directory"><i class="fa fa-check"></i><b>3.4.1</b> Lesson prep: get data files into your working directory</a></li>
-<li class="chapter" data-level="3.4.2" data-path="readxl.html"><a href="readxl.html#create-a-new-.r-script-attach-the-tidyverse-readxl-and-writexl-packages"><i class="fa fa-check"></i><b>3.4.2</b> Create a new .R script, attach the <code>tidyverse</code>, <code>readxl</code> and <code>writexl</code> packages</a></li>
-<li class="chapter" data-level="3.4.3" data-path="readxl.html"><a href="readxl.html#use-readrread_csv-to-read-in-data-from-a-csv-file"><i class="fa fa-check"></i><b>3.4.3</b> Use <code>readr::read_csv()</code> to read in data from a CSV file</a></li>
-<li class="chapter" data-level="3.4.4" data-path="readxl.html"><a href="readxl.html#use-readxlread_excel-to-read-in-a-single-excel-worksheet"><i class="fa fa-check"></i><b>3.4.4</b> Use <code>readxl::read_excel()</code> to read in a single Excel worksheet</a></li>
-<li class="chapter" data-level="3.4.5" data-path="readxl.html"><a href="readxl.html#use-readxlread_excel-to-read-in-only-part-of-an-excel-worksheet"><i class="fa fa-check"></i><b>3.4.5</b> Use <code>readxl::read_excel()</code> to read in only <em>part</em> of an Excel worksheet</a></li>
-<li class="chapter" data-level="3.4.6" data-path="readxl.html"><a href="readxl.html#use-readxlread_excel-to-read-in-selected-worksheets-from-a-workbook"><i class="fa fa-check"></i><b>3.4.6</b> Use <code>readxl::read_excel()</code> to read in selected worksheets from a workbook</a></li>
-<li class="chapter" data-level="3.4.7" data-path="readxl.html"><a href="readxl.html#read-in-and-combine-data-from-multiple-worksheets-into-a-data-frame-simultaneously-with-purrrmap_df"><i class="fa fa-check"></i><b>3.4.7</b> Read in and combine data from multiple worksheets into a data frame simultaneously with <code>purrr::map_df()</code></a></li>
-<li class="chapter" data-level="3.4.8" data-path="readxl.html"><a href="readxl.html#save-data-frames-as-.csv-or-.xlsx-with-readrwrite_csv-or-writexlwrite_xlsx"><i class="fa fa-check"></i><b>3.4.8</b> Save data frames as .csv or .xlsx with <code>readr::write_csv()</code> or <code>writexl::write_xlsx()</code></a></li>
+<li class="chapter" data-level="3" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>3</b> RMarkdown</a><ul>
+<li class="chapter" data-level="3.1" data-path="rmarkdown.html"><a href="rmarkdown.html#summary-a-few-sentences-1"><i class="fa fa-check"></i><b>3.1</b> Summary (a few sentences)</a></li>
+<li class="chapter" data-level="3.2" data-path="rmarkdown.html"><a href="rmarkdown.html#objectives-more-detailed-bulletpoints-1"><i class="fa fa-check"></i><b>3.2</b> Objectives (more detailed, bulletpoints?)</a></li>
+<li class="chapter" data-level="3.3" data-path="rmarkdown.html"><a href="rmarkdown.html#resources-1"><i class="fa fa-check"></i><b>3.3</b> Resources</a></li>
+<li class="chapter" data-level="3.4" data-path="rmarkdown.html"><a href="rmarkdown.html#intro-to-rmarkdown"><i class="fa fa-check"></i><b>3.4</b> Intro to RMarkdown</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="rmarkdown.html"><a href="rmarkdown.html#activity"><i class="fa fa-check"></i><b>3.4.1</b> Activity</a></li>
+<li class="chapter" data-level="3.4.2" data-path="rmarkdown.html"><a href="rmarkdown.html#code-chunks"><i class="fa fa-check"></i><b>3.4.2</b> Code chunks</a></li>
+<li class="chapter" data-level="3.4.3" data-path="rmarkdown.html"><a href="rmarkdown.html#activity-3"><i class="fa fa-check"></i><b>3.4.3</b> Activity</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="readxl.html"><a href="readxl.html#fun-facts-ideas"><i class="fa fa-check"></i><b>3.5</b> Fun facts ideas:</a></li>
-<li class="chapter" data-level="3.6" data-path="readxl.html"><a href="readxl.html#interludes-deep-thoughtsopenscapes"><i class="fa fa-check"></i><b>3.6</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="3.7" data-path="readxl.html"><a href="readxl.html#activity-import-some-invertebrates"><i class="fa fa-check"></i><b>3.7</b> Activity: Import some invertebrates!</a></li>
-<li class="chapter" data-level="3.8" data-path="readxl.html"><a href="readxl.html#efficiency-tips-1"><i class="fa fa-check"></i><b>3.8</b> Efficiency Tips</a></li>
-<li class="chapter" data-level="3.9" data-path="readxl.html"><a href="readxl.html#deep-thoughts"><i class="fa fa-check"></i><b>3.9</b> Deep thoughts</a></li>
+<li class="chapter" data-level="3.5" data-path="rmarkdown.html"><a href="rmarkdown.html#create-a-rmd-for-our-fish-analysis"><i class="fa fa-check"></i><b>3.5</b> Create a Rmd for our fish analysis</a></li>
+<li class="chapter" data-level="3.6" data-path="rmarkdown.html"><a href="rmarkdown.html#tidy-data"><i class="fa fa-check"></i><b>3.6</b> Tidy data</a></li>
+<li class="chapter" data-level="3.7" data-path="rmarkdown.html"><a href="rmarkdown.html#activity-4"><i class="fa fa-check"></i><b>3.7</b> Activity</a></li>
+<li class="chapter" data-level="3.8" data-path="rmarkdown.html"><a href="rmarkdown.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections"><i class="fa fa-check"></i><b>3.8</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="3.9" data-path="rmarkdown.html"><a href="rmarkdown.html#interludes-deep-thoughtsopenscapes"><i class="fa fa-check"></i><b>3.9</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="3.10" data-path="rmarkdown.html"><a href="rmarkdown.html#interludes-deep-thoughtsopenscapes-1"><i class="fa fa-check"></i><b>3.10</b> Interludes (deep thoughts/openscapes)</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="rmarkdown.html"><a href="rmarkdown.html#rmarkdown-video-1-minute"><i class="fa fa-check"></i><b>3.10.1</b> RMarkdown video (1-minute)</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>4</b> RMarkdown</a><ul>
-<li class="chapter" data-level="4.1" data-path="rmarkdown.html"><a href="rmarkdown.html#summary-a-few-sentences-1"><i class="fa fa-check"></i><b>4.1</b> Summary (a few sentences)</a></li>
-<li class="chapter" data-level="4.2" data-path="rmarkdown.html"><a href="rmarkdown.html#objectives-more-detailed-bulletpoints-1"><i class="fa fa-check"></i><b>4.2</b> Objectives (more detailed, bulletpoints?)</a></li>
-<li class="chapter" data-level="4.3" data-path="rmarkdown.html"><a href="rmarkdown.html#resources-2"><i class="fa fa-check"></i><b>4.3</b> Resources</a></li>
-<li class="chapter" data-level="4.4" data-path="rmarkdown.html"><a href="rmarkdown.html#intro-to-rmarkdown"><i class="fa fa-check"></i><b>4.4</b> Intro to RMarkdown</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="rmarkdown.html"><a href="rmarkdown.html#activity"><i class="fa fa-check"></i><b>4.4.1</b> Activity</a></li>
-<li class="chapter" data-level="4.4.2" data-path="rmarkdown.html"><a href="rmarkdown.html#code-chunks"><i class="fa fa-check"></i><b>4.4.2</b> Code chunks</a></li>
-<li class="chapter" data-level="4.4.3" data-path="rmarkdown.html"><a href="rmarkdown.html#activity-3"><i class="fa fa-check"></i><b>4.4.3</b> Activity</a></li>
+<li class="chapter" data-level="3.11" data-path="rmarkdown.html"><a href="rmarkdown.html#efficiency-tips-1"><i class="fa fa-check"></i><b>3.11</b> Efficiency Tips</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="rmarkdown.html"><a href="rmarkdown.html#create-a-rmd-for-our-fish-analysis"><i class="fa fa-check"></i><b>4.5</b> Create a Rmd for our fish analysis</a></li>
-<li class="chapter" data-level="4.6" data-path="rmarkdown.html"><a href="rmarkdown.html#tidy-data"><i class="fa fa-check"></i><b>4.6</b> Tidy data</a></li>
-<li class="chapter" data-level="4.7" data-path="rmarkdown.html"><a href="rmarkdown.html#activity-4"><i class="fa fa-check"></i><b>4.7</b> Activity</a></li>
-<li class="chapter" data-level="4.8" data-path="rmarkdown.html"><a href="rmarkdown.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections"><i class="fa fa-check"></i><b>4.8</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
-<li class="chapter" data-level="4.9" data-path="rmarkdown.html"><a href="rmarkdown.html#interludes-deep-thoughtsopenscapes-1"><i class="fa fa-check"></i><b>4.9</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="4.10" data-path="rmarkdown.html"><a href="rmarkdown.html#interludes-deep-thoughtsopenscapes-2"><i class="fa fa-check"></i><b>4.10</b> Interludes (deep thoughts/openscapes)</a><ul>
-<li class="chapter" data-level="4.10.1" data-path="rmarkdown.html"><a href="rmarkdown.html#rmarkdown-video-1-minute"><i class="fa fa-check"></i><b>4.10.1</b> RMarkdown video (1-minute)</a></li>
+<li class="chapter" data-level="4" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>4</b> GitHub</a><ul>
+<li class="chapter" data-level="4.1" data-path="github.html"><a href="github.html#summary-a-few-sentences-2"><i class="fa fa-check"></i><b>4.1</b> Summary (a few sentences)</a></li>
+<li class="chapter" data-level="4.2" data-path="github.html"><a href="github.html#objectives"><i class="fa fa-check"></i><b>4.2</b> Objectives</a></li>
+<li class="chapter" data-level="4.3" data-path="github.html"><a href="github.html#resources-2"><i class="fa fa-check"></i><b>4.3</b> Resources</a></li>
+<li class="chapter" data-level="4.4" data-path="github.html"><a href="github.html#lessons"><i class="fa fa-check"></i><b>4.4</b> Lessons</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="github.html"><a href="github.html#reading"><i class="fa fa-check"></i><b>4.4.1</b> Reading</a></li>
 </ul></li>
-<li class="chapter" data-level="4.11" data-path="rmarkdown.html"><a href="rmarkdown.html#efficiency-tips-2"><i class="fa fa-check"></i><b>4.11</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="4.5" data-path="github.html"><a href="github.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1"><i class="fa fa-check"></i><b>4.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="4.6" data-path="github.html"><a href="github.html#interludes-deep-thoughtsopenscapes-2"><i class="fa fa-check"></i><b>4.6</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="4.7" data-path="github.html"><a href="github.html#our-turn-your-turn-1"><i class="fa fa-check"></i><b>4.7</b> Our Turn Your Turn 1</a></li>
+<li class="chapter" data-level="4.8" data-path="github.html"><a href="github.html#our-turn-your-turn-2"><i class="fa fa-check"></i><b>4.8</b> Our Turn Your Turn 2</a></li>
+<li class="chapter" data-level="4.9" data-path="github.html"><a href="github.html#efficiency-tips-2"><i class="fa fa-check"></i><b>4.9</b> Efficiency Tips</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="pivot.html"><a href="pivot.html"><i class="fa fa-check"></i><b>5</b> <code>dplyr</code> and Pivot Tables</a><ul>
-<li class="chapter" data-level="5.1" data-path="pivot.html"><a href="pivot.html#summary-a-few-sentences-2"><i class="fa fa-check"></i><b>5.1</b> Summary (a few sentences)</a></li>
-<li class="chapter" data-level="5.2" data-path="pivot.html"><a href="pivot.html#objectives-more-detailed-bulletpoints-2"><i class="fa fa-check"></i><b>5.2</b> Objectives (more detailed, bulletpoints?)</a></li>
-<li class="chapter" data-level="5.3" data-path="pivot.html"><a href="pivot.html#resources-3"><i class="fa fa-check"></i><b>5.3</b> Resources</a></li>
-<li class="chapter" data-level="5.4" data-path="pivot.html"><a href="pivot.html#introduction-our-analytical-plan"><i class="fa fa-check"></i><b>5.4</b> Introduction / our analytical plan</a></li>
-<li class="chapter" data-level="5.5" data-path="pivot.html"><a href="pivot.html#what-are-pivot-tables"><i class="fa fa-check"></i><b>5.5</b> What are pivot tables?</a></li>
-<li class="chapter" data-level="5.6" data-path="pivot.html"><a href="pivot.html#dplyr-overview"><i class="fa fa-check"></i><b>5.6</b> <code>dplyr</code> overview</a></li>
-<li class="chapter" data-level="5.7" data-path="pivot.html"><a href="pivot.html#pivot-tables-group_by-summarize"><i class="fa fa-check"></i><b>5.7</b> pivot tables: <code>group_by() %&gt;% summarize()</code></a></li>
-<li class="chapter" data-level="5.8" data-path="pivot.html"><a href="pivot.html#mutate"><i class="fa fa-check"></i><b>5.8</b> <code>mutate()</code></a><ul>
-<li class="chapter" data-level="5.8.1" data-path="pivot.html"><a href="pivot.html#activity-5"><i class="fa fa-check"></i><b>5.8.1</b> Activity</a></li>
-<li class="chapter" data-level="5.8.2" data-path="pivot.html"><a href="pivot.html#group_by-mutate"><i class="fa fa-check"></i><b>5.8.2</b> <code>group_by() %&gt;% mutate()</code></a></li>
+<li class="chapter" data-level="5" data-path="readxl.html"><a href="readxl.html"><i class="fa fa-check"></i><b>5</b> <code>readxl</code></a><ul>
+<li class="chapter" data-level="5.1" data-path="readxl.html"><a href="readxl.html#summary"><i class="fa fa-check"></i><b>5.1</b> Summary</a></li>
+<li class="chapter" data-level="5.2" data-path="readxl.html"><a href="readxl.html#objectives-1"><i class="fa fa-check"></i><b>5.2</b> Objectives</a></li>
+<li class="chapter" data-level="5.3" data-path="readxl.html"><a href="readxl.html#resources-3"><i class="fa fa-check"></i><b>5.3</b> Resources</a></li>
+<li class="chapter" data-level="5.4" data-path="readxl.html"><a href="readxl.html#lesson"><i class="fa fa-check"></i><b>5.4</b> Lesson</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="readxl.html"><a href="readxl.html#lesson-prep-get-data-files-into-your-working-directory"><i class="fa fa-check"></i><b>5.4.1</b> Lesson prep: get data files into your working directory</a></li>
+<li class="chapter" data-level="5.4.2" data-path="readxl.html"><a href="readxl.html#create-a-new-.r-script-attach-the-tidyverse-readxl-and-writexl-packages"><i class="fa fa-check"></i><b>5.4.2</b> Create a new .R script, attach the <code>tidyverse</code>, <code>readxl</code> and <code>writexl</code> packages</a></li>
+<li class="chapter" data-level="5.4.3" data-path="readxl.html"><a href="readxl.html#use-readrread_csv-to-read-in-data-from-a-csv-file"><i class="fa fa-check"></i><b>5.4.3</b> Use <code>readr::read_csv()</code> to read in data from a CSV file</a></li>
+<li class="chapter" data-level="5.4.4" data-path="readxl.html"><a href="readxl.html#use-readxlread_excel-to-read-in-a-single-excel-worksheet"><i class="fa fa-check"></i><b>5.4.4</b> Use <code>readxl::read_excel()</code> to read in a single Excel worksheet</a></li>
+<li class="chapter" data-level="5.4.5" data-path="readxl.html"><a href="readxl.html#use-readxlread_excel-to-read-in-only-part-of-an-excel-worksheet"><i class="fa fa-check"></i><b>5.4.5</b> Use <code>readxl::read_excel()</code> to read in only <em>part</em> of an Excel worksheet</a></li>
+<li class="chapter" data-level="5.4.6" data-path="readxl.html"><a href="readxl.html#use-readxlread_excel-to-read-in-selected-worksheets-from-a-workbook"><i class="fa fa-check"></i><b>5.4.6</b> Use <code>readxl::read_excel()</code> to read in selected worksheets from a workbook</a></li>
+<li class="chapter" data-level="5.4.7" data-path="readxl.html"><a href="readxl.html#read-in-and-combine-data-from-multiple-worksheets-into-a-data-frame-simultaneously-with-purrrmap_df"><i class="fa fa-check"></i><b>5.4.7</b> Read in and combine data from multiple worksheets into a data frame simultaneously with <code>purrr::map_df()</code></a></li>
+<li class="chapter" data-level="5.4.8" data-path="readxl.html"><a href="readxl.html#save-data-frames-as-.csv-or-.xlsx-with-readrwrite_csv-or-writexlwrite_xlsx"><i class="fa fa-check"></i><b>5.4.8</b> Save data frames as .csv or .xlsx with <code>readr::write_csv()</code> or <code>writexl::write_xlsx()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="5.9" data-path="pivot.html"><a href="pivot.html#mutate-vs-summarize"><i class="fa fa-check"></i><b>5.9</b> mutate() vs summarize()</a></li>
-<li class="chapter" data-level="5.10" data-path="pivot.html"><a href="pivot.html#deep-thoughts-1"><i class="fa fa-check"></i><b>5.10</b> Deep thoughts</a></li>
-<li class="chapter" data-level="5.11" data-path="pivot.html"><a href="pivot.html#efficiency-tips-3"><i class="fa fa-check"></i><b>5.11</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="5.5" data-path="readxl.html"><a href="readxl.html#fun-facts-ideas"><i class="fa fa-check"></i><b>5.5</b> Fun facts ideas:</a></li>
+<li class="chapter" data-level="5.6" data-path="readxl.html"><a href="readxl.html#interludes-deep-thoughtsopenscapes-3"><i class="fa fa-check"></i><b>5.6</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="5.7" data-path="readxl.html"><a href="readxl.html#activity-import-some-invertebrates"><i class="fa fa-check"></i><b>5.7</b> Activity: Import some invertebrates!</a></li>
+<li class="chapter" data-level="5.8" data-path="readxl.html"><a href="readxl.html#efficiency-tips-3"><i class="fa fa-check"></i><b>5.8</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="5.9" data-path="readxl.html"><a href="readxl.html#deep-thoughts"><i class="fa fa-check"></i><b>5.9</b> Deep thoughts</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="vlookup.html"><a href="vlookup.html"><i class="fa fa-check"></i><b>6</b> Dplyr and vlookups</a><ul>
-<li class="chapter" data-level="6.1" data-path="vlookup.html"><a href="vlookup.html#summary-1"><i class="fa fa-check"></i><b>6.1</b> Summary</a></li>
-<li class="chapter" data-level="6.2" data-path="vlookup.html"><a href="vlookup.html#objectives-1"><i class="fa fa-check"></i><b>6.2</b> Objectives</a></li>
-<li class="chapter" data-level="6.3" data-path="vlookup.html"><a href="vlookup.html#resources-4"><i class="fa fa-check"></i><b>6.3</b> Resources</a></li>
-<li class="chapter" data-level="6.4" data-path="vlookup.html"><a href="vlookup.html#lessons"><i class="fa fa-check"></i><b>6.4</b> Lessons</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="vlookup.html"><a href="vlookup.html#dplyrfilter-to-conditionally-subset-by-rows"><i class="fa fa-check"></i><b>6.4.1</b> <code>dplyr::filter()</code> to conditionally subset by rows</a></li>
-<li class="chapter" data-level="6.4.2" data-path="vlookup.html"><a href="vlookup.html#merging-data-frames-with-dplyr_join"><i class="fa fa-check"></i><b>6.4.2</b> Merging data frames with <code>dplyr::*_join()</code></a></li>
+<li class="chapter" data-level="6" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>6</b> ggplot2</a><ul>
+<li class="chapter" data-level="6.1" data-path="ggplot2.html"><a href="ggplot2.html#summary-a-few-sentences-3"><i class="fa fa-check"></i><b>6.1</b> Summary (a few sentences)</a></li>
+<li class="chapter" data-level="6.2" data-path="ggplot2.html"><a href="ggplot2.html#objectives-2"><i class="fa fa-check"></i><b>6.2</b> Objectives</a></li>
+<li class="chapter" data-level="6.3" data-path="ggplot2.html"><a href="ggplot2.html#resources-4"><i class="fa fa-check"></i><b>6.3</b> Resources</a></li>
+<li class="chapter" data-level="6.4" data-path="ggplot2.html"><a href="ggplot2.html#lessons-1"><i class="fa fa-check"></i><b>6.4</b> Lessons</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="ggplot2.html"><a href="ggplot2.html#reading-1"><i class="fa fa-check"></i><b>6.4.1</b> Reading</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="vlookup.html"><a href="vlookup.html#fun-kind-of-scary-facts"><i class="fa fa-check"></i><b>6.5</b> Fun / kind of scary facts</a></li>
-<li class="chapter" data-level="6.6" data-path="vlookup.html"><a href="vlookup.html#interludes-deep-thoughtsopenscapes-3"><i class="fa fa-check"></i><b>6.6</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="6.7" data-path="vlookup.html"><a href="vlookup.html#efficiency-tips-4"><i class="fa fa-check"></i><b>6.7</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="6.5" data-path="ggplot2.html"><a href="ggplot2.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2"><i class="fa fa-check"></i><b>6.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="6.6" data-path="ggplot2.html"><a href="ggplot2.html#interludes-deep-thoughtsopenscapes-4"><i class="fa fa-check"></i><b>6.6</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="6.7" data-path="ggplot2.html"><a href="ggplot2.html#our-turn-your-turn-1-1"><i class="fa fa-check"></i><b>6.7</b> Our Turn Your Turn 1</a></li>
+<li class="chapter" data-level="6.8" data-path="ggplot2.html"><a href="ggplot2.html#our-turn-your-turn-2-1"><i class="fa fa-check"></i><b>6.8</b> Our Turn Your Turn 2</a></li>
+<li class="chapter" data-level="6.9" data-path="ggplot2.html"><a href="ggplot2.html#efficiency-tips-4"><i class="fa fa-check"></i><b>6.9</b> Efficiency Tips</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>7</b> Tidying</a><ul>
-<li class="chapter" data-level="7.1" data-path="tidying.html"><a href="tidying.html#better-practices-needs-a-better-name"><i class="fa fa-check"></i><b>7.1</b> Better practices [needs a better name]</a></li>
-<li class="chapter" data-level="7.2" data-path="tidying.html"><a href="tidying.html#summary-a-few-sentences-3"><i class="fa fa-check"></i><b>7.2</b> Summary (a few sentences)</a></li>
-<li class="chapter" data-level="7.3" data-path="tidying.html"><a href="tidying.html#objectives-more-detailed-bulletpoints-3"><i class="fa fa-check"></i><b>7.3</b> Objectives (more detailed, bulletpoints?)</a></li>
-<li class="chapter" data-level="7.4" data-path="tidying.html"><a href="tidying.html#resources-5"><i class="fa fa-check"></i><b>7.4</b> Resources</a></li>
-<li class="chapter" data-level="7.5" data-path="tidying.html"><a href="tidying.html#lessons-teaching-for-each-objective..-objectives-examples"><i class="fa fa-check"></i><b>7.5</b> Lessons teaching for each objective….. (objectives, examples)</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="tidying.html"><a href="tidying.html#expect-theres-a-better-way-chat"><i class="fa fa-check"></i><b>7.5.1</b> Expect there’s a better way chat</a></li>
-<li class="chapter" data-level="7.5.2" data-path="tidying.html"><a href="tidying.html#janitor"><i class="fa fa-check"></i><b>7.5.2</b> Janitor</a></li>
-<li class="chapter" data-level="7.5.3" data-path="tidying.html"><a href="tidying.html#example-how-to-google"><i class="fa fa-check"></i><b>7.5.3</b> Example: How to Google</a></li>
+<li class="chapter" data-level="7" data-path="pivot.html"><a href="pivot.html"><i class="fa fa-check"></i><b>7</b> <code>dplyr</code> and Pivot Tables</a><ul>
+<li class="chapter" data-level="7.1" data-path="pivot.html"><a href="pivot.html#summary-a-few-sentences-4"><i class="fa fa-check"></i><b>7.1</b> Summary (a few sentences)</a></li>
+<li class="chapter" data-level="7.2" data-path="pivot.html"><a href="pivot.html#objectives-more-detailed-bulletpoints-2"><i class="fa fa-check"></i><b>7.2</b> Objectives (more detailed, bulletpoints?)</a></li>
+<li class="chapter" data-level="7.3" data-path="pivot.html"><a href="pivot.html#resources-5"><i class="fa fa-check"></i><b>7.3</b> Resources</a></li>
+<li class="chapter" data-level="7.4" data-path="pivot.html"><a href="pivot.html#introduction-our-analytical-plan"><i class="fa fa-check"></i><b>7.4</b> Introduction / our analytical plan</a></li>
+<li class="chapter" data-level="7.5" data-path="pivot.html"><a href="pivot.html#what-are-pivot-tables"><i class="fa fa-check"></i><b>7.5</b> What are pivot tables?</a></li>
+<li class="chapter" data-level="7.6" data-path="pivot.html"><a href="pivot.html#dplyr-overview"><i class="fa fa-check"></i><b>7.6</b> <code>dplyr</code> overview</a></li>
+<li class="chapter" data-level="7.7" data-path="pivot.html"><a href="pivot.html#pivot-tables-group_by-summarize"><i class="fa fa-check"></i><b>7.7</b> pivot tables: <code>group_by() %&gt;% summarize()</code></a></li>
+<li class="chapter" data-level="7.8" data-path="pivot.html"><a href="pivot.html#mutate"><i class="fa fa-check"></i><b>7.8</b> <code>mutate()</code></a><ul>
+<li class="chapter" data-level="7.8.1" data-path="pivot.html"><a href="pivot.html#activity-5"><i class="fa fa-check"></i><b>7.8.1</b> Activity</a></li>
+<li class="chapter" data-level="7.8.2" data-path="pivot.html"><a href="pivot.html#group_by-mutate"><i class="fa fa-check"></i><b>7.8.2</b> <code>group_by() %&gt;% mutate()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="tidying.html"><a href="tidying.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1"><i class="fa fa-check"></i><b>7.6</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
-<li class="chapter" data-level="7.7" data-path="tidying.html"><a href="tidying.html#interludes-deep-thoughtsopenscapes-4"><i class="fa fa-check"></i><b>7.7</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="7.8" data-path="tidying.html"><a href="tidying.html#our-turn-your-turn-2"><i class="fa fa-check"></i><b>7.8</b> Our Turn Your Turn 2</a></li>
-<li class="chapter" data-level="7.9" data-path="tidying.html"><a href="tidying.html#efficiency-tips-5"><i class="fa fa-check"></i><b>7.9</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="7.9" data-path="pivot.html"><a href="pivot.html#mutate-vs-summarize"><i class="fa fa-check"></i><b>7.9</b> mutate() vs summarize()</a></li>
+<li class="chapter" data-level="7.10" data-path="pivot.html"><a href="pivot.html#deep-thoughts-1"><i class="fa fa-check"></i><b>7.10</b> Deep thoughts</a></li>
+<li class="chapter" data-level="7.11" data-path="pivot.html"><a href="pivot.html#efficiency-tips-5"><i class="fa fa-check"></i><b>7.11</b> Efficiency Tips</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="format.html"><a href="format.html"><i class="fa fa-check"></i><b>8</b> Formatting and Sharing</a><ul>
-<li class="chapter" data-level="8.1" data-path="format.html"><a href="format.html#summary-a-few-sentences-4"><i class="fa fa-check"></i><b>8.1</b> Summary (a few sentences)</a></li>
-<li class="chapter" data-level="8.2" data-path="format.html"><a href="format.html#objectives-more-detailed-bulletpoints-4"><i class="fa fa-check"></i><b>8.2</b> Objectives (more detailed, bulletpoints?)</a></li>
-<li class="chapter" data-level="8.3" data-path="format.html"><a href="format.html#resources-6"><i class="fa fa-check"></i><b>8.3</b> Resources</a></li>
-<li class="chapter" data-level="8.4" data-path="format.html"><a href="format.html#introduction-our-analytical-plan-1"><i class="fa fa-check"></i><b>8.4</b> Introduction / our analytical plan</a></li>
-<li class="chapter" data-level="8.5" data-path="format.html"><a href="format.html#formatting-tables-15-minutes"><i class="fa fa-check"></i><b>8.5</b> Formatting tables (15 minutes)</a><ul>
-<li class="chapter" data-level="8.5.1" data-path="format.html"><a href="format.html#dt"><i class="fa fa-check"></i><b>8.5.1</b> DT</a></li>
-<li class="chapter" data-level="8.5.2" data-path="format.html"><a href="format.html#kable-and-kablextra"><i class="fa fa-check"></i><b>8.5.2</b> kable and kablextra</a></li>
+<li class="chapter" data-level="8" data-path="vlookup.html"><a href="vlookup.html"><i class="fa fa-check"></i><b>8</b> Dplyr and vlookups</a><ul>
+<li class="chapter" data-level="8.1" data-path="vlookup.html"><a href="vlookup.html#summary-1"><i class="fa fa-check"></i><b>8.1</b> Summary</a></li>
+<li class="chapter" data-level="8.2" data-path="vlookup.html"><a href="vlookup.html#objectives-3"><i class="fa fa-check"></i><b>8.2</b> Objectives</a></li>
+<li class="chapter" data-level="8.3" data-path="vlookup.html"><a href="vlookup.html#resources-6"><i class="fa fa-check"></i><b>8.3</b> Resources</a></li>
+<li class="chapter" data-level="8.4" data-path="vlookup.html"><a href="vlookup.html#lessons-2"><i class="fa fa-check"></i><b>8.4</b> Lessons</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="vlookup.html"><a href="vlookup.html#dplyrfilter-to-conditionally-subset-by-rows"><i class="fa fa-check"></i><b>8.4.1</b> <code>dplyr::filter()</code> to conditionally subset by rows</a></li>
+<li class="chapter" data-level="8.4.2" data-path="vlookup.html"><a href="vlookup.html#merging-data-frames-with-dplyr_join"><i class="fa fa-check"></i><b>8.4.2</b> Merging data frames with <code>dplyr::*_join()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="format.html"><a href="format.html#activity-5-min"><i class="fa fa-check"></i><b>8.6</b> Activity (5 min)</a></li>
-<li class="chapter" data-level="8.7" data-path="format.html"><a href="format.html#github-for-publishing"><i class="fa fa-check"></i><b>8.7</b> GitHub for Publishing</a><ul>
-<li class="chapter" data-level="8.7.1" data-path="format.html"><a href="format.html#issues"><i class="fa fa-check"></i><b>8.7.1</b> Issues</a></li>
+<li class="chapter" data-level="8.5" data-path="vlookup.html"><a href="vlookup.html#fun-kind-of-scary-facts"><i class="fa fa-check"></i><b>8.5</b> Fun / kind of scary facts</a></li>
+<li class="chapter" data-level="8.6" data-path="vlookup.html"><a href="vlookup.html#interludes-deep-thoughtsopenscapes-5"><i class="fa fa-check"></i><b>8.6</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="8.7" data-path="vlookup.html"><a href="vlookup.html#efficiency-tips-6"><i class="fa fa-check"></i><b>8.7</b> Efficiency Tips</a></li>
 </ul></li>
-<li class="chapter" data-level="8.8" data-path="format.html"><a href="format.html#create-a-github-user-account"><i class="fa fa-check"></i><b>8.8</b> Create a GitHub user account</a></li>
-<li class="chapter" data-level="8.9" data-path="format.html"><a href="format.html#create-a-repo"><i class="fa fa-check"></i><b>8.9</b> Create a repo</a><ul>
-<li class="chapter" data-level="8.9.1" data-path="format.html"><a href="format.html#create-a-gh-pages-branch"><i class="fa fa-check"></i><b>8.9.1</b> Create a gh-pages branch</a></li>
+<li class="chapter" data-level="9" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>9</b> Tidying</a><ul>
+<li class="chapter" data-level="9.1" data-path="tidying.html"><a href="tidying.html#better-practices-needs-a-better-name"><i class="fa fa-check"></i><b>9.1</b> Better practices [needs a better name]</a></li>
+<li class="chapter" data-level="9.2" data-path="tidying.html"><a href="tidying.html#summary-a-few-sentences-5"><i class="fa fa-check"></i><b>9.2</b> Summary (a few sentences)</a></li>
+<li class="chapter" data-level="9.3" data-path="tidying.html"><a href="tidying.html#objectives-more-detailed-bulletpoints-3"><i class="fa fa-check"></i><b>9.3</b> Objectives (more detailed, bulletpoints?)</a></li>
+<li class="chapter" data-level="9.4" data-path="tidying.html"><a href="tidying.html#resources-7"><i class="fa fa-check"></i><b>9.4</b> Resources</a></li>
+<li class="chapter" data-level="9.5" data-path="tidying.html"><a href="tidying.html#lessons-teaching-for-each-objective..-objectives-examples"><i class="fa fa-check"></i><b>9.5</b> Lessons teaching for each objective….. (objectives, examples)</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="tidying.html"><a href="tidying.html#expect-theres-a-better-way-chat"><i class="fa fa-check"></i><b>9.5.1</b> Expect there’s a better way chat</a></li>
+<li class="chapter" data-level="9.5.2" data-path="tidying.html"><a href="tidying.html#janitor"><i class="fa fa-check"></i><b>9.5.2</b> Janitor</a></li>
+<li class="chapter" data-level="9.5.3" data-path="tidying.html"><a href="tidying.html#example-how-to-google"><i class="fa fa-check"></i><b>9.5.3</b> Example: How to Google</a></li>
 </ul></li>
-<li class="chapter" data-level="8.10" data-path="format.html"><a href="format.html#drag-and-drop"><i class="fa fa-check"></i><b>8.10</b> Drag and Drop</a></li>
-<li class="chapter" data-level="8.11" data-path="format.html"><a href="format.html#visit-your-website"><i class="fa fa-check"></i><b>8.11</b> Visit your website!</a></li>
-<li class="chapter" data-level="8.12" data-path="format.html"><a href="format.html#edit-the-readme"><i class="fa fa-check"></i><b>8.12</b> Edit the README</a></li>
-<li class="chapter" data-level="8.13" data-path="format.html"><a href="format.html#activity-5-min-1"><i class="fa fa-check"></i><b>8.13</b> Activity (5 min)</a></li>
-<li class="chapter" data-level="8.14" data-path="format.html"><a href="format.html#recap"><i class="fa fa-check"></i><b>8.14</b> recap</a></li>
-<li class="chapter" data-level="8.15" data-path="format.html"><a href="format.html#interludes-deep-thoughtsopenscapes-5"><i class="fa fa-check"></i><b>8.15</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="8.16" data-path="format.html"><a href="format.html#efficiency-tips-6"><i class="fa fa-check"></i><b>8.16</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="9.6" data-path="tidying.html"><a href="tidying.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3"><i class="fa fa-check"></i><b>9.6</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="9.7" data-path="tidying.html"><a href="tidying.html#interludes-deep-thoughtsopenscapes-6"><i class="fa fa-check"></i><b>9.7</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="9.8" data-path="tidying.html"><a href="tidying.html#our-turn-your-turn-2-2"><i class="fa fa-check"></i><b>9.8</b> Our Turn Your Turn 2</a></li>
+<li class="chapter" data-level="9.9" data-path="tidying.html"><a href="tidying.html#efficiency-tips-7"><i class="fa fa-check"></i><b>9.9</b> Efficiency Tips</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="synthesis.html"><a href="synthesis.html"><i class="fa fa-check"></i><b>9</b> Synthesis</a><ul>
-<li class="chapter" data-level="9.1" data-path="synthesis.html"><a href="synthesis.html#summary-a-few-sentences-5"><i class="fa fa-check"></i><b>9.1</b> Summary (a few sentences)</a></li>
-<li class="chapter" data-level="9.2" data-path="synthesis.html"><a href="synthesis.html#objectives-2"><i class="fa fa-check"></i><b>9.2</b> Objectives</a></li>
-<li class="chapter" data-level="9.3" data-path="synthesis.html"><a href="synthesis.html#resources-7"><i class="fa fa-check"></i><b>9.3</b> Resources</a></li>
-<li class="chapter" data-level="9.4" data-path="synthesis.html"><a href="synthesis.html#lessons-1"><i class="fa fa-check"></i><b>9.4</b> Lessons</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="synthesis.html"><a href="synthesis.html#reading"><i class="fa fa-check"></i><b>9.4.1</b> Reading</a></li>
+<li class="chapter" data-level="10" data-path="synthesis.html"><a href="synthesis.html"><i class="fa fa-check"></i><b>10</b> Synthesis</a><ul>
+<li class="chapter" data-level="10.1" data-path="synthesis.html"><a href="synthesis.html#summary-a-few-sentences-6"><i class="fa fa-check"></i><b>10.1</b> Summary (a few sentences)</a></li>
+<li class="chapter" data-level="10.2" data-path="synthesis.html"><a href="synthesis.html#objectives-4"><i class="fa fa-check"></i><b>10.2</b> Objectives</a></li>
+<li class="chapter" data-level="10.3" data-path="synthesis.html"><a href="synthesis.html#resources-8"><i class="fa fa-check"></i><b>10.3</b> Resources</a></li>
+<li class="chapter" data-level="10.4" data-path="synthesis.html"><a href="synthesis.html#lessons-3"><i class="fa fa-check"></i><b>10.4</b> Lessons</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="synthesis.html"><a href="synthesis.html#reading-2"><i class="fa fa-check"></i><b>10.4.1</b> Reading</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="synthesis.html"><a href="synthesis.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2"><i class="fa fa-check"></i><b>9.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
-<li class="chapter" data-level="9.6" data-path="synthesis.html"><a href="synthesis.html#interludes-deep-thoughtsopenscapes-6"><i class="fa fa-check"></i><b>9.6</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="9.7" data-path="synthesis.html"><a href="synthesis.html#our-turn-your-turn-1"><i class="fa fa-check"></i><b>9.7</b> Our Turn Your Turn 1</a></li>
-<li class="chapter" data-level="9.8" data-path="synthesis.html"><a href="synthesis.html#our-turn-your-turn-2-1"><i class="fa fa-check"></i><b>9.8</b> Our Turn Your Turn 2</a></li>
-<li class="chapter" data-level="9.9" data-path="synthesis.html"><a href="synthesis.html#efficiency-tips-7"><i class="fa fa-check"></i><b>9.9</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="10.5" data-path="synthesis.html"><a href="synthesis.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4"><i class="fa fa-check"></i><b>10.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="10.6" data-path="synthesis.html"><a href="synthesis.html#interludes-deep-thoughtsopenscapes-7"><i class="fa fa-check"></i><b>10.6</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="10.7" data-path="synthesis.html"><a href="synthesis.html#our-turn-your-turn-1-2"><i class="fa fa-check"></i><b>10.7</b> Our Turn Your Turn 1</a></li>
+<li class="chapter" data-level="10.8" data-path="synthesis.html"><a href="synthesis.html#our-turn-your-turn-2-3"><i class="fa fa-check"></i><b>10.8</b> Our Turn Your Turn 2</a></li>
+<li class="chapter" data-level="10.9" data-path="synthesis.html"><a href="synthesis.html#efficiency-tips-8"><i class="fa fa-check"></i><b>10.9</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -300,31 +301,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="synthesis" class="section level1">
-<h1><span class="header-section-number">Chapter 9</span> Synthesis</h1>
+<h1><span class="header-section-number">Chapter 10</span> Synthesis</h1>
 <p>Allison section</p>
-<div id="summary-a-few-sentences-5" class="section level2">
-<h2><span class="header-section-number">9.1</span> Summary (a few sentences)</h2>
+<div id="summary-a-few-sentences-6" class="section level2">
+<h2><span class="header-section-number">10.1</span> Summary (a few sentences)</h2>
 <p>In this session, we’ll put together the skills that we’ve learned so far to create a new document from scratch, and learn a few new ways to import and work with spreadsheet data along the way.</p>
 <div class="figure">
 <img src="img/r4ds_data-science.png" alt="r4ds_drawing" />
 <p class="caption">r4ds_drawing</p>
 </div>
 </div>
-<div id="objectives-2" class="section level2">
-<h2><span class="header-section-number">9.2</span> Objectives</h2>
+<div id="objectives-4" class="section level2">
+<h2><span class="header-section-number">10.2</span> Objectives</h2>
 <ul>
 <li>Read in data from a Google sheet with the <code>googlesheets4</code> package in R</li>
 <li></li>
 </ul>
 </div>
-<div id="resources-7" class="section level2">
-<h2><span class="header-section-number">9.3</span> Resources</h2>
+<div id="resources-8" class="section level2">
+<h2><span class="header-section-number">10.3</span> Resources</h2>
 <ul>
 <li>Googlesheets4 link</li>
 </ul>
 </div>
-<div id="lessons-1" class="section level2">
-<h2><span class="header-section-number">9.4</span> Lessons</h2>
+<div id="lessons-3" class="section level2">
+<h2><span class="header-section-number">10.4</span> Lessons</h2>
 <p>Lesson set up:</p>
 <ul>
 <li>Log in to your GitHub account and create a new repository called <code>sea-creature-synthesis</code></li>
@@ -333,8 +334,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Create a new R Markdown document within your <code>sea-creature-synthesis</code> project</li>
 <li>Knit your .Rmd to html, saving as <code>sb_sea_creatures.Rmd</code></li>
 </ul>
-<div id="reading" class="section level3">
-<h3><span class="header-section-number">9.4.1</span> Reading</h3>
+<div id="reading-2" class="section level3">
+<h3><span class="header-section-number">10.4.1</span> Reading</h3>
 <ul>
 <li>Read in lobster data with googlesheets4</li>
 <li>Join with another existing data frame (or 2?)</li>
@@ -348,20 +349,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 complete()</p>
 </div>
 </div>
-<div id="fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2" class="section level2">
-<h2><span class="header-section-number">9.5</span> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</h2>
+<div id="fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-4" class="section level2">
+<h2><span class="header-section-number">10.5</span> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</h2>
 </div>
-<div id="interludes-deep-thoughtsopenscapes-6" class="section level2">
-<h2><span class="header-section-number">9.6</span> Interludes (deep thoughts/openscapes)</h2>
+<div id="interludes-deep-thoughtsopenscapes-7" class="section level2">
+<h2><span class="header-section-number">10.6</span> Interludes (deep thoughts/openscapes)</h2>
 </div>
-<div id="our-turn-your-turn-1" class="section level2">
-<h2><span class="header-section-number">9.7</span> Our Turn Your Turn 1</h2>
+<div id="our-turn-your-turn-1-2" class="section level2">
+<h2><span class="header-section-number">10.7</span> Our Turn Your Turn 1</h2>
 </div>
-<div id="our-turn-your-turn-2-1" class="section level2">
-<h2><span class="header-section-number">9.8</span> Our Turn Your Turn 2</h2>
+<div id="our-turn-your-turn-2-3" class="section level2">
+<h2><span class="header-section-number">10.8</span> Our Turn Your Turn 2</h2>
 </div>
-<div id="efficiency-tips-7" class="section level2">
-<h2><span class="header-section-number">9.9</span> Efficiency Tips</h2>
+<div id="efficiency-tips-8" class="section level2">
+<h2><span class="header-section-number">10.9</span> Efficiency Tips</h2>
 
 </div>
 </div>
@@ -370,7 +371,7 @@ complete()</p>
           </div>
         </div>
       </div>
-<a href="format.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tidying.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

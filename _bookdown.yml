@@ -5,12 +5,13 @@ language:
 rmd_files: [
   "index.Rmd",
   "overview.Rmd",
-  "readxl.Rmd",
   "rmarkdown.Rmd",
+  "github.Rmd", 
+  "readxl.Rmd",
+  "ggplot2.Rmd",
   "dplyr-pivot-tables.Rmd",
   "dplyr-vlookups.Rmd",
   "tidying.Rmd",
-  "tables-and-sharing.Rmd",
   "synthesis.Rmd"
  ]
 delete_merged_file: true

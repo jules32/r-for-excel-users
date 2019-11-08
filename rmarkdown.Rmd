@@ -1,5 +1,7 @@
 # RMarkdown {#rmarkdown}
 
+TODO: move count and uncount to the pivot table summary statistics chapter
+
 ## Summary (a few sentences)
 
 Here we'll learn RMarkdown, which helps you tell a story with your data analysis because you can write text alongside the code.

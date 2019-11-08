@@ -1,0 +1,31 @@
+# GitHub
+
+Setup GitHub
+GitHub
+Scrap plans for publishing and issues: setup version control and practice like OHI data-science-training. 
+Practice committing the README and .gitignore
+Copy our rproj into this repo and push 
+
+## Summary (a few sentences)
+
+## Objectives
+
+- 
+
+## Resources
+
+
+## Lessons
+
+
+
+
+### Reading 
+
+
+## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
+## Interludes (deep thoughts/openscapes)
+## Our Turn Your Turn 1
+## Our Turn Your Turn 2
+## Efficiency Tips
+

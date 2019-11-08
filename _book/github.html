@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 readxl | R for Excel Users</title>
+  <title>Chapter 4 GitHub | R for Excel Users</title>
   <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 readxl | R for Excel Users" />
+  <meta property="og:title" content="Chapter 4 GitHub | R for Excel Users" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 readxl | R for Excel Users" />
+  <meta name="twitter:title" content="Chapter 4 GitHub | R for Excel Users" />
   
   <meta name="twitter:description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="github.html">
-<link rel="next" href="ggplot2.html">
+<link rel="prev" href="rmarkdown.html">
+<link rel="next" href="readxl.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -300,302 +300,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="readxl" class="section level1">
-<h1><span class="header-section-number">Chapter 5</span> <code>readxl</code></h1>
-<div id="summary" class="section level2">
-<h2><span class="header-section-number">5.1</span> Summary</h2>
-<p><strong>Check this, may need to be a block quote</strong>: The <strong>readxl</strong> package makes it easy to import tabular data from Excel spreadsheets (.xls or .xlsx files) and includes several options for cleaning data during import. <strong>readxl</strong> has no external dependencies and functions on any operating system, making it an OS- and user-friendly package that simplifies getting your data from Excel into R.</p>
+<div id="github" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> GitHub</h1>
+<p>Setup GitHub
+GitHub
+Scrap plans for publishing and issues: setup version control and practice like OHI data-science-training.
+Practice committing the README and .gitignore
+Copy our rproj into this repo and push</p>
+<div id="summary-a-few-sentences-2" class="section level2">
+<h2><span class="header-section-number">4.1</span> Summary (a few sentences)</h2>
 </div>
-<div id="objectives-1" class="section level2">
-<h2><span class="header-section-number">5.2</span> Objectives</h2>
+<div id="objectives" class="section level2">
+<h2><span class="header-section-number">4.2</span> Objectives</h2>
 <ul>
-<li>Use <code>readr::read_csv()</code> to read in a comma separated value (CSV) file</li>
-<li>Use <code>readxl::read_excel()</code> to read in an Excel worksheet from a workbook</li>
-<li>Replace a specific string/value in a spreadsheet with with <code>NA</code></li>
-<li>Skip <em>n</em> rows when importing an Excel worksheet</li>
-<li>Use <code>readxl::read_excel()</code> to read in parts of a worksheet (by cell range)</li>
-<li>Specify column names when importing Excel data</li>
-<li>Read and combine data from multiple Excel worksheets into a single df using <code>purrr::map_df()</code></li>
-<li>Write data using <code>readr::write_csv()</code> or <code>writexl::write_excel()</code></li>
-<li>Workflows with <code>readxl</code>: considerations, limitations, reproducibility</li>
+<li></li>
 </ul>
 </div>
-<div id="resources-3" class="section level2">
-<h2><span class="header-section-number">5.3</span> Resources</h2>
-<ul>
-<li><a href="https://readxl.tidyverse.org/" class="uri">https://readxl.tidyverse.org/</a></li>
-<li><a href="https://readxl.tidyverse.org/articles/articles/readxl-workflows.html">readxl Workflows article (from tidyverse.org)</a></li>
-</ul>
+<div id="resources-2" class="section level2">
+<h2><span class="header-section-number">4.3</span> Resources</h2>
 </div>
-<div id="lesson" class="section level2">
-<h2><span class="header-section-number">5.4</span> Lesson</h2>
-<div id="lesson-prep-get-data-files-into-your-working-directory" class="section level3">
-<h3><span class="header-section-number">5.4.1</span> Lesson prep: get data files into your working directory</h3>
-<p>In Session 1, we introduced how and why R Projects are great for reproducibility, because our self-contained working directory will be the <strong>first</strong> place R looks for files.</p>
-<p>You downloaded four files for this workshop:</p>
-<ul>
-<li>fish_counts_curated.csv</li>
-<li>invert_counts_curated.xlsx</li>
-<li>kelp_counts_curated.xlsx</li>
-<li>substrate_cover_curated.xlsx</li>
-</ul>
-<p>Copy and paste those files into the ‘r-and-excel’ folder on your computer. Notice that now these files are in your working directory when you go back to that Project in RStudio (check the ‘Files’ tab). That means they’re going to be in the first place R will look when you ask it to find a file to read in.</p>
-</div>
-<div id="create-a-new-.r-script-attach-the-tidyverse-readxl-and-writexl-packages" class="section level3">
-<h3><span class="header-section-number">5.4.2</span> Create a new .R script, attach the <code>tidyverse</code>, <code>readxl</code> and <code>writexl</code> packages</h3>
-<p>In your RforExcelUsers project in RStudio, open a new .R script and add a useful header to the top of it. For example, at a minimum:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># --------------------------------</span>
-<span class="co"># A descriptive title</span>
-<span class="co"># Summary of what this script is for </span>
-<span class="co"># Your name</span>
-<span class="co"># Contact information</span>
-<span class="co"># --------------------------------</span>
-
-<span class="co"># Other things you might include: required packages or datasets, relevant links (e.g. to raw data source, GitHub repo, etc.), citations and sources.</span></code></pre>
-<p>In this lesson, we’ll read in a CSV file with the <code>readr::read_csv()</code> function, so we need to have the <code>readr</code> package attached. Since it’s part of the <code>tidyverse</code>, we’ll go ahead and attach the <code>tidyverse</code> package below our script header using <code>library(package_name)</code>. It’s a good idea to attach all necessary packages near the top of a script, so we’ll also attach the <code>readxl</code> packages here.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Attach the tidyverse, readxl and writexl packages:</span>
-<span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(readxl)
-<span class="kw">library</span>(writexl)</code></pre>
-<p>Now, all of the packages and functions within the <code>tidyverse</code> and <code>readxl</code>, including <code>readr::read_csv()</code> and <code>readxl::read_excel()</code>, are available for use.</p>
-</div>
-<div id="use-readrread_csv-to-read-in-data-from-a-csv-file" class="section level3">
-<h3><span class="header-section-number">5.4.3</span> Use <code>readr::read_csv()</code> to read in data from a CSV file</h3>
-<p>There are many types of files containing data that you might want to work with in R. A common one is a comma separated value (CSV) file, which contains values with each column entry separated by a comma delimiter. CSVs can be opened, viewed, and worked with in Excel just like an .xls or .xlsx file - but let’s learn how to get data directly from a CSV into R where we can work with it more reproducibly.</p>
-<p>The CSV we’ll read in here is called “fish_counts_curated.csv”, and contains observations for “the abundance and size of fish species as part of SBCLTER’s kelp forest monitoring program to track long-term patterns in species abundance and diversity” from the <a href="http://sbc.lternet.edu/">Santa Barbara Channel Long Term Ecological Research</a> program.</p>
-<p><strong>Source:</strong> Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Fish abundance. Environmental Data Initiative. <a href="https://doi.org/10.6073/pasta/dbd1d5f0b225d903371ce89b09ee7379" class="uri">https://doi.org/10.6073/pasta/dbd1d5f0b225d903371ce89b09ee7379</a>. Dataset accessed 9/26/2019.</p>
-<p>Read in the “fish_counts_curated.csv” file <code>read_csv(&quot;file_name.csv&quot;)</code>, and store it in R as an object called <em>fish_counts</em>:</p>
-<pre class="sourceCode r"><code class="sourceCode r">fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;fish_counts_curated.csv&quot;</span>)</code></pre>
-<p>Notice that the name of the stored object (here, <em>fish_counts</em>) will show up in our Environment tab in RStudio.</p>
-<p>Click on the object in the Environment, and R will automatically run the <code>View()</code> function for you to pull up your data in a separate viewing tab. Now we can look at it in the spreadsheet format we’re used to.</p>
-<p>Here are a few other functions for quickly exploring imported data:</p>
-<ul>
-<li><code>summary()</code>: summary of class, dimensions, <code>NA</code> values, etc.</li>
-<li><code>names()</code>: variable names (column headers)</li>
-<li><code>ls()</code>: list all objects in environment</li>
-<li><code>head()</code>: Show the first x rows (default is 6 lines)</li>
-<li><code>tail()</code>: Show the last x rows (default is 6 lines)</li>
-</ul>
-<p>Now let’s make a simple plot of some fish counts with <code>ggplot2</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(fish_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> total_count)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> common_name)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>site)</code></pre>
-<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
-<p>Now that we have our fish counts data ready to work with in R, let’s get the substrate cover and kelp data (both .xlsx files). In the following sections, we’ll learn that we can use <code>readxl::read_excel()</code> to read in Excel files directly.</p>
-</div>
-<div id="use-readxlread_excel-to-read-in-a-single-excel-worksheet" class="section level3">
-<h3><span class="header-section-number">5.4.4</span> Use <code>readxl::read_excel()</code> to read in a single Excel worksheet</h3>
-<p>First, take a look at <em>substrate_cover_curated.xlsx</em> in Excel, which contains a single worksheet with substrate type and percent cover observations at different sampling locations in the Santa Barbara Channel.</p>
-<p>A few things to notice:</p>
-<ul>
-<li>The file contains a single worksheet</li>
-<li>There are multiple rows containing text information up top</li>
-<li>Where observations were not recorded, there exists ‘-9999’</li>
-</ul>
-<p>Let’s go ahead and read in the data. If the file is in our working directory, we can read in a single worksheet .xlsx file using <code>readxl::read_excel(&quot;file_name.xlsx&quot;)</code>. <em>Note: readxl::read_excel() works for both .xlsx and .xls types</em>.</p>
-<p>Like this:</p>
-<pre class="sourceCode r"><code class="sourceCode r">substrate_cover &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;substrate_cover_curated.xlsx&quot;</span>)</code></pre>
-<p><strong>Tada? Not quite.</strong></p>
-<p>Click on the object name (<em>substrate_cover</em>) in the Environment to view the data in a new tab. A few things aren’t ideal:</p>
-<pre class="sourceCode r"><code class="sourceCode r">substrate_cover</code></pre>
-<pre><code>## # A tibble: 23,942 x 9
-##    `Substrate cover data… ...2  ...3   ...4  ...5   ...6  ...7  ...8  ...9 
-##    &lt;chr&gt;                  &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-##  1 Source: https://porta… &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-##  2 Accessed: 9/28/2019    &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-##  3 &lt;NA&gt;                   &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-##  4 year                   month date   site  trans… quad  side  subs… perc…
-##  5 -9999                  -9999 -9999  carp  1      20    i     b     -9999
-##  6 2000                   9     -9999  carp  1      20    o     b     -9999
-##  7 2000                   9     9/8/00 carp  1      20    i     b     100  
-##  8 2000                   9     9/8/00 carp  1      20    o     b     100  
-##  9 2000                   9     9/8/00 carp  1      40    i     b     100  
-## 10 2000                   9     9/8/00 carp  1      40    o     b     100  
-## # … with 23,932 more rows</code></pre>
-<ul>
-<li>The top row of text has automatically become the (messy) column headers</li>
-<li>There are multiple descriptive rows before we actually get to the data</li>
-<li>There are -9999s that we want R to understand <code>NA</code> instead</li>
-</ul>
-<p>We can deal with those issues by adding arguments within <code>read_excel()</code>. Include argument <code>skip = n</code> to skip the first ‘n’ rows when importing data, and <code>na = &quot;this&quot;</code> to replace “this” with <code>NA</code> when importing:</p>
-<pre class="sourceCode r"><code class="sourceCode r">substrate_cover &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;curation/substrate_cover_curated.xlsx, skip = 4, na = &quot;</span><span class="op">-</span><span class="dv">9999</span><span class="st">&quot;)</span></code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">substrate_cover</code></pre>
-<pre><code>## # A tibble: 23,938 x 9
-##    year  month date  site  transect quad  side  substrate_type
-##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;         
-##  1 &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  carp  1        20    i     b             
-##  2 2000  9     &lt;NA&gt;  carp  1        20    o     b             
-##  3 2000  9     9/8/… carp  1        20    i     b             
-##  4 2000  9     9/8/… carp  1        20    o     b             
-##  5 2000  9     9/8/… carp  1        40    i     b             
-##  6 2000  9     9/8/… carp  1        40    o     b             
-##  7 2000  9     9/8/… carp  2        20    i     b             
-##  8 2000  9     9/8/… carp  2        20    o     b             
-##  9 2000  9     9/8/… carp  2        40    i     b             
-## 10 2000  9     9/8/… carp  2        40    o     b             
-## # … with 23,928 more rows, and 1 more variable: percent_cover &lt;chr&gt;</code></pre>
-<p>Check out <em>substrate_cover</em>, and see that the first row <em>after</em> the 4 skipped are the column names, and all -9999s have been updated to <code>NA</code>. Hooray!</p>
-</div>
-<div id="use-readxlread_excel-to-read-in-only-part-of-an-excel-worksheet" class="section level3">
-<h3><span class="header-section-number">5.4.5</span> Use <code>readxl::read_excel()</code> to read in only <em>part</em> of an Excel worksheet</h3>
-<p>We always advocate for leaving the raw data raw, and writing a complete script containing all steps of data wrangling &amp; transformation. But in <em>some</em> situations (be careful), you may want to specify a range of cells to read in from an Excel worksheet.</p>
-<p>You can specify a range of cells to read in using the <code>range =</code> argument in <code>read_excel()</code>. For example, if I want to read in the rectangle from D12:I15 in <em>substrate_cover_curated.xlsx</em> - only observations for Carpenteria Beach (Transect 2) in September 2000 - I can use:</p>
-<pre class="sourceCode r"><code class="sourceCode r">carp_cover_<span class="dv">2000</span> &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;substrate_cover_curated.xlsx&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;D12:I15&quot;</span>)</code></pre>
-<p>But yuck. Look at <em>carp_cover_2000</em> and you’ll notice that the first row <em>of that range</em> is automatically made the column headers. To keep all rows within a range and <strong>add your own column names</strong>, add a <code>col_names =</code> argument:</p>
-<pre class="sourceCode r"><code class="sourceCode r">carp_cover_<span class="dv">2000</span> &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;substrate_cover_curated.xlsx&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;D12:I15&quot;</span>, <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;site_name&quot;</span>, <span class="st">&quot;transect&quot;</span>, <span class="st">&quot;quad&quot;</span>, <span class="st">&quot;plot_side&quot;</span>, <span class="st">&quot;type&quot;</span>, <span class="st">&quot;coverage&quot;</span>))</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">carp_cover_<span class="dv">2000</span></code></pre>
-<pre><code>## # A tibble: 4 x 6
-##   site_name transect quad  plot_side type  coverage
-##   &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;   
-## 1 carp      2        20    i         b     90      
-## 2 carp      2        20    o         b     80      
-## 3 carp      2        40    i         b     80      
-## 4 carp      2        40    o         b     85</code></pre>
-<p>So far we’ve read in a single CSV file using <code>readr::read_csv()</code>, and an Excel file containing a single worksheet with <code>readxl::read_excel()</code>. Now let’s read in data from an Excel workbook with multiple worksheets.</p>
-</div>
-<div id="use-readxlread_excel-to-read-in-selected-worksheets-from-a-workbook" class="section level3">
-<h3><span class="header-section-number">5.4.6</span> Use <code>readxl::read_excel()</code> to read in selected worksheets from a workbook</h3>
-<p>Now, we’ll read in the kelp fronds data from file <em>kelp_counts_curated.xlsx</em>. If you open the Excel workbook, you’ll see that it contains multiple worksheets with giant kelp observations in the Santa Barbara Channel during July 2016, 2017, and 2018, with data collected at each <em>site</em> in a separate worksheet.</p>
-<p>To read in a single Excel worksheet from a workbook we’ll again use <code>readxl::read_excel(&quot;file_name.xlsx&quot;)</code>, but we’ll need to let R know which worksheet to get.</p>
-<p>Let’s read in the kelp data just like we did above, as an object called <em>kelp_counts</em>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">kelp_counts &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>)</code></pre>
-<p>You might be thinking, “Hooray, I got all of my Excel workbook data!” But remember to always look at your data - you will see that actually only the first worksheet was read in. The default in <code>readxl::read_excel()</code> is to read in the <strong>first worksheet</strong> in a multi-sheet Excel workbook.</p>
-<p>To check the worksheet names in an Excel workbook, use <code>readxl::excel_sheets()</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r">readxl<span class="op">::</span><span class="kw">excel_sheets</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>)</code></pre>
-<p>If we want to read in data from a worksheet other than the first one in an Excel workbook, we can specify the correct worksheet by name or position by adding the <code>sheet</code> argument.</p>
-<p>Let’s read in data from the worksheet named <em>golb</em> (Goleta Beach) in the <em>kelp_counts_curated.xlsx</em> workbook:</p>
-<pre class="sourceCode r"><code class="sourceCode r">kelp_golb &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;golb&quot;</span>)</code></pre>
-<p>Note that you can also specify a worksheet by position: since <em>golb</em> is the 6<sup>th</sup> worksheet in the workbook, we could also use the following:</p>
-<pre class="sourceCode r"><code class="sourceCode r">kelp_golb &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="dv">6</span>)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">kelp_golb</code></pre>
-<pre><code>## # A tibble: 3 x 4
-##   year  month site  total_fronds
-##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;
-## 1 2016  7     golb          2557
-## 2 2017  7     golb          1575
-## 3 2018  7     golb          1629</code></pre>
-</div>
-<div id="read-in-and-combine-data-from-multiple-worksheets-into-a-data-frame-simultaneously-with-purrrmap_df" class="section level3">
-<h3><span class="header-section-number">5.4.7</span> Read in and combine data from multiple worksheets into a data frame simultaneously with <code>purrr::map_df()</code></h3>
-<p>So far, we’ve read in entire Excel worksheets and pieces of a worksheet. What if we have a workbook (like <em>kelp_counts_curated.xlsx</em>) that contains worksheets that contain observations for the same variables, in the same organization? Then we may want to read in data from <em>all</em> worksheets, and combine them into a single data frame.</p>
-<p>We’ll use <code>purrr::map_df()</code> to loop through all the worksheets in a workbook, reading them in &amp; putting them together into a single df in the process.</p>
-<p>The steps we’ll go through in the code below are:</p>
-<ul>
-<li>Set a pathway so that R knows where to look for an Excel workbook</li>
-<li>Get the names of all worksheets in that workbook with <code>excel_sheets()</code></li>
-<li>Set names of a vector with <code>set_names()</code></li>
-<li>Read in all worksheets, and put them together into a single data frame with <code>purrr::map_df()</code></li>
-</ul>
-<p><strong>QUESTION: Have they learned the pipe operator at this point?</strong></p>
-<p><strong>Expect the question:</strong> Why do I need to use read_excel() instead of just giving it the file path (as below)?</p>
-<pre class="sourceCode r"><code class="sourceCode r">kelp_path &lt;-<span class="st"> &quot;kelp_counts_curated.xlsx&quot;</span>
-
-kelp_all_sites &lt;-<span class="st"> </span>kelp_path <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">excel_sheets</span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">set_names</span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span>purrr<span class="op">::</span><span class="kw">map_df</span>(read_excel, kelp_path)</code></pre>
-<p>Check out <em>kelp_all_sites</em>, and notice that now the data from all 11 sites is now collected into a single data frame:</p>
-<pre class="sourceCode r"><code class="sourceCode r">kelp_all_sites</code></pre>
-<pre><code>## # A tibble: 32 x 4
-##    year  month site  total_fronds
-##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;
-##  1 2016  7     abur           307
-##  2 2017  7     abur           604
-##  3 2018  7     abur          3532
-##  4 2016  7     ahnd          2572
-##  5 2017  7     ahnd            16
-##  6 2018  7     ahnd            16
-##  7 2016  7     aque         11152
-##  8 2017  7     aque          9194
-##  9 2018  7     aque          7754
-## 10 2016  7     bull          6706
-## # … with 22 more rows</code></pre>
-<p>Awesome! Let’s make a graph with ggplot2:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(kelp_all_sites, <span class="kw">aes</span>(<span class="dt">x =</span> site, <span class="dt">y =</span> total_fronds)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> year), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;purple&quot;</span>,<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;gray30&quot;</span>))</code></pre>
-<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
-</div>
-<div id="save-data-frames-as-.csv-or-.xlsx-with-readrwrite_csv-or-writexlwrite_xlsx" class="section level3">
-<h3><span class="header-section-number">5.4.8</span> Save data frames as .csv or .xlsx with <code>readr::write_csv()</code> or <code>writexl::write_xlsx()</code></h3>
-<p>There are a number of reasons you might want to save (/export) data in a data frame as a .csv or Excel worksheet, including:</p>
-<ul>
-<li>To cache raw data within your project</li>
-<li>To store copies of intermediate data frames</li>
-<li>To convert your data back to a format that your coworkers/clients/colleagues will be able to use it more easily</li>
-</ul>
-<p>Use <code>readr::write_csv(object, &quot;file_name.csv&quot;)</code> to write a data frame to a CSV, or <code>writexl::write_xlsx(object, &quot;file_name.xlsx&quot;)</code> to similarly export as a .xlsx (or .xls) worksheet.</p>
-<p>In the previous step, we combined all of our kelp frond observations into a single data frame. Wouldn’t it make sense to store a copy?</p>
-<p>As a CSV:</p>
-<pre class="sourceCode r"><code class="sourceCode r">readr<span class="op">::</span><span class="kw">write_csv</span>(kelp_all_sites, <span class="st">&quot;kelp_all_sites.csv&quot;</span>)</code></pre>
-<p>A cool thing about <code>readr::read_csv()</code> is that it just quietly <em>works</em> without wrecking anything else you do in a sequence, so it’s great to add at the end of a piped sequence.</p>
-<p>For example, if I want to read in the ‘ivee’ worksheet from kelp_counts_curated.xlsx, select only columns ‘year’ and ‘total_fronds’, then write that new subset to a .csv file, I can pipe all the way through:</p>
-<pre class="sourceCode r"><code class="sourceCode r">kelp_ivee &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;ivee&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(year, total_fronds) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">write_csv</span>(<span class="st">&quot;kelp_ivee.csv&quot;</span>)</code></pre>
-<p>Now I’ve created <em>kelp_ivee.csv</em>, but the object <em>kelp_ivee</em> also exists for me to use in R.</p>
-<p>If needed, I can also export a data frame as an Excel (.xlsx) worksheet:</p>
-<pre class="sourceCode r"><code class="sourceCode r">writexl<span class="op">::</span><span class="kw">write_xlsx</span>(kelp_all_sites, <span class="st">&quot;kelp_all_sites.xlsx&quot;</span>)</code></pre>
+<div id="lessons" class="section level2">
+<h2><span class="header-section-number">4.4</span> Lessons</h2>
+<div id="reading" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Reading</h3>
 </div>
 </div>
-<div id="fun-facts-ideas" class="section level2">
-<h2><span class="header-section-number">5.5</span> Fun facts ideas:</h2>
-<ul>
-<li>Did you know that Clippy shows up to help you in the documentation for ?writexl::write_xlsx()?</li>
-<li>The name of the <code>purrr</code> package? Why map?</li>
-</ul>
+<div id="fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1" class="section level2">
+<h2><span class="header-section-number">4.5</span> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</h2>
 </div>
-<div id="interludes-deep-thoughtsopenscapes-3" class="section level2">
-<h2><span class="header-section-number">5.6</span> Interludes (deep thoughts/openscapes)</h2>
-<ul>
-<li>Workflow/reproducibility/readxl workflows article</li>
-<li>Respecting the tools people are working with already (e.g. don’t make your Excel using co-workers hate you)</li>
-</ul>
+<div id="interludes-deep-thoughtsopenscapes-2" class="section level2">
+<h2><span class="header-section-number">4.6</span> Interludes (deep thoughts/openscapes)</h2>
 </div>
-<div id="activity-import-some-invertebrates" class="section level2">
-<h2><span class="header-section-number">5.7</span> Activity: Import some invertebrates!</h2>
-<p>There’s one dataset we haven’t imported or explored yet: invertebrate counts for 5 popular invertebrates (California cone snail, California spiny lobster, orange cup coral, purple urchin and rock scallops) at 11 sites in the Santa Barbara Channel. Take a look at the <em>invert_counts_curated.xlsx</em> data by opening it in Excel</p>
-<ul>
-<li>Read in the <em>invert_counts_curated.xlsx</em> worksheet as object ‘inverts_july’, only retaining <strong>site</strong>, <strong>common_name</strong>, and <strong>2016</strong> and setting the existing first row in the worksheet as to column headers upon import</li>
-<li>Explore the imported data frame using View, names, head, tail, etc.</li>
-<li>Write ‘inverts_july’ to a CSV file in your working directory called “inverts_july.csv”</li>
-<li>Create a basic graph of invert counts in 2016 (y-axis) by site (x-axis), with each species indicated by a different fill color
-<ul>
-<li><strong>Note:</strong> If your column name is a number (not great) you’ll probably want to rename it…but in the meantime, to call it as a variable make sure you put single or double quotes around it (e.g. <code>'2016'</code> or <code>&quot;2016&quot;</code>) so that R recognizes it’s a variable and not a value</li>
-</ul></li>
-</ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Importing only &#39;site&#39; through &#39;2016&#39; columns: </span>
-inverts_july &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;curation/invert_counts_curated.xlsx&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;B1:D56&quot;</span>)
-
-<span class="co"># Do some basic exploring (why might we want to do this in the Console instead?):</span>
-<span class="co">#View(inverts_july)</span>
-<span class="kw">names</span>(inverts_july)
-<span class="kw">head</span>(inverts_july)
-<span class="kw">tail</span>(inverts_july)
-<span class="kw">ls</span>()
-
-<span class="co"># Make a gg-graph plot: </span>
-inverts_graph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(inverts_july, <span class="kw">aes</span>(<span class="dt">x =</span> site, <span class="dt">y =</span> <span class="st">`</span><span class="dt">2016</span><span class="st">`</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> common_name), 
-           <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">inverts_graph</code></pre>
-<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<div id="our-turn-your-turn-1" class="section level2">
+<h2><span class="header-section-number">4.7</span> Our Turn Your Turn 1</h2>
 </div>
-<div id="efficiency-tips-3" class="section level2">
-<h2><span class="header-section-number">5.8</span> Efficiency Tips</h2>
-<ul>
-<li>Add an assignment arrow in script/code chunk (&lt;-): Alt + minus (-)</li>
-<li>Undo shortcut: Command + Z</li>
-<li>Redo shortcut: Command + Shift + Z</li>
-</ul>
+<div id="our-turn-your-turn-2" class="section level2">
+<h2><span class="header-section-number">4.8</span> Our Turn Your Turn 2</h2>
 </div>
-<div id="deep-thoughts" class="section level2">
-<h2><span class="header-section-number">5.9</span> Deep thoughts</h2>
-<ul>
-<li>Economist article about gene &gt; dates issue in Excel</li>
-<li>Mine: data frame of bike casualities in NC, column names are age ranges but some of them import as dates</li>
-<li>Excel makes some wrong assumptions and doesn’t give you a heads up about its decision making</li>
-</ul>
+<div id="efficiency-tips-2" class="section level2">
+<h2><span class="header-section-number">4.9</span> Efficiency Tips</h2>
 
 </div>
 </div>
@@ -604,8 +347,8 @@ inverts_graph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(inver
           </div>
         </div>
       </div>
-<a href="github.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="rmarkdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="readxl.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
