@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-11-06}
+    \date{2019-11-08}
 
 \usepackage{booktabs}
 
@@ -1151,6 +1151,19 @@ There's one dataset we haven't imported or explored yet: invertebrate counts for
   Redo shortcut: Command + Shift + Z
 \end{itemize}
 
+\hypertarget{deep-thoughts}{%
+\section{Deep thoughts}\label{deep-thoughts}}
+
+\begin{itemize}
+\tightlist
+\item
+  Economist article about gene \textgreater{} dates issue in Excel
+\item
+  Mine: data frame of bike casualities in NC, column names are age ranges but some of them import as dates
+\item
+  Excel makes some wrong assumptions and doesn't give you a heads up about its decision making
+\end{itemize}
+
 \hypertarget{rmarkdown}{%
 \chapter{RMarkdown}\label{rmarkdown}}
 
@@ -1329,6 +1342,8 @@ Tidy data has a simple convention: put variables in the columns and observations
 
 \includegraphics[width=0.8\linewidth]{img/tidy_data}
 
+Uncount this data so that we can use it with pivot tables
+
 TODO:
 Explore data:
 summaries/data table
@@ -1371,6 +1386,8 @@ Let's watch this to demonstrate all the amazing things you can now do:
 
 \hypertarget{pivot}{%
 \chapter{\texorpdfstring{\texttt{dplyr} and Pivot Tables}{dplyr and Pivot Tables}}\label{pivot}}
+
+. Julie rewrite with summarize(mean, sd, n) on the uncounted fish\_uncount
 
 \hypertarget{summary-a-few-sentences-2}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences-2}}
@@ -1727,8 +1744,8 @@ In order to calculate the percentages with the appropriate values, we need to so
 
 count column (would have to uncount first)
 
-\hypertarget{deep-thoughts}{%
-\section{Deep thoughts}\label{deep-thoughts}}
+\hypertarget{deep-thoughts-1}{%
+\section{Deep thoughts}\label{deep-thoughts-1}}
 
 Highly recommended read: \href{https://peerj.com/preprints/3183/}{Broman \& Woo: Data organization in spreadsheets}. Practical tips to make spreadsheets less error-prone, easier for computers to process, easier to share
 
@@ -1745,14 +1762,14 @@ arrow keys with shift, option, command
 \hypertarget{summary-1}{%
 \section{Summary}\label{summary-1}}
 
-In Session 4, we learned how to do some basic wrangling and find summary information with functions in the \texttt{dplyr} package, which exists within the \texttt{tidyverse}. Those were:
+In previous sessions, we've learned to do some basic wrangling and find summary information with functions in the \texttt{dplyr} package, which exists within the \texttt{tidyverse}. We've used:
 
-TODO: Check this list (to see what actually gets covered in Session 4)
+TODO: Check these to make sure what we do in 1 - 4!
 
 \begin{itemize}
 \tightlist
 \item
-  \texttt{dplyr::select()}: select which \textbf{columns} to retain or exclude
+  \texttt{dplyr::count()} and \texttt{dplyr::uncount()} to get counts of observations for groupings we specify (or the reverse!)
 \item
   \texttt{dplyr::mutate()}: \textbf{add} a new column, while keeping the existing ones
 \item
@@ -1768,10 +1785,10 @@ In Session 5, we'll expand our data wrangling toolkit using:
 \item
   \texttt{dplyr::filter()} to conditionally subset our data by \textbf{rows}, and
 \item
-  \texttt{dplyr::join()} functions to merge data frames together
+  \texttt{dplyr::*\_join()} functions to merge data frames together
 \end{itemize}
 
-The combination of \texttt{dplyr::filter()} and \texttt{dplyr::join()} - to return rows satisfying a condition we specify, and merging data frames by like variables - is analogous to the useful VLOOKUP function in Excel.
+The combination of \texttt{dplyr::filter()} and \texttt{dplyr::*\_join()} - to return rows satisfying a condition we specify, and merging data frames by like variables - is analogous to the useful VLOOKUP function in Excel.
 
 \hypertarget{objectives-1}{%
 \section{Objectives}\label{objectives-1}}
@@ -1783,11 +1800,11 @@ The combination of \texttt{dplyr::filter()} and \texttt{dplyr::join()} - to retu
 \item
   Return \textbf{rows} that satisfy variable conditions using \texttt{dplyr::filter()}
 \item
-  Use \texttt{dplyr::full\_join()}, \texttt{dplyr::inner\_join()}, and beyond to merge data frames by matching variables, with different endpoints in mind
+  Use \texttt{dplyr::full\_join()}, \texttt{dplyr::left\_join()}, and \texttt{dplyr::inner\_join()} to merge data frames by matching variables, with different endpoints in mind
 \item
   Use \texttt{dplyr::anti\_join()} to find things that \textbf{do not} exist in both data frames
 \item
-  Understand the similarities between \texttt{dplyr::filter()} + \texttt{join()} and Excel's \texttt{VLOOKUP}
+  Understand the similarities between \texttt{dplyr::filter()} + \texttt{dplyr::*\_join()} and Excel's VLOOKUP function
 \end{itemize}
 
 \hypertarget{resources-4}{%
@@ -1848,7 +1865,15 @@ Now, let's use \texttt{dplyr::filter()} to decide which observations (rows) we'l
 \hypertarget{dplyrfilter-to-conditionally-subset-by-rows}{%
 \subsection{\texorpdfstring{\texttt{dplyr::filter()} to conditionally subset by rows}{dplyr::filter() to conditionally subset by rows}}\label{dplyrfilter-to-conditionally-subset-by-rows}}
 
-Use \texttt{dplyr::filter()} to let R know which \textbf{rows} you want to keep or exclude, based on what they contain. Some examples in words:
+Use \texttt{dplyr::filter()} to let R know which \textbf{rows} you want to keep or exclude, based whether or not their contents match conditions that you set for one or more variables.
+
+\begin{figure}
+\centering
+\includegraphics{img/rstudio-cheatsheet-filter.png}
+\caption{dplyr::filter()}
+\end{figure}
+
+Some examples in words that might inspire you to use \texttt{dplyr::filter()}:
 
 \begin{itemize}
 \tightlist
@@ -1859,8 +1884,6 @@ Use \texttt{dplyr::filter()} to let R know which \textbf{rows} you want to keep 
 \item
   ``I want to make a new subset with only data for mountain lions (the species variable) in California (the state variable).''
 \end{itemize}
-
-TODO: \{Add filter image here\}
 
 When we use \texttt{dplyr::filter()}, we need to let R know a couple of things:
 
@@ -2053,10 +2076,78 @@ Which then only returns observations for the other fish species in the dataset.
 ## 6  2016 aque  senorita                 57
 \end{verbatim}
 
-\hypertarget{example-some-combo-wprevious-functions-used}{%
-\subsubsection{Example: Some combo w/previous functions used}\label{example-some-combo-wprevious-functions-used}}
+\hypertarget{example-combining-filter-with-other-functions-using-the-pipe-operator}{%
+\subsubsection{\texorpdfstring{Example: combining \texttt{filter()} with other functions using the pipe operator (\texttt{\%\textgreater{}\%})}{Example: combining filter() with other functions using the pipe operator (\%\textgreater{}\%)}}\label{example-combining-filter-with-other-functions-using-the-pipe-operator}}
 
-We can also use \texttt{dplyr::filter()} in combination with the functions we learned for wrangling yesterday. If we have multiple sequential steps to perform, we can string them together using the \emph{pipe operator} (\texttt{\%\textgreater{}\%}).
+We can also use \texttt{dplyr::filter()} in combination with the functions we previously learned for wrangling. If we have multiple sequential steps to perform, we can string them together using the \emph{pipe operator} (\texttt{\%\textgreater{}\%}).
+
+Here, we'll start with the \texttt{invert\_counts} data frame and create a subset that:
+
+TODO: NOPE, can't do this, they don't learn \texttt{pivot\_longer()} until the next section (tidying)
+
+\begin{itemize}
+\tightlist
+\item
+  Converts to long format with \texttt{pivot\_longer()}
+\item
+  Only keeps observations for rock scallops
+\item
+  Calculates the total count of rock scallops by site only
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Counts of scallops by site (all years included):}
+
+\NormalTok{scallop_count_by_site <-}\StringTok{ }\NormalTok{invert_counts }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\DataTypeTok{cols =} \StringTok{'2016'}\OperatorTok{:}\StringTok{'2018'}\NormalTok{, }
+               \DataTypeTok{names_to =} \StringTok{"year"}\NormalTok{, }
+               \DataTypeTok{values_to =} \StringTok{"sp_count"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(common_name }\OperatorTok{==}\StringTok{ "rock scallop"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(site) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{tot_count =} \KeywordTok{sum}\NormalTok{(sp_count, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{scallop_count_by_site}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 11 x 2
+##    site  tot_count
+##    <chr>     <dbl>
+##  1 abur         48
+##  2 ahnd         48
+##  3 aque        152
+##  4 bull         48
+##  5 carp       2519
+##  6 golb         48
+##  7 ivee        169
+##  8 mohk        346
+##  9 napl       6416
+## 10 scdi       2390
+## 11 sctw       1259
+\end{verbatim}
+
+\hypertarget{activity-1-using-filter-in-a-wrangling-sequence}{%
+\subsubsection{\texorpdfstring{Activity 1: using \texttt{filter()} in a wrangling sequence}{Activity 1: using filter() in a wrangling sequence}}\label{activity-1-using-filter-in-a-wrangling-sequence}}
+
+Write a sequence of code (connected by the pipe operator, \texttt{\%\textgreater{}\%}), to complete the following and store the output as object \texttt{my\_fish\_wrangling}:
+
+\begin{itemize}
+\tightlist
+\item
+  Starting from the \texttt{fish\_counts} data frame (stored earlier)
+\item
+  Only keep observations from \emph{Arroyo Burro} (site `abur')
+\item
+  Group by \emph{common\_name} (species)
+\item
+  Find total fish counts (by species) across all years
+\end{itemize}
 
 \hypertarget{merging-data-frames-with-dplyr_join}{%
 \subsection{\texorpdfstring{Merging data frames with \texttt{dplyr::*\_join()}}{Merging data frames with dplyr::*\_join()}}\label{merging-data-frames-with-dplyr_join}}
@@ -2068,7 +2159,6 @@ There are a number of ways to merge data frames in R. We'll use \texttt{full\_jo
 From R Documentation (\texttt{?join}):
 
 \begin{itemize}
-\tightlist
 \item
   \texttt{dplyr::full\_join()}: ``returns all rows and all columns from both x and y. Where there are not matching values, returns NA for the one missing.'' Basically, nothing gets thrown out, even if a match doesn't exist - making \texttt{full\_join()} the safest option for merging data frames. When in doubt, \texttt{full\_join()}.
 \item
@@ -2076,6 +2166,9 @@ From R Documentation (\texttt{?join}):
 \item
   \texttt{dplyr::inner\_join()}: ``returns all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned.'' This will drop observations that don't have a match between the merged data frames, which makes it a riskier merging option if you're not sure what you're trying to do.
 \end{itemize}
+
+Schematic (from RStudio data wrangling cheat sheet):
+\includegraphics{img/rstudio-cheatsheet-combine-options1.png}
 
 To clarify what the different joins are doing, let's first make a subset of the \emph{fish\_counts} data frame that only contains observations from 2016 and 2017.
 
@@ -2098,10 +2191,10 @@ When we join data frames in R, we need to tell R a couple of things (and it does
 \item
   Which data frames we want to merge together
 \item
-  Which variables* to merge by
+  Which variables to merge by
 \end{itemize}
 
-Note: If there are \textbf{exactly matching} column names in the data frames you're merging, the \texttt{*\_join()} functions will assume that you want to join by those columns. If there are \emph{no} matching column names, you can specify which columns to join by manually. We'll do both here.
+\textbf{Note:} If there are \textbf{exactly matching} column names in the data frames you're merging, the \texttt{*\_join()} functions will assume that you want to join by those columns. If there are \emph{no} matching column names, you can specify which columns to join by manually. We'll do both here.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2166,8 +2259,6 @@ Now if we check the class of the \emph{year} variable in \texttt{kelp\_counts\_a
 
 OK, so now the class of \emph{year} in the data frames we're joining is the same. Let's try that \texttt{full\_join()} again:
 
-TODO: consider using fish\_2016\_2017 here to really show that full\_join() keeps everything?
-
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{abur_kelp_join <-}\StringTok{ }\NormalTok{fish_}\DecValTok{2016}\NormalTok{_}\DecValTok{2017} \OperatorTok{%>%}\StringTok{ }
@@ -2199,9 +2290,7 @@ Because all data (observations \& columns) are retained, \texttt{full\_join()} i
 \hypertarget{dplyrleft_join-to-merge-data-frames-keeping-everything-in-the-x-data-frame-and-only-matches-from-the-y-data-frame}{%
 \subsubsection{\texorpdfstring{\texttt{dplyr::left\_join()} to merge data frames, keeping everything in the `x' data frame and only matches from the `y' data frame}{dplyr::left\_join() to merge data frames, keeping everything in the `x' data frame and only matches from the `y' data frame}}\label{dplyrleft_join-to-merge-data-frames-keeping-everything-in-the-x-data-frame-and-only-matches-from-the-y-data-frame}}
 
-TODO: think about a way to make left\_join() clear. Need to join data frame `y' that has something not contained in `x', like a site or something, to show that it is dropped when left joining.
-
-Now, we want to keep all observations in \emph{fish\_2016\_2017}, and merge them with \emph{kelp\_counts\_abur} while only keeping observations from \emph{kelp\_counts\_abur} that match an observation within \emph{fish\_2016\_2017}. So when we use a left\_join, any information on kelp counts from 2018 should be dropped.
+Now, we want to keep all observations in \emph{fish\_2016\_2017}, and merge them with \emph{kelp\_counts\_abur} while only keeping observations from \emph{kelp\_counts\_abur} that match an observation within \emph{fish\_2016\_2017}. So when we use \texttt{dplyr::left\_join()}, any information on kelp counts from 2018 should be dropped.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2214,10 +2303,14 @@ Now, we want to keep all observations in \emph{fish\_2016\_2017}, and merge them
 ## Joining, by = c("year", "site")
 \end{verbatim}
 
-\hypertarget{dplyrinner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both}{%
-\subsubsection{\texorpdfstring{\texttt{dplyr::inner\_join()} to merge data frames, only keeping observations with a match in both}{dplyr::inner\_join() to merge data frames, only keeping observations with a match in both}}\label{dplyrinner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both}}
+Notice when you look at \texttt{fish\_kelp\_2016\_2017}, the 2018 data that \textbf{does} exist in \texttt{kelp\_counts\_abur} does \textbf{not} get joined to the \texttt{fish\_2016\_2017} data frame, because \texttt{left\_join(df\_a,\ df\_b)} will only keep observations from \texttt{df\_b} if they have a match in \texttt{df\_a}!
 
-Use \texttt{inner\_join()} if you know that you \textbf{only} want to retain observations when they match across both data frames. Caution: this is built to exclude any observations that don't match across data frames by joined variables - double check to make sure this is actually what you want to do!
+\hypertarget{dplyrinner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both}{%
+\subsubsection{\texorpdfstring{\texttt{dplyr::inner\_join()} to merge data frames, only keeping observations with a match in \textbf{both}}{dplyr::inner\_join() to merge data frames, only keeping observations with a match in both}}\label{dplyrinner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both}}
+
+When we used \texttt{left\_join(df\_a,\ df\_b)}, we kept all observations in \texttt{df\_a} but \emph{only observations from \texttt{df\_b} that matched an entry in \texttt{df\_a}} (in other words, some entries from \texttt{df\_b} were excluded).
+
+Use \texttt{inner\_join()} if you know that you \textbf{only} want to retain observations when they match across \textbf{both data} frames. Caution: this is built to exclude any observations that don't match across data frames by joined variables - double check to make sure this is actually what you want to do!
 
 For example, if we use \texttt{inner\_join()} to merge fish\_counts and kelp\_counts\_abur, then we are asking R to \textbf{only return observations where the joining variables (\emph{year} and \emph{site}) have matches in both data frames.} Let's see what the outcome is:
 
@@ -2259,10 +2352,79 @@ For example, if we use \texttt{inner\_join()} to merge fish\_counts and kelp\_co
 ## 15  2018 abur  senorita                  1 7             3532
 \end{verbatim}
 
-Here, we see that only observations where there is a match for \emph{year} and \emph{site} are returned.
+Here, we see that only observations where there is a match for \emph{year} and \emph{site} in both data frames are returned.
 
-\hypertarget{fun-facts}{%
-\section{Fun facts}\label{fun-facts}}
+\hypertarget{dplyr_join-in-a-sequence}{%
+\subsubsection{\texorpdfstring{\texttt{dplyr::*\_join()} in a sequence}{dplyr::*\_join() in a sequence}}\label{dplyr_join-in-a-sequence}}
+
+We can also merge data frames as part of a sequence of wrangling steps.
+
+As an example: Starting with the \texttt{invert\_counts} data frame, we want to:
+
+\begin{itemize}
+\tightlist
+\item
+  First, use \texttt{pivot\_longer()} to get year and counts each into a single column
+\item
+  Convert the class of \emph{year} to numeric (so it can join with another numeric year variable)
+\item
+  Then, only keep observations for ``california spiny lobster''
+\item
+  Next, join the \texttt{kelp\_counts\_abur} to the resulting subset above, \textbf{only keeping observations that have a match in both data frames}
+\end{itemize}
+
+That might look like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{abur_lobster_kelp <-}\StringTok{ }\NormalTok{invert_counts }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\StringTok{'2016'}\OperatorTok{:}\StringTok{'2018'}\NormalTok{, }\DataTypeTok{names_to =} \StringTok{"year"}\NormalTok{, }\DataTypeTok{values_to =} \StringTok{"total_counts"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{year =} \KeywordTok{as.numeric}\NormalTok{(year)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(common_name }\OperatorTok{==}\StringTok{ "california spiny lobster"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{inner_join}\NormalTok{(kelp_counts_abur)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = c("month", "site", "year")
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{abur_lobster_kelp}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 6
+##   month site  common_name               year total_counts total_fronds
+##   <chr> <chr> <chr>                    <dbl>        <dbl>        <dbl>
+## 1 7     abur  california spiny lobster  2016           17          307
+## 2 7     abur  california spiny lobster  2017           17          604
+## 3 7     abur  california spiny lobster  2018           16         3532
+\end{verbatim}
+
+\hypertarget{activity-2-1}{%
+\subsubsection{Activity 2}\label{activity-2-1}}
+
+Now let's combine what we've learned about piping, filtering and joining!
+
+Complete the following as part of a single sequence (remember, check to see what you've produced after each step) to create a new data frame called \texttt{my\_fish\_join}:
+
+\begin{itemize}
+\tightlist
+\item
+  Start with \texttt{fish\_counts} data frame
+\item
+  Filter to only including observations for 2017 at Arroyo Burro
+\item
+  Join the \texttt{kelp\_counts\_abur} data frame to the resulting subset using \texttt{left\_join()}
+\item
+  Add a new column that contains the `fish per kelp fronds' density (total\_count / total\_fronds)
+\end{itemize}
+
+\hypertarget{fun-kind-of-scary-facts}{%
+\section{Fun / kind of scary facts}\label{fun-kind-of-scary-facts}}
 
 \textbf{How is this similar to \texttt{VLOOKUP} in Excel? How does it differ?}
 
@@ -2282,16 +2444,11 @@ So, both \texttt{filter()} and \texttt{VLOOKUP} look through your data frame (or
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-3}}
 
 \begin{itemize}
-\tightlist
 \item
-  Idea: not overusing the pipe in really long sequences. What are other options? Why is that a concern? What are some ways to always know that what's happening in a sequence is what you EXPECT is happening in a sequence? tidylog, check intermediate data frames, sometimes write intermediate data frames, etc.
+  Not overusing the pipe in really long sequences. What are other options? Why is that a concern? What are some ways to always know that what's happening in a sequence is what you EXPECT is happening in a sequence? tidylog, check intermediate data frames, sometimes write intermediate data frames, etc.
+\item
+  The risk of partial joins (\& a case for full\_join + drop\_na instead?)
 \end{itemize}
-
-\hypertarget{our-turn-your-turn-1}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1}}
-
-\hypertarget{our-turn-your-turn-2}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2}}
 
 \hypertarget{efficiency-tips-4}{%
 \section{Efficiency Tips}\label{efficiency-tips-4}}
@@ -2299,18 +2456,32 @@ So, both \texttt{filter()} and \texttt{VLOOKUP} look through your data frame (or
 \hypertarget{tidying}{%
 \chapter{Tidying}\label{tidying}}
 
+\begin{itemize}
+\tightlist
+\item
+  After vlookups (filter \& joins)
+\item
+  Allison section
+  Possibly return to uncount() if relevant to get a case\_format thing
+  pivot\_longer(), pivot\_wider(), separate(), unite()
+  janitor::clean\_names()
+\end{itemize}
+
 \hypertarget{better-practices-needs-a-better-name}{%
 \section{Better practices {[}needs a better name{]}}\label{better-practices-needs-a-better-name}}
 
-How to be a nimble useR
-Modern useRs are nimble internet useRs
-something clever about cleaning
-I am the worst at naming things
+\begin{itemize}
+\tightlist
+\item
+  How to be a nimble useR
+\item
+  Modern useRs are nimble internet useRs
+\item
+  No one gets out of cleaning chores in data science
+\end{itemize}
 
 \hypertarget{summary-a-few-sentences-3}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences-3}}
-
-R ecosystem evolves and improves due to contributed work by the community, and this is a good thing. Being a nimble useR means being able to navigate/keep tabs on this ecosystem and find what you need. It also means working reproducibly, so you can re-run and update things more easily. Here we will teach you how to expect things and help yourself. Pay attention to urls.
 
 \hypertarget{objectives-more-detailed-bulletpoints-3}{%
 \section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-3}}
@@ -2415,8 +2586,8 @@ Pay attention to URLs, build github/rmarkdown savviness (ex: raw.githubuserconte
 \hypertarget{interludes-deep-thoughtsopenscapes-4}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-4}}
 
-\hypertarget{our-turn-your-turn-2-1}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-1}}
+\hypertarget{our-turn-your-turn-2}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2}}
 
 \hypertarget{efficiency-tips-5}{%
 \section{Efficiency Tips}\label{efficiency-tips-5}}
@@ -2576,7 +2747,7 @@ Let's type \texttt{gh-pages}.
 
 \includegraphics[width=0.8\linewidth]{img/github_create-branch_gh-pages}
 
-Let's also change \texttt{gh-pages} to the default branch and delete the master branch: this will be a one-time-only thing that we do here:
+Let's also change \texttt{gh-pages} to the default branch will be a one-time-only thing that we do here:
 
 First click to control branches:
 
@@ -2589,7 +2760,7 @@ And then click to change the default branch to \texttt{gh-pages}. I like to then
 \hypertarget{drag-and-drop}{%
 \section{Drag and Drop}\label{drag-and-drop}}
 
-Drag and drop your Rmd and html files.
+Drag and drop your Rmd and html files. Make sure you
 
 Next, you'll need to commit to uploading them by writing a commit message. GitHub provides a suggested default message, but get into the habit of writing an actual message to yourself/others (breadcrumbs). Great! Now your files are listed as files in the repository.
 
@@ -2647,7 +2818,11 @@ This is great because now you don't need to remember everything about what we di
 \hypertarget{recap}{%
 \section{recap}\label{recap}}
 
-Intentionally ``lightweight'' entry to GitHub. But more powerful than this. We wanted to give you a taste of what is possible with GitHub.
+Let's just reflect for a moment on what we've done and why we've done it.
+
+Formatted tables
+
+Focused on sharing. We're not using the full power of GitHub here because we didn't set it up locally on your computers, but we have given you an intentionally ``lightweight'' entry to GitHub. You now have experience in a world where you don't attach excel files to emails. You can write them in R and as they evolve, share a URL on GitHub.
 
 To take your analyses to the next level and use GitHub with R for version control, read Jenny Bryan's \href{https://happygitwithr.com/}{Happy Git with R} when you're home.
 
@@ -2660,17 +2835,79 @@ To take your analyses to the next level and use GitHub with R for version contro
 \hypertarget{synthesis}{%
 \chapter{Synthesis}\label{synthesis}}
 
+Allison section
+
 \hypertarget{summary-a-few-sentences-5}{%
 \section{Summary (a few sentences)}\label{summary-a-few-sentences-5}}
 
-\hypertarget{objectives-more-detailed-bulletpoints-5}{%
-\section{Objectives (more detailed, bulletpoints?)}\label{objectives-more-detailed-bulletpoints-5}}
+In this session, we'll put together the skills that we've learned so far to create a new document from scratch, and learn a few new ways to import and work with spreadsheet data along the way.
+
+\begin{figure}
+\centering
+\includegraphics{img/r4ds_data-science.png}
+\caption{r4ds\_drawing}
+\end{figure}
+
+\hypertarget{objectives-2}{%
+\section{Objectives}\label{objectives-2}}
+
+\begin{itemize}
+\item
+  Read in data from a Google sheet with the \texttt{googlesheets4} package in R
+\item
+\end{itemize}
 
 \hypertarget{resources-7}{%
 \section{Resources}\label{resources-7}}
 
-\hypertarget{lessons-teaching-for-each-objective..-objectives-examples-1}{%
-\section{Lessons teaching for each objective\ldots{}.. (objectives, examples)}\label{lessons-teaching-for-each-objective..-objectives-examples-1}}
+\begin{itemize}
+\tightlist
+\item
+  Googlesheets4 link
+\end{itemize}
+
+\hypertarget{lessons-1}{%
+\section{Lessons}\label{lessons-1}}
+
+Lesson set up:
+
+\begin{itemize}
+\tightlist
+\item
+  Log in to your GitHub account and create a new repository called \texttt{sea-creature-synthesis}
+\item
+  Clone the repo to create a version controlled project (remember, copy \& paste the URL from the GitHub Clone / Download)
+\item
+  Copy and paste the \texttt{fish\_counts\_curated.csv} and \texttt{lobster\_abundance.csv} into the project folder
+\item
+  Create a new R Markdown document within your \texttt{sea-creature-synthesis} project
+\item
+  Knit your .Rmd to html, saving as \texttt{sb\_sea\_creatures.Rmd}
+\end{itemize}
+
+\hypertarget{reading}{%
+\subsection{Reading}\label{reading}}
+
+\begin{itemize}
+\tightlist
+\item
+  Read in lobster data with googlesheets4
+\item
+  Join with another existing data frame (or 2?)
+\item
+  Pivoting
+\item
+  Transforming / subsetting
+\item
+  Grouping \& summarizing (for means, sd, count)
+\item
+  Make a table
+\item
+  Make a graph
+\end{itemize}
+
+Possible new things:
+complete()
 
 \hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}{%
 \section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2}}
@@ -2678,11 +2915,11 @@ To take your analyses to the next level and use GitHub with R for version contro
 \hypertarget{interludes-deep-thoughtsopenscapes-6}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-6}}
 
-\hypertarget{our-turn-your-turn-1-1}{%
-\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1-1}}
+\hypertarget{our-turn-your-turn-1}{%
+\section{Our Turn Your Turn 1}\label{our-turn-your-turn-1}}
 
-\hypertarget{our-turn-your-turn-2-2}{%
-\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-2}}
+\hypertarget{our-turn-your-turn-2-1}{%
+\section{Our Turn Your Turn 2}\label{our-turn-your-turn-2-1}}
 
 \hypertarget{efficiency-tips-7}{%
 \section{Efficiency Tips}\label{efficiency-tips-7}}
