@@ -1,14 +1,18 @@
 # Tidying
 
+- After vlookups (filter & joins)
+- Allison section
+Possibly return to uncount() if relevant to get a case_format thing
+pivot_longer(), pivot_wider(), separate(), unite()
+janitor::clean_names()
+
 ## Better practices [needs a better name]
-How to be a nimble useR
-Modern useRs are nimble internet useRs
-something clever about cleaning 
-I am the worst at naming things
+
+- How to be a nimble useR
+- Modern useRs are nimble internet useRs
+- No one gets out of cleaning chores in data science 
 
 ## Summary (a few sentences)
-
-R ecosystem evolves and improves due to contributed work by the community, and this is a good thing. Being a nimble useR means being able to navigate/keep tabs on this ecosystem and find what you need. It also means working reproducibly, so you can re-run and update things more easily. Here we will teach you how to expect things and help yourself. Pay attention to urls.
 
 ## Objectives (more detailed, bulletpoints?)
 
