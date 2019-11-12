@@ -1,6 +1,6 @@
 # Tidying
 
-- After vlookups (filter & joins)
+- After vlookups (filter & joins) <-- SWITCH TO BEFORE
 - Allison section
 Possibly return to uncount() if relevant to get a case_format thing
 pivot_longer(), pivot_wider(), separate(), unite()

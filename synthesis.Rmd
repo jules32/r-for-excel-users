@@ -24,9 +24,9 @@ In this session, we'll pull together the skills that we've learned so far. We'll
 - [googlesheets4](https://github.com/tidyverse/googlesheets4) information
 - [Project oriented workflows](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) by Jenny Bryan
 
-## Lessons
+## Lesson
 
-Set-up:
+### Set-up:
 
 - Log in to your GitHub account and create a new repository called `sea-creature-synthesis`
 - Clone the repo to create a version controlled project (remember, copy & paste the URL from the GitHub Clone / Download)
@@ -100,8 +100,15 @@ lobster_counts <- read_csv(here::here("curation", "lobster_counts.csv"),
                   clean_names() 
 ```
 
+Look at it again to check (always look at your data) - now both data frames seem pretty coder-friendly to work with. 
 
-- Read in lobster data with googlesheets4
+### Data wrangling 
+
+- join?
+- filter?
+- unite/separate
+
+- Read in lobster data
 - Join with another existing data frame (or 2?)
 - Pivoting
 - Transforming / subsetting
