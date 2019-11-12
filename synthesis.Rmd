@@ -80,12 +80,24 @@ lobster_counts <- read_csv(here::here("curation","lobster_counts.csv"),
 ```
 
 ```{r, eval = FALSE}
-# Attach packages:
+# Read in CSV files
+fish_counts <- readr::read_csv(here::here("data", "fish_counts_curated.csv"))
+lobster_counts <- readr::read_csv(here::here("data", "lobster_counts.csv"))
+```
 
-library(tidyverse)
-library(here)
-library(janitor)
+Check out the two data frames (`fish_counts` and `lobster_counts`). 
 
+The `fish_counts` data frame is in pretty good shape. But the `lobster_counts` df could use some love, because there are "-99999" entries indicating `NA` values, and the column names would be difficult to write code with. 
+
+When reading in the lobster data, let's:
+
+- convert every "-99999" to an `NA`
+- get the column names into lower snake case using `janitor::clean_names()`
+
+```{r, eval = FALSE}
+lobster_counts <- read_csv(here::here("curation", "lobster_counts.csv"),
+                           na = "-99999") %>% 
+                  clean_names() 
 ```
 
 
