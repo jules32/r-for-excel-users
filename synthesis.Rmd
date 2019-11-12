@@ -1,17 +1,20 @@
 # Synthesis
 
-Allison section
-
 ## Summary (a few sentences)
 
 In this session, we'll put together the skills that we've learned so far to create a new document from scratch, and learn a few new ways to import and work with spreadsheet data along the way. 
 
-![r4ds_drawing](img/r4ds_data-science.png)
+![Grolemund & Wickham R4DS Illustration](img/r4ds_data-science.png)
 
 ## Objectives
 
+- Create a new repo on GitHub
+- Start a new R project, connected to the repo 
+- Create a new R Markdown document 
+- Attach necessary packages (`googlesheets4`, `tidyverse`)
 - Read in data from a Google sheet with the `googlesheets4` package in R
-- 
+- Basic data wrangling (`dplyr`, `tidyr`, `separate`)
+- Data visualization (`ggplot2`)
 
 ## Resources
 
