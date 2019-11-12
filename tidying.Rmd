@@ -1,78 +1,70 @@
-# Tidying
+# Tidying <- possibly "Reshaping & tidying"? 
 
-- After vlookups (filter & joins) <-- SWITCH TO BEFORE
-- Allison section
-Possibly return to uncount() if relevant to get a case_format thing
-pivot_longer(), pivot_wider(), separate(), unite()
-janitor::clean_names()
+## Summary
 
-## Better practices [needs a better name]
+In previous sessions, we learned to read in data, do some wrangling, and create a graph and table. Here, we'll continue by *reshaping* data frames (converting from long-to-wide, or wide-to-long format), *separating* and *uniting* variable (column) contents, converting between *explicit* and *implicit* missing (`NA`) values, and cleaning up our column names with the `janitor` package. 
 
-- How to be a nimble useR
-- Modern useRs are nimble internet useRs
-- No one gets out of cleaning chores in data science 
+## Objectives
 
-## Summary (a few sentences)
-
-## Objectives (more detailed, bulletpoints?)
-
-- expect there is a better way, how and where to look (20 mins)
-  - CRAN
-  - Twitter #rstats
-  - rOpenSci
-  - RStudio
-  - Example: how to Google.
-- hands-on with janitor (30+ mins)
-  - discovery and quality assurance
-  - installing from GitHub
-  - big payoff for little effort
-- hands-on with another excel-useful example: skimr?   
-- reproducibility (20 mins)
-  - it's important, scripted
-
+- Convert column names with `janitor::clean_names()`
+- Reshape data frames with `tidyr::pivot_longer()` and `tidyr::pivot_wider()`
+- Combine or separate information from columns with `tidyr::separate()` and `tidyr::unite()`
+- Make implicit missings *explicit* with `tidyr::complete()`
+- Make explicit missings *implicit* with `tidyr::drop_na()`
+- Use our new skills as part of a bigger wrangling sequence
+- Make a customized table 
 
 ## Resources
 
-- Wilson et al. 2014 "Good enough practices"
+-- [Ch. 12 *Tidy Data*, in R for Data Science](https://r4ds.had.co.nz/tidy-data.html) by Grolemund & Wickham
+- [`tidyr` documentation from tidyverse.org](https://tidyr.tidyverse.org/)
+- [`janitor` repo / information](https://github.com/sfirke/janitor) from Sam Firke
 
-## Lessons teaching for each objective….. (objectives, examples)
+## Lesson
 
-### Expect there's a better way chat
+### Lesson Prep
 
-- give time for them to google?
+#### Create a new R Markdown and attach packages
 
-### Janitor
+Within your day 2 R Project, create a new .Rmd. Attach the `tidyverse`, `janitor` and `readxl` packages with `library(package_name)`. Knit and save your new .Rmd within the project folder. 
 
-janitor & other things that will make your life easier with limited effort
-Janitor: up till now the column names have been fine. Until now.
+```{r, include = FALSE}
+# Attach packages
+library(tidyverse)
+library(janitor)
+library(readxl)
+```
 
-#### Our turn your turn
-Walk through and example and leave our code up, and have you do it but clean another dataset. Work with a neighbor.
+```{r, eval = FALSE}
+# Attach packages
+library(tidyverse)
+library(janitor)
+library(readxl)
+```
 
-### Example: How to Google
-Pay attention to URLs, build github/rmarkdown savviness (ex: raw.githubusercontent.com)
+#### Read in data
 
-- I read this blog: https://blog.revolutionanalytics.com/2018/08/how-to-use-r-with-excel.html
-- I’ve never heard of click on `openxlsx`, what is it
-- Takes me here https://www.rdocumentation.org/packages/openxlsx/versions/4.1.0.1, but I want more info. How recently was it worked on? Does it interface with tidyverse? Click on “news”
-- Takes me here. https://raw.githubusercontent.com/awalker89/openxlsx/master/NEWS . Not useful. But from this URL, - I see the username so I can edit this url to be
-https://github.com/awalker89/openxlsx/
-- 1st thing: most recent commit was a year ago. Can poke around more, are there issues open, are they taken care of? Etc. I will probably not pursue using this right now. But good to have learned about it. 
+Use `readxl::read_excel()` to import the "invert_counts_curated.xlsx" data:
+```{r, include = FALSE}
+inverts_df <- readxl::read_excel(here::here("curation", "invert_counts_curated.xlsx"))
+```
 
-## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
-## Interludes (deep thoughts/openscapes)
-## Our Turn Your Turn 2
-## Efficiency Tips
- 
- - browser efficiency tips
-   - Rmd/github anchors for urls
-   - press command to open a new tab
-   
+```{r, eval = FALSE}
+inverts_df <- readxl::read_excel("invert_counts_curated.xlsx")
+```
 
-Reproducibility is important (this might be new to some people)
-Example: run everything start to finish and then closing it all and trying to do again
-In excel
-Vs R
-If your computer shuts off are you nervous to close it?
-Recreate it
-“What they didn’t forget to teach you about R” WTDF. uncool 
+Be sure to explore the imported data a bit: 
+
+- `View()`
+- `names()`
+- `summary()`
+
+### Reshaping with `tidyr::pivot_longer()` and `tidyr::pivot_wider()`
+
+In *tidy format*, each variable is contained within a single column. If we look at *inverts_df*, we can see that the *year* variable is actually split over 3 columns, so we'd say this is currently in **wide format**. 
+
+There may be times when you want to have data in wide format, but often with code it is more efficient to convert to **long format** by gathering together observations for a variable that is currently split into multiple columns. 
+
+Schematically, converting from wide to long format looks like this: 
+
+![](img/tidyr_pivot_longer.png)
