@@ -68,3 +68,53 @@ There may be times when you want to have data in wide format, but often with cod
 Schematically, converting from wide to long format looks like this: 
 
 ![](img/tidyr_pivot_longer.png)
+
+To gather wide columns together (in our case, the 'year' columns), use `tidyr::pivot_longer()` as follows: 
+
+TODO: Add pivot_longer() schematic
+
+We'll use `tidyr::pivot_longer()` to gather data from all years in *inverts_df* into two columns: one called *year*, which contains the year (as a number), and another called *sp_count* that contains the number of each species observed. The new data frame will be stored as *inverts_long*:
+
+```{r}
+
+inverts_long <- tidyr::pivot_longer(data = inverts_df, 
+                                    cols = '2016':'2018',
+                                    names_to = "year",
+                                    values_to = "sp_count")
+
+```
+
+The outcome is the new long-format *inverts_long* data frame:
+```{r}
+inverts_long
+```
+
+Hooray, long format! 
+
+One thing that isn't obvious at first (but would become obvious if you continued working with this data) is that since those year numbers were initially column names (characters), when they are stacked into the *year* column, their class wasn't auto-updated to numeric. 
+
+Explore the class of *year* in *inverts_long*:
+
+```{r}
+class(inverts_long$year)
+```
+
+We'll use `dplyr::mutate()` in a different way here: to create a new column (that's how we've used `mutate()` previously) that has the same name of an existing column, in order to update and overwrite the existing column. 
+
+In this case, we'll `mutate()` to add a column called *year*, which contains an `as.numeric()` version of the existing *year* variable: 
+
+```{r}
+
+# Coerce "year" class to numeric: 
+
+inverts_long <- inverts_long %>% 
+  mutate(year = as.numeric(year))
+
+```
+
+Checking the class again, we see that *year* has been updated to a numeric variable: 
+
+```{r}
+class(inverts_long$year)
+```
+
