@@ -100,9 +100,11 @@ Here are a few other functions for quickly exploring imported data:
 - `head()`: Show the first x rows (default is 6 lines)
 - `tail()`: Show the last x rows (default is 6 lines)
 
-Now let's make a simple plot of some fish counts with `ggplot2`. 
+```{r, include = FALSE}
+# REMOVED THIS (doing ggplot2 next chapter)
 
-```{r}
+# Now let's make a simple plot of some fish counts with `ggplot2`. 
+
 ggplot(fish_counts, aes(x = year, y = total_count)) +
   geom_col(aes(fill = common_name)) +
   facet_wrap(~site)
@@ -259,7 +261,7 @@ The steps we'll go through in the code below are:
 - Set names of a vector with `set_names()`
 - Read in all worksheets, and put them together into a single data frame with `purrr::map_df()`
 
-**QUESTION: Have they learned the pipe operator at this point?**
+**QUESTION: TODO Have they learned the pipe operator at this point?**
 
 ```{r, include = FALSE}
 
@@ -293,8 +295,10 @@ Check out *kelp_all_sites*, and notice that now the data from all 11 sites is no
 kelp_all_sites
 ```
 
-Awesome! Let's make a graph with ggplot2: 
-```{r}
+```{r, include = FALSE}
+# REMOVED (since adding ggplot2 chapter AFTER this)
+
+# Now, let's make a graph! 
 
 ggplot(kelp_all_sites, aes(x = site, y = total_fronds)) +
   geom_col(aes(fill = year), position = "dodge") +
@@ -304,6 +308,7 @@ ggplot(kelp_all_sites, aes(x = site, y = total_fronds)) +
 ```{r, include = FALSE}
 # An extra: notice that for site 'bull' only 2 levels show up, so the width of bars is wider. That's obnoxious. We need to complete the levels - we can do that using tidyr::complete(). 
 
+# Remove this (teaching complete in tidying section):
 kelp_complete <- kelp_all_sites %>% 
   tidyr::complete(year, site)
 
@@ -334,7 +339,7 @@ As a CSV:
 readr::write_csv(kelp_all_sites, "kelp_all_sites.csv")
 ```
 
-A cool thing about `readr::read_csv()` is that it just quietly *works* without wrecking anything else you do in a sequence, so it's great to add at the end of a piped sequence.
+A cool thing about `readr::write_csv()` is that it just quietly *works* without wrecking anything else you do in a sequence, so it's great to add at the end of a piped sequence.
 
 For example, if I want to read in the 'ivee' worksheet from kelp_counts_curated.xlsx, select only columns 'year' and 'total_fronds', then write that new subset to a .csv file, I can pipe all the way through:
 ```{r, eval = FALSE}
@@ -366,11 +371,11 @@ writexl::write_xlsx(kelp_all_sites, "kelp_all_sites.xlsx")
 
 There's one dataset we haven't imported or explored yet: invertebrate counts for 5 popular invertebrates (California cone snail, California spiny lobster, orange cup coral, purple urchin and rock scallops) at 11 sites in the Santa Barbara Channel. Take a look at the *invert_counts_curated.xlsx* data by opening it in Excel
 
+TODO: Make these activities more interesting
+
 - Read in the *invert_counts_curated.xlsx* worksheet as object 'inverts_july', only retaining **site**, **common_name**, and **2016** and setting the existing first row in the worksheet as to column headers upon import
 - Explore the imported data frame using View, names, head, tail, etc. 
 - Write 'inverts_july' to a CSV file in your working directory called "inverts_july.csv"
-- Create a basic graph of invert counts in 2016 (y-axis) by site (x-axis), with each species indicated by a different fill color
-    - **Note:** If your column name is a number (not great) you'll probably want to rename it...but in the meantime, to call it as a variable make sure you put single or double quotes around it (e.g. `'2016'` or `"2016"`) so that R recognizes it's a variable and not a value
 
 ```{r, include = FALSE}
 
@@ -389,30 +394,25 @@ ls()
 # Write back to a csv file: 
 # write_csv(inverts_july, "inverts_july.csv")
 
-# Note: this is terrible looking, but fine for the activity
-inverts_graph <- ggplot(inverts_july, aes(x = site, y = `2016`)) +
-  geom_col(aes(fill = common_name), position = "dodge")
 ```
 
 ```{r, eval = FALSE}
+
 # Importing only 'site' through '2016' columns: 
+
 inverts_july <- readxl::read_excel("curation/invert_counts_curated.xlsx", range = "B1:D56")
 
 # Do some basic exploring (why might we want to do this in the Console instead?):
-#View(inverts_july)
+
+View(inverts_july)
 names(inverts_july)
 head(inverts_july)
 tail(inverts_july)
 ls()
 
-# Make a gg-graph plot: 
-inverts_graph <- ggplot(inverts_july, aes(x = site, y = `2016`)) +
-  geom_col(aes(fill = common_name), 
-           position = "dodge")
-```
+# Writing a csv "inverts_july.csv":
+write_csv(inverts_july, "inverts_july.csv")
 
-```{r}
-inverts_graph
 ```
 
 ## Efficiency Tips
