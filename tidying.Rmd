@@ -14,7 +14,7 @@ In previous sessions, we learned to read in data, do some wrangling, and create 
 - Make implicit missings *explicit* with `tidyr::complete()`
 - Make explicit missings *implicit* with `tidyr::drop_na()`
 - Use our new skills as part of a bigger wrangling sequence
-- Make a customized table 
+- Make a customized table (TODO: or introduce Kable if not time in pivot tables chapter)
 
 ## Resources
 
@@ -221,7 +221,7 @@ Try updating the separator from "_" to "_hello!_" to see what the outcome column
 # Uniting more than 2 columns: 
 
 inverts_triple_unite <- inverts_long %>% 
-  tidyr::unite(col = "site_name_year",
+  tidyr::unite(col = "year_site_name",
                c(year, site, common_name),
                sep = "-")
 
@@ -231,7 +231,69 @@ inverts_triple_unite <- inverts_long %>%
 head(inverts_triple_unite)
 ```
 
-
 #### `tidyr::separate()` to separate information into multiple columns
 
+While `tidyr::unite()` allows us to combine information from multiple columns, it's more likely that you'll *start* with a single column that you want to split up into pieces.
+
+For example, I might want to split up a column containing the *genus* and *species* (*Scorpaena guttata*) into two separate columns (*Scorpaena* | *guttata*), so that I can count how many *Scorpaena* organisms exist in my dataset at the genus level. 
+
+Use `tidyr::separate()` to "separate a character column into multiple columns using a regular expression separator." 
+
 ![](img/rstudio-cheatsheet-separate.png)
+
+Let's start again with *inverts_unite*, where we have combined the *site* and *year* into a single column called *site_year*. If we want to **separate** those, we can use:
+
+```{r}
+
+inverts_sep <- inverts_triple_unite %>% 
+  tidyr::separate(year_site_name, into = c("my_year", "my_site_name"))
+
+```
+
+What is that warning `Expected 2 pieces...` telling us? If we take a look at the resulting data frame *inverts_sep*, we see that it only keeps the first **two** pieces, and gets rid of the third (name). Which is a bit concerning, because we rarely want to just throw away information in a data frame. 
+
+```{r}
+head(inverts_sep)
+```
+
+That's problematic. How can we make sure we're keeping as many different elements as exist in the united column? 
+
+We have a couple of options: 
+
+1. Create the *number* of columns that are needed to retain as many elements as exist (in this case, 3, but we only created two new columns in the example above)
+
+```{r}
+inverts_sep3 <- inverts_triple_unite %>% 
+  tidyr::separate(year_site_name, into = c("the_year", "the_site", "the_name"))
+```
+
+Another warning. What is that about? Let's take a look at the resulting data frame and think about what's missing (what are the "pieces discarded"?):
+
+```{r}
+head(inverts_sep3)
+```
+
+
+Aha! Only the *first word* of the common name was retained, and anything else was trashed. We want to keep everything after the second dash in the new *the_name* column. 
+
+That's because the **default is `extra = "warn"`**, which means that if you have more pieces than columns you're separating into, it will populate the columns that have been allotted (in our case, just 3) then drop any additional information, giving you a warning that pieces have been dropped.
+
+To keep the extra pieces that have been dropped, add the `extra = "merge"` argument within `tidyr::separate()` to override:
+
+```{r}
+inverts_sep_all <- inverts_triple_unite %>% 
+  separate(year_site_name, 
+           into = c("the_year", "the_site", "the_name"), 
+           extra = "merge")
+```
+
+No warning there about things being discarded. Explore *inverts_sep_all*:
+
+```{r, echo = FALSE}
+inverts_sep_all
+```
+
+We see that the resulting data frame has split *year_site_name* into three separate columns, *the_year*, *the_site*, and *the_name*, storing everything after the second break ("-") in *the_name* instead of dropping pieces. 
+
+
+
