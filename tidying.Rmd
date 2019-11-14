@@ -1,4 +1,6 @@
-# Tidying <- possibly "Reshaping & tidying"? 
+# Tidying 
+
+### Possible name update TODO: Reshaping and tidying
 
 ## Summary
 
@@ -184,6 +186,14 @@ Or we may want to do the reverse (separate information from a single column into
 
 #### `tidyr::unite()` to merge information from separate columns
 
+Use `tidyr::unite()` to combine (paste) information from multiple columns into a single column (as for the scientific name example above)
+
+![tidyr-unite](img/rstudio-cheatsheet-unite.png)
+
+To demonstrate uniting information from separate columns, we'll make a single column that has the combined information from *site* abbreviation and *year* in *inverts_wide*. 
+
 
 
 #### `tidyr::separate()` to separate information into multiple columns
+
+![tidyr-separate](img/rstudio-cheatsheet-separate.png)
