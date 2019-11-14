@@ -8,9 +8,9 @@ In previous sessions, we learned to read in data, do some wrangling, and create 
 
 ## Objectives
 
+- Reshape data frames with `tidyr::pivot_wider()` and `tidyr::pivot_longer()`
 - Convert column names with `janitor::clean_names()`
-- Reshape data frames with `tidyr::pivot_longer()` and `tidyr::pivot_wider()`
-- Combine or separate information from columns with `tidyr::separate()` and `tidyr::unite()`
+- Combine or separate information from columns with `tidyr::unite()` and `tidyr::separate()`
 - Make implicit missings *explicit* with `tidyr::complete()`
 - Make explicit missings *implicit* with `tidyr::drop_na()`
 - Use our new skills as part of a bigger wrangling sequence
@@ -144,7 +144,17 @@ inverts_wide <- inverts_long %>%
 inverts_wide
 ```
 
-We can see that now each *species* has its own column (wider format). 
+We can see that now each *species* has its own column (wider format). But also notice that those column headers (since they have spaces) might not be in the most coder-friendly format...
+
+#### Meet the `janitor` package
+
+The `janitor` package by Sam Firke is a brilliant collection of functions for some quick data cleaning. We recommend that you explore the different functions it contains. Here, we'll use `janitor::clean_names()` to convert all of our column headers to a more convenient case - the default is **lower_snake_case**, which means all spaces and symbols are replaced with an underscore (or a word describing the symbol), all characters are lowercase, and a few other nice adjustments. 
+
+For example, `janitor::clean_names()` would update these nightmare column names into much nicer forms:
+
+- `My...RECENT-income!` becomes `my_recent_income`
+- `SAMPLE2.!test1` becomes `sample2_test1`
+- `ThisIsTheName` becomes `this_is_the_name`
 
 If we wanted to then use these columns (which we probably would, since we created them), we could clean the names to get them into more coder-friendly lower_snake_case with `janitor::clean_names()`:
 
@@ -156,6 +166,15 @@ inverts_wide <- inverts_wide %>%
 ```{r}
 names(inverts_wide)
 ```
+
+And there are other options for the case, like: 
+
+- "snake" produces snake_case
+- "lower_camel" or "small_camel" produces lowerCamel
+- "upper_camel" or "big_camel" produces UpperCamel
+- "screaming_snake" or "all_caps" produces ALL_CAPS
+- "lower_upper" produces lowerUPPER
+- "upper_lower" produces UPPERlower
 
 ### Combine or separate information in columns with `tidyr::unite()` and `tidyr::separate()`
 
