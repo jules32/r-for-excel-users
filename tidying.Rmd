@@ -33,6 +33,7 @@ Within your day 2 R Project, create a new .Rmd. Attach the `tidyverse`, `janitor
 library(tidyverse)
 library(janitor)
 library(readxl)
+library(kableExtra)
 ```
 
 ```{r, eval = FALSE}
@@ -61,6 +62,8 @@ Be sure to explore the imported data a bit:
 
 ### Reshaping with `tidyr::pivot_longer()` and `tidyr::pivot_wider()`
 
+#### Wide-to-longer format with `tidyr::pivot_longer()`
+
 In *tidy format*, each variable is contained within a single column. If we look at *inverts_df*, we can see that the *year* variable is actually split over 3 columns, so we'd say this is currently in **wide format**. 
 
 There may be times when you want to have data in wide format, but often with code it is more efficient to convert to **long format** by gathering together observations for a variable that is currently split into multiple columns. 
@@ -69,7 +72,7 @@ Schematically, converting from wide to long format looks like this:
 
 ![](img/tidyr_pivot_longer.png)
 
-To gather wide columns together (in our case, the 'year' columns), use `tidyr::pivot_longer()` as follows: 
+Generally, the code to gather wide columns together using `tidyr::pivot_longer()` looks like this: 
 
 TODO: Add pivot_longer() schematic
 
@@ -112,9 +115,75 @@ inverts_long <- inverts_long %>%
 
 ```
 
-Checking the class again, we see that *year* has been updated to a numeric variable: 
+Checking the class again, we see that *year* has been updated to a numeric variable:
 
 ```{r}
 class(inverts_long$year)
 ```
 
+#### Long-to-wider format with `tidyr::pivot_wider()`
+
+In the previous example, we had information spread over multiple columns that we wanted to *gather*. Sometimes, we'll have data that we want to *spread* over multiple columns. 
+
+For example, imagine that starting from *inverts_long* we want each species in the *common_name* column to exist as its **own column**. In that case, we would be converting from a longer to a wider format, and will use `tidyr::pivot_wider()` as follows: 
+
+TODO: Add pivot_wider() schematic
+
+Specifically for our data, we write code to spread the *common_name* column as follows: 
+```{r}
+
+inverts_wide <- inverts_long %>% 
+  tidyr::pivot_wider(names_from = common_name, 
+                     values_from = sp_count)
+
+```
+
+```{r}
+inverts_wide
+```
+
+We can see that now each *species* has its own column (wider format). 
+
+If we wanted to then use these columns (which we probably would, since we created them), we could clean the names to get them into more coder-friendly lower_snake_case with `janitor::clean_names()`:
+
+```{r}
+inverts_wide <- inverts_wide %>% 
+  janitor::clean_names()
+```
+
+```{r}
+names(inverts_wide)
+```
+
+### Combine or separate information in columns with `tidyr::separate()` and `tidyr::unite()`
+
+Sometimes we'll want to *separate* contents of a single column into multiple columns, or *combine* entries from different columns into a single column. 
+
+For example, the following data frame has *genus* and *species* in separate columns:
+```{r, echo = FALSE}
+unite_ex <- tribble(
+  ~id, ~genus, ~species, ~common_name,
+  1, "Scorpaena", "guttata", "sculpin",
+  2, "Sebastes", "miniatus", "vermillion"
+)
+
+kable(unite_ex)
+```
+
+We may want to combine the genus and species into a single column, *scientific_name*: 
+```{r, echo = FALSE}
+unite_ex_sci_name <- unite_ex %>% 
+  unite("scientific_name", 
+        c(genus, species),
+        sep = " ")
+
+kable(unite_ex_sci_name)
+```
+
+Or we may want to do the reverse (separate information from a single column into multiple columns). Here, we'll learn `tidyr::unite()` and `tidyr::separate()` to help us do both. 
+
+#### `tidyr::unite()` to merge information from separate columns
+
+
+
+#### `tidyr::separate()` to separate information into multiple columns
