@@ -5,8 +5,16 @@ use lobster data
 Count and uncount, summary statistics
 Use uncounted lobster data
 summarize(mean, sd, n) with uncounted fish data (stdev in excel?)
-DT, kable
+DT, kable — introduce this and then will be repeated in tidying
 if time, could we show count vs n but if you want to get other statistics
+
+TODO: 
+Explore data: 
+summaries/data table
+Uncount and count
+Why would you ever want to uncount? You don’t want to assume how future you will want to use this data
+How easy is it to get these counts by different groupings
+Simplest ggplot (introduced in readxl chapter)
 
 
 ## Summary (a few sentences)

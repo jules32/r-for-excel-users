@@ -6,7 +6,7 @@ rmd_files: [
   "index.Rmd",
   "overview.Rmd",
   "rmarkdown.Rmd",
-  "github.Rmd", 
+  "github.Rmd",
   "readxl.Rmd",
   "ggplot2.Rmd",
   "dplyr-pivot-tables.Rmd",

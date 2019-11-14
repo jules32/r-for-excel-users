@@ -2,7 +2,10 @@
 
 TODO: shorten so it's just the overview (ie cut the Rscripts)
 
-## Summary (a few sentences)
+## Summary
+
+Welcome! We'll introduce the workshop and the RStudio interface (IDE). 
+
 ## Objectives (more detailed, bulletpoints?)
 
 - working with data that are not your own. 
@@ -22,7 +25,10 @@ Welcome.
 
 <!---introduce ourselves, how this workshop will work.
 
-Also: show some data. And then talk to your neighbor about how this data is and is not like some data that you've worked with. 3 mins, and then share out. ---> 
+Also: show some data. And then talk to your neighbor about how this data is and is not like some data that you've worked with. 3 mins, and then share out. 
+
+We are a friendly group, coding is social, talk to your neighbors. Sticky notes. 
+---> 
 
 This workshop you will learn hands-on how to begin to interoperate between Excel and R. 
 
@@ -106,6 +112,9 @@ Show data files, We will discuss our analysis plan (only enough to motivate!) Cr
 
 <!---TODISCUSS: break this into a new chapter? --->
 
+## If R were an Airplane
+
+
 ## RStudio Orientation
 
 Open RStudio for the first time. 
@@ -134,7 +143,7 @@ If you've have opened RStudio for the first time, you'll be in your Home directo
 knitr::include_graphics("img/RStudio_IDE_homedir.png")  
 ```
 
-
+<!---
 ### RStudio Projects
 
 Create a new Project called 'r-for-excel-users'. File > New Project... > New Directory > New Project. Give your Project a name browse to a place to keep it. And then click to Create Project!
@@ -151,8 +160,7 @@ Now that we have our Project, here is an important question: where are we? Now w
 knitr::include_graphics("img/RStudio_IDE_projdir.png")  
 ```
 
-<!---TODO build  out more! A folder will show up and you can drag and drop into that folder.--->
-
+--->
 
 ### R Console
 
@@ -263,7 +271,7 @@ Let's try another. In Excel there is a function called AVERAGE. Let's see if the
 
 OK so now that we've got a little bit of a feel for R and RStudio, let's do something much more interesting and really start feeling its power. 
 
-
+<!---
 ## R Scripts
 
 OK so working in the Console is great for quick things, but it gets messy. Keeping  track at what I've done and trying to build upon it would be a nightmare. 
@@ -272,7 +280,6 @@ Instead of working in the Console, we can be more organized by writing analyses 
 
 In this script, we're going to make our first figure in R. Let's all do this together. 
 
-<!---TODO add screenshots, build out more ---> 
 
 File > New File > R Script. 
 
@@ -322,6 +329,7 @@ ggplot(diamonds, aes(x = carat, y = price)) +
   geom_point()
 ```
 
+--->
 
 ### Deep thought: Error messages are your friends
 
