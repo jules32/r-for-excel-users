@@ -1,7 +1,5 @@
 # Tidying 
 
-### Possible name update TODO: Reshaping and tidying
-
 ## Summary
 
 In previous sessions, we learned to read in data, do some wrangling, and create a graph and table. Here, we'll continue by *reshaping* data frames (converting from long-to-wide, or wide-to-long format), *separating* and *uniting* variable (column) contents, converting between *explicit* and *implicit* missing (`NA`) values, and cleaning up our column names with the `janitor` package. 
@@ -148,13 +146,22 @@ We can see that now each *species* has its own column (wider format). But also n
 
 #### Meet the `janitor` package
 
-The `janitor` package by Sam Firke is a brilliant collection of functions for some quick data cleaning. We recommend that you explore the different functions it contains. Here, we'll use `janitor::clean_names()` to convert all of our column headers to a more convenient case - the default is **lower_snake_case**, which means all spaces and symbols are replaced with an underscore (or a word describing the symbol), all characters are lowercase, and a few other nice adjustments. 
+The `janitor` package by Sam Firke is a brilliant collection of functions for some quick data cleaning. We recommend that you explore the different functions it contains. Like:
+
+- `janitor::clean_names()`: update column headers to a case of your choosing
+- `janitor::get_dupes()`: see all rows that are duplicates within variables you choose
+- `janitor::remove_empty()`: remove empty rows and/or columns
+- `janitor::andorn_*()`: jazz up frequency tables of counts (we'll return to this for a table example in TODO: Session 8)
+- ...and more! 
+
+Here, we'll use `janitor::clean_names()` to convert all of our column headers to a more convenient case - the default is **lower_snake_case**, which means all spaces and symbols are replaced with an underscore (or a word describing the symbol), all characters are lowercase, and a few other nice adjustments. 
 
 For example, `janitor::clean_names()` would update these nightmare column names into much nicer forms:
 
 - `My...RECENT-income!` becomes `my_recent_income`
 - `SAMPLE2.!test1` becomes `sample2_test1`
 - `ThisIsTheName` becomes `this_is_the_name`
+- `2015` becomes `x2015`
 
 If we wanted to then use these columns (which we probably would, since we created them), we could clean the names to get them into more coder-friendly lower_snake_case with `janitor::clean_names()`:
 
@@ -302,7 +309,7 @@ To keep the extra pieces that have been dropped, add the `extra = "merge"` argum
 ```{r}
 inverts_sep_all <- inverts_triple_unite %>% 
   separate(year_site_name, 
-           into = c("the_year", "the_site", "the_name"), 
+           into = c("sample_year", "location", "sp_name"), 
            extra = "merge")
 ```
 
@@ -312,7 +319,77 @@ No warning there about things being discarded. Explore *inverts_sep_all*:
 inverts_sep_all
 ```
 
-We see that the resulting data frame has split *year_site_name* into three separate columns, *the_year*, *the_site*, and *the_name*, storing everything after the second break ("-") in *the_name* instead of dropping pieces. 
+We see that the resulting data frame has split *year_site_name* into three separate columns, *sample_year*, *location*, and *sp_name*, but now everything after the second break ("-") remains together in *sp_name* instead of dropping pieces following the third word. 
+
+### Convert between explicit and implicit missings (`NA`s)
+
+An *explicit missing* is when every possible outcome actually appears in a data frame as a row, even if a variable of interest for that row is missing (`NA`).
+
+Conversely, an *implicit missing* is when an observation (row) does *not* appear in the data frame because a variable of interest contains an `NA` missing value. 
+
+Consider the following data: 
+
+```{r, echo = FALSE}
+df_missings <- tribble(
+  ~animal, ~day, ~food_choice,
+  "eagle", "Monday", "fish",
+  "mountain lion", "Monday", "squirrel",
+  "toad", "Monday", NA,
+  "eagle", "Tuesday", "fish",
+  "mountain lion", "Tuesday", "deer",
+  "toad", "Tuesday", "flies"
+) %>% 
+  select(day, animal, food_choice)
+
+kable(df_missings)
+```
 
 
+Notice that the row for **toad** still appears in the dataset for **Tuesday**, despite having a missing food choice for that day. This is an *explicit missing* because the row still appears in the data frame. 
 
+If that row was removed, the resulting dataset would look like this: 
+
+```{r}
+df_missings %>% 
+  drop_na(food_choice) %>% 
+  kable()
+```
+
+...and if your reaction is "But then how do I know there's a toad from **MONDAY**?", then you can see how it can be a bit risky to have *implicit missings* instead of *explicit missings*. 
+
+Whichever we choose, we can convert between the two forms using `tidyr::drop_na()` or `tidyr::complete()`:
+
+- `tidyr::drop_na()`: removes observations (rows) that contain `NA` for variable(s) of interest
+- `tidyr::complete()`: turns implicit missing values into explicit missing values by completing a data frame with missing combinations of data
+
+We'll use both here, starting with the *inverts_long* data frame we created above. 
+
+Looking through *inverts_long*, we'll see that there are `NA` observations for every species at site **bull** in 2018 - but those `NA` counts do show up. First, we'll use `tidyr::drop_na()` to make those missings implicit (invisible) instead: 
+
+```{r}
+
+inverts_implicit_NA <- inverts_long %>% 
+  drop_na(sp_count)
+
+```
+
+See that now, the rows that contained an `NA` in the *sp_count* column from *inverts_long* have been removed. 
+
+WAIT, I want them back! We can ask R to create explicit missings (by identifying which combinations of groups currently don't appear in the data frame) using `tidyr::complete()`:
+
+```{r}
+
+inverts_explicit_NA <- inverts_implicit_NA %>% 
+  complete(month, site, common_name, year)
+
+```
+
+Now you'll see `inverts_explicit_NA` has those 5 "missing" observations shown in the data frame. 
+
+### Activities
+
+TODO
+
+### Fun facts / insights
+
+TODO
