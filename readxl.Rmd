@@ -417,7 +417,7 @@ inverts_graph
 
 ## Efficiency Tips
 
-- Add an assignment arrow in script/code chunk (<-): Alt + minus (-)
+- Add an assignment arrow in (<-): Alt + minus (-)
 - Undo shortcut: Command + Z 
 - Redo shortcut: Command + Shift + Z
 
