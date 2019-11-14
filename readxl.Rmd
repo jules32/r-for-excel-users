@@ -28,38 +28,39 @@
 
 In Session 1, we introduced how and why R Projects are great for reproducibility, because our self-contained working directory will be the **first** place R looks for files. 
 
-You downloaded four files for this workshop: 
+You downloaded five files for this workshop: 
 
 - fish_counts_curated.csv
 - invert_counts_curated.xlsx
 - kelp_counts_curated.xlsx
 - substrate_cover_curated.xlsx
+- lobster_counts.csv TODO: add this? 
 
 Copy and paste those files into the 'r-and-excel' folder on your computer. Notice that now these files are in your working directory when you go back to that Project in RStudio (check the 'Files' tab). That means they're going to be in the first place R will look when you ask it to find a file to read in. 
 
-### Create a new .R script, attach the `tidyverse`, `readxl` and `writexl` packages  
+### In the .Rmd you just created, attach the `tidyverse`, `readxl` and `writexl` packages  
 
-In your RforExcelUsers project in RStudio, open a new .R script and add a useful header to the top of it. For example, at a minimum: 
+In this lesson, we'll read in a CSV file with the `readr::read_csv()` function, so we need to have the `readr` package attached. Since it's part of the `tidyverse`, we'll go ahead and attach the `tidyverse` package below our script header using `library(package_name)`. It's a good idea to attach packages within the set-up chunk in R Markdown, so we'll also attach the `readxl` and `writexl`packages there. 
 
-```{r}
+Here's our first code chunk: 
 
-# --------------------------------
-# A descriptive title
-# Summary of what this script is for 
-# Your name
-# Contact information
-# --------------------------------
-
-# Other things you might include: required packages or datasets, relevant links (e.g. to raw data source, GitHub repo, etc.), citations and sources.
-```
-
-In this lesson, we'll read in a CSV file with the `readr::read_csv()` function, so we need to have the `readr` package attached. Since it's part of the `tidyverse`, we'll go ahead and attach the `tidyverse` package below our script header using `library(package_name)`. It's a good idea to attach all necessary packages near the top of a script, so we'll also attach the `readxl` packages here. 
-
-```{r, message = FALSE}
+```{r, include = FALSE}
 # Attach the tidyverse, readxl and writexl packages:
 library(tidyverse)
 library(readxl)
 library(writexl)
+```
+
+
+```
+{r setup, eval = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Attach the tidyverse, readxl and writexl packages:
+library(tidyverse)
+library(readxl)
+library(writexl)
+
 ```
 
 Now, all of the packages and functions within the `tidyverse` and `readxl`, including `readr::read_csv()` and `readxl::read_excel()`, are available for use. 
