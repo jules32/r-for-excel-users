@@ -60,7 +60,8 @@ invert_subset <- data_clean %>%
   filter(year %in% 2016:2018, 
          month == 7) %>%
   drop_na(count) %>% 
-  mutate(count = as.numeric(count)) %>% 
+  mutate(count = as.numeric(count), 
+         common_name = str_replace_all(common_name, "califonia cone snail", "california cone snail")) %>% 
   group_by(year, month, site, common_name) %>% 
   summarize(
     tot_count = sum(count)
