@@ -497,3 +497,5 @@ So, both `filter()` and `VLOOKUP` look through your data frame (or spreadsheet, 
 
 ## Efficiency Tips
 
+- Comment out multiline code with Command + Shift + C
+- Knit with Command + Shift + K
