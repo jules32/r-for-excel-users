@@ -1,10 +1,18 @@
 # RMarkdown {#rmarkdown}
 
-TODO: move count and uncount to the pivot table summary statistics chapter
+TODO: Intro: we're going to start off with RMarkdown. 
 
-## Summary (a few sentences)
+TODO: break into "R chunks" and "Markdown sections"
 
-Here we'll learn RMarkdown, which helps you tell a story with your data analysis because you can write text alongside the code.
+
+TODO (write out): 
+Intro, knitting
+How in-line figures are awesome (no copy-pasting from excel to word)
+Reproducibility is important (this might be new to some people). Reproducible research/self-contained Rmd files: read in data at the top. Read_csv.
+
+## Summary
+
+We'll learn RMarkdown, which helps you tell a story with your data analysis because you can write text alongside the code. We are actually learning two languages at once: R and Markdown. 
 
 ## Objectives (more detailed, bulletpoints?)
 
@@ -12,13 +20,9 @@ Here we'll learn RMarkdown, which helps you tell a story with your data analysis
 
 ## Intro to RMarkdown
 
-TODO (write out): 
-Intro, knitting
-How it’s different from R Script (which  we just created)
-How in-line figures are awesome (no copy-pasting from excel to word)
-Reproducibility is important (this might be new to some people). Reproducible research/self-contained Rmd files: read in data at the top. Read_csv.
+An RMarkdown file will allow us to weave markdown text with chunks of R code to be evaluated and output content like tables and plots. This is super cool, and really best to experience before we talk about it. So let's do this together. 
 
-An RMarkdown file will allow us to weave markdown text with chunks of R code to be evaluated and output content like tables and plots.
+### Create an RMarkdown file
 
 File -> New File -> RMarkdown... -> Document of output format HTML, OK.
 
@@ -26,23 +30,29 @@ File -> New File -> RMarkdown... -> Document of output format HTML, OK.
 knitr::include_graphics("img/rstudio_new-rmd-doc-html.png")  
 ```
 
-
-You can give it a Title like "My Analysis". Then click OK. 
+You can give it a Title like "Testing" (a name that's totally ok to use as you're trying something out). Then click OK. 
 
 OK, first off: by opening a file, we are seeing the 4th pane of the RStudio console, which is essentially a text editor. This lets us organize our files within RStudio instead of having a bunch of different windows open.
 
 Let's have a look at this file — it's not blank; there is some initial text is already provided for you. Notice a few things about it: 
 
-- There are white and grey sections. R code is in grey sections, and other text is in white. 
-
+- Title and Author are auto-filled, and the today's date has been added
+- There are white and grey sections. These are the 2 main languages that make up an RMarkdown file. 
+  - **Grey sections are R code**
+  - **White sections are Markdown text**
+  
 ```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("img/rmarkdown.png")  
 ```
 
 
-<br>
+### Knit your RMarkdown file
 
-Let's go ahead and "Knit HTML" by clicking the blue yarn at the top of the RMarkdown file. 
+Let's go ahead and "Knit" by clicking the blue yarn at the top of the RMarkdown file. It's going to ask us to save first, I'll name mine "testing.Rmd".
+
+How cool is this, we've just made an html file, a webpage that we are viewing locally on our own computers. Knitting this RMarkdown document has rendered — we also say formatted — both the Markdown text (white) and the R code (grey), and the it also executed — we also say ran — the R code.  
+
+Let's have a look at them side-by-side: 
 
 <br>
 
@@ -50,16 +60,24 @@ Let's go ahead and "Knit HTML" by clicking the blue yarn at the top of the RMark
 knitr::include_graphics("img/rmarkdown_side_by_side.png")  
 ```
 
+Let's take a deeper look at these two files. So much of learning to code is looking for patterns.
 
-What do you notice between the two? So much of learning to code is looking for patterns.
+### Activity (5 mins)
+
+Look at these two files while talking with your neighbor: What do you notice between the two files? Start off with these observations:
+
+- Markdown text (white sections): The two hashtags `##` cause the following text to be displayed as a header: the text is larger and in bold 
+- R code (grey sections): The `summary()` function outputs summary statistics and the `plot()` function creates a plot!
+
+And now let's talk about this. 
+
+### R code chunks
 
 Notice how the grey **R code chunks** are surrounded by 3 backticks and `{r LABEL}`. These are evaluated and return the output text in the case of `summary(cars)` and the output plot in the case of `plot(pressure)`.
 
 Notice how the code `plot(pressure)` is not shown in the HTML output because of the R code chunk option `echo=FALSE`. 
+COME BACK!!!
 
-The hashtag (#) at lines 12 and 22 cause the following text to be displayed larger and in bold. 
-
-This RMarkdown file has 2 different languages within it: **R** and **Markdown**. 
 
 We don't know that much R yet, but you can see that we are taking a summary of some data called 'cars', and then plotting. We will focus on R for the rest of the workshop, but for the rest of this morning let's focus on the second language.
 
@@ -91,7 +109,8 @@ Learn more: http://rmarkdown.rstudio.com/
 1. Reknit your html file. 
 
 
-### Code chunks
+### R chunks
+
 
 OK. Now let's practice with some of those commands that we were working on this morning.
 
@@ -118,41 +137,22 @@ Now, hitting return does not execute this command; remember, it's a text file in
     c. keyboard shortcut: command-return
 1. click the green arrow at the right of the code chunk
 
+Cool tip: doesn't have to be only R, other languages supported. 
+
 ### Activity
 
 > Add a few more commands to your file from this morning. Execute them by trying the three ways above. Then, knit your R Markdown file, which will also save the Rmd by default. 
 
-## Create a Rmd for our fish analysis
-
-OK now let's open a new RMarkdown file and begin some analyses. 
-
-- read in
-- View()
-
-fish_counts are what we call Tidy Data. 
-
-## Tidy data
-
-Tidy data has a simple convention: put variables in the columns and observations in the rows.
-
-```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("img/tidy_data.png")  
-```
-
-
-Uncount this data so that we can use it with pivot tables
-
-TODO: 
-Explore data: 
-summaries/data table
-Uncount and count
-Why would you ever want to uncount? You don’t want to assume how future you will want to use this data
-How easy is it to get these counts by different groupings
-Simplest ggplot (introduced in readxl chapter)
 
 ## Activity
 
 1. knit!
+
+Delete everything! Just by being an .Rmd file, this will knit
+
+## Deep thoughts
+
+Command-Z is the best
 
 ## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
 ## Interludes (deep thoughts/openscapes)
