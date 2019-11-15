@@ -1,28 +1,34 @@
-# ggplot2
+# Graphs with ggplot2 {#ggplot2}
 
-TODO: Allison, smooth this over and connect Channel Islands National Park
+TODO: Allison, smooth this over and connect Channel Islands National Park to LTER SBC datasets 
 
+## Summary
 
+Now that we know how to *get* some data, the next thing we'll probably want to do is *look* at it. In Excel, graphs are made by manually selecting options - which, as we've discussed previously, may not be the best option for reproducibility. 
 
-## Summary (a few sentences)
+Using `ggplot2`, the graphics package within the `tidyverse`, we'll write reproducible code to manually and thoughtfully build our graphs. 
+
+> "ggplot2 implements the grammar of graphics, a coherent system for describing and building graphs. With ggplot2, you can do more faster by learning one system and applying it in many places." - [R4DS](http://r4ds.had.co.nz/data-visualisation.html)
 
 ## Objectives
+
+- Read in National Parks visitation data from a multisheet Excel workbook
+- Explore visitation for Channel Islands National Park, and see how that compares to all parks
+- Customize a gg-graph
+- Export and save your graphs
+
+TODO: Get CINP and all NPs data into a multisheet Excel workbook, then continue
 
 ## Resources
 
 
-# Visualizing: `ggplot2` {#ggplot2}
+
+
+# Visualizing: `ggplot2` 
 
 Why do we start with data visualization? Not only is data viz a big part of analysis, it’s a way to SEE your progress as you learn to code.
 
-> "ggplot2 implements the grammar of graphics, a coherent system for describing and building graphs. With ggplot2, you can do more faster by learning one system and applying it in many places." - [R4DS](http://r4ds.had.co.nz/data-visualisation.html)
 
-This lesson borrows heavily from Hadley Wickham's [R for Data Science book](http://r4ds.had.co.nz/data-visualisation.html), and an EcoDataScience lesson on Data Visualization.
-
-```{r viz ops, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
-library(htmltools)
-```
 
 ## Objectives & Resources
 
