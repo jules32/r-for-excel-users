@@ -13,7 +13,7 @@
 - Use `readxl::read_excel()` to read in parts of a worksheet (by cell range)
 - Specify column names when importing Excel data
 - Read and combine data from multiple Excel worksheets into a single df using `purrr::map_df()`
-- Write data using `readr::write_csv()` or `writexl::write_excel()`
+- Write data using `readr::write_csv()` or `writexl::write_xlsx()`
 - Workflows with `readxl`: considerations, limitations, reproducibility
 
 ## Resources
@@ -28,13 +28,14 @@
 
 In Session 1, we introduced how and why R Projects are great for reproducibility, because our self-contained working directory will be the **first** place R looks for files. 
 
-You downloaded five files for this workshop: 
+You downloaded TODO: XX files for this workshop: 
 
 - fish_counts_curated.csv
 - invert_counts_curated.xlsx
 - kelp_counts_curated.xlsx
 - substrate_cover_curated.xlsx
 - lobster_counts.csv TODO: add this? 
+- national_parks.xlsx TODO: add this? 
 
 Copy and paste those files into the 'r-and-excel' folder on your computer. Notice that now these files are in your working directory when you go back to that Project in RStudio (check the 'Files' tab). That means they're going to be in the first place R will look when you ask it to find a file to read in. 
 
