@@ -15,9 +15,12 @@ We'll use the `ggplot2` package, but the function we use to initialize a graph w
 
 ## Objectives
 
-- Create several common types of graphs (scatterplot, column, line) in ggplot2
-- Learn basics of customization (color, style, themes, etc.)
-- Faceted graphs
+- Build several common types of graphs (scatterplot, column, line) in ggplot2
+- Customize gg-graph aesthetics (color, style, themes, etc.)
+- Update axis labels and titles
+- Combine compatible graph types (geoms)
+- Build multiseries graphs
+- Split up data into faceted graphs
 - Exporting figures with `ggsave()`
 
 ## Resources
@@ -62,6 +65,227 @@ Let's take a quick look at the data to see what it contains. For example:
 - `View()`: to look at the object in spreadsheet format
 - `names()`: to see the variable (column) names
 - `summary()`: see a quick summary of each variable
+
+### Our first ggplot graph: Visitors to Channel Islands NP
+
+To create a bare-bones ggplot graph, we need to tell R three basic things: 
+
+1. We're using `ggplot`
+2. Data we're using & variables we're plotting (i.e., what is x and/or y?)
+3. What type of graph we're making (the type of *geom*)
+
+Generally, that structure will look like this: 
+```{r, eval = FALSE}
+ggplot(data = df_name, aes(x = x_var_name, y = y_var_name)) +
+  geom_type()
+```
+
+Breaking that down: 
+
+- First, tell R you're using `ggplot()`
+- Then, tell it the object name where variables exist (`data = df_name`)
+- Next, tell it the aesthetics `aes()` to specify which variables you want to plot
+- Then add a layer for the type of geom (graph type) with `geom_*()` - for example, `geom_point()` is a scatterplot, `geom_line()` is a line graph, `geom_col()` is a column graph, etc. 
+
+Let's do that to create a line graph of visitors to Channel Islands National Park: 
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) +
+  geom_line()
+```
+
+Or, we could change that to a scatterplot just by updating the `geom_*`:
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) +
+  geom_point()
+```
+
+We could even do that for a column graph:
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) +
+  geom_col()
+```
+
+Or an area plot...
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) +
+  geom_area()
+```
+
+We can see that updating to different `geom_*` types is quick, so long as the types of graphs we're switching between are compatible. 
+
+The data are there, now let's learn some customization. 
+
+### Intro to customizing `ggplot` graphs
+
+First, we'll customize some aesthetics (e.g. colors, styles, axis labels, etc.) of our graphs based on non-variable values. 
+
+> We can change the aesthetics of elements in a ggplot graph by adding arguments within the layer where that element is created.
+
+Some common arguments we'll use first are:
+
+- `color = ` or `colour = `: update point or line colors
+- `fill = `: update fill color for objects with areas
+- `linetype = `: update the line type (dashed, long dash, etc.)
+- `pch = `: update the point style 
+- `size = `: update the element size (e.g. of points or line thickness)
+- `alpha = `: update element opacity (1 = opaque, 0 = transparent)
+
+Building on our first line graph, let's update the line color to "purple" and make the line type "dashed": 
+
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) +
+  geom_line(
+    color = "purple",
+    linetype = "dashed"
+  )
+```
+
+How do we know which color names ggplot will recognize? If you google "R colors ggplot2" you'll find a lot of good resources. Here's one: [SAPE ggplot2 colors quick reference guide](http://sape.inf.usi.ch/quick-reference/ggplot2/colour)
+
+Now let's update the point, style and size of points on our previous scatterplot graph using `color = `, `size = `, and `pch = ` (see `?pch` for the different point styles, which can be further customized). 
+
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) +
+  geom_point(color = "purple",
+             pch = 17,
+             size = 4,
+             alpha = 0.5)
+```
+
+In the examples above, we have customized aesthetics based on constants that we input as arguments (e.g., the color / style / size isn't changing based on a variable characteristic or value). 
+Sometimes, however, we **do** want the aesthetics of a graph to depend on a variable. 
+
+> When we want to customize a graph element based on a variable's characteristic or value, add the argument within `aes()` in the appropriate `geom_*()` layer
+
+In short, if updating aesthetics based on a variable, make sure to put that argument inside of `aes()`. 
+
+**Example:** Create a ggplot scatterplot graph where the **size** and **color** of the points change based on the **number of visitors**, and make all points the same level of opacity (`alpha = 0.5`). Notice the `aes()` around the `size = ` and `color = ` arguments. 
+
+Also: this is overmapped and unnecessary. Avoid excessive / overcomplicated aesthetic mapping in data visualization.
+
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) +
+  geom_point(
+    aes(size = visitors,
+        color = visitors),
+    alpha = 0.5
+  )
+```
+
+In the example above, notice that the two arguments that **do** depend on variables are within `aes()`, but since `alpha = 0.5` doesn't depend on a variable then it is *outside the `aes()` but still within the `geom_point()` layer*. 
+
+### ggplot2 complete themes
+
+While every element of a ggplot graph is manually customizable, there are also built-in themes (`theme_*()`) that you can add to your ggplot code to make some major headway before making smaller tweaks manually. 
+
+Here are a few to try today (but also notice all the options that appear as we start typing `theme_` into our ggplot graph code!):
+
+- `theme_light()`
+- `theme_minimal()`
+- `theme_bw()`
+
+Within those themes, we can also add graph-wide options for fonts and sizes. For example:
+
+- `base_size = `: update base font size
+- `base_family = `: update based font family
+- `base_line_size`: update base line size
+
+Here, let's update our previous graph with `theme_minimal()`:
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) +
+  geom_point(
+    aes(size = visitors,
+        color = visitors),
+    alpha = 0.5
+  ) +
+  theme_minimal(
+    base_family = "Times New Roman"
+  )
+```
+
+### Updating axis labels and titles
+
+Use `labs()` to update axis labels, and add a title and/or subtitle to your ggplot graph. 
+
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) +
+  geom_line(linetype = "dotted") +
+  theme_bw() +
+  labs(
+    x = "Year",
+    y = "Annual park visitors",
+    title = "Channel Islands NP Visitation",
+    subtitle = "(1963 - 2016)"
+  )
+```
+
+**Note**: If you want to update the formatting of axis values (for example, to convert to comma format instead of scientific format above), you can use the `scales` package options (see more from the [R Cookbook](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/)). 
+
+### Combining compatible geoms
+
+As long as the geoms are compatible, we can layer them on top of one another to further customize a graph. 
+
+For example, adding points to a line graph: 
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) +
+  geom_line(color = "purple") +
+  geom_point(color = "magenta",
+             aes(size = year))
+```
+
+Or, combine a column and line graph (not sure why you'd want to do this, but you can):
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) +
+  geom_col(fill = "orange",
+           color = "purple") +
+  geom_line()
+```
+
+### Multi-series ggplot graphs
+
+In the examples above, we only had a single series - visitation at Channel Islands National Park. Often we'll want to visualize multiple series. For example, from the `ca_np` object we have stored, we might want to plot visitation for *all* California National Parks. 
+
+To do that, we need to add an aesthetic that lets `ggplot` know how things are going to be grouped. A demonstration of why that's important - what happens if we *don't* let ggplot know how to group things?
+
+```{r}
+ggplot(data = ca_np, aes(x = year, y = visitors)) +
+  geom_line()
+```
+
+Well that's definitely a mess, and it's because ggplot has no idea that these **should be different series based on the different parks that appear in the 'park_name' column**.
+
+We can make sure R does know by updating an aesthetic based on *park_name*:
+```{r}
+ggplot(data = ca_np, aes(x = year, y = visitors, color = park_name)) +
+  geom_line()
+```
+
+**Note**: You could also add that aesthetic (`color = park_name`) in the `geom_line()` layer, instead of in the topmost `ggplot()` layer.
+
+### Faceting ggplot graphs
+
+When we facet graphs, we split them up into multiple plotting panels, where each panel contains a subset of the data. In our case, we'll split the graph above into different panels, each containing visitation data for a single park. 
+
+Also notice that any general theme changes made will be applied to *all* of the graphs. 
+
+```{r}
+ggplot(data = ca_np, aes(x = year, y = visitors, color = park_name)) +
+  geom_line(show.legend = FALSE) +
+  theme_light() + 
+  labs(x = "year", y = "annual visitors") +
+  facet_wrap(~ park_name)
+```
+
+### Exporting a ggplot graph with `ggsave()`
+
+If we want our graph to appear in a knitted html, then we don't need to do anything else. But often we'll need a saved image file, of specific size and resolution, to share or for publication. 
+
+`ggsave()` will export the *most recently run* ggplot graph by default, unless you give it the name of a saved ggplot object. 
+
+So to export the faceted graph above at 180 dpi, width a width of 8" and a height of 7", we can use:
+```{r}
+ggsave(here::here("img","np_graph.jpg"), dpi = 180, width = 8, height = 7)
+```
 
 
 
