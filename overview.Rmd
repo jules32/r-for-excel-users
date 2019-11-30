@@ -2,6 +2,11 @@
 
 TODO: shorten so it's just the overview (ie cut the Rscripts)
 
+This 2-day workshop aims to introduce you to R and help you develop good habits and workflows. 
+Coming from Excel. 
+
+Excel is great for data entry. Can also be good for looking at data and feeling like you can touch it. But this can also get problematic with extending to analyses. Keep raw data raw, TODO
+
 ## Summary
 
 Welcome! We'll introduce the workshop and the RStudio interface (IDE). 
@@ -41,6 +46,22 @@ Not so brittle/sensitive to minor changes.
 
 
 We will learn and reinforce X main things all at the same time: coding with best practices (R/RStudio), how this relates to operations in Excel, Z. This training will teach these all together to reinforce skills and best practices, and get you comfortable with a workflow that you can use in your own projects. 
+
+Excel is great for a lot of things: 
+
+- data entry
+- quick data exploration and reactive plots
+
+Not great for a lot of things:
+
+- What did I do?
+- That terrible feeling
+
+```{r, eval=FALSE, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/want-to-save-changes-excel.png")  
+```
+
+
 
 ### What to expect
 
