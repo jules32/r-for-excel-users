@@ -9,10 +9,6 @@ summarize(mean, sd, n) with uncounted lobster data (stdev in excel?)
 DT, kable — introduce this and then will be repeated in tidying
 if time, could we show count vs n but if you want to get other statistics
 
-TODO: 
-Explore data: 
-summaries/data table
-Uncount and count
 Why would you ever want to uncount? You don’t want to assume how future you will want to use this data
 How easy is it to get these counts by different groupings
 Simplest ggplot (introduced in readxl chapter)
@@ -48,9 +44,10 @@ We've talked about
 
 
 ### Setup
-Let's start a new RMarkdown file, called X. 
 
-In the setup chunk, let's attach our libraries and read in the lobster counts data. 
+Let's start a new RMarkdown file, I'll call mine `pivot_lobsters.Rmd`. 
+
+In the setup chunk, let's attach our libraries and read in our lobster data. 
 
 ```{r setup, eval=FALSE}
 ## attach libraries
@@ -77,36 +74,41 @@ summary(lobster_counts)
 # ggplot
 ```
 
-Also explore in the Viewer
+In this data set, every row is a unique observation. This is called "uncounted" data; you'll see there is no row for how many lobsters were seen because each row is an observation, or an "n of 1". 
 
-OK now let's step back from R and discuss pivot tables in Excel.
+OK now that we have a quick sense of this data let's have a look at pivot tables in Excel.
 
 ### Pivot tables
 
+[Wikipedia describes a pivot table](https://en.wikipedia.org/wiki/Pivot_table) as a "table of statistics that summarizes the data of a more extensive table...This summary might include sums, averages, or other statistics, which the pivot table groups together in a meaningful way." Fun fact: it also says that "Although pivot table is a generic term, Microsoft trademarked PivotTable in the United States in 1994."
 
-#### What are they?
+#### lobster pivot table
 
-TODO: screenshots, demo with lobster data. 
+Let's make a pivot table with our lobster data.
 
-What is actually going on is that they are summarizing by the groups you identify.
+I really want to know how many lobsters were counted at each site. I want a count of rows by site. So to do this in Excel we would initiate the Pivot Table Process: 
 
-So I'm looking at my lobster data in Excel and I really want to know how many lobsters were counted at each site. I want a summary of total counts by site. So to do this in Excel we would initiate the Pivot Table Process: 
-
-```{r, eval=FALSE, echo=FALSE, out.width="80%"}
+```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("img/pivot-table-menu.png")  
 ```
 
+<br>
+
 And it will do its best to find the data I would like to include in my Pivot Table (it can have difficulty with non-rectangular or "non-tidy" data), and suggest we make this in a new sheet: 
 
-```{r, eval=FALSE, echo=FALSE, out.width="80%"}
+```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("img/pivot-table-create.png")  
 ```
 
-And then we'll get a little wizard to help us create the Pivot Table. I want to summarize by site, so I drag "site" down into the "Rows" box, and then I drag "count" into the "Values" box. And it will create a Pivot Table for me, with "sum" as the default summary statistic.
+<br>
 
-```{r, eval=FALSE, echo=FALSE, out.width="80%"}
-knitr::include_graphics("img/pivot-table-sum-year.png")  
+And then we'll get a little wizard to help us create the Pivot Table. I want to summarize by year, so I drag "year" down into the "Rows" box, and to get the counts by year I actually drag the same variable, "year" into the "Values" box. And it will create a Pivot Table for me! But "sum" as the default summary statistic, so I can click the little "I" icon to change this to count.
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/pivot-table-count-year.png")  
 ```
+
+<br>
 
 A few things to note: 
 
@@ -125,7 +127,7 @@ If you add new data, you can refresh your table
 
 Let's talk about how this looks like in R. 
 
-## `dplyr` overview
+## `dplyr` overview CUYT THIS> the analogous thing is group_by summarize
 
 `dplyr` is a grammar of data manipulation that provides a consistent set of verbs that help you solve the most common data manipulation challenges. These common verbs are: 
 
@@ -174,15 +176,13 @@ Say it with me: "pivot tables are group_by and then summarize". And just like pi
 
 ### group_by one variable
 
-Let's try this on our `lobster_counts` data. Let's calculate the the total number of lobster by year. In R-speak, we will group_by year and then summarize by calculting the sum of count. We'll use the pipe operator `%>%`
+Let's try this on our `lobster_counts` data, just like we did in Excel. We will calculate the the total number of lobster by year. In R-speak, we will group_by year and then summarize by counting using the `n()`, which is another function from `dplyr`. We'll also use the pipe operator `%>%`
 
 ```{r}
 lobster_counts %>%
   group_by(year) %>%
-  summarize(total_lobster = sum(count)) # within summarize, we name a new column and calculate the sum.
+  summarize(count = n())
 ```
-
-This returns output summarizing the total_lobster for each year, just like we saw in the pivot table in Excel. 
 
 Notice how together, `group_by` and `summarize` minimize the amount of information we see. We also saw this with the pivot table. We lose the other columns that aren't involved here. 
 
@@ -193,7 +193,11 @@ lobster_counts %>%
   summarize(total_lobster = sum(count))
 ```
 
-So if we don't `group_by` first, we will get a single summary statistic (sum in this case) for the whole dataset. Useful in some cases for sure. But being able to do it so easily by group can be very powerful. (This is the same behavior you would get in a pivot table if you removed `year` from the "Rows" field, leaving only `count` in the "Values" field).
+So if we don't `group_by` first, we will get a single summary statistic (sum in this case) for the whole dataset. 
+
+Notice that in Excel we retain the overall totals for each site (in bold, on the same line with the site name). This is nice for communicating about data. But it can be problematic for further analyses, because it could be easy to take a total of this column and introduce errors. 
+
+### RStudio Viewer 
 
 Let's now check the `lobster_counts` variable. We can do this by clicking on `lobster_counts` in the Environment pane in RStudio. 
 
@@ -202,6 +206,24 @@ We see that we haven't changed any of our original data that was stored in this 
 > ***Aside***: You'll also see that when you click on the variable name in the Environment pane, `View(lobster_counts)` shows up in your Console. `View()` (capital V) is the R function to view any variable in the viewer. So this is something that you can write in your RMarkdown script, although RMarkdown will not be able to knit this view feature into the formatted document. So, if you want include `View()` in your RMarkdown document you will need to either comment it out `#View()` or add `eval=FALSE` to the top of the code chunk so that the full line reads `{r, eval=FALSE}`. 
 
 So we can make the equivalent of Excel's pivot table in R with `group_by` and then `summarize`. But a powerful thing about R is that maybe we want this information to be used in further analyses. We can make this easier for ourselves by saving this as a variable. So let's add a variable assignment to that first line:
+
+```{r}
+lobster_counts %>%
+  group_by(year) %>%
+  summarize(count = n(), 
+            mean_size_mm = mean(size_mm, na.rm=TRUE), 
+            sd_size_mm = sd(size_mm, na.rm=TRUE))
+
+lobster_counts %>%
+  group_by(year) %>%
+  summarize(# total_lobster = sum(count)
+            mean, sd, n()) ) # within summarize, we name a new column and calculate the sum.
+
+
+# if you only want counts and nothing else, count() is a shortcut for this. 
+# group_by %>% summarize(n()) is the same as count()
+```
+
 
 ```{r}
 year_summary <- lobster_counts %>%
@@ -235,11 +257,9 @@ site_year_summary
 
 Let's do this quickly in Excel for comparison. We can drag site to our previous pivot table:
 
-```{r, eval=FALSE, echo=FALSE, out.width="80%"}
+```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("img/pivot-table-sum-site-year.png")  
 ```
-
-Notice that in Excel we retain the overall totals for each site (in bold, on the same line with the site name). This might be nice at a glance right now, but it can be problematic. Why? What if someone unfamiliar with pivot tables sums this whole column? There are not a lot of safeguards here. 
 
 So getting back to R, this is awesome. We can see the total counts for each site by year, and have this saved here in a nice variable. We will revisit this in a moment, but now let's move on to our next `dplyr` verb. 
 
@@ -247,7 +267,7 @@ So getting back to R, this is awesome. We can see the total counts for each site
 
 We use the `mutate()` function to add columns to a data frame. This is one of the most common things that I do in Excel: you need to name the new column, and then you can fill it with new values. From the help pages, we learn that unlike `summarize()`, `mutate()` preserves the number of rows of the input. Additionally, new variables overwrite existing variables of the same name.
 
-Let's say we need to add a column that indicates that these observations were made by SCUBA diving. To do this, first we tell R we want to add a new column using the `mutate()` function. Then, we tell it the name of the column we want, let's call it `observation_type`. Then, we tell it the value we want in the cells: let's say `"SCUBA"`. We need to put SCUBA in quotes:
+Let's say we need to add a column that indicates that these observations were made by SCUBA diving. To do this, first we tell R we want to add a new column using the `mutate()` function. Then, we tell it the name of the column we want, let's call it `observation_type`. Then, we tell it the value we want in the cells: let's say `"SCUBA"`. We need to put SCUBA in quotes because it's not a numeric value:
 
 ```{r}
 lobster_counts %>%
@@ -260,7 +280,7 @@ Let's try a calculation. Let's calculate the total count for the whole data site
 
 ```{r}
 lobster_counts %>%
-  mutate(total_lobster = sum(total_count))
+  mutate(total_lobster = sum(count))
 ```
 
 And notice that this was the same calculated value as when we did this with summarize, but here it is repeated for every row instead of being collapsed. 
@@ -278,7 +298,7 @@ Let's add a new column named `siteyear_counts`, and we will calculated after gro
 ```{r}
 lobster_counts %>%
   group_by(site, year) %>%
-  mutate(siteyear_counts = sum(total_count))
+  mutate(siteyear_counts = sum(count))
 ```
 
 We now have an additional column in our dataframe called `siteyear_counts`. And again, if we recall from our `site_year_summary` above, it has calculated the same information. But instead of collapsing our dataframe, we retain all of the information from the other columns, and the `siteyear_counts` column will have values that are repeated. 
@@ -294,13 +314,11 @@ Let's start off doing this as a `group_by() %>% mutate()`.
 ```{r}
 lobster_percs <- lobster_counts %>%
   group_by(site, year) %>%
-  mutate(siteyear_counts = sum(total_count)) %>%
-  mutate(perc_lobster = total_count/siteyear_counts*100)
+  mutate(siteyear_counts = sum(count)) %>%
+  mutate(perc_lobster = count/siteyear_counts*100)
 ```
 
 When I'm doing analyses, I like `group_by() %>% mutate()` because I can build out the logic step-by-step and actually look at it as it builds. It's both comforting and good for error-checks; I can do what we call "spot checks" of calculating a few values by hand to make sure it's working. This would also be relatively easy for someone else to follow. 
-
-(Again here we can see that senorita lobster really dominate each site-year combination). 
 
 If we wanted to do this with `group_by() %>% summarize()` we would need a few more steps. We can write it up as pseudo-code:
 
@@ -309,11 +327,11 @@ If we wanted to do this with `group_by() %>% summarize()` we would need a few mo
 ## first calculate lobster siteyear_counts
 x <- lobster_counts %>%
   group_by(site, year) %>%
-  summarize(siteyear_counts = sum(total_count)) 
+  summarize(siteyear_counts = sum(count)) 
 
 ## then somehow join or merge that information to the lobster_counts data 
 x %>%
-  mutate(perc_lobster = total_count/siteyear_counts*100)
+  mutate(perc_lobster = count/siteyear_counts*100)
 ```
 
 In order to calculate the percentages with the appropriate values, we need to somehow join the summarized data back to the lobster_counts. This actually requires a few more dplyr verbs: filter and *_join; we will do this tomorrow! <!---TODISCUSS w/ Allison: does this cliffhanger make sense?---> 
