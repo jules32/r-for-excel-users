@@ -8,6 +8,8 @@ Using `ggplot2`, the graphics package within the `tidyverse`, we'll write reprod
 
 > "ggplot2 implements the grammar of graphics, a coherent system for describing and building graphs. With ggplot2, you can do more faster by learning one system and applying it in many places." - [R4DS](http://r4ds.had.co.nz/data-visualisation.html)
 
+So yeah...that `gg` is from "grammar of graphics" - original source 
+
 We'll use the `ggplot2` package, but the function we use to initialize a graph will be `ggplot`, which works best for data in tidy format (i.e., a column for every variable, and a row for every observation). Graphics with `ggplot` are built step-by-step, adding new elements as layers with a plus sign (`+`) between layers (note: this is different from the pipe operator, `%>%`. Adding layers in this fashion allows for extensive flexibility and customization of plots.
 
 <br>
@@ -280,18 +282,47 @@ ggplot(data = ca_np, aes(x = year, y = visitors, color = park_name)) +
 
 If we want our graph to appear in a knitted html, then we don't need to do anything else. But often we'll need a saved image file, of specific size and resolution, to share or for publication. 
 
-`ggsave()` will export the *most recently run* ggplot graph by default, unless you give it the name of a saved ggplot object. 
+`ggsave()` will export the *most recently run* ggplot graph by default (`plot = last_plot()`), unless you give it the name of a different saved ggplot object. Some common arguments for `ggsave()`:
+
+- `width = `: set exported image width (default inches)
+- `height = `: set exported image height (default height)
+- `dpi = `: set dpi (dots per inch)
 
 So to export the faceted graph above at 180 dpi, width a width of 8" and a height of 7", we can use:
-```{r}
+```{r, include = FALSE}
 ggsave(here::here("img","np_graph.jpg"), dpi = 180, width = 8, height = 7)
 ```
 
+```{r, eval = FALSE}
+ggsave("np_graph.jpg", dpi = 180, width = 8, height = 7)
+```
+
+Notice that a .jpg image of that name and size is now stored in your project working directory. You can change the type of exported image, too (e.g. pdf, tiff, eps, png, mmp, svg). 
+
+### One final graph example: jitter and boxplots 
+
+For the record: this is not a good option for showing the visitation data because values are not independent observations of a random variable. But, for the purposes of showing a graph, we'll use visitation as our continuous measured variable in a jitter + boxplot anyway. 
+
+```{r}
+ggplot(data = ca_np, aes(x = park_name, y = visitors)) +
+  geom_jitter(alpha = 0.5,
+              color = "gray60",
+              width = 0.2,
+              size = 1) +
+  geom_boxplot(fill = NA,
+               color = "black",
+               outlier.color = NA) +
+  coord_flip() +
+  theme_minimal()
+```
+
+## Activity 1
 
 
-## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
-## Interludes (deep thoughts/openscapes)
-## Our Turn Your Turn 1
-## Our Turn Your Turn 2
+
+## Activity 2
+
+
+
 ## Efficiency Tips
 
