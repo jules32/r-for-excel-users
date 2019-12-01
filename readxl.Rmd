@@ -28,16 +28,17 @@
 
 In Session 1, we introduced how and why R Projects are great for reproducibility, because our self-contained working directory will be the **first** place R looks for files. 
 
-You downloaded TODO: XX files for this workshop: 
+You downloaded 7 files for this workshop, some comma separate value (CSV) files and some as Excel spreadsheets (.xlsx): 
 
 - fish_counts_curated.csv
 - invert_counts_curated.xlsx
 - kelp_counts_curated.xlsx
 - substrate_cover_curated.xlsx
-- lobster_counts.csv TODO: add this? 
-- national_parks.xlsx TODO: add this? 
+- lobster_counts.csv
+- ca_np.csv 
+- ci_np.xlsx
 
-Copy and paste those files into the 'r-and-excel' folder on your computer. Notice that now these files are in your working directory when you go back to that Project in RStudio (check the 'Files' tab). That means they're going to be in the first place R will look when you ask it to find a file to read in. 
+Copy and paste those files into the 'data' subfolder of your R project. Notice that now these files are in your working directory when you go back to that Project in RStudio (check the 'Files' tab and navigate to the data subfolder). That means they're going to be in the first place R will look when you ask it to find a file to read in. 
 
 ### In the .Rmd you just created, attach the `tidyverse`, `readxl` and `writexl` packages  
 
@@ -50,6 +51,7 @@ Here's our first code chunk:
 library(tidyverse)
 library(readxl)
 library(writexl)
+library(here)
 ```
 
 
@@ -57,10 +59,11 @@ library(writexl)
 {r setup, eval = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-# Attach the tidyverse, readxl and writexl packages:
+# Attach the tidyverse, readxl, writexl and here packages:
 library(tidyverse)
 library(readxl)
 library(writexl)
+library(here)
 
 ```
 
@@ -85,7 +88,7 @@ fish_counts <- read_csv("curation/fish_counts_curated.csv")
 
 ```{r, eval = FALSE, results = 'hide'}
 
-fish_counts <- read_csv("fish_counts_curated.csv")
+fish_counts <- read_csv(here::here("data", "fish_counts_curated.csv"))
 
 ```
 
@@ -133,7 +136,7 @@ substrate_cover <- read_excel("curation/substrate_cover_curated.xlsx")
 ```
 
 ```{r, eval = FALSE, results = 'hide'}
-substrate_cover <- read_excel("substrate_cover_curated.xlsx")
+substrate_cover <- read_excel(here::here("data", "substrate_cover_curated.xlsx"))
 ```
 
 **Tada? Not quite.** 
@@ -155,7 +158,7 @@ substrate_cover <- read_excel("curation/substrate_cover_curated.xlsx", skip = 4,
 ```
 
 ```{r, eval = FALSE}
-substrate_cover <- read_excel("curation/substrate_cover_curated.xlsx, skip = 4, na = "-9999")
+substrate_cover <- read_excel(here::here("data", "curation/substrate_cover_curated.xlsx, skip = 4, na = "-9999")
 ```
 
 ```{r}
@@ -175,7 +178,7 @@ carp_cover_2000 <- readxl::read_excel("curation/substrate_cover_curated.xlsx", r
 ```
 
 ```{r, eval = FALSE}
-carp_cover_2000 <- readxl::read_excel("substrate_cover_curated.xlsx", range = "D12:I15")
+carp_cover_2000 <- readxl::read_excel(here::here("data", "substrate_cover_curated.xlsx", range = "D12:I15")
 ```
 
 But yuck. Look at *carp_cover_2000* and you'll notice that the first row *of that range* is automatically made the column headers. To keep all rows within a range and **add your own column names**, add a `col_names = ` argument:
@@ -184,7 +187,7 @@ carp_cover_2000 <- readxl::read_excel("curation/substrate_cover_curated.xlsx", r
 ```
 
 ```{r, eval = FALSE}
-carp_cover_2000 <- readxl::read_excel("substrate_cover_curated.xlsx", range = "D12:I15", col_names = c("site_name", "transect", "quad", "plot_side", "type", "coverage"))
+carp_cover_2000 <- readxl::read_excel(here::here("data", "substrate_cover_curated.xlsx", range = "D12:I15", col_names = c("site_name", "transect", "quad", "plot_side", "type", "coverage"))
 ```
 
 ```{r}
@@ -210,7 +213,7 @@ kelp_counts <- readxl::read_excel("curation/kelp_counts_curated.xlsx")
 ```
 
 ```{r, eval = FALSE, results = 'hide'}
-kelp_counts <- readxl::read_excel("kelp_counts_curated.xlsx")
+kelp_counts <- readxl::read_excel(here::here("data", "kelp_counts_curated.xlsx")
 ```
 
 You might be thinking, "Hooray, I got all of my Excel workbook data!" But remember to always look at your data - you will see that actually only the first worksheet was read in. The default in `readxl::read_excel()` is to read in the **first worksheet** in a multi-sheet Excel workbook. 
@@ -221,7 +224,7 @@ readxl::excel_sheets("curation/kelp_counts_curated.xlsx")
 ```
 
 ```{r, eval = FALSE}
-readxl::excel_sheets("kelp_counts_curated.xlsx")
+readxl::excel_sheets(here::here("data", "kelp_counts_curated.xlsx")
 ```
 
 If we want to read in data from a worksheet other than the first one in an Excel workbook, we can specify the correct worksheet by name or position by adding the `sheet` argument. 
@@ -232,7 +235,7 @@ kelp_golb <- readxl::read_excel("curation/kelp_counts_curated.xlsx", sheet = "go
 ```
 
 ```{r, eval = FALSE, results = 'hide'}
-kelp_golb <- readxl::read_excel("kelp_counts_curated.xlsx", sheet = "golb")
+kelp_golb <- readxl::read_excel(here::here("data", "kelp_counts_curated.xlsx", sheet = "golb"))
 ```
 
 Note that you can also specify a worksheet by position: since *golb* is the 6^th^ worksheet in the workbook, we could also use the following: 
@@ -241,7 +244,7 @@ kelp_golb <- readxl::read_excel("curation/kelp_counts_curated.xlsx", sheet = 6)
 ```
 
 ```{r, eval = FALSE}
-kelp_golb <- readxl::read_excel("kelp_counts_curated.xlsx", sheet = 6)
+kelp_golb <- readxl::read_excel(here::here("data", "kelp_counts_curated.xlsx", sheet = 6))
 ```
 
 ```{r}
@@ -281,7 +284,7 @@ kelp_all_sites <- kelp_path %>% # Start with that pathway (file)...
 
 ```{r, eval = FALSE}
 
-kelp_path <- "kelp_counts_curated.xlsx"
+kelp_path <- here::here("data", "kelp_counts_curated.xlsx")
 
 kelp_all_sites <- kelp_path %>% 
   excel_sheets() %>% 
@@ -337,7 +340,7 @@ In the previous step, we combined all of our kelp frond observations into a sing
 
 As a CSV: 
 ```{r, eval = FALSE}
-readr::write_csv(kelp_all_sites, "kelp_all_sites.csv")
+readr::write_csv(kelp_all_sites, here::here("data", "kelp_all_sites.csv"))
 ```
 
 A cool thing about `readr::write_csv()` is that it just quietly *works* without wrecking anything else you do in a sequence, so it's great to add at the end of a piped sequence.
@@ -347,7 +350,7 @@ For example, if I want to read in the 'ivee' worksheet from kelp_counts_curated.
 
 kelp_ivee <- readxl::read_excel("kelp_counts_curated.xlsx", sheet = "ivee") %>% 
   select(year, total_fronds) %>% 
-  write_csv("kelp_ivee.csv")
+  write_csv(here::here("data", "kelp_ivee.csv"))
 
 ```
 
@@ -355,7 +358,7 @@ Now I've created *kelp_ivee.csv*, but the object *kelp_ivee* also exists for me 
 
 If needed, I can also export a data frame as an Excel (.xlsx) worksheet:
 ```{r, eval = FALSE}
-writexl::write_xlsx(kelp_all_sites, "kelp_all_sites.xlsx")
+writexl::write_xlsx(kelp_all_sites, here::here("data", "kelp_all_sites.xlsx"))
 ```
 
 ## Fun facts ideas:
@@ -401,7 +404,7 @@ ls()
 
 # Importing only 'site' through '2016' columns: 
 
-inverts_july <- readxl::read_excel("curation/invert_counts_curated.xlsx", range = "B1:D56")
+inverts_july <- readxl::read_excel(here::here("data", "invert_counts_curated.xlsx"), range = "B1:D56")
 
 # Do some basic exploring (why might we want to do this in the Console instead?):
 
