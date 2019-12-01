@@ -23,6 +23,8 @@ R is not only a language, it is an active community of developers, users, and ed
 - [Stat545](https://stat545.com/) — Jenny Bryan & Stat545 TAs
 - [Where do Things Live in R?](http://rex-analytics.com/things-live-r-r-excel-users/) REX Analytics
 - [](https://blog.shotwell.ca/posts/r_for_excel_users/)
+- [Spreadsheet Drama (Episode 9)](http://nssdeviations.com/episode-9-spreadsheet-drama) — Not So Standard Deviations with Roger Peng & Hilary Parker
+
 
 ## Overview
 

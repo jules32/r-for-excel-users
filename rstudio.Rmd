@@ -1,8 +1,12 @@
-# RMarkdown {#rmarkdown}
+# R & RStudio, RMarkdown {#rstudio}
 
 TODO: Intro: we're going to start off with RMarkdown. 
 
 TODO: break into "R chunks" and "Markdown sections"
+
+TODO: harmonize with OHI's training
+
+Introduce projects and setup data/ folder. I like to turn off workbook mode. 
 
 
 TODO (write out): 
