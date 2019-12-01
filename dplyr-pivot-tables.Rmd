@@ -70,7 +70,7 @@ Let's add a code chunk to explore the data by looking at some summary statistics
 
 ```{r}
 #TODO
-head(lobster_counts)
+head(lobster_counts) # year and month as well as a column for date
 summary(lobster_counts)
 
 # summary, head, tail, depending on readxl
@@ -105,14 +105,18 @@ knitr::include_graphics("img/pivot-table-create.png")
 And then we'll get a little wizard to help us create the Pivot Table. I want to summarize by site, so I drag "site" down into the "Rows" box, and then I drag "count" into the "Values" box. And it will create a Pivot Table for me, with "sum" as the default summary statistic.
 
 ```{r, eval=FALSE, echo=FALSE, out.width="80%"}
-knitr::include_graphics("img/pivot-table-sum.png")  
+knitr::include_graphics("img/pivot-table-sum-year.png")  
 ```
 
+A few things to note: 
+
+- The pivot table is separate entity from our data (it's on a different sheet); the original data has not been affected 
+- The pivot table only shows the variables we requested; we don't see other columns (like date, month, or site). 
 
 
 #### Why are they great? 
 
-They are great because they summarize the data and keep the raw data raw — they even promote good pratice because they by default ask you if you'd like to present the data in a new sheet rather than in the same sheet.  
+Pivot tables are great because they summarize the data and keep the raw data raw — they even promote good pratice because they by default ask you if you'd like to present the data in a new sheet rather than in the same sheet.  
 
 If you add new data, you can refresh your table
 
@@ -156,78 +160,88 @@ Together these properties make it easy to chain together multiple simple steps t
 I love thinking of these `dplyr` verbs and the pipe operator `%>%` as telling a story. When I see `%>%` I think "and then":
 
 ```{r, eval=FALSE}
-
 data %>%          # start with data, and then
   group_by() %>%  # group by a variable, and then
   mutate() %>%    # mutate to add a new column, and then
   select()        # select specific columns
-  
 ```
 
-## pivot tables: `group_by() %>% summarize()` 
+## group_by() %>% summarize()
 
 In R, we can create the functionality of pivot tables by using 2 main `dplyr` verbs in combination: `group_by` and `summarize`. 
   
 Say it with me: "pivot tables are group_by and then summarize". And just like pivot tables, you have flexibility with how you are going to summarize. For example, we can calculate an average, or a total.
 
-Let's try this on our `lobster_counts` data. Let's summarize this data by calculating the the total number of lobster by type, which in our dataframe is called `common_name`. We'll use the pipe operator `%>%`
+### group_by one variable
+
+Let's try this on our `lobster_counts` data. Let's calculate the the total number of lobster by year. In R-speak, we will group_by year and then summarize by calculting the sum of count. We'll use the pipe operator `%>%`
 
 ```{r}
 lobster_counts %>%
-  group_by(site) %>%
+  group_by(year) %>%
   summarize(total_lobster = sum(count)) # within summarize, we name a new column and calculate the sum.
 ```
 
-This returns output summarizing the total_lobster for each lobster. There are way more senorita lobster than any other kind! 
+This returns output summarizing the total_lobster for each year, just like we saw in the pivot table in Excel. 
 
-Notice how together, group_by and summarize collapse the amount of information we see. We lose the other columns that aren't involved here; we no longer have `year`, `common_name`, or `total_count`. This is also what you would expect from a pivot table.  
+Notice how together, `group_by` and `summarize` minimize the amount of information we see. We also saw this with the pivot table. We lose the other columns that aren't involved here. 
 
 Question: What if you *don't* group_by first? Let's try it and discuss what's going on.
 
 ```{r}
 lobster_counts %>%
-  summarize(total_lobster = sum(total_count))
+  summarize(total_lobster = sum(count))
 ```
 
-So if we don't `group_by` first, we will get a single summary statistic (total in this case) for the whole dataset. Useful in some cases for sure. But being able to do it so easily by group can be very powerful. 
+So if we don't `group_by` first, we will get a single summary statistic (sum in this case) for the whole dataset. Useful in some cases for sure. But being able to do it so easily by group can be very powerful. (This is the same behavior you would get in a pivot table if you removed `year` from the "Rows" field, leaving only `count` in the "Values" field).
 
-Let's now check the `lobster_counts` variable. 
+Let's now check the `lobster_counts` variable. We can do this by clicking on `lobster_counts` in the Environment pane in RStudio. 
 
-```{r, eval=FALSE}
-View(lobster_counts)
-```
+We see that we haven't changed any of our original data that was stored in this variable. (Just like how the pivot table didn't affect the raw data on the original sheet). 
 
-We see that we haven't changed any of our original data that was stored in this variable. But maybe we do want to save this summary as a variable so we can refer to it or even include it in further analyses. So let's add a variable assignment to that first line:
+> ***Aside***: You'll also see that when you click on the variable name in the Environment pane, `View(lobster_counts)` shows up in your Console. `View()` (capital V) is the R function to view any variable in the viewer. So this is something that you can write in your RMarkdown script, although RMarkdown will not be able to knit this view feature into the formatted document. So, if you want include `View()` in your RMarkdown document you will need to either comment it out `#View()` or add `eval=FALSE` to the top of the code chunk so that the full line reads `{r, eval=FALSE}`. 
+
+So we can make the equivalent of Excel's pivot table in R with `group_by` and then `summarize`. But a powerful thing about R is that maybe we want this information to be used in further analyses. We can make this easier for ourselves by saving this as a variable. So let's add a variable assignment to that first line:
 
 ```{r}
-common_name_summary <- lobster_counts %>%
-  group_by(common_name) %>%
-  summarize(total_lobster = sum(total_count))
+year_summary <- lobster_counts %>%
+  group_by(year) %>%
+  summarize(total_lobster = sum(count))
 ```
 
 <!---TODO::: uncount %>% group_by %>% summarize by mean and sd --->
-  
-Now let's summarize by site. We will assign it to a variable called `site_summary`. How do we do that? Let's do it together: <!---also could be an activity--->
+
+### Activity
+
+Summarize `lobster_counts` by site and assign it to a variable called `site_summary`. 
 
 ```{r, eval=FALSE}
 site_summary <- lobster_counts %>%
   group_by(site) %>%
-  summarize(total_lobster = sum(total_count))
+  summarize(total_lobster = sum(count))
 ```
-  
+
+### group_by multiple variables
+
 Great. It can be useful to summarize by both site and year, so that we can learn a little more about how things change over time across sites. And, awesomely, we are able to `group_by` more than one variable. Let's do this together, and assign this to a new variable called `site_year_summary`:
 
 ```{r}
 site_year_summary <- lobster_counts %>%
   group_by(site, year) %>%
-  summarize(total_lobster = sum(total_count))
+  summarize(total_lobster = sum(count))
 
 site_year_summary
 ```
 
-OK, so this is awesome. We can see the total counts for each site by year, and have this saved here in a nice variable. 
+Let's do this quickly in Excel for comparison. We can drag site to our previous pivot table:
 
-We will revisit this in a moment, but now let's move on to our next `dplyr` verb. 
+```{r, eval=FALSE, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/pivot-table-sum-site-year.png")  
+```
+
+Notice that in Excel we retain the overall totals for each site (in bold, on the same line with the site name). This might be nice at a glance right now, but it can be problematic. Why? What if someone unfamiliar with pivot tables sums this whole column? There are not a lot of safeguards here. 
+
+So getting back to R, this is awesome. We can see the total counts for each site by year, and have this saved here in a nice variable. We will revisit this in a moment, but now let's move on to our next `dplyr` verb. 
 
 ## `mutate()`
 
