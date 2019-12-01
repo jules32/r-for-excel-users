@@ -205,7 +205,20 @@ We see that we haven't changed any of our original data that was stored in this 
 
 > ***Aside***: You'll also see that when you click on the variable name in the Environment pane, `View(lobster_counts)` shows up in your Console. `View()` (capital V) is the R function to view any variable in the viewer. So this is something that you can write in your RMarkdown script, although RMarkdown will not be able to knit this view feature into the formatted document. So, if you want include `View()` in your RMarkdown document you will need to either comment it out `#View()` or add `eval=FALSE` to the top of the code chunk so that the full line reads `{r, eval=FALSE}`. 
 
-So we can make the equivalent of Excel's pivot table in R with `group_by` and then `summarize`. But a powerful thing about R is that maybe we want this information to be used in further analyses. We can make this easier for ourselves by saving this as a variable. So let's add a variable assignment to that first line:
+### summarize multiple variables
+
+We can summarize multiple variables at a time. So far we've done the count of lobster observations. Let's also do the mean and standard deviation. First let's use the `mean()` function to calculate the mean. We do this within the same summarize() function, but we can add a new line to make it easier to read. Notice how when you put your curser within the parenthesis and hit return, the indentation will automatically align. 
+
+```{r}
+lobster_counts %>%
+  group_by(year) %>%
+  summarize(count = n(),
+            mean_size_mm = mean(size_mm))
+```
+
+> ***Aside*** Command-I will properly indent selected lines.
+
+Great! But this will actually calculate some of the means as NA because one or more values in that year are NA. So we can pass an argument that says to remove NAs first before calculating the average. Let's do that, and then also calculate the standard deviation with the `sd()` function:
 
 ```{r}
 lobster_counts %>%
@@ -213,34 +226,29 @@ lobster_counts %>%
   summarize(count = n(), 
             mean_size_mm = mean(size_mm, na.rm=TRUE), 
             sd_size_mm = sd(size_mm, na.rm=TRUE))
-
-lobster_counts %>%
-  group_by(year) %>%
-  summarize(# total_lobster = sum(count)
-            mean, sd, n()) ) # within summarize, we name a new column and calculate the sum.
-
-
-# if you only want counts and nothing else, count() is a shortcut for this. 
-# group_by %>% summarize(n()) is the same as count()
 ```
 
+So we can make the equivalent of Excel's pivot table in R with `group_by` and then `summarize`. But a powerful thing about R is that maybe we want this information to be used in further analyses. We can make this easier for ourselves by saving this as a variable. So let's add a variable assignment to that first line:
 
 ```{r}
 year_summary <- lobster_counts %>%
   group_by(year) %>%
-  summarize(total_lobster = sum(count))
+  summarize(count = n(), 
+            mean_size_mm = mean(size_mm, na.rm=TRUE), 
+            sd_size_mm = sd(size_mm, na.rm=TRUE))
 ```
-
-<!---TODO::: uncount %>% group_by %>% summarize by mean and sd --->
 
 ### Activity
 
 Summarize `lobster_counts` by site and assign it to a variable called `site_summary`. 
 
+Solution (no peeking): 
 ```{r, eval=FALSE}
 site_summary <- lobster_counts %>%
   group_by(site) %>%
-  summarize(total_lobster = sum(count))
+  summarize(count = n(), 
+            mean_size_mm = mean(size_mm, na.rm=TRUE), 
+            sd_size_mm = sd(size_mm, na.rm=TRUE))
 ```
 
 ### group_by multiple variables
@@ -250,18 +258,28 @@ Great. It can be useful to summarize by both site and year, so that we can learn
 ```{r}
 site_year_summary <- lobster_counts %>%
   group_by(site, year) %>%
-  summarize(total_lobster = sum(count))
+  summarize(count = n(), 
+            mean_size_mm = mean(size_mm, na.rm=TRUE), 
+            sd_size_mm = sd(size_mm, na.rm=TRUE))
 
 site_year_summary
 ```
 
-Let's do this quickly in Excel for comparison. We can drag site to our previous pivot table:
+Now that we've spent time with group_by %>% summarize, there is a shortcut if you only want to summarize by count. This is with a function called `count()`, and it will group_by your selected variable, count, and then also ungroup. It looks like this: 
 
-```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("img/pivot-table-sum-site-year.png")  
+```{r, eval=FALSE}
+lobster_counts %>%
+  count(site, year) 
+
+## This is the same as:
+lobster_counts %>%
+  group_by(site, year) %>% 
+  summarize(n = n()) %>%
+  ungroup()
+
 ```
 
-So getting back to R, this is awesome. We can see the total counts for each site by year, and have this saved here in a nice variable. We will revisit this in a moment, but now let's move on to our next `dplyr` verb. 
+So we have seen how powerful it can be to group_by and summarize. We will revisit this in a moment, but now let's move on to our next `dplyr` verb. 
 
 ## `mutate()`
 
@@ -276,11 +294,11 @@ lobster_counts %>%
 
 Notice that when you just give one value like "SCUBA", mutate will repeat this value for you; it's the equivalent in Excel to when you grab the bottom right corner of a cell and drag down. 
 
-Let's try a calculation. Let's calculate the total count for the whole data site as we did above. We add a new column named `total_lobster`:
+Let's try a calculation. Let's calculate the total count for the whole data site as we did above. We add a new column named `n`:
 
 ```{r}
 lobster_counts %>%
-  mutate(total_lobster = sum(count))
+  mutate(total = n())
 ```
 
 And notice that this was the same calculated value as when we did this with summarize, but here it is repeated for every row instead of being collapsed. 
@@ -298,24 +316,27 @@ Let's add a new column named `siteyear_counts`, and we will calculated after gro
 ```{r}
 lobster_counts %>%
   group_by(site, year) %>%
-  mutate(siteyear_counts = sum(count))
+  mutate(total_siteyear = n())
 ```
 
-We now have an additional column in our dataframe called `siteyear_counts`. And again, if we recall from our `site_year_summary` above, it has calculated the same information. But instead of collapsing our dataframe, we retain all of the information from the other columns, and the `siteyear_counts` column will have values that are repeated. 
+We now have an additional column in our dataframe called `total_siteyear`. And again, if we recall from our `site_year_summary` above, it has calculated the same information. But instead of collapsing our dataframe, we retain all of the information from the other columns, and the `total_siteyear` column will have values that are repeated. 
 
 ## mutate() vs summarize()
 
-Why would you use `mutate` instead of `summarize`? Why would you ever want to have that `siteyear_counts` column with values repeated like we just did? Why wouldn't you always do `group_by() %>% summarize()` rather than `group_by() %>% mutate()`? The truth is, there is no one way to do anything in R, but there are ways to make your analyses have fewer steps or read more nicely. Let's explore this by doing a bit of analysis. 
+Why would you use `mutate` instead of `summarize`? Why would you ever want to have that `total_siteyear` column with values repeated like we just did? Why wouldn't you always do `group_by() %>% summarize()` rather than `group_by() %>% mutate()`? The truth is, there is no one way to do anything in R, but there are ways to make your analyses have fewer steps or read more nicely. Let's explore this by doing a bit of analysis. 
 
-Let's say we want to calculate the percentage of lobster type at each site. This means we are going to do a calculation using both the raw and summary data. And we're going to do it in 2 ways, first using `group_by() %>% summarize()` and then `group_by() %>% mutate()`. 
+Let's say we want to calculate the percentage of lobster found at each site each year. This means we are going to do a calculation using both the raw and summary data. And we're going to do it in 2 ways, first using `group_by() %>% summarize()` and then `group_by() %>% mutate()`. 
 
 Let's start off doing this as a `group_by() %>% mutate()`. 
 
 ```{r}
 lobster_percs <- lobster_counts %>%
+  group_by(year) %>%
+  mutate(total_year = n()) %>%
+  ungroup() %>%
   group_by(site, year) %>%
-  mutate(siteyear_counts = sum(count)) %>%
-  mutate(perc_lobster = count/siteyear_counts*100)
+  mutate(total_siteyear = n()) %>%
+  mutate(perc_lobster = total_siteyear/total_year*100)
 ```
 
 When I'm doing analyses, I like `group_by() %>% mutate()` because I can build out the logic step-by-step and actually look at it as it builds. It's both comforting and good for error-checks; I can do what we call "spot checks" of calculating a few values by hand to make sure it's working. This would also be relatively easy for someone else to follow. 
