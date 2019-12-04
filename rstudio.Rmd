@@ -1,19 +1,5 @@
 # R & RStudio, RMarkdown {#rstudio}
 
-TODO: Intro: we're going to start off with RMarkdown. 
-
-TODO: break into "R chunks" and "Markdown sections"
-
-TODO: harmonize with OHI's training
-
-Introduce projects and setup data/ folder. I like to turn off workbook mode. 
-
-
-TODO (write out): 
-Intro, knitting
-How in-line figures are awesome (no copy-pasting from excel to word)
-Reproducibility is important (this might be new to some people). Reproducible research/self-contained Rmd files: read in data at the top. Read_csv.
-
 ## Summary
 
 We'll learn RMarkdown, which helps you tell a story with your data analysis because you can write text alongside the code. We are actually learning two languages at once: R and Markdown. 
@@ -81,8 +67,6 @@ We can do math:
 52*40
 365/12
 ```
-
-*TODO: refine*
  
 But like Excel, the power comes not from doing small operations by hand (like 8*22.3), it's by being able to operate on whole suites of numbers and datasets. In Excel, data are stored in the spreadsheet. In R, they are stored in objects, which are often vectors or dataframes. They are rectangular. 
 
@@ -94,18 +78,18 @@ Data can be a variety of formats, like numeric and text.
 
 Let's have a look at some data in R. Unlike Excel, R comes out-of-the-box with several built-in data sets that we can look at and work with. 
 
-One of these datasets is called `mtcars`. If I write this in the Console, it will print the data in the console.
+One of these datasets is called `cars`. If I write this in the Console, it will print the data in the console.
 
-```{r mtcars, eval=FALSE}
-mtcars
+```{r cars, eval=FALSE}
+cars
 ```
 
-This returns data. To me this is not super interesting data, but I can appreciate that there are different variables listed as column headers and then numeric values for each type of row observation (cars). 
+This returns data. To me this is not super interesting data, but I can appreciate that there are different variables listed as column headers and then numeric values for each type of row observation. (Unfortunately I don't know if these are different cars or trials or conditions but we won't focus on that for now).  
 
 I can also use RStudio's Viewer to see this in a more familiar-looking format. Let's type this — and make sure it's a capital V and open and closed parentheses: 
 
-```{r mtcars-view, eval=FALSE}
-View(mtcars)
+```{r cars-view, eval=FALSE}
+View(cars)
 ```
 
 This opens the fourth pane of the RStudio IDE; when you work in R you will have all four panes open so this will become a very comforting setup for you.
@@ -158,18 +142,18 @@ So this is calculating the sum of the numbers from 1 and 5; that is what that `1
 sum(1, 2, 3, 4, 5)
 ```
 
-Awesome. Let's try this on our `mtcars` data
+Awesome. Let's try this on our `cars` data
 
-```{r sum-mtcars, eval=FALSE}
-sum(mtcars)
+```{r sum-cars, eval=FALSE}
+sum(cars)
 ```
 
-Alright. What is this number? It is the sum of ALL of the data in the mtcars dataset. Maybe in some analysis this would be a useful operation, but I would worry about the way your data is set up and your analyses if this is ever something you'd want to do. More likely, you'd want to take the sum of a specific column. In R, you can do that with the `$` operator. 
+Alright. What is this number? It is the sum of ALL of the data in the `cars` dataset. Maybe in some analysis this would be a useful operation, but I would worry about the way your data is set up and your analyses if this is ever something you'd want to do. More likely, you'd want to take the sum of a specific column. In R, you can do that with the `$` operator. 
 
-Let's say we want to calculate the total number of gears that all these cars have:
+Let's say we want to calculate the total distance:
 
-```{r sum-mtcars2, eval=FALSE}
-sum(mtcars$gear)
+```{r sum-cars2, eval=FALSE}
+sum(cars$dist)
 ```
 
 ### Assigning objects with `<-`
@@ -177,10 +161,10 @@ sum(mtcars$gear)
 This might be a really important value that we want to have on hand. We can save this as its own object. We do this by writing the name along with the assignment operator `<-`
 
 ```{r assign}
-sum_gears <- sum(mtcars$gear)
+sum_dist <- sum(cars$dist)
 ```
 
-And we can execute it. In my head I hear "sum_gears gets 118". 
+And we can execute it. In my head I hear "sum_dist gets `r sum(cars$dist)`". 
 
 Object names can be whatever you want, although they cannot start with a digit and cannot contain certain other characters such as a comma or a space. Different folks have different conventions; you will be wise to adopt a [convention for demarcating words](http://en.wikipedia.org/wiki/Snake_case) in names.
 
@@ -190,22 +174,24 @@ Object names can be whatever you want, although they cannot start with a digit a
 # evenOthersUseCamelCase
 ```
 
-Notice that as I start typing `sum_gears` in the Console, there will be options to auto-fill. This is RStudio helping you out, which is great because we all are prone to typos. I actually have to ignore the help to try to force a typo: 
+Notice that as I start typing `sum_dist` in the Console, there will be options to auto-fill. This is RStudio helping you out, which is great because we all are prone to typos. I actually have to ignore the help to try to force a typo: 
 
 ```{r, eval=FALSE}
-sumgears
-# Error: object 'sumgears' not found
+sumdist
+# Error: object 'sumdist' not found
 ```
 
 OK this is an error, but I didn't break R — error messages are your friends. 
 
-The first thing to do with an error message is read it. Yes it's in angry red text and it's unexpected — but most error messages are doing their best to help you solve the problem. And you'll get more familiar with they way they tell you. By  saying "object 'sumgears' not found" alerts me immediately to the fact that this thing I think exists R doesn't think exists — so maybe it's a typo or not loaded?
+The first thing to do with an error message is read it. Yes it's in angry red text and it's unexpected — but most error messages are doing their best to help you solve the problem. And you'll get more familiar with they way they tell you. By  saying "object 'sumdist' not found" alerts me immediately to the fact that this thing I think exists R doesn't think exists — so maybe it's a typo or not loaded?
 
 ### Error messages are your friends
 
-Remember that this is a language, not unsimilar to English! There are times you aren't understood -- it's going to happen. There are different ways this can happen. Sometimes you'll get an error. This is like someone saying 'What?' or 'Pardon'? Error messages can also be more useful, like when they say 'I didn't understand what you said, I was expecting you to say blah'. That is a great type of error message. Error messages are your friend. Google them (copy-and-paste!) to figure out what they mean. 
+As [Jenny Bryan says](https://stat545.com/r-basics.html): 
 
-`r htmltools::img(src='img/practicalDev_googleErrorMessage.jpg', width=400)`
+> Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Pay attention to how you type.
+
+Remember that this is a language, not unsimilar to English! There are times you aren't understood -- it's going to happen. There are different ways this can happen. Sometimes you'll get an error. This is like someone saying 'What?' or 'Pardon'? Error messages can also be more useful, like when they say 'I didn't understand what you said, I was expecting you to say blah'. That is a great type of error message. Error messages are your friend. Google them (copy-and-paste!) to figure out what they mean. 
 
 And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I am telling a story about suspenders that my British friend hears but silently interprets in a very different way (true story). This can leave me thinking I've gotten something across that the listener (or R) might silently interpreted very differently. And as I continue telling my story you get more and more confused... Clear communication is critical when you code: write clean, well documented code and check your work as you go to minimize these circumstances!
 
@@ -219,10 +205,11 @@ A moment about **logical operators and expressions**. We can ask questions about
 - `>` means ` is greater than'
 - `<=` means ` is less than or equal to'
 - `>=` means ` is greater than or equal to'
+
 ```{r}
-x == 2
-x <= 30
-x != 5
+sum_dist == 2
+sum_dist <= 3000
+sum_dist != 500
 ```
 
 > Shortcuts
@@ -233,17 +220,30 @@ RStudio offers many handy [keyboard shortcuts](https://support.rstudio.com/hc/en
 > My most common shortcuts include command-Z (undo), and combinations of arrow keys in combination with shift/option/command (moving quickly up, down, sideways, with or without highlighting.
 
 ## Clearing the environment
+
 Now look at the objects in your environment (workspace) -- in the upper right pane. The workspace is where user-defined objects accumulate. 
 
 For reproducibility, it is critical that you delete your objects and restart your R session frequently. You don't want your whole analysis to only work in whatever way you've been working right now — you need it to work next week, after you upgrade your operating system, etc. Restarting your R session will help you identify and account for anything you need for your analysis. 
 
 We will keep coming back to this theme but let's restart our R session together: Go to the top menus: Session > Restart R. 
 
-So this gives you a bit of a taste of R from the Console. Now let's learn about RMarkdown.
+Don't save the workspace!
+
+OK so now that we've got a little bit of a feel for R and RStudio, let's do something much more interesting and really start feeling its power. 
 
 ## Intro to RMarkdown
 
-An RMarkdown file will allow us to weave markdown text with chunks of R code to be evaluated and output content like tables and plots. This is super cool, and really best to experience before we talk about it. So let's do this together. 
+### What is RMarkdown? (1-minute video)
+
+Let's watch this to demonstrate all the amazing things you can now do: 
+
+[What is RMarkdown?](https://vimeo.com/178485416)
+
+An RMarkdown file will allow us to weave markdown text with chunks of R code to be evaluated and output content like tables and plots. 
+
+This is really critical to reproducibility, and it also saves time. This document will recreate your figures for you in the same document where you are writing text. So no more doing analysis, saving a plot, pasting that plot into Word, redoing the analysis, re-saving, re-pasting, etc. 
+
+Let's experience this a bit ourselves and then we'll talk about it more. 
 
 ### Create an RMarkdown file
 
@@ -299,10 +299,40 @@ And now let's talk about this.
 Notice how the grey **R code chunks** are surrounded by 3 backticks and `{r LABEL}`. These are evaluated and return the output text in the case of `summary(cars)` and the output plot in the case of `plot(pressure)`.
 
 Notice how the code `plot(pressure)` is not shown in the HTML output because of the R code chunk option `echo=FALSE`. 
-COME BACK!!!
 
+We can create a new chunk in your RMarkdown first in one of these ways: 
 
-We don't know that much R yet, but you can see that we are taking a summary of some data called 'cars', and then plotting. We will focus on R for the rest of the workshop, but for the rest of this morning let's focus on the second language.
+- click "Insert > R" at the top of the editor pane
+- type by hand 
+   \```{r}
+   \```
+- if you haven't deleted a chunk that came with the new file, edit that one
+
+Now, let's write some code in R. Earlier we calculated `sum(cars$dist)`. Now let's do the average. In R, this is the `mean()` function
+
+```{r}
+mean_dist <- mean(cars$dist)
+```
+
+Now, hitting return does not execute this command; remember, it's a text file in the text editor, it's not associated with the R engine. To execute it, we need to get what we typed in the the R chunk (the grey R code) down into the console. How do we do it? There are several ways (let's do each of them):
+
+1. copy-paste this line into the console.
+1. select the line (or simply put the cursor there), and click 'Run'. This is available from 
+    a. the bar above the file (green arrow)
+    b. the menu bar: Code > Run Selected Line(s)
+    c. keyboard shortcut: command-return
+1. click the green arrow at the right of the code chunk
+
+And when we do this, we see the `mean_dist` object appear in he Environment pane. 
+
+Cool tip: doesn't have to be only R, other languages supported. 
+
+### Activity (3 min)
+
+> Add a few more commands to your file from this morning. Execute your commands by trying the three ways above. Then, knit your R Markdown file, which will also save the Rmd by default. 
+Remember to write your R code within a code chunk (grey)! 
+
+### Markdown sections
 
 The second language is Markdown. This is a formatting language for plain text, and there are only about 15 rules to know. 
 
@@ -321,7 +351,7 @@ There are some good [cheatsheets](https://github.com/adam-p/markdown-here/wiki/M
 - in R, a hashtag indicates a comment that will not be evaluated. You can use as many as you want: `#` is equivalent to `######`. It's a matter of style. I use two `##` to indicate a comment so that it's clearer what is a comment versus what I don't want to run at the moment.
 - in Markdown, a hashtag indicates a level of a header. And the number you use matters: `#` is a "level one header", meaning the biggest font and the top of the hierarchy. `###` is a level three header, and will show up nested below the `#` and `##` headers.
 
-If this seems confusing, take comfort in the fact that you are already used to using `#`s differently in real life: it can mean "number" or "pound" or hashtags on social media.
+If this seems confusing, take comfort in the fact that you are already used to using `#`s in a few ways in real life: it can mean "number" or "pound" or hashtags on social media.
 
 Learn more: http://rmarkdown.rstudio.com/
 
@@ -331,81 +361,28 @@ Learn more: http://rmarkdown.rstudio.com/
  Use the Markdown Quick Reference (in the menu bar: Help > Markdown Quick Reference). 
 1. Reknit your html file. 
 
+### Restart R
 
-### R chunks
+To end our work from this session, save, knit, and then restart R (Go to the top menus: Session > Restart R.) 
 
+Notice that now with a clean workspace, if I knit my document instead of sending code to the Console, my objects (like `mean_dist`) don't show up in my Environment. This is because R isn't actually running this in this R session, it is actually spinning up a clean session to knit my document. This is important for reproducible analyses because I don't want the success of this analysis to be dependent on some weird setting I have on my computer that will make Future Me or Future Us not able to run or understand these important analyses. Having RMarkdown be self-contained in this way helps you develop good habits for reproducibility.
 
-OK. Now let's practice with some of those commands that we were working on this morning.
-
-Create a new chunk in your RMarkdown first in one of these ways: 
-
-- click "Insert > R" at the top of the editor pane
-- type by hand 
-   \```{r}
-   \```
-- if you haven't deleted a chunk that came with the new file, edit that one
-
-Now, let's write some R code. 
-
-```
-x <- seq(1:15)
-```
-
-Now, hitting return does not execute this command; remember, it's a text file in the text editor, it's not associated with the R engine. To execute it, we need to get what we typed in the the R chunk (the grey R code) down into the console. How do we do it? There are several ways (let's do each of them):
-
-1. copy-paste this line into the console.
-1. select the line (or simply put the cursor there), and click 'Run'. This is available from 
-    a. the bar above the file (green arrow)
-    b. the menu bar: Code > Run Selected Line(s)
-    c. keyboard shortcut: command-return
-1. click the green arrow at the right of the code chunk
-
-Cool tip: doesn't have to be only R, other languages supported. 
-
+<!---
 ### Activity
-
-> Add a few more commands to your file from this morning. Execute them by trying the three ways above. Then, knit your R Markdown file, which will also save the Rmd by default. 
-
-
-## Activity
 
 1. knit!
 
-Delete everything! Just by being an .Rmd file, this will knit
+Delete everything in the file! Just by being an .Rmd file, this will knit
+
+--->
 
 ## Deep thoughts
-
-Command-Z is the best
-
-## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
-## Interludes (deep thoughts/openscapes)
-## Interludes (deep thoughts/openscapes)
 
 Comments! Organization (spacing, subsections, vertical structure, indentation, etc.)! Well-named variables! Also, well-named operations so analyses (select(data, columnname)) instead of data[1:6,5] and excel equivalent. (Ex with strings)
 Not so brittle/sensitive to minor changes.
 
-### RMarkdown video (1-minute)
-
-Let's watch this to demonstrate all the amazing things you can now do: 
-
-[What is RMarkdown?](https://vimeo.com/178485416)
-
 
 ## Efficiency Tips
-
-## Deep thought
-
-How would you do this in Excel? 
-The calculations are usually the same shape as the data. In other words if you want to multiply 20 numbers stored in cells A1:An by 2, you will need 20 calculations: =A1 * 2, =A2 * 2, ...., =An * 2.
-
-<!---from https://blog.shotwell.ca/posts/r_for_excel_users/ --->
-
-<!---
-TODO: should we get into this?
-Let's try another. In Excel there is a function called AVERAGE. Let's see if there is such a thing in R. 
---->
-
-OK so now that we've got a little bit of a feel for R and RStudio, let's do something much more interesting and really start feeling its power. 
 
 <!---
 ## R Scripts
@@ -466,46 +443,6 @@ ggplot(diamonds, aes(x = carat, y = price)) +
 ```
 
 --->
-
-### Deep thought: Error messages are your friends
-
-As [Jenny Bryan says](https://stat545.com/r-basics.html): 
-
-> Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Pay attention to how you type.
-
-Remember that this is a language, not unsimilar to English! There are times you aren't understood -- it's going to happen. There are different ways this can happen. Sometimes you'll get an error. This is like someone saying 'What?' or 'Pardon'? Error messages can also be more useful, like when they say 'I didn't understand what you said, I was expecting you to say blah'. That is a great type of error message. Error messages are your friend. Google them (copy-and-paste!) to figure out what they mean. 
-
-And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I am telling a story about suspenders that my British friend hears but silently interprets in a very different way (true story). This can leave me thinking I've gotten something across that the listener (or R) might silently interpreted very differently. And as I continue telling my story you get more and more confused... Clear communication is critical when you code: write clean, well documented code and check your work as you go to minimize these circumstances!
-
-## Don't save the workspace
-
-## Deep thought: keep the raw data raw. 
-
-Discussing using Excel for variables. 
-
-Horror Stories! Economist etc. -- 
-
-Mine: genetics example doesn't hit home as much as Durham bike  accidents where age groups are converted to dates just by opening the bloody csv in excel
-
-## Activity 1
-## Activity 2
-## Efficiency Tips
-
-
-## Troubleshooting
-
-Here are some additional things we didn't have time to discuss:
-
-### I entered a command and nothing's happening
-
-It may be because you didn't complete a command: is there a little `+` in your console? R is saying that it is waiting for you to finish. In the example below, I need to close that parenthesis.
-
-```{r, eval=FALSE}
-> x <- seq(1, 10
-+ 
-```
-
-
 
 
 <!---
