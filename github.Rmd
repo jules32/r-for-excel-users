@@ -1,31 +1,3 @@
-# GitHub
-
-Setup GitHub
-GitHub
-Scrap plans for publishing and issues: setup version control and practice like OHI data-science-training. 
-Practice committing the README and .gitignore
-Copy our rproj into this repo and push 
-
-TO ADD:
-
-- create data/ folder. (GH won't see an empty folder so put a README in it). 
-- create Rmd. 
-Add at the end: create an Rmd for our next lesson after lunch? Yes, and add a header with their inform
-
-Create the github repo: 'r-and-excel'
-
-<!---
-## Summary (a few sentences)
-
-## Objectives
-
-- 
-
-## Resources
-
-
-## Lessons
-
 # GitHub {#github}
 
 ```{r gh ops, include=FALSE}
@@ -33,15 +5,20 @@ knitr::opts_chunk$set(echo = TRUE)
 library(htmltools)
 ```
 
+TO ADD:
 
-## Objectives and Resources
+- create data/ folder. (GH won't see an empty folder so put a README in it). 
+
+I like to turn off workbook mode. 
+
+Create the github repo: 'r-and-excel'
+
+
+## Summary 
 
 We will learn about version control using git and GitHub, and we will interface with this through RStudio. Why use version control? To save time when working with your most important collaborator: you. 
 
-git will track and version your files, GitHub stores this online and enables you to collaborate with others (and yourself). Although git and GitHub are two different things, distinct from each other, I think of them as a bundle since I always use them together. It also helped me to think of GitHub like Dropbox: you make folders that are 'tracked' and can be synced to the cloud. GitHub does this too, but you have to be more deliberate about when syncs are made. This is because GitHub saves these as different versions, with information about who contributed when, line-by-line. This makes collaboration easier, and it allows you to roll-back to different versions or contribute to others' work.
-
-
-### Objectives
+## Objectives
 
 Today, we'll interface with GitHub from our local computers using RStudio. There are many other ways to interact with GitHub, including GitHub's Desktop App or the command line ([here is Jenny Bryan's list of git clients](http://stat545.com/git02_git-clients.html)), but today we are going to work from RStudio. You have the largest suite of options if you interface through the command line, but the most common things you'll do can be done through one of these other applications (i.e. RStudio and the GitHub Desktop App).
 
@@ -54,7 +31,10 @@ Here's what we'll do after we set up git on your computers:
 1. practice the RStudio-GitHub workflow by editing and adding files 
 1. practice R Markdown
 
-### Resources
+git will track and version your files, GitHub stores this online and enables you to collaborate with others (and yourself). Although git and GitHub are two different things, distinct from each other, we can think of them as a bundle since we will always use them together. It also helped me to think of GitHub like Dropbox: you make folders that are 'tracked' and can be synced to the cloud. GitHub does this too, but you have to be more deliberate about when syncs are made. This is because GitHub saves these as different versions, with information about who contributed when, line-by-line. This makes collaboration easier, and it allows you to roll-back to different versions or contribute to others' work.
+
+
+## Resources
 
 These materials borrow from: 
 
@@ -66,8 +46,8 @@ These materials borrow from:
 Today, we'll only introduce the features and terminology that scientists need to learn to begin managing their projects.
 
 
+## Why should R users use Github?
 
-## Why should scientists use Github?
 
 1. Ends (or, nearly ends) the horror of keeping track of versions.
   Basically, we get away from this: 
@@ -345,6 +325,17 @@ And, I typically create the following:
 * R scripts
 * etc.
 
+<!---
+To be organized, let's also create the following: 
+
+* folders for "data" and "figures"  
+
+We can do this in a few ways: 
+
+- click the green plus "New Folder" icon at the top of the files pane and create a folder called "data"
+- go to your Finder/Windows explorer 
+--->
+
 I'm going to go to the Finder (Windows Explorer on a PC) and copy a file into my repository from there. And then I'm going to go back to RStudio -- it shows up in the git tab! So the repository is being tracked, no matter how you make changes to it (changes do not have to be done only through RStudio). 
 
 To make changes to the repository, you will work from your computer ("local Github").
@@ -420,7 +411,6 @@ This time let's edit an existing file instead of adding something new. Open your
 
 Also, go to your Finder/Windows Explorer, and copy-paste something into your local GitHub repo. Then go back to RStudio and confirm that git tracked it. Remember, git will track anything within that folder (the way Dropbox does), it's not specific to RStudio!
 
-
 ## Create a new R Markdown file
 
 OK, now, let's go back to RStudio, and get ourselves back into learning R. We are going to use R Markdown so that you can write notes to yourself in Markdown, and have a record of all your R code. Writing R commands in the console like we did this morning is great, but limited; it's hard to keep track of and hard to efficiently share with others. Plus, as your analyses get more complicated, you need to be able to see them all in one place.
@@ -434,19 +424,19 @@ Here's what I'm going to write in my R Markdown file to begin:
 
 ```
 ---
-title: "Graphics with ggplot2"
-author: "Julie"
-date: "11/21/2017"
+title: "Reading data into R with `readxl`"
+author: "Julie Lowndes"
+date: "12/7/2019"
 output: html_document
 ---
 
-# Learning ggplot2
+# Learning `readxl`
 
-We're learning ggplot2 It's going to be amazing. 
+We are working with data and it's going to be amazing.
 
 ```
 
-Now, let's save it. I'm going to call my file `ggplot2.Rmd`.
+Now, let's save it. I'm going to call my file `readxl.Rmd`. You can knit it if you'd like. 
 
 Then, sync your file to GitHub.
 
@@ -489,15 +479,5 @@ You can click on the commits to see how the files changed from the previous comm
 If you have problems, we'll help you out using Jenny Bryan's [HappyGitWithR](http://happygitwithr.com), particularly the sections on [Detect Git from RStudio](http://happygitwithr.com/rstudio-see-git.html) and [RStudio, Git, GitHub Hell (troubleshooting)](http://happygitwithr.com/troubleshooting.html). So as we are coming around, have a look at it and see if you can help troubleshoot too!
 
 
-
---->
-
-### Reading 
-
-
-## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
-## Interludes (deep thoughts/openscapes)
-## Our Turn Your Turn 1
-## Our Turn Your Turn 2
 ## Efficiency Tips
 
