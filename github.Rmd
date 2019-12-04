@@ -6,6 +6,10 @@ Scrap plans for publishing and issues: setup version control and practice like O
 Practice committing the README and .gitignore
 Copy our rproj into this repo and push 
 
+TO ADD:
+
+- create data/ folder. (GH won't see an empty folder so put a README in it). 
+- create Rmd. 
 Add at the end: create an Rmd for our next lesson after lunch? Yes, and add a header with their inform
 
 Create the github repo: 'r-and-excel'
