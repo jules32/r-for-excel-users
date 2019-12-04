@@ -36,8 +36,21 @@ lobster_counts <- lobster_counts_raw %>%
   janitor::clean_names() %>% 
   mutate(site = str_to_lower(site))
 
-lobster_subset <- lobster_counts #%>%
+lobster_subset <- lobster_counts %>%
+  uncount(count) %>%
+  select(-area, -num_ao)
   #filter(year == 2016:2018) 
+
+
+
+## explore
+lobster_subset %>%
+  filter(site == "ivee", 
+         year == 2018)
+
+sum(lobster_counts$count)
+
+
 ```
 
 3. Some further curation testing (trying out different lobster subsets, etc.)
@@ -49,8 +62,8 @@ write_csv(lobster_subset, "curation/lobster_counts_curated.csv")
 # Make a graph of the numbers by location, year & species?
 # Probably want to work on this a bit more ()
 
-ggplot(lobster_subset, aes(x = year, y = count)) +
-  geom_col(position = "dodge") +
+ggplot(lobster_subset, aes(x = year)) +
+  geom_bar() +
   facet_wrap(~site)
 
 ```

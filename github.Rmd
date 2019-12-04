@@ -405,7 +405,7 @@ The files you added should be on github.com:
 
 Let's also explore commit history, file history.
 
-### Your turn!
+### Activity
 
 This time let's edit an existing file instead of adding something new. Open your README file by clicking on it in the Files pane (lower right corner). Write a few lines of text, save, and see what happens in your Git Tab. Sync it to your remote repository (Github.com).
 

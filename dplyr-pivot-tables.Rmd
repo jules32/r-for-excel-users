@@ -39,7 +39,7 @@ In the setup chunk, let's attach our libraries and read in our lobster data.
 library(tidyverse)
 
 ## read in data
-lobsters <- read_csv("lobster_counts_curated.csv")
+lobsters <- read_csv("data/lobster_counts_curated.csv")
 ```
 
 ```{r, include = FALSE}
@@ -238,19 +238,6 @@ siteyear_summary <- lobsters %>%
 siteyear_summary
 ```
 
-<!---
-leave mutate() out for now
-
-Let's go back to our `site_summary` that you just created. 
-
-```{r}
-site_summary %>%
-  mutate(percent_total = count/(sum(count)) * 100,
-         total = sum(percent_total))
-```
-
---->
-
 ## Formatting tables
 
 There are a growing number of R packages for making tables look presentable and beautiful so you can include them nicely in your reports. We will talk about 2 options here. We will actually go back up to our setup chunk to add these libraries so that we follow the good practice of loading libraries at the beginning of a script. 
@@ -310,6 +297,31 @@ lobsters %>%
 
 ```
 
+Switching gears...
+
+## `mutate()` 
+
+There are a lot of times where you don't want to summarize your data, but you do want to operate beyond the original data. This is often done by adding a column. We do this with the `mutate()` function from `dplyr`. Let's try this with our original lobsters data. The sizes are in millimeters but let's say it was important for them to be in meters. We can add a column with this calculation: 
+
+```{r}
+# quick reminder what this looks like
+head(lobsters)
+
+lobsters %>%
+  mutate(size_m = size_mm / 1000)
+```
+
+If we want to add a column that has the same value repeated, we can pass it just one value, either a number or a character string (in quotes):
+
+```{r}
+lobsters %>%
+  mutate(millenia = 2000,
+         observer = "Allison Horst")
+```
+
+<!---
+select() for reshuffling columns?
+--->
 
 ## Deep thoughts
 

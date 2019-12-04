@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Visualizing: ggplot2 | R for Excel Users</title>
+  <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Visualizing: ggplot2 | R for Excel Users" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Visualizing: ggplot2 | R for Excel Users" />
+  
+  <meta name="twitter:description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
+  
+
+<meta name="author" content="Julie Lowndes &amp; Allison Horst" />
+
+
+<meta name="date" content="2019-12-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ggplot2.html">
+<link rel="next" href="pivot.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R for Excel Users</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Overview</a><ul>
+<li class="chapter" data-level="2.1" data-path="overview.html"><a href="overview.html#summary"><i class="fa fa-check"></i><b>2.1</b> Summary</a></li>
+<li class="chapter" data-level="2.2" data-path="overview.html"><a href="overview.html#objectives-more-detailed-bulletpoints"><i class="fa fa-check"></i><b>2.2</b> Objectives (more detailed, bulletpoints?)</a></li>
+<li class="chapter" data-level="2.3" data-path="overview.html"><a href="overview.html#resources"><i class="fa fa-check"></i><b>2.3</b> Resources</a></li>
+<li class="chapter" data-level="2.4" data-path="overview.html"><a href="overview.html#overview-1"><i class="fa fa-check"></i><b>2.4</b> Overview</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="overview.html"><a href="overview.html#what-to-expect"><i class="fa fa-check"></i><b>2.4.1</b> What to expect</a></li>
+<li class="chapter" data-level="2.4.2" data-path="overview.html"><a href="overview.html#what-youll-learn"><i class="fa fa-check"></i><b>2.4.2</b> What you’ll learn</a></li>
+<li class="chapter" data-level="2.4.3" data-path="overview.html"><a href="overview.html#emphasizing-collaboration"><i class="fa fa-check"></i><b>2.4.3</b> Emphasizing collaboration</a></li>
+<li class="chapter" data-level="2.4.4" data-path="overview.html"><a href="overview.html#by-the-end-of-the-course"><i class="fa fa-check"></i><b>2.4.4</b> By the end of the course…</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="overview.html"><a href="overview.html#if-r-were-an-airplane"><i class="fa fa-check"></i><b>2.5</b> If R were an Airplane</a></li>
+<li class="chapter" data-level="2.6" data-path="overview.html"><a href="overview.html#rstudio-orientation"><i class="fa fa-check"></i><b>2.6</b> RStudio Orientation</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="overview.html"><a href="overview.html#r-console"><i class="fa fa-check"></i><b>2.6.1</b> R Console</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="overview.html"><a href="overview.html#deep-thought"><i class="fa fa-check"></i><b>2.7</b> Deep thought</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="overview.html"><a href="overview.html#deep-thought-error-messages-are-your-friends"><i class="fa fa-check"></i><b>2.7.1</b> Deep thought: Error messages are your friends</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="overview.html"><a href="overview.html#dont-save-the-workspace"><i class="fa fa-check"></i><b>2.8</b> Don’t save the workspace</a></li>
+<li class="chapter" data-level="2.9" data-path="overview.html"><a href="overview.html#deep-thought-keep-the-raw-data-raw."><i class="fa fa-check"></i><b>2.9</b> Deep thought: keep the raw data raw.</a></li>
+<li class="chapter" data-level="2.10" data-path="overview.html"><a href="overview.html#activity-1"><i class="fa fa-check"></i><b>2.10</b> Activity 1</a></li>
+<li class="chapter" data-level="2.11" data-path="overview.html"><a href="overview.html#activity-2"><i class="fa fa-check"></i><b>2.11</b> Activity 2</a></li>
+<li class="chapter" data-level="2.12" data-path="overview.html"><a href="overview.html#efficiency-tips"><i class="fa fa-check"></i><b>2.12</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="2.13" data-path="overview.html"><a href="overview.html#troubleshooting"><i class="fa fa-check"></i><b>2.13</b> Troubleshooting</a><ul>
+<li class="chapter" data-level="2.13.1" data-path="overview.html"><a href="overview.html#i-entered-a-command-and-nothings-happening"><i class="fa fa-check"></i><b>2.13.1</b> I entered a command and nothing’s happening</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>3</b> R &amp; RStudio, RMarkdown</a><ul>
+<li class="chapter" data-level="3.1" data-path="rstudio.html"><a href="rstudio.html#summary-1"><i class="fa fa-check"></i><b>3.1</b> Summary</a></li>
+<li class="chapter" data-level="3.2" data-path="rstudio.html"><a href="rstudio.html#objectives-more-detailed-bulletpoints-1"><i class="fa fa-check"></i><b>3.2</b> Objectives (more detailed, bulletpoints?)</a></li>
+<li class="chapter" data-level="3.3" data-path="rstudio.html"><a href="rstudio.html#resources-1"><i class="fa fa-check"></i><b>3.3</b> Resources</a></li>
+<li class="chapter" data-level="3.4" data-path="rstudio.html"><a href="rstudio.html#intro-to-rmarkdown"><i class="fa fa-check"></i><b>3.4</b> Intro to RMarkdown</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="rstudio.html"><a href="rstudio.html#create-an-rmarkdown-file"><i class="fa fa-check"></i><b>3.4.1</b> Create an RMarkdown file</a></li>
+<li class="chapter" data-level="3.4.2" data-path="rstudio.html"><a href="rstudio.html#knit-your-rmarkdown-file"><i class="fa fa-check"></i><b>3.4.2</b> Knit your RMarkdown file</a></li>
+<li class="chapter" data-level="3.4.3" data-path="rstudio.html"><a href="rstudio.html#activity-5-mins"><i class="fa fa-check"></i><b>3.4.3</b> Activity (5 mins)</a></li>
+<li class="chapter" data-level="3.4.4" data-path="rstudio.html"><a href="rstudio.html#r-code-chunks"><i class="fa fa-check"></i><b>3.4.4</b> R code chunks</a></li>
+<li class="chapter" data-level="3.4.5" data-path="rstudio.html"><a href="rstudio.html#activity"><i class="fa fa-check"></i><b>3.4.5</b> Activity</a></li>
+<li class="chapter" data-level="3.4.6" data-path="rstudio.html"><a href="rstudio.html#r-chunks"><i class="fa fa-check"></i><b>3.4.6</b> R chunks</a></li>
+<li class="chapter" data-level="3.4.7" data-path="rstudio.html"><a href="rstudio.html#activity-3"><i class="fa fa-check"></i><b>3.4.7</b> Activity</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="rstudio.html"><a href="rstudio.html#activity-4"><i class="fa fa-check"></i><b>3.5</b> Activity</a></li>
+<li class="chapter" data-level="3.6" data-path="rstudio.html"><a href="rstudio.html#deep-thoughts"><i class="fa fa-check"></i><b>3.6</b> Deep thoughts</a></li>
+<li class="chapter" data-level="3.7" data-path="rstudio.html"><a href="rstudio.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections"><i class="fa fa-check"></i><b>3.7</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="3.8" data-path="rstudio.html"><a href="rstudio.html#interludes-deep-thoughtsopenscapes"><i class="fa fa-check"></i><b>3.8</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="3.9" data-path="rstudio.html"><a href="rstudio.html#interludes-deep-thoughtsopenscapes-1"><i class="fa fa-check"></i><b>3.9</b> Interludes (deep thoughts/openscapes)</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="rstudio.html"><a href="rstudio.html#rmarkdown-video-1-minute"><i class="fa fa-check"></i><b>3.9.1</b> RMarkdown video (1-minute)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="rstudio.html"><a href="rstudio.html#efficiency-tips-1"><i class="fa fa-check"></i><b>3.10</b> Efficiency Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>4</b> GitHub</a><ul>
+<li class="chapter" data-level="4.0.1" data-path="github.html"><a href="github.html#reading"><i class="fa fa-check"></i><b>4.0.1</b> Reading</a></li>
+<li class="chapter" data-level="4.1" data-path="github.html"><a href="github.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-1"><i class="fa fa-check"></i><b>4.1</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="4.2" data-path="github.html"><a href="github.html#interludes-deep-thoughtsopenscapes-2"><i class="fa fa-check"></i><b>4.2</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="4.3" data-path="github.html"><a href="github.html#our-turn-your-turn-1"><i class="fa fa-check"></i><b>4.3</b> Our Turn Your Turn 1</a></li>
+<li class="chapter" data-level="4.4" data-path="github.html"><a href="github.html#our-turn-your-turn-2"><i class="fa fa-check"></i><b>4.4</b> Our Turn Your Turn 2</a></li>
+<li class="chapter" data-level="4.5" data-path="github.html"><a href="github.html#efficiency-tips-2"><i class="fa fa-check"></i><b>4.5</b> Efficiency Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="readxl.html"><a href="readxl.html"><i class="fa fa-check"></i><b>5</b> <code>readxl</code></a><ul>
+<li class="chapter" data-level="5.1" data-path="readxl.html"><a href="readxl.html#summary-2"><i class="fa fa-check"></i><b>5.1</b> Summary</a></li>
+<li class="chapter" data-level="5.2" data-path="readxl.html"><a href="readxl.html#objectives"><i class="fa fa-check"></i><b>5.2</b> Objectives</a></li>
+<li class="chapter" data-level="5.3" data-path="readxl.html"><a href="readxl.html#resources-2"><i class="fa fa-check"></i><b>5.3</b> Resources</a></li>
+<li class="chapter" data-level="5.4" data-path="readxl.html"><a href="readxl.html#lesson"><i class="fa fa-check"></i><b>5.4</b> Lesson</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="readxl.html"><a href="readxl.html#lesson-prep-get-data-files-into-your-working-directory"><i class="fa fa-check"></i><b>5.4.1</b> Lesson prep: get data files into your working directory</a></li>
+<li class="chapter" data-level="5.4.2" data-path="readxl.html"><a href="readxl.html#in-the-.rmd-you-just-created-attach-the-tidyverse-readxl-and-writexl-packages"><i class="fa fa-check"></i><b>5.4.2</b> In the .Rmd you just created, attach the <code>tidyverse</code>, <code>readxl</code> and <code>writexl</code> packages</a></li>
+<li class="chapter" data-level="5.4.3" data-path="readxl.html"><a href="readxl.html#use-readrread_csv-to-read-in-data-from-a-csv-file"><i class="fa fa-check"></i><b>5.4.3</b> Use <code>readr::read_csv()</code> to read in data from a CSV file</a></li>
+<li class="chapter" data-level="5.4.4" data-path="readxl.html"><a href="readxl.html#use-readxlread_excel-to-read-in-a-single-excel-worksheet"><i class="fa fa-check"></i><b>5.4.4</b> Use <code>readxl::read_excel()</code> to read in a single Excel worksheet</a></li>
+<li class="chapter" data-level="5.4.5" data-path="readxl.html"><a href="readxl.html#use-readxlread_excel-to-read-in-only-part-of-an-excel-worksheet"><i class="fa fa-check"></i><b>5.4.5</b> Use <code>readxl::read_excel()</code> to read in only <em>part</em> of an Excel worksheet</a></li>
+<li class="chapter" data-level="5.4.6" data-path="readxl.html"><a href="readxl.html#use-readxlread_excel-to-read-in-selected-worksheets-from-a-workbook"><i class="fa fa-check"></i><b>5.4.6</b> Use <code>readxl::read_excel()</code> to read in selected worksheets from a workbook</a></li>
+<li class="chapter" data-level="5.4.7" data-path="readxl.html"><a href="readxl.html#read-in-and-combine-data-from-multiple-worksheets-into-a-data-frame-simultaneously-with-purrrmap_df"><i class="fa fa-check"></i><b>5.4.7</b> Read in and combine data from multiple worksheets into a data frame simultaneously with <code>purrr::map_df()</code></a></li>
+<li class="chapter" data-level="5.4.8" data-path="readxl.html"><a href="readxl.html#save-data-frames-as-.csv-or-.xlsx-with-readrwrite_csv-or-writexlwrite_xlsx"><i class="fa fa-check"></i><b>5.4.8</b> Save data frames as .csv or .xlsx with <code>readr::write_csv()</code> or <code>writexl::write_xlsx()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="readxl.html"><a href="readxl.html#fun-facts-ideas"><i class="fa fa-check"></i><b>5.5</b> Fun facts ideas:</a></li>
+<li class="chapter" data-level="5.6" data-path="readxl.html"><a href="readxl.html#interludes-deep-thoughtsopenscapes-3"><i class="fa fa-check"></i><b>5.6</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="5.7" data-path="readxl.html"><a href="readxl.html#activity-import-some-invertebrates"><i class="fa fa-check"></i><b>5.7</b> Activity: Import some invertebrates!</a></li>
+<li class="chapter" data-level="5.8" data-path="readxl.html"><a href="readxl.html#efficiency-tips-3"><i class="fa fa-check"></i><b>5.8</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="5.9" data-path="readxl.html"><a href="readxl.html#deep-thoughts-1"><i class="fa fa-check"></i><b>5.9</b> Deep thoughts</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>6</b> Graphs with ggplot2</a><ul>
+<li class="chapter" data-level="6.1" data-path="ggplot2.html"><a href="ggplot2.html#summary-3"><i class="fa fa-check"></i><b>6.1</b> Summary</a></li>
+<li class="chapter" data-level="6.2" data-path="ggplot2.html"><a href="ggplot2.html#objectives-1"><i class="fa fa-check"></i><b>6.2</b> Objectives</a></li>
+<li class="chapter" data-level="6.3" data-path="ggplot2.html"><a href="ggplot2.html#resources-3"><i class="fa fa-check"></i><b>6.3</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html"><i class="fa fa-check"></i><b>7</b> Visualizing: <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="7.1" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#objectives-resources"><i class="fa fa-check"></i><b>7.1</b> Objectives &amp; Resources</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#objectives-2"><i class="fa fa-check"></i><b>7.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="7.1.2" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#resources-4"><i class="fa fa-check"></i><b>7.1.2</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#install-our-first-package-tidyverse"><i class="fa fa-check"></i><b>7.2</b> Install our first package: <code>tidyverse</code></a></li>
+<li class="chapter" data-level="7.3" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#load-data"><i class="fa fa-check"></i><b>7.3</b> Load data</a></li>
+<li class="chapter" data-level="7.4" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#plotting-with-ggplot2"><i class="fa fa-check"></i><b>7.4</b> Plotting with <strong><code>ggplot2</code></strong></a></li>
+<li class="chapter" data-level="7.5" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#data"><i class="fa fa-check"></i><b>7.5</b> Data</a></li>
+<li class="chapter" data-level="7.6" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#building-your-plots-iteratively"><i class="fa fa-check"></i><b>7.6</b> Building your plots iteratively</a></li>
+<li class="chapter" data-level="7.7" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#customizing-plots"><i class="fa fa-check"></i><b>7.7</b> Customizing plots</a></li>
+<li class="chapter" data-level="7.8" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#ggplot2-themes"><i class="fa fa-check"></i><b>7.8</b> <strong><code>ggplot2</code></strong> themes</a></li>
+<li class="chapter" data-level="7.9" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#faceting"><i class="fa fa-check"></i><b>7.9</b> Faceting</a></li>
+<li class="chapter" data-level="7.10" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#geometric-objects-geoms"><i class="fa fa-check"></i><b>7.10</b> Geometric objects (geoms)</a></li>
+<li class="chapter" data-level="7.11" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#bar-charts"><i class="fa fa-check"></i><b>7.11</b> Bar charts</a><ul>
+<li class="chapter" data-level="7.11.1" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#position-adjustments"><i class="fa fa-check"></i><b>7.11.1</b> Position adjustments</a></li>
+<li class="chapter" data-level="7.11.2" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#challenge-1"><i class="fa fa-check"></i><b>7.11.2</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="7.12" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#arranging-and-exporting-plots"><i class="fa fa-check"></i><b>7.12</b> Arranging and exporting plots</a></li>
+<li class="chapter" data-level="7.13" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#bonus"><i class="fa fa-check"></i><b>7.13</b> Bonus</a></li>
+<li class="chapter" data-level="7.14" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#save-and-push-to-github"><i class="fa fa-check"></i><b>7.14</b> Save and push to GitHub</a></li>
+<li class="chapter" data-level="7.15" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2"><i class="fa fa-check"></i><b>7.15</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="7.16" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#interludes-deep-thoughtsopenscapes-4"><i class="fa fa-check"></i><b>7.16</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="7.17" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#our-turn-your-turn-1-1"><i class="fa fa-check"></i><b>7.17</b> Our Turn Your Turn 1</a></li>
+<li class="chapter" data-level="7.18" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#our-turn-your-turn-2-1"><i class="fa fa-check"></i><b>7.18</b> Our Turn Your Turn 2</a></li>
+<li class="chapter" data-level="7.19" data-path="visualizing-ggplot2.html"><a href="visualizing-ggplot2.html#efficiency-tips-4"><i class="fa fa-check"></i><b>7.19</b> Efficiency Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="pivot.html"><a href="pivot.html"><i class="fa fa-check"></i><b>8</b> <code>dplyr</code> and Pivot Tables</a><ul>
+<li class="chapter" data-level="8.1" data-path="pivot.html"><a href="pivot.html#summary-a-few-sentences"><i class="fa fa-check"></i><b>8.1</b> Summary (a few sentences)</a></li>
+<li class="chapter" data-level="8.2" data-path="pivot.html"><a href="pivot.html#objectives-more-detailed-bulletpoints-2"><i class="fa fa-check"></i><b>8.2</b> Objectives (more detailed, bulletpoints?)</a></li>
+<li class="chapter" data-level="8.3" data-path="pivot.html"><a href="pivot.html#resources-5"><i class="fa fa-check"></i><b>8.3</b> Resources</a></li>
+<li class="chapter" data-level="8.4" data-path="pivot.html"><a href="pivot.html#lesson-1"><i class="fa fa-check"></i><b>8.4</b> Lesson</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="pivot.html"><a href="pivot.html#setup"><i class="fa fa-check"></i><b>8.4.1</b> Setup</a></li>
+<li class="chapter" data-level="8.4.2" data-path="pivot.html"><a href="pivot.html#pivot-tables"><i class="fa fa-check"></i><b>8.4.2</b> Pivot tables</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="pivot.html"><a href="pivot.html#dplyr-overview"><i class="fa fa-check"></i><b>8.5</b> <code>dplyr</code> overview</a></li>
+<li class="chapter" data-level="8.6" data-path="pivot.html"><a href="pivot.html#group_by-summarize"><i class="fa fa-check"></i><b>8.6</b> group_by() %&gt;% summarize()</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="pivot.html"><a href="pivot.html#group_by-one-variable"><i class="fa fa-check"></i><b>8.6.1</b> group_by one variable</a></li>
+<li class="chapter" data-level="8.6.2" data-path="pivot.html"><a href="pivot.html#activity-5"><i class="fa fa-check"></i><b>8.6.2</b> Activity</a></li>
+<li class="chapter" data-level="8.6.3" data-path="pivot.html"><a href="pivot.html#group_by-multiple-variables"><i class="fa fa-check"></i><b>8.6.3</b> group_by multiple variables</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="pivot.html"><a href="pivot.html#mutate"><i class="fa fa-check"></i><b>8.7</b> <code>mutate()</code></a><ul>
+<li class="chapter" data-level="8.7.1" data-path="pivot.html"><a href="pivot.html#activity-6"><i class="fa fa-check"></i><b>8.7.1</b> Activity</a></li>
+<li class="chapter" data-level="8.7.2" data-path="pivot.html"><a href="pivot.html#group_by-mutate"><i class="fa fa-check"></i><b>8.7.2</b> <code>group_by() %&gt;% mutate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="pivot.html"><a href="pivot.html#mutate-vs-summarize"><i class="fa fa-check"></i><b>8.8</b> mutate() vs summarize()</a></li>
+<li class="chapter" data-level="8.9" data-path="pivot.html"><a href="pivot.html#deep-thoughts-2"><i class="fa fa-check"></i><b>8.9</b> Deep thoughts</a></li>
+<li class="chapter" data-level="8.10" data-path="pivot.html"><a href="pivot.html#efficiency-tips-5"><i class="fa fa-check"></i><b>8.10</b> Efficiency Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>9</b> Tidying</a><ul>
+<li class="chapter" data-level="9.1" data-path="tidying.html"><a href="tidying.html#summary-4"><i class="fa fa-check"></i><b>9.1</b> Summary</a></li>
+<li class="chapter" data-level="9.2" data-path="tidying.html"><a href="tidying.html#objectives-3"><i class="fa fa-check"></i><b>9.2</b> Objectives</a></li>
+<li class="chapter" data-level="9.3" data-path="tidying.html"><a href="tidying.html#resources-6"><i class="fa fa-check"></i><b>9.3</b> Resources</a></li>
+<li class="chapter" data-level="9.4" data-path="tidying.html"><a href="tidying.html#lesson-2"><i class="fa fa-check"></i><b>9.4</b> Lesson</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="tidying.html"><a href="tidying.html#lesson-prep"><i class="fa fa-check"></i><b>9.4.1</b> Lesson Prep</a></li>
+<li class="chapter" data-level="9.4.2" data-path="tidying.html"><a href="tidying.html#reshaping-with-tidyrpivot_longer-and-tidyrpivot_wider"><i class="fa fa-check"></i><b>9.4.2</b> Reshaping with <code>tidyr::pivot_longer()</code> and <code>tidyr::pivot_wider()</code></a></li>
+<li class="chapter" data-level="9.4.3" data-path="tidying.html"><a href="tidying.html#combine-or-separate-information-in-columns-with-tidyrunite-and-tidyrseparate"><i class="fa fa-check"></i><b>9.4.3</b> Combine or separate information in columns with <code>tidyr::unite()</code> and <code>tidyr::separate()</code></a></li>
+<li class="chapter" data-level="9.4.4" data-path="tidying.html"><a href="tidying.html#convert-between-explicit-and-implicit-missings-nas"><i class="fa fa-check"></i><b>9.4.4</b> Convert between explicit and implicit missings (<code>NA</code>s)</a></li>
+<li class="chapter" data-level="9.4.5" data-path="tidying.html"><a href="tidying.html#activities"><i class="fa fa-check"></i><b>9.4.5</b> Activities</a></li>
+<li class="chapter" data-level="9.4.6" data-path="tidying.html"><a href="tidying.html#fun-facts-insights"><i class="fa fa-check"></i><b>9.4.6</b> Fun facts / insights</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="vlookup.html"><a href="vlookup.html"><i class="fa fa-check"></i><b>10</b> Dplyr and vlookups</a><ul>
+<li class="chapter" data-level="10.1" data-path="vlookup.html"><a href="vlookup.html#summary-5"><i class="fa fa-check"></i><b>10.1</b> Summary</a></li>
+<li class="chapter" data-level="10.2" data-path="vlookup.html"><a href="vlookup.html#objectives-4"><i class="fa fa-check"></i><b>10.2</b> Objectives</a></li>
+<li class="chapter" data-level="10.3" data-path="vlookup.html"><a href="vlookup.html#resources-7"><i class="fa fa-check"></i><b>10.3</b> Resources</a></li>
+<li class="chapter" data-level="10.4" data-path="vlookup.html"><a href="vlookup.html#lessons"><i class="fa fa-check"></i><b>10.4</b> Lessons</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="vlookup.html"><a href="vlookup.html#dplyrfilter-to-conditionally-subset-by-rows"><i class="fa fa-check"></i><b>10.4.1</b> <code>dplyr::filter()</code> to conditionally subset by rows</a></li>
+<li class="chapter" data-level="10.4.2" data-path="vlookup.html"><a href="vlookup.html#merging-data-frames-with-dplyr_join"><i class="fa fa-check"></i><b>10.4.2</b> Merging data frames with <code>dplyr::*_join()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="vlookup.html"><a href="vlookup.html#fun-kind-of-scary-facts"><i class="fa fa-check"></i><b>10.5</b> Fun / kind of scary facts</a></li>
+<li class="chapter" data-level="10.6" data-path="vlookup.html"><a href="vlookup.html#interludes-deep-thoughtsopenscapes-5"><i class="fa fa-check"></i><b>10.6</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="10.7" data-path="vlookup.html"><a href="vlookup.html#efficiency-tips-6"><i class="fa fa-check"></i><b>10.7</b> Efficiency Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="synthesis.html"><a href="synthesis.html"><i class="fa fa-check"></i><b>11</b> Synthesis</a><ul>
+<li class="chapter" data-level="11.1" data-path="synthesis.html"><a href="synthesis.html#summary-6"><i class="fa fa-check"></i><b>11.1</b> Summary</a></li>
+<li class="chapter" data-level="11.2" data-path="synthesis.html"><a href="synthesis.html#objectives-5"><i class="fa fa-check"></i><b>11.2</b> Objectives</a></li>
+<li class="chapter" data-level="11.3" data-path="synthesis.html"><a href="synthesis.html#resources-8"><i class="fa fa-check"></i><b>11.3</b> Resources</a></li>
+<li class="chapter" data-level="11.4" data-path="synthesis.html"><a href="synthesis.html#lesson-3"><i class="fa fa-check"></i><b>11.4</b> Lesson</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="synthesis.html"><a href="synthesis.html#set-up"><i class="fa fa-check"></i><b>11.4.1</b> Set-up:</a></li>
+<li class="chapter" data-level="11.4.2" data-path="synthesis.html"><a href="synthesis.html#attach-packages-and-read-in-the-data"><i class="fa fa-check"></i><b>11.4.2</b> Attach packages and read in the data</a></li>
+<li class="chapter" data-level="11.4.3" data-path="synthesis.html"><a href="synthesis.html#data-wrangling"><i class="fa fa-check"></i><b>11.4.3</b> Data wrangling</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="synthesis.html"><a href="synthesis.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-3"><i class="fa fa-check"></i><b>11.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="11.6" data-path="synthesis.html"><a href="synthesis.html#interludes-deep-thoughtsopenscapes-6"><i class="fa fa-check"></i><b>11.6</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="11.7" data-path="synthesis.html"><a href="synthesis.html#efficiency-tips-7"><i class="fa fa-check"></i><b>11.7</b> Efficiency Tips</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Excel Users</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="visualizing-ggplot2" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Visualizing: <code>ggplot2</code></h1>
+<p>Why do we start with data visualization? Not only is data viz a big part of analysis, it’s a way to SEE your progress as you learn to code.</p>
+<div id="objectives-resources" class="section level2">
+<h2><span class="header-section-number">7.1</span> Objectives &amp; Resources</h2>
+<div id="objectives-2" class="section level3">
+<h3><span class="header-section-number">7.1.1</span> Objectives</h3>
+<ul>
+<li>install our first package, <code>ggplot2</code>, by installing <code>tidyverse</code></li>
+<li>learn ggplot2 with a national parks visitation dataset (important to play with other data than your own, you’ll learn something.)</li>
+<li>practice writing a script in RMarkdown</li>
+<li>practice the rstudio-github workflow</li>
+</ul>
+</div>
+<div id="resources-4" class="section level3">
+<h3><span class="header-section-number">7.1.2</span> Resources</h3>
+<p>Here are some additional resources for data visualization in R:</p>
+<ul>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf">ggplot2-cheatsheet-2.1.pdf</a><br />
+</li>
+<li><a href="http://ucsb-bren.github.io/env-info/wk06_widgets.html">Interactive Plots and Maps - Environmental Informatics</a><br />
+</li>
+<li><a href="http://www.cookbook-r.com/Graphs/#graphs-with-ggplot2">Graphs with ggplot2 - Cookbook for R</a><br />
+</li>
+<li><a href="http://www.sthda.com/english/wiki/ggplot2-essentials">ggplot2 Essentials - STHDA</a><br />
+</li>
+<li><a href="http://varianceexplained.org/r/why-I-use-ggplot2/">“Why I use ggplot2” - David Robinson Blog Post</a></li>
+<li>Melanie Frazier’s <a href="https://github.com/OHI-Science/data-science-training/blob/master/ggplot2_mel.Rmd">GitHub Lesson at University of Queensland</a></li>
+</ul>
+</div>
+</div>
+<div id="install-our-first-package-tidyverse" class="section level2">
+<h2><span class="header-section-number">7.2</span> Install our first package: <code>tidyverse</code></h2>
+<p>Packages are bundles of functions, along with help pages and other goodies that make them easier for others to use, (ie. vignettes).</p>
+<p>So far we’ve been using packages that are already included in <em>base R</em>. These can be considered <em>out-of-the-box</em> packages and include things such as <code>sum</code> and <code>mean</code>. You can also download and install packages created by the vast and growing R user community. The most traditional place to download packages is from <a href="https://cran.r-project.org/">CRAN, the Comprehensive R Archive Network</a>. This is where you went to download R originally, and will go again to look for updates. You can also install packages directly from GitHub, which we’ll do tomorrow.</p>
+<p>You don’t need to go to CRAN’s website to install packages, we can do it from within R with the command <code>install.packages(&quot;package-name-in-quotes&quot;)</code>.</p>
+<p>We are going to be using the package <code>ggplot2</code>, which is actually bundled into a huge package called <code>tidyverse</code>. We will install <code>tidyverse</code> now, and use a few functions from the packages within. Also, check out <a href="https://www.tidyverse.org">tidyverse.org/</a>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## from CRAN:</span>
+<span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>) <span class="co">## do this once only to install the package on your computer.</span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse) <span class="co">## do this every time you restart R and need it </span></code></pre>
+<p>When you do this, it will tell you which packages are inside of <code>tidyverse</code> that have also been installed. Note that there are a few name conflicts; it is alerting you that we’ll be using two functions from dplyr instead of the built-in stats package.</p>
+<p>What’s the difference between <code>install.packages()</code> and <code>library()</code>? Why do you need both? Here’s an analogy:</p>
+<ul>
+<li><code>install.packages()</code> is setting up electricity for your house. Just need to do this once (let’s ignore monthly bills).</li>
+<li><code>library()</code> is turning on the lights. You only turn them on when you need them, otherwise it wouldn’t be efficient. And when you quit R, it turns the lights off, but the electricity lines are still there. So when you come back, you’ll have to turn them on again with <code>library()</code>, but you already have your electricity set up.</li>
+</ul>
+<p>You can also install packages by going to the Packages tab in the bottom right pane. You can see the packages that you have installed (listed) and loaded (checkbox). You can also install packages using the install button, or check to see if any of your installed packages have updates available (update button). You can also click on the name of the package to see all the functions inside it — this is a super helpful feature that I use all the time.</p>
+</div>
+<div id="load-data" class="section level2">
+<h2><span class="header-section-number">7.3</span> Load data</h2>
+<p>Copy and paste the code chunk below and read it in to your RStudio to load the five datasets we will use in this section.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#National Parks in California</span>
+ca &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/ca.csv&quot;</span>) </code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   region = col_character(),
+##   state = col_character(),
+##   code = col_character(),
+##   park_name = col_character(),
+##   type = col_character(),
+##   visitors = col_double(),
+##   year = col_double()
+## )</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Acadia National Park</span>
+acadia &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/acadia.csv&quot;</span>)</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   region = col_character(),
+##   state = col_character(),
+##   code = col_character(),
+##   park_name = col_character(),
+##   type = col_character(),
+##   visitors = col_double(),
+##   year = col_double()
+## )</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Southeast US National Parks</span>
+se &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/se.csv&quot;</span>)</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   region = col_character(),
+##   state = col_character(),
+##   code = col_character(),
+##   park_name = col_character(),
+##   type = col_character(),
+##   visitors = col_double(),
+##   year = col_double()
+## )</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#2016 Visitation for all Pacific West National Parks</span>
+visit_<span class="dv">16</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/visit_16.csv&quot;</span>)</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   region = col_character(),
+##   state = col_character(),
+##   code = col_character(),
+##   park_name = col_character(),
+##   type = col_character(),
+##   visitors = col_double(),
+##   year = col_double()
+## )</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#All Nationally designated sites in Massachusetts</span>
+mass &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/mass.csv&quot;</span>)</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   region = col_character(),
+##   state = col_character(),
+##   code = col_character(),
+##   park_name = col_character(),
+##   type = col_character(),
+##   visitors = col_double(),
+##   year = col_double()
+## )</code></pre>
+</div>
+<div id="plotting-with-ggplot2" class="section level2">
+<h2><span class="header-section-number">7.4</span> Plotting with <strong><code>ggplot2</code></strong></h2>
+<p><strong><code>ggplot2</code></strong> is a plotting package that makes it simple to create complex plots from data in a data frame. It provides a more programmatic interface for specifying what variables to plot, how they are displayed, and general visual properties. Therefore, we only need minimal changes if the underlying data change or if we decide to change from a bar plot to a scatterplot. This helps in creating publication quality plots with minimal amounts of adjustments and tweaking.</p>
+<p>ggplot likes data in the ‘long’ format: i.e., a column for every dimension, and a row for every observation. Well structured data will save you lots of time when making figures with ggplot.</p>
+<p>ggplot graphics are built step by step by adding new elements. Adding layers in this fashion allows for extensive flexibility and customization of plots.</p>
+<p><br>
+<img src="img/rstudio-cheatsheet-ggplot.png" />
+<br></p>
+</div>
+<div id="data" class="section level2">
+<h2><span class="header-section-number">7.5</span> Data</h2>
+<p>We are going to use a National Park visitation dataset (from the National Park Service at <a href="https://irma.nps.gov/Stats/SSRSReports" class="uri">https://irma.nps.gov/Stats/SSRSReports</a>). Read in the data using <code>read_csv</code> and take a look at the first few rows using <code>head()</code> or <code>View()</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(ca)</code></pre>
+<pre><code>## # A tibble: 6 x 7
+##   region state code  park_name                   type        visitors  year
+##   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;                       &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;
+## 1 PW     CA    CHIS  Channel Islands National P… National P…     1200  1963
+## 2 PW     CA    CHIS  Channel Islands National P… National P…     1500  1964
+## 3 PW     CA    CHIS  Channel Islands National P… National P…     1600  1965
+## 4 PW     CA    CHIS  Channel Islands National P… National P…      300  1966
+## 5 PW     CA    CHIS  Channel Islands National P… National P…    15700  1967
+## 6 PW     CA    CHIS  Channel Islands National P… National P…    31000  1968</code></pre>
+<p>This dataframe is already in a <em>long</em> format where all rows are an observation and all columns are variables. Among the variables in <code>ca</code> are:</p>
+<ol style="list-style-type: decimal">
+<li><p><code>region</code>, US region where park is located.</p></li>
+<li><p><code>visitors</code>, the annual visitation for each <code>year</code></p></li>
+</ol>
+<p>To build a ggplot, we need to:</p>
+<ul>
+<li>use the <code>ggplot()</code> function and bind the plot to a specific data frame using the <code>data</code> argument</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> ca)</code></pre>
+<ul>
+<li>add <code>geoms</code> – graphical representation of the data in the plot (points,
+lines, bars). <strong><code>ggplot2</code></strong> offers many different geoms; we will use some
+common ones today, including:
+* <code>geom_point()</code> for scatter plots, dot plots, etc.
+* <code>geom_bar()</code> for bar charts
+* <code>geom_line()</code> for trend lines, time-series, etc.</li>
+</ul>
+<p>To add a geom to the plot use <code>+</code> operator. Because we have two continuous variables,<br />
+let’s use <code>geom_point()</code> first and then assign x and y aesthetics (<code>aes</code>):</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> ca) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors))</code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/first-ggplot-1.png" width="672" /></p>
+<p>Notes:</p>
+<ul>
+<li>Anything you put in the <code>ggplot()</code> function can be seen by any geom layers
+that you add (i.e., these are universal plot settings). This includes the x and
+y axis you set up in <code>aes()</code>.</li>
+<li>You can also specify aesthetics for a given geom independently of the
+aesthetics defined globally in the <code>ggplot()</code> function.</li>
+<li>The <code>+</code> sign used to add layers must be placed at the end of each line containing
+a layer. If, instead, the <code>+</code> sign is added in the line before the other layer,
+<strong><code>ggplot2</code></strong> will not add the new layer and will return an error message.</li>
+</ul>
+<blockquote>
+<p><strong>STOP: let’s Commit, Pull and Push to GitHub</strong></p>
+</blockquote>
+</div>
+<div id="building-your-plots-iteratively" class="section level2">
+<h2><span class="header-section-number">7.6</span> Building your plots iteratively</h2>
+<p>Building plots with ggplot is typically an iterative process. We start by defining the dataset we’ll use, lay the axes, and choose a geom:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> ca) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors))</code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/create-ggplot-object-1.png" width="672" /></p>
+<p>This isn’t necessarily a useful way to look at the data. We can distinguish each park by added the <code>color</code> argument to the <code>aes</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> ca) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors, <span class="dt">color =</span> park_name))</code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/color-by-species-1.png" width="672" /></p>
+</div>
+<div id="customizing-plots" class="section level2">
+<h2><span class="header-section-number">7.7</span> Customizing plots</h2>
+<p>Take a look at the <a href="https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf"><strong><code>ggplot2</code></strong> cheat sheet</a>, and think of ways you could improve the plot.</p>
+<p>Now, let’s capitalize the x and y axis labels and add a main title to the figure. I also like to remove that standard gray background using a different <code>theme</code>. Many themes come built into the <code>ggplot2</code> package. My preference is <code>theme_bw()</code> but once you start typing <code>theme_</code> a list of options will pop up. The last thing I’m going to do is remove the legend title.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> ca) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors, <span class="dt">color =</span> park_name)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>,
+       <span class="dt">y =</span> <span class="st">&quot;Visitation&quot;</span>,
+       <span class="dt">title =</span> <span class="st">&quot;California National Park Visitation&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.title=</span><span class="kw">element_blank</span>())</code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/customize-1.png" width="672" /></p>
+</div>
+<div id="ggplot2-themes" class="section level2">
+<h2><span class="header-section-number">7.8</span> <strong><code>ggplot2</code></strong> themes</h2>
+<p>In addition to <code>theme_bw()</code>, which changes the plot background to white, <strong><code>ggplot2</code></strong> comes with several other themes which can be useful to quickly change the look of your visualization.</p>
+<p>The <a href="https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html">ggthemes</a> package provides a wide variety of options (including an Excel 2003 theme). The <a href="https://www.ggplot2-exts.org"><strong><code>ggplot2</code></strong> extensions website</a> provides a list of packages that extend the capabilities of <strong><code>ggplot2</code></strong>, including additional themes.</p>
+<blockquote>
+<h3 id="exercise-10-min"><span class="header-section-number">7.8</span> Exercise (10 min)</h3>
+</blockquote>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Using the <code>se</code> dataset, make a scatterplot showing visitation to all national parks in the Southeast region with color identifying individual parks.</li>
+<li>Change the plot so that color indicates <code>state</code>.</li>
+<li>Customize by adding your own title and theme. You can also change the text sizes and angles. Try applying a 45 degree angle to the x-axis. Use your cheatsheet!</li>
+<li>In the code below, why isn’t the data showing up?</li>
+</ol>
+</blockquote>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> se, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors))</code></pre>
+<blockquote>
+<h5 id="answers-no-peeking"><span class="header-section-number">7.8</span> Answers (no peeking)</h5>
+</blockquote>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 1.</span>
+<span class="kw">ggplot</span>(<span class="dt">data =</span> se) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors, <span class="dt">color =</span> park_name))</code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 2. &amp; 3.</span>
+<span class="kw">ggplot</span>(<span class="dt">data =</span> se) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors, <span class="dt">color =</span> state)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>,
+       <span class="dt">y =</span> <span class="st">&quot;Visitation&quot;</span>,
+       <span class="dt">title =</span> <span class="st">&quot;Southeast States National Park Visitation&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_light</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.title =</span> <span class="kw">element_blank</span>(),
+        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">14</span>))</code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-53-2.png" width="672" /></p>
+<blockquote>
+<ol start="4" style="list-style-type: decimal">
+<li>The code is missing a geom to describe how the data should be plotted.</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><strong>STOP: commit, pull and push to github</strong></p>
+</blockquote>
+</div>
+<div id="faceting" class="section level2">
+<h2><span class="header-section-number">7.9</span> Faceting</h2>
+<p>ggplot has a special technique called <em>faceting</em> that allows the user to split one plot into multiple plots based on data in the dataset. We will use it to make a plot of park visitation by state:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> se) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>state)</code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/first-facet-1.png" width="672" /></p>
+<p>We can now make the faceted plot by splitting further by park using <code>park_name</code> (within a single plot):</p>
+<pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">ggplot</span>(<span class="dt">data =</span> se) <span class="op">+</span>
+<span class="st">     </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors, <span class="dt">color =</span> park_name)) <span class="op">+</span>
+<span class="st">     </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>state, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)</code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/facet-by-state-and-park-1.png" width="672" /></p>
+</div>
+<div id="geometric-objects-geoms" class="section level2">
+<h2><span class="header-section-number">7.10</span> Geometric objects (geoms)</h2>
+<p>A <strong>geom</strong> is the geometrical object that a plot uses to represent data. People often describe plots by the type of geom that the plot uses. For example, bar charts use bar geoms, line charts use line geoms, boxplots use boxplot geoms, and so on. Scatterplots break the trend; they use the point geom. You can use different geoms to plot the same data. To change the geom in your plot, change the geom function that you add to <code>ggplot()</code>. Let’s look at a few ways of viewing the distribution of annual visitation (<code>visitors</code>) for each park (<code>park_name</code>).</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> se) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">x =</span> park_name, <span class="dt">y =</span> visitors, <span class="dt">color =</span> park_name), 
+              <span class="dt">width =</span> <span class="fl">0.1</span>, 
+              <span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) </code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(se, <span class="kw">aes</span>(<span class="dt">x =</span> park_name, <span class="dt">y =</span> visitors)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-54-2.png" width="672" /></p>
+<p>None of these are great for visualizing data over time. We can use <code>geom_line()</code> in the same way we used <code>geom_point</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(se, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors, <span class="dt">color =</span> park_name)) <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_line</span>()</code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<p><code>ggplot2</code> provides over 30 geoms, and extension packages provide even more (see <a href="https://www.ggplot2-exts.org" class="uri">https://www.ggplot2-exts.org</a> for a sampling). The best way to get a comprehensive overview is the <a href="http://rstudio.com/cheatsheets">ggplot2 cheatsheet</a>. To learn more about any single geom, use help: <code>?geom_smooth</code>.</p>
+<p>To display multiple geoms in the same plot, add multiple geom functions to <code>ggplot()</code>:</p>
+<p><code>geom_smooth</code> allows you to view a smoothed mean of data. Here we look at the smooth mean of visitation over time to Acadia National Park:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> acadia) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Acadia National Park Visitation&quot;</span>,
+       <span class="dt">y =</span> <span class="st">&quot;Visitation&quot;</span>,
+       <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<p>Notice that this plot contains three geoms in the same graph! Each geom is using the set of mappings in the first line. ggplot2 will treat these mappings as global mappings that apply to each geom in the graph.</p>
+<p>If you place mappings in a geom function, ggplot2 will treat them as local mappings for the layer. It will use these mappings to extend or overwrite the global mappings <em>for that layer only</em>. This makes it possible to display different aesthetics in different layers.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> acadia, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Acadia National Park Visitation&quot;</span>,
+       <span class="dt">y =</span> <span class="st">&quot;Visitation&quot;</span>,
+       <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<blockquote>
+<h3 id="challenge"><span class="header-section-number">7.10</span> Challenge</h3>
+</blockquote>
+<blockquote>
+<p>With all of this information in hand, please take another five minutes to either improve one of the plots generated in this exercise or create a beautiful graph of your own. Use the RStudio <a href="https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf"><strong><code>ggplot2</code></strong> cheat sheet</a> for inspiration.</p>
+</blockquote>
+<blockquote>
+<p>Here are some ideas:</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>See if you can change the thickness of the lines or line type (e.g. dashed line).</li>
+<li>Can you find a way to change the name of the legend? What about its labels?</li>
+<li>Try using a different color palette (see <a href="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/" class="uri">http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/</a>).</li>
+</ul>
+</blockquote>
+</div>
+<div id="bar-charts" class="section level2">
+<h2><span class="header-section-number">7.11</span> Bar charts</h2>
+<p>Next, let’s take a look at a bar chart. Bar charts seem simple, but they are interesting because they reveal something subtle about plots. Consider a basic bar chart, as drawn with <code>geom_bar()</code>. The following chart displays the total number of parks in each state within the Pacific West region.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> visit_<span class="dv">16</span>, <span class="kw">aes</span>(<span class="dt">x =</span> state)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>()</code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<p>On the x-axis, the chart displays <code>state</code>, a variable from <code>visit_16</code>. On the y-axis, it displays count, but count is not a variable in <code>visit_16</code>! Where does count come from? Many graphs, like scatterplots, plot the raw values of your dataset. Other graphs, like bar charts, calculate new values to plot:</p>
+<ul>
+<li><p>bar charts, histograms, and frequency polygons bin your data
+and then plot bin counts, the number of points that fall in each bin.</p></li>
+<li><p>smoothers fit a model to your data and then plot predictions from the
+model.</p></li>
+<li><p>boxplots compute a robust summary of the distribution and then display a
+specially formatted box.</p></li>
+</ul>
+<p>The algorithm used to calculate new values for a graph is called a <strong>stat</strong>, short for statistical transformation.</p>
+<p>You can learn which stat a geom uses by inspecting the default value for the <code>stat</code> argument. For example, <code>?geom_bar</code> shows that the default value for <code>stat</code> is “count”, which means that <code>geom_bar()</code> uses <code>stat_count()</code>. <code>stat_count()</code> is documented on the same page as <code>geom_bar()</code>, and if you scroll down you can find a section called “Computed variables”. That describes how it computes two new variables: <code>count</code> and <code>prop</code>.</p>
+<p>ggplot2 provides over 20 stats for you to use. Each stat is a function, so you can get help in the usual way, e.g. <code>?stat_bin</code>. To see a complete list of stats, try the ggplot2 cheatsheet.</p>
+<div id="position-adjustments" class="section level3">
+<h3><span class="header-section-number">7.11.1</span> Position adjustments</h3>
+<p>There’s one more piece of magic associated with bar charts. You can colour a bar chart using either the <code>color</code> aesthetic, or, more usefully, <code>fill</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> visit_<span class="dv">16</span>, <span class="kw">aes</span>(<span class="dt">x =</span> state, <span class="dt">y =</span> visitors, <span class="dt">fill =</span> park_name)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<p>The stacking is performed automatically by the <strong>position adjustment</strong> specified by the <code>position</code> argument. If you don’t want a stacked bar chart, you can use <code>&quot;dodge&quot;</code>.</p>
+<ul>
+<li><code>position = &quot;dodge&quot;</code> places overlapping objects directly <em>beside</em> one
+another. This makes it easier to compare individual values.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> visit_<span class="dv">16</span>, <span class="kw">aes</span>(<span class="dt">x =</span> state, <span class="dt">y =</span> visitors, <span class="dt">fill =</span> park_name)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+</div>
+<div id="challenge-1" class="section level3">
+<h3><span class="header-section-number">7.11.2</span> Challenge</h3>
+<blockquote>
+<p>With all of this information in hand, please take another five minutes to either
+improve one of the plots generated in this exercise or create a beautiful graph
+of your own. Use the RStudio <a href="https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf"><strong><code>ggplot2</code></strong> cheat sheet</a> for
+inspiration. Remember to use the help documentation (e.g. <code>?geom_bar</code>)</p>
+</blockquote>
+<blockquote>
+<p>Here are some ideas:</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>Flip the x and y axes.</li>
+<li>Change the color palette used</li>
+<li>Use <code>scale_x_discrete</code> to change the x-axis tick labels to the full state names (Arizona, Colorado, etc.)</li>
+<li>Make a bar chart using the Massachussets dataset (<code>mass</code>) and find out how many parks of each type are in the state.</li>
+</ul>
+</blockquote>
+<div id="answers-no-peeking-1" class="section level5">
+<h5><span class="header-section-number">7.11.2.0.1</span> Answers (no peeking!)</h5>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#how many of each types of parks are in Massachusetts?</span>
+<span class="kw">ggplot</span>(<span class="dt">data =</span> mass) <span class="op">+</span><span class="st"> </span>
+<span class="st">      </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">x =</span> type, <span class="dt">fill =</span> park_name)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>,
+       <span class="dt">y =</span> <span class="st">&quot;&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">7</span>))</code></pre>
+<p><img src="R_for_Excel_Users_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="arranging-and-exporting-plots" class="section level2">
+<h2><span class="header-section-number">7.12</span> Arranging and exporting plots</h2>
+<p>After creating your plot, you can save it to a file in your favorite format. The Export tab in the <strong>Plot</strong> pane in RStudio will save your plots at low resolution, which will not be accepted by many journals and will not scale well for posters.</p>
+<p>Instead, use the <code>ggsave()</code> function, which allows you easily change the dimension and resolution of your plot by adjusting the appropriate arguments (<code>width</code>, <code>height</code> and <code>dpi</code>):</p>
+<pre class="sourceCode r"><code class="sourceCode r">my_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> mass) <span class="op">+</span><span class="st"> </span>
+<span class="st">      </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">x =</span> type, <span class="dt">fill =</span> park_name)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>,
+       <span class="dt">y =</span> <span class="st">&quot;&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">7</span>))
+
+<span class="kw">ggsave</span>(<span class="st">&quot;name_of_file.png&quot;</span>, my_plot, <span class="dt">width =</span> <span class="dv">15</span>, <span class="dt">height =</span> <span class="dv">10</span>)</code></pre>
+<p>Note: The parameters <code>width</code> and <code>height</code> also determine the font size in the saved plot.</p>
+</div>
+<div id="bonus" class="section level2">
+<h2><span class="header-section-number">7.13</span> Bonus</h2>
+<p>So as you can see, <code>ggplot2</code> is a fantastic package for visualizing data. But there are some additional packages that let you make plots interactive. <code>plotly</code>, <code>gganimate</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;plotly&quot;)</span>
+<span class="kw">library</span>(plotly)
+
+<span class="kw">ggplotly</span>(my_plot)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">acad_vis &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> acadia, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Acadia National Park Visitation&quot;</span>,
+       <span class="dt">y =</span> <span class="st">&quot;Visitation&quot;</span>,
+       <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()
+
+<span class="kw">ggplotly</span>(acad_vis)</code></pre>
+</div>
+<div id="save-and-push-to-github" class="section level2">
+<h2><span class="header-section-number">7.14</span> Save and push to GitHub</h2>
+</div>
+<div id="fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections-2" class="section level2">
+<h2><span class="header-section-number">7.15</span> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</h2>
+</div>
+<div id="interludes-deep-thoughtsopenscapes-4" class="section level2">
+<h2><span class="header-section-number">7.16</span> Interludes (deep thoughts/openscapes)</h2>
+</div>
+<div id="our-turn-your-turn-1-1" class="section level2">
+<h2><span class="header-section-number">7.17</span> Our Turn Your Turn 1</h2>
+</div>
+<div id="our-turn-your-turn-2-1" class="section level2">
+<h2><span class="header-section-number">7.18</span> Our Turn Your Turn 2</h2>
+</div>
+<div id="efficiency-tips-4" class="section level2">
+<h2><span class="header-section-number">7.19</span> Efficiency Tips</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ggplot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="pivot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["R for Excel Users.pdf", "R for Excel Users.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

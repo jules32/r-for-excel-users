@@ -201,7 +201,6 @@ ggplot(data = ci_np, aes(x = year, y = visitors)) +
     alpha = 0.5
   ) +
   theme_minimal(
-    base_family = "Times New Roman"
   )
 ```
 
