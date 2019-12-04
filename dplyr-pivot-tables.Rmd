@@ -263,7 +263,7 @@ Now let's knit our RMarkdown document and see what this looks like rendered. It'
 
 The DT package had a function called `datatable`; let's try it with our `siteyear_summary` object:
 
-```{r}
+```{r, eval=FALSE}
 datatable(site_summary)
 ```
 

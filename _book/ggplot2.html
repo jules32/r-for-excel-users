@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="readxl.html"/>
-<link rel="next" href="tidying.html"/>
+<link rel="next" href="pivot.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -242,43 +242,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.6" data-path="ggplot2.html"><a href="ggplot2.html#activity-2"><i class="fa fa-check"></i><b>6.6</b> Activity 2</a></li>
 <li class="chapter" data-level="6.7" data-path="ggplot2.html"><a href="ggplot2.html#efficiency-tips-3"><i class="fa fa-check"></i><b>6.7</b> Efficiency Tips</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>7</b> Tidying</a><ul>
-<li class="chapter" data-level="7.1" data-path="tidying.html"><a href="tidying.html#summary-4"><i class="fa fa-check"></i><b>7.1</b> Summary</a></li>
-<li class="chapter" data-level="7.2" data-path="tidying.html"><a href="tidying.html#objectives-4"><i class="fa fa-check"></i><b>7.2</b> Objectives</a></li>
-<li class="chapter" data-level="7.3" data-path="tidying.html"><a href="tidying.html#resources-5"><i class="fa fa-check"></i><b>7.3</b> Resources</a></li>
-<li class="chapter" data-level="7.4" data-path="tidying.html"><a href="tidying.html#lesson-2"><i class="fa fa-check"></i><b>7.4</b> Lesson</a><ul>
-<li class="chapter" data-level="7.4.1" data-path="tidying.html"><a href="tidying.html#lesson-prep"><i class="fa fa-check"></i><b>7.4.1</b> Lesson Prep</a></li>
-<li class="chapter" data-level="7.4.2" data-path="tidying.html"><a href="tidying.html#reshaping-with-tidyrpivot_longer-and-tidyrpivot_wider"><i class="fa fa-check"></i><b>7.4.2</b> Reshaping with <code>tidyr::pivot_longer()</code> and <code>tidyr::pivot_wider()</code></a></li>
-<li class="chapter" data-level="7.4.3" data-path="tidying.html"><a href="tidying.html#combine-or-separate-information-in-columns-with-tidyrunite-and-tidyrseparate"><i class="fa fa-check"></i><b>7.4.3</b> Combine or separate information in columns with <code>tidyr::unite()</code> and <code>tidyr::separate()</code></a></li>
-<li class="chapter" data-level="7.4.4" data-path="tidying.html"><a href="tidying.html#convert-between-explicit-and-implicit-missings-nas"><i class="fa fa-check"></i><b>7.4.4</b> Convert between explicit and implicit missings (<code>NA</code>s)</a></li>
-<li class="chapter" data-level="7.4.5" data-path="tidying.html"><a href="tidying.html#activities"><i class="fa fa-check"></i><b>7.4.5</b> Activities</a></li>
-<li class="chapter" data-level="7.4.6" data-path="tidying.html"><a href="tidying.html#fun-facts-insights"><i class="fa fa-check"></i><b>7.4.6</b> Fun facts / insights</a></li>
+<li class="chapter" data-level="7" data-path="pivot.html"><a href="pivot.html"><i class="fa fa-check"></i><b>7</b> <code>dplyr</code> and Pivot Tables</a><ul>
+<li class="chapter" data-level="7.1" data-path="pivot.html"><a href="pivot.html#summary-4"><i class="fa fa-check"></i><b>7.1</b> Summary</a></li>
+<li class="chapter" data-level="7.2" data-path="pivot.html"><a href="pivot.html#objectives-4"><i class="fa fa-check"></i><b>7.2</b> Objectives</a></li>
+<li class="chapter" data-level="7.3" data-path="pivot.html"><a href="pivot.html#resources-5"><i class="fa fa-check"></i><b>7.3</b> Resources</a></li>
+<li class="chapter" data-level="7.4" data-path="pivot.html"><a href="pivot.html#lesson-2"><i class="fa fa-check"></i><b>7.4</b> Lesson</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="pivot.html"><a href="pivot.html#setup"><i class="fa fa-check"></i><b>7.4.1</b> Setup</a></li>
+<li class="chapter" data-level="7.4.2" data-path="pivot.html"><a href="pivot.html#pivot-tables"><i class="fa fa-check"></i><b>7.4.2</b> Pivot tables</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="pivot.html"><a href="pivot.html#group_by-summarize"><i class="fa fa-check"></i><b>7.5</b> group_by() %&gt;% summarize()</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="pivot.html"><a href="pivot.html#group_by-one-variable"><i class="fa fa-check"></i><b>7.5.1</b> group_by one variable</a></li>
+<li class="chapter" data-level="7.5.2" data-path="pivot.html"><a href="pivot.html#rstudio-viewer"><i class="fa fa-check"></i><b>7.5.2</b> RStudio Viewer</a></li>
+<li class="chapter" data-level="7.5.3" data-path="pivot.html"><a href="pivot.html#summarize-multiple-variables"><i class="fa fa-check"></i><b>7.5.3</b> summarize multiple variables</a></li>
+<li class="chapter" data-level="7.5.4" data-path="pivot.html"><a href="pivot.html#activity-3"><i class="fa fa-check"></i><b>7.5.4</b> Activity</a></li>
+<li class="chapter" data-level="7.5.5" data-path="pivot.html"><a href="pivot.html#group_by-multiple-variables"><i class="fa fa-check"></i><b>7.5.5</b> <code>group_by</code> multiple variables</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="pivot.html"><a href="pivot.html#formatting-tables"><i class="fa fa-check"></i><b>7.6</b> Formatting tables</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="pivot.html"><a href="pivot.html#knitrkable"><i class="fa fa-check"></i><b>7.6.1</b> <code>knitr::kable()</code></a></li>
+<li class="chapter" data-level="7.6.2" data-path="pivot.html"><a href="pivot.html#dtdatatable"><i class="fa fa-check"></i><b>7.6.2</b> <code>DT::datatable()</code></a></li>
+<li class="chapter" data-level="7.6.3" data-path="pivot.html"><a href="pivot.html#activity-4"><i class="fa fa-check"></i><b>7.6.3</b> Activity</a></li>
+<li class="chapter" data-level="7.6.4" data-path="pivot.html"><a href="pivot.html#dplyrcount"><i class="fa fa-check"></i><b>7.6.4</b> <code>dplyr::count()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="pivot.html"><a href="pivot.html#mutate"><i class="fa fa-check"></i><b>7.7</b> <code>mutate()</code></a></li>
+<li class="chapter" data-level="7.8" data-path="pivot.html"><a href="pivot.html#deep-thoughts-2"><i class="fa fa-check"></i><b>7.8</b> Deep thoughts</a></li>
+<li class="chapter" data-level="7.9" data-path="pivot.html"><a href="pivot.html#efficiency-tips-4"><i class="fa fa-check"></i><b>7.9</b> Efficiency Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>8</b> Tidying</a><ul>
+<li class="chapter" data-level="8.1" data-path="tidying.html"><a href="tidying.html#summary-5"><i class="fa fa-check"></i><b>8.1</b> Summary</a></li>
+<li class="chapter" data-level="8.2" data-path="tidying.html"><a href="tidying.html#objectives-5"><i class="fa fa-check"></i><b>8.2</b> Objectives</a></li>
+<li class="chapter" data-level="8.3" data-path="tidying.html"><a href="tidying.html#resources-6"><i class="fa fa-check"></i><b>8.3</b> Resources</a></li>
+<li class="chapter" data-level="8.4" data-path="tidying.html"><a href="tidying.html#lesson-3"><i class="fa fa-check"></i><b>8.4</b> Lesson</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="tidying.html"><a href="tidying.html#lesson-prep"><i class="fa fa-check"></i><b>8.4.1</b> Lesson Prep</a></li>
+<li class="chapter" data-level="8.4.2" data-path="tidying.html"><a href="tidying.html#reshaping-with-tidyrpivot_longer-and-tidyrpivot_wider"><i class="fa fa-check"></i><b>8.4.2</b> Reshaping with <code>tidyr::pivot_longer()</code> and <code>tidyr::pivot_wider()</code></a></li>
+<li class="chapter" data-level="8.4.3" data-path="tidying.html"><a href="tidying.html#combine-or-separate-information-in-columns-with-tidyrunite-and-tidyrseparate"><i class="fa fa-check"></i><b>8.4.3</b> Combine or separate information in columns with <code>tidyr::unite()</code> and <code>tidyr::separate()</code></a></li>
+<li class="chapter" data-level="8.4.4" data-path="tidying.html"><a href="tidying.html#convert-between-explicit-and-implicit-missings-nas"><i class="fa fa-check"></i><b>8.4.4</b> Convert between explicit and implicit missings (<code>NA</code>s)</a></li>
+<li class="chapter" data-level="8.4.5" data-path="tidying.html"><a href="tidying.html#activities"><i class="fa fa-check"></i><b>8.4.5</b> Activities</a></li>
+<li class="chapter" data-level="8.4.6" data-path="tidying.html"><a href="tidying.html#fun-facts-insights"><i class="fa fa-check"></i><b>8.4.6</b> Fun facts / insights</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="vlookup.html"><a href="vlookup.html"><i class="fa fa-check"></i><b>8</b> Dplyr and vlookups</a><ul>
-<li class="chapter" data-level="8.1" data-path="vlookup.html"><a href="vlookup.html#summary-5"><i class="fa fa-check"></i><b>8.1</b> Summary</a></li>
-<li class="chapter" data-level="8.2" data-path="vlookup.html"><a href="vlookup.html#objectives-5"><i class="fa fa-check"></i><b>8.2</b> Objectives</a></li>
-<li class="chapter" data-level="8.3" data-path="vlookup.html"><a href="vlookup.html#resources-6"><i class="fa fa-check"></i><b>8.3</b> Resources</a></li>
-<li class="chapter" data-level="8.4" data-path="vlookup.html"><a href="vlookup.html#lessons"><i class="fa fa-check"></i><b>8.4</b> Lessons</a><ul>
-<li class="chapter" data-level="8.4.1" data-path="vlookup.html"><a href="vlookup.html#dplyrfilter-to-conditionally-subset-by-rows"><i class="fa fa-check"></i><b>8.4.1</b> <code>dplyr::filter()</code> to conditionally subset by rows</a></li>
-<li class="chapter" data-level="8.4.2" data-path="vlookup.html"><a href="vlookup.html#merging-data-frames-with-dplyr_join"><i class="fa fa-check"></i><b>8.4.2</b> Merging data frames with <code>dplyr::*_join()</code></a></li>
+<li class="chapter" data-level="9" data-path="vlookup.html"><a href="vlookup.html"><i class="fa fa-check"></i><b>9</b> Dplyr and vlookups</a><ul>
+<li class="chapter" data-level="9.1" data-path="vlookup.html"><a href="vlookup.html#summary-6"><i class="fa fa-check"></i><b>9.1</b> Summary</a></li>
+<li class="chapter" data-level="9.2" data-path="vlookup.html"><a href="vlookup.html#objectives-6"><i class="fa fa-check"></i><b>9.2</b> Objectives</a></li>
+<li class="chapter" data-level="9.3" data-path="vlookup.html"><a href="vlookup.html#resources-7"><i class="fa fa-check"></i><b>9.3</b> Resources</a></li>
+<li class="chapter" data-level="9.4" data-path="vlookup.html"><a href="vlookup.html#lessons"><i class="fa fa-check"></i><b>9.4</b> Lessons</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="vlookup.html"><a href="vlookup.html#dplyrfilter-to-conditionally-subset-by-rows"><i class="fa fa-check"></i><b>9.4.1</b> <code>dplyr::filter()</code> to conditionally subset by rows</a></li>
+<li class="chapter" data-level="9.4.2" data-path="vlookup.html"><a href="vlookup.html#merging-data-frames-with-dplyr_join"><i class="fa fa-check"></i><b>9.4.2</b> Merging data frames with <code>dplyr::*_join()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="vlookup.html"><a href="vlookup.html#fun-kind-of-scary-facts"><i class="fa fa-check"></i><b>8.5</b> Fun / kind of scary facts</a></li>
-<li class="chapter" data-level="8.6" data-path="vlookup.html"><a href="vlookup.html#interludes-deep-thoughtsopenscapes-1"><i class="fa fa-check"></i><b>8.6</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="8.7" data-path="vlookup.html"><a href="vlookup.html#efficiency-tips-4"><i class="fa fa-check"></i><b>8.7</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="9.5" data-path="vlookup.html"><a href="vlookup.html#fun-kind-of-scary-facts"><i class="fa fa-check"></i><b>9.5</b> Fun / kind of scary facts</a></li>
+<li class="chapter" data-level="9.6" data-path="vlookup.html"><a href="vlookup.html#interludes-deep-thoughtsopenscapes-1"><i class="fa fa-check"></i><b>9.6</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="9.7" data-path="vlookup.html"><a href="vlookup.html#efficiency-tips-5"><i class="fa fa-check"></i><b>9.7</b> Efficiency Tips</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="synthesis.html"><a href="synthesis.html"><i class="fa fa-check"></i><b>9</b> Synthesis</a><ul>
-<li class="chapter" data-level="9.1" data-path="synthesis.html"><a href="synthesis.html#summary-6"><i class="fa fa-check"></i><b>9.1</b> Summary</a></li>
-<li class="chapter" data-level="9.2" data-path="synthesis.html"><a href="synthesis.html#objectives-6"><i class="fa fa-check"></i><b>9.2</b> Objectives</a></li>
-<li class="chapter" data-level="9.3" data-path="synthesis.html"><a href="synthesis.html#resources-7"><i class="fa fa-check"></i><b>9.3</b> Resources</a></li>
-<li class="chapter" data-level="9.4" data-path="synthesis.html"><a href="synthesis.html#lesson-3"><i class="fa fa-check"></i><b>9.4</b> Lesson</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="synthesis.html"><a href="synthesis.html#set-up"><i class="fa fa-check"></i><b>9.4.1</b> Set-up:</a></li>
-<li class="chapter" data-level="9.4.2" data-path="synthesis.html"><a href="synthesis.html#attach-packages-and-read-in-the-data"><i class="fa fa-check"></i><b>9.4.2</b> Attach packages and read in the data</a></li>
-<li class="chapter" data-level="9.4.3" data-path="synthesis.html"><a href="synthesis.html#data-wrangling"><i class="fa fa-check"></i><b>9.4.3</b> Data wrangling</a></li>
+<li class="chapter" data-level="10" data-path="synthesis.html"><a href="synthesis.html"><i class="fa fa-check"></i><b>10</b> Synthesis</a><ul>
+<li class="chapter" data-level="10.1" data-path="synthesis.html"><a href="synthesis.html#summary-7"><i class="fa fa-check"></i><b>10.1</b> Summary</a></li>
+<li class="chapter" data-level="10.2" data-path="synthesis.html"><a href="synthesis.html#objectives-7"><i class="fa fa-check"></i><b>10.2</b> Objectives</a></li>
+<li class="chapter" data-level="10.3" data-path="synthesis.html"><a href="synthesis.html#resources-8"><i class="fa fa-check"></i><b>10.3</b> Resources</a></li>
+<li class="chapter" data-level="10.4" data-path="synthesis.html"><a href="synthesis.html#lesson-4"><i class="fa fa-check"></i><b>10.4</b> Lesson</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="synthesis.html"><a href="synthesis.html#set-up"><i class="fa fa-check"></i><b>10.4.1</b> Set-up:</a></li>
+<li class="chapter" data-level="10.4.2" data-path="synthesis.html"><a href="synthesis.html#attach-packages-and-read-in-the-data"><i class="fa fa-check"></i><b>10.4.2</b> Attach packages and read in the data</a></li>
+<li class="chapter" data-level="10.4.3" data-path="synthesis.html"><a href="synthesis.html#data-wrangling"><i class="fa fa-check"></i><b>10.4.3</b> Data wrangling</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="synthesis.html"><a href="synthesis.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections"><i class="fa fa-check"></i><b>9.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
-<li class="chapter" data-level="9.6" data-path="synthesis.html"><a href="synthesis.html#interludes-deep-thoughtsopenscapes-2"><i class="fa fa-check"></i><b>9.6</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="9.7" data-path="synthesis.html"><a href="synthesis.html#efficiency-tips-5"><i class="fa fa-check"></i><b>9.7</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="10.5" data-path="synthesis.html"><a href="synthesis.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections"><i class="fa fa-check"></i><b>10.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="10.6" data-path="synthesis.html"><a href="synthesis.html#interludes-deep-thoughtsopenscapes-2"><i class="fa fa-check"></i><b>10.6</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="10.7" data-path="synthesis.html"><a href="synthesis.html#efficiency-tips-6"><i class="fa fa-check"></i><b>10.7</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -573,7 +598,7 @@ Sometimes, however, we <strong>do</strong> want the aesthetics of a graph to dep
         </div>
       </div>
 <a href="readxl.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tidying.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pivot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

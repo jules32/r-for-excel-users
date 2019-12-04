@@ -535,7 +535,7 @@ Now that we've loaded the \texttt{praise} package, we can use the single functio
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "You are super-duper!"
+## [1] "You are spectacular!"
 \end{verbatim}
 
 \hypertarget{assigning-objects-with--}{%
@@ -2333,16 +2333,596 @@ For the record: this is not a good option for showing the visitation data becaus
 \hypertarget{efficiency-tips-3}{%
 \section{Efficiency Tips}\label{efficiency-tips-3}}
 
-\hypertarget{tidying}{%
-\chapter{Tidying}\label{tidying}}
+\hypertarget{pivot}{%
+\chapter{\texorpdfstring{\texttt{dplyr} and Pivot Tables}{dplyr and Pivot Tables}}\label{pivot}}
 
 \hypertarget{summary-4}{%
 \section{Summary}\label{summary-4}}
 
-In previous sessions, we learned to read in data, do some wrangling, and create a graph and table. Here, we'll continue by \emph{reshaping} data frames (converting from long-to-wide, or wide-to-long format), \emph{separating} and \emph{uniting} variable (column) contents, converting between \emph{explicit} and \emph{implicit} missing (\texttt{NA}) values, and cleaning up our column names with the \texttt{janitor} package.
+Pivot tables are powerful tools in Excel for summarizing data in different ways. We will create these tables using the \texttt{group\_by} and \texttt{summarize} functions from the \texttt{dplyr} package (part of the Tidyverse). We will also learn how to format tables and practice creating a reproducible report using RMarkdown and sharing it with GitHub.
 
 \hypertarget{objectives-4}{%
 \section{Objectives}\label{objectives-4}}
+
+In R, we can use dplyr for pivot tables by using 2 main verbs in combination: \texttt{group\_by} and \texttt{summarize}. We will also continue to emphasize reproducibility in all our analyses.
+
+\begin{itemize}
+\tightlist
+\item
+  Discuss pivot tables in Excel
+\item
+  Introduce \texttt{group\_by()\ \%\textgreater{}\%\ summarize()} from the \texttt{dplyr} package
+\item
+  Format tables with the \texttt{DT} and \texttt{knitr} packages
+\item
+  Practice our reproducible workflow with RMarkdown and GitHub
+\end{itemize}
+
+\hypertarget{resources-5}{%
+\section{Resources}\label{resources-5}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://dplyr.tidyverse.org/}{dplyr.tidyverse.org}
+\item
+  \href{https://r4ds.had.co.nz/transform.html}{R for Data Science: Transform Chapter}
+\item
+  \href{https://youtu.be/g530cnFfk8Y}{Intro to Pivot Tables I-III} by Excel Campus (YouTube)
+\end{itemize}
+
+\hypertarget{lesson-2}{%
+\section{Lesson}\label{lesson-2}}
+
+\hypertarget{setup}{%
+\subsection{Setup}\label{setup}}
+
+Let's start a new RMarkdown file, I'll call mine \texttt{pivot\_lobsters.Rmd}.
+
+In the setup chunk, let's attach our libraries and read in our lobster data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## attach libraries}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+
+\CommentTok{## read in data}
+\NormalTok{lobsters <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"data/lobster_counts_curated.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Let's add a code chunk to explore the data by looking at some summary statistics and making a simple plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(lobsters) }\CommentTok{# year and month as well as a column for date}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 9
+##    year month date    site  transect replicate size_mm num_ao  area
+##   <dbl> <dbl> <chr>   <chr>    <dbl> <chr>       <dbl>  <dbl> <dbl>
+## 1  2012     8 8/20/12 ivee         3 A              70      0   300
+## 2  2012     8 8/20/12 ivee         3 B              60      0   300
+## 3  2012     8 8/20/12 ivee         3 B              65      0   300
+## 4  2012     8 8/20/12 ivee         3 B              70      0   300
+## 5  2012     8 8/20/12 ivee         3 B              85      0   300
+## 6  2012     8 8/20/12 ivee         3 C              60      0   300
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(lobsters)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       year          month           date               site          
+##  Min.   :2012   Min.   :8.000   Length:6366        Length:6366       
+##  1st Qu.:2015   1st Qu.:8.000   Class :character   Class :character  
+##  Median :2017   Median :8.000   Mode  :character   Mode  :character  
+##  Mean   :2016   Mean   :8.017                                        
+##  3rd Qu.:2018   3rd Qu.:8.000                                        
+##  Max.   :2018   Max.   :9.000                                        
+##                                                                      
+##     transect      replicate            size_mm           num_ao        
+##  Min.   :1.000   Length:6366        Min.   : 18.00   Min.   : 0.00000  
+##  1st Qu.:2.000   Class :character   1st Qu.: 65.00   1st Qu.: 0.00000  
+##  Median :4.000   Mode  :character   Median : 75.00   Median : 0.00000  
+##  Mean   :3.806                      Mean   : 73.02   Mean   : 0.08121  
+##  3rd Qu.:5.000                      3rd Qu.: 82.00   3rd Qu.: 0.00000  
+##  Max.   :9.000                      Max.   :183.00   Max.   :10.00000  
+##                                     NA's   :6                          
+##       area    
+##  Min.   :300  
+##  1st Qu.:300  
+##  Median :300  
+##  Mean   :300  
+##  3rd Qu.:300  
+##  Max.   :300  
+## 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(lobsters, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ year)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{site)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-76-1.pdf}
+
+In this data set, every row is a unique observation. This is called ``uncounted'' data; you'll see there is no row for how many lobsters were seen because each row is an observation, or an ``n of 1''.
+
+OK now that we have a quick sense of this data let's have a look at pivot tables in Excel.
+
+\hypertarget{pivot-tables}{%
+\subsection{Pivot tables}\label{pivot-tables}}
+
+\href{https://en.wikipedia.org/wiki/Pivot_table}{Wikipedia describes a pivot table} as a ``table of statistics that summarizes the data of a more extensive table\ldots{}This summary might include sums, averages, or other statistics, which the pivot table groups together in a meaningful way.'' Fun fact: it also says that ``Although pivot table is a generic term, Microsoft trademarked PivotTable in the United States in 1994.''
+
+\hypertarget{lobster-pivot-table}{%
+\subsubsection{lobster pivot table}\label{lobster-pivot-table}}
+
+Let's make a pivot table with our lobster data.
+
+I really want to know how many lobsters were counted at each site. I want a count of rows by site. So to do this in Excel we would initiate the Pivot Table Process:
+
+\includegraphics[width=0.8\linewidth]{img/pivot-table-menu}
+
+And it will do its best to find the data I would like to include in my Pivot Table (it can have difficulty with non-rectangular or ``non-tidy'' data), and suggest we make this in a new sheet:
+
+\includegraphics[width=0.8\linewidth]{img/pivot-table-create}
+
+And then we'll get a little wizard to help us create the Pivot Table. I want to summarize by year, so I drag ``year'' down into the ``Rows'' box, and to get the counts by year I actually drag the same variable, ``year'' into the ``Values'' box. And it will create a Pivot Table for me! But ``sum'' as the default summary statistic, so I can click the little ``I'' icon to change this to count.
+
+\includegraphics[width=0.8\linewidth]{img/pivot-table-count-year}
+
+A few things to note:
+
+\begin{itemize}
+\tightlist
+\item
+  The pivot table is separate entity from our data (it's on a different sheet); the original data has not been affected
+\item
+  The pivot table only shows the variables we requested; we don't see other columns (like date, month, or site).
+\end{itemize}
+
+\hypertarget{why-are-they-great}{%
+\subsubsection{Why are they great?}\label{why-are-they-great}}
+
+Pivot tables are great because they summarize the data and keep the raw data raw --- they even promote good pratice because they by default ask you if you'd like to present the data in a new sheet rather than in the same sheet.
+
+If you add new data, you can refresh your table
+
+\hypertarget{why-would-we-want-to-work-in-r-instead}{%
+\subsubsection{Why would we want to work in R instead?}\label{why-would-we-want-to-work-in-r-instead}}
+
+Let's talk about how this looks like in R.
+
+\hypertarget{group_by-summarize}{%
+\section{group\_by() \%\textgreater{}\% summarize()}\label{group_by-summarize}}
+
+In R, we can create the functionality of pivot tables by using 2 main \texttt{dplyr} verbs in combination: \texttt{group\_by} and \texttt{summarize}.
+
+Say it with me: ``pivot tables are group\_by and then summarize''. And just like pivot tables, you have flexibility with how you are going to summarize. For example, we can calculate an average, or a total. It looks like this (from \href{http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf}{RStudio's cheatsheet}):
+
+\includegraphics[width=0.8\linewidth]{img/rstudio-cheatsheet-group_by_summarize}
+
+\hypertarget{group_by-one-variable}{%
+\subsection{group\_by one variable}\label{group_by-one-variable}}
+
+Let's try this on our \texttt{lobsters} data, just like we did in Excel. We will calculate the the total number of lobster by year. In R-speak, we will group\_by year and then summarize by counting using the \texttt{n()}, which is another function from \texttt{dplyr}. We'll also use the pipe operator \texttt{\%\textgreater{}\%}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lobsters }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{count =} \KeywordTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 7 x 2
+##    year count
+##   <dbl> <int>
+## 1  2012   231
+## 2  2013   243
+## 3  2014   510
+## 4  2015  1100
+## 5  2016   809
+## 6  2017  1668
+## 7  2018  1805
+\end{verbatim}
+
+Notice how together, \texttt{group\_by} and \texttt{summarize} minimize the amount of information we see. We also saw this with the pivot table. We lose the other columns that aren't involved here.
+
+Question: What if you \emph{don't} group\_by first? Let's try it and discuss what's going on.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lobsters }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{count =} \KeywordTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##   count
+##   <int>
+## 1  6366
+\end{verbatim}
+
+So if we don't \texttt{group\_by} first, we will get a single summary statistic (sum in this case) for the whole dataset.
+
+Notice that in Excel we retain the overall totals for each site (in bold, on the same line with the site name). This is nice for communicating about data. But it can be problematic for further analyses, because it could be easy to take a total of this column and introduce errors.
+
+\hypertarget{rstudio-viewer}{%
+\subsection{RStudio Viewer}\label{rstudio-viewer}}
+
+Let's now check the \texttt{lobsters} variable. We can do this by clicking on \texttt{lobsters} in the Environment pane in RStudio.
+
+We see that we haven't changed any of our original data that was stored in this variable. (Just like how the pivot table didn't affect the raw data on the original sheet).
+
+\begin{quote}
+\textbf{\emph{Aside}}: You'll also see that when you click on the variable name in the Environment pane, \texttt{View(lobsters)} shows up in your Console. \texttt{View()} (capital V) is the R function to view any variable in the viewer. So this is something that you can write in your RMarkdown script, although RMarkdown will not be able to knit this view feature into the formatted document. So, if you want include \texttt{View()} in your RMarkdown document you will need to either comment it out \texttt{\#View()} or add \texttt{eval=FALSE} to the top of the code chunk so that the full line reads \texttt{\{r,\ eval=FALSE\}}.
+\end{quote}
+
+\hypertarget{summarize-multiple-variables}{%
+\subsection{summarize multiple variables}\label{summarize-multiple-variables}}
+
+We can summarize multiple variables at a time. So far we've done the count of lobster observations. Let's also do the mean and standard deviation. First let's use the \texttt{mean()} function to calculate the mean. We do this within the same summarize() function, but we can add a new line to make it easier to read. Notice how when you put your curser within the parenthesis and hit return, the indentation will automatically align.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lobsters }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{count =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{mean_size_mm =} \KeywordTok{mean}\NormalTok{(size_mm))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 7 x 3
+##    year count mean_size_mm
+##   <dbl> <int>        <dbl>
+## 1  2012   231         73.9
+## 2  2013   243         74.9
+## 3  2014   510         NA  
+## 4  2015  1100         69.0
+## 5  2016   809         68.9
+## 6  2017  1668         NA  
+## 7  2018  1805         76.3
+\end{verbatim}
+
+\begin{quote}
+\textbf{\emph{Aside}} Command-I will properly indent selected lines.
+\end{quote}
+
+Great! But this will actually calculate some of the means as NA because one or more values in that year are NA. So we can pass an argument that says to remove NAs first before calculating the average. Let's do that, and then also calculate the standard deviation with the \texttt{sd()} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lobsters }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{count =} \KeywordTok{n}\NormalTok{(), }
+            \DataTypeTok{mean_size_mm =} \KeywordTok{mean}\NormalTok{(size_mm, }\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{), }
+            \DataTypeTok{sd_size_mm =} \KeywordTok{sd}\NormalTok{(size_mm, }\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 7 x 4
+##    year count mean_size_mm sd_size_mm
+##   <dbl> <int>        <dbl>      <dbl>
+## 1  2012   231         73.9       12.6
+## 2  2013   243         74.9       10.5
+## 3  2014   510         77.8       12.2
+## 4  2015  1100         69.0       17.0
+## 5  2016   809         68.9       12.9
+## 6  2017  1668         72.3       13.2
+## 7  2018  1805         76.3       11.4
+\end{verbatim}
+
+So we can make the equivalent of Excel's pivot table in R with \texttt{group\_by} and then \texttt{summarize}. But a powerful thing about R is that maybe we want this information to be used in further analyses. We can make this easier for ourselves by saving this as a variable. So let's add a variable assignment to that first line:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{year_summary <-}\StringTok{ }\NormalTok{lobsters }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{count =} \KeywordTok{n}\NormalTok{(), }
+            \DataTypeTok{mean_size_mm =} \KeywordTok{mean}\NormalTok{(size_mm, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{), }
+            \DataTypeTok{sd_size_mm =} \KeywordTok{sd}\NormalTok{(size_mm, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{activity-3}{%
+\subsection{Activity}\label{activity-3}}
+
+Summarize \texttt{lobsters} by site and assign it to a variable called \texttt{site\_summary}.
+
+Then, save, commit, and push your RMarkdown file.
+
+Solution (no peeking):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{site_summary <-}\StringTok{ }\NormalTok{lobsters }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(site) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{count =} \KeywordTok{n}\NormalTok{(), }
+            \DataTypeTok{mean_size_mm =} \KeywordTok{mean}\NormalTok{(size_mm, }\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{), }
+            \DataTypeTok{sd_size_mm =} \KeywordTok{sd}\NormalTok{(size_mm, }\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{))}
+
+\NormalTok{site_summary}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 4
+##   site  count mean_size_mm sd_size_mm
+##   <chr> <int>        <dbl>      <dbl>
+## 1 aque    422         72.3       11.4
+## 2 carp   1619         72.8       12.5
+## 3 ivee   2304         73.6       14.4
+## 4 mohk    982         66.9       14.2
+## 5 napl   1039         78.2       11.1
+\end{verbatim}
+
+\hypertarget{group_by-multiple-variables}{%
+\subsection{\texorpdfstring{\texttt{group\_by} multiple variables}{group\_by multiple variables}}\label{group_by-multiple-variables}}
+
+Great. It can be useful to summarize by both site and year, so that we can learn a little more about how things change over time across sites. And, awesomely, we are able to \texttt{group\_by} more than one variable. Let's do this together, and assign this to a new variable called \texttt{siteyear\_summary}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{siteyear_summary <-}\StringTok{ }\NormalTok{lobsters }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(site, year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{count =} \KeywordTok{n}\NormalTok{(), }
+            \DataTypeTok{mean_size_mm =} \KeywordTok{mean}\NormalTok{(size_mm, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{), }
+            \DataTypeTok{sd_size_mm =} \KeywordTok{sd}\NormalTok{(size_mm, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+
+\NormalTok{siteyear_summary}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 35 x 5
+## # Groups:   site [5]
+##    site   year count mean_size_mm sd_size_mm
+##    <chr> <dbl> <int>        <dbl>      <dbl>
+##  1 aque   2012    38         71        10.2 
+##  2 aque   2013    32         72.1      12.3 
+##  3 aque   2014   100         76.9       9.32
+##  4 aque   2015    83         68.5      12.6 
+##  5 aque   2016    48         68.7      12.5 
+##  6 aque   2017    67         73.9      11.9 
+##  7 aque   2018    54         71.7       8.14
+##  8 carp   2012    78         74.4      14.6 
+##  9 carp   2013    93         76.6       8.71
+## 10 carp   2014    79         79.1       8.57
+## # ... with 25 more rows
+\end{verbatim}
+
+\hypertarget{formatting-tables}{%
+\section{Formatting tables}\label{formatting-tables}}
+
+There are a growing number of R packages for making tables look presentable and beautiful so you can include them nicely in your reports. We will talk about 2 options here. We will actually go back up to our setup chunk to add these libraries so that we follow the good practice of loading libraries at the beginning of a script.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(DT) }\CommentTok{# install.packages("DT")}
+\KeywordTok{library}\NormalTok{(knitr) }\CommentTok{# install.packages("knitr")}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{knitrkable}{%
+\subsection{\texorpdfstring{\texttt{knitr::kable()}}{knitr::kable()}}\label{knitrkable}}
+
+The \texttt{knitr} package has a function called \texttt{kable()} that will write the output of a dataframe as a table formatted in Markdown. Let's have a look:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{kable}\NormalTok{(site_summary)}
+\end{Highlighting}
+\end{Shaded}
+
+site
+
+count
+
+mean\_size\_mm
+
+sd\_size\_mm
+
+aque
+
+422
+
+72.27204
+
+11.37161
+
+carp
+
+1619
+
+72.83189
+
+12.54750
+
+ivee
+
+2304
+
+73.57968
+
+14.39883
+
+mohk
+
+982
+
+66.86833
+
+14.24503
+
+napl
+
+1039
+
+78.18454
+
+11.06993
+
+When we run this we see there are \texttt{\textbar{}} symbols separating columns, and there are \texttt{-\/-\/-}'s indicating the column headers. Additionally, the \texttt{:} on the right of each \texttt{-\/-\/-} symbol makes the values right-alighned.
+
+Now let's knit our RMarkdown document and see what this looks like rendered. It's a nice, static table.
+
+\hypertarget{dtdatatable}{%
+\subsection{\texorpdfstring{\texttt{DT::datatable()}}{DT::datatable()}}\label{dtdatatable}}
+
+The DT package had a function called \texttt{datatable}; let's try it with our \texttt{siteyear\_summary} object:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{datatable}\NormalTok{(site_summary)}
+\end{Highlighting}
+\end{Shaded}
+
+When we run this, notice how this actually pops up in our Viewer tab in the bottom right. It's interactive so we can sort by different columns.
+
+Let's knit our RMarkdown file and see what happens. This interactive table is included in the report!
+
+How can we make this look a bit snazzier?
+
+There are also many other options to walk through here: \url{https://rstudio.github.io/DT/}
+
+\hypertarget{activity-4}{%
+\subsection{Activity}\label{activity-4}}
+
+Use \texttt{datatable} to create an interactive table for our \texttt{yearsite\_summary} object.
+
+Knit, commit, and push to GitHub.
+
+\hypertarget{dplyrcount}{%
+\subsection{\texorpdfstring{\texttt{dplyr::count()}}{dplyr::count()}}\label{dplyrcount}}
+
+Now that we've spent time with group\_by \%\textgreater{}\% summarize, there is a shortcut if you only want to summarize by count. This is with a function called \texttt{count()}, and it will group\_by your selected variable, count, and then also ungroup. It looks like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lobsters }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(site, year) }
+
+\CommentTok{## This is the same as:}
+\NormalTok{lobsters }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(site, year) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{()) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Switching gears\ldots{}
+
+\hypertarget{mutate}{%
+\section{\texorpdfstring{\texttt{mutate()}}{mutate()}}\label{mutate}}
+
+There are a lot of times where you don't want to summarize your data, but you do want to operate beyond the original data. This is often done by adding a column. We do this with the \texttt{mutate()} function from \texttt{dplyr}. Let's try this with our original lobsters data. The sizes are in millimeters but let's say it was important for them to be in meters. We can add a column with this calculation:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# quick reminder what this looks like}
+\KeywordTok{head}\NormalTok{(lobsters)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 9
+##    year month date    site  transect replicate size_mm num_ao  area
+##   <dbl> <dbl> <chr>   <chr>    <dbl> <chr>       <dbl>  <dbl> <dbl>
+## 1  2012     8 8/20/12 ivee         3 A              70      0   300
+## 2  2012     8 8/20/12 ivee         3 B              60      0   300
+## 3  2012     8 8/20/12 ivee         3 B              65      0   300
+## 4  2012     8 8/20/12 ivee         3 B              70      0   300
+## 5  2012     8 8/20/12 ivee         3 B              85      0   300
+## 6  2012     8 8/20/12 ivee         3 C              60      0   300
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lobsters }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{size_m =}\NormalTok{ size_mm }\OperatorTok{/}\StringTok{ }\DecValTok{1000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6,366 x 10
+##     year month date    site  transect replicate size_mm num_ao  area size_m
+##    <dbl> <dbl> <chr>   <chr>    <dbl> <chr>       <dbl>  <dbl> <dbl>  <dbl>
+##  1  2012     8 8/20/12 ivee         3 A              70      0   300  0.07 
+##  2  2012     8 8/20/12 ivee         3 B              60      0   300  0.06 
+##  3  2012     8 8/20/12 ivee         3 B              65      0   300  0.065
+##  4  2012     8 8/20/12 ivee         3 B              70      0   300  0.07 
+##  5  2012     8 8/20/12 ivee         3 B              85      0   300  0.085
+##  6  2012     8 8/20/12 ivee         3 C              60      0   300  0.06 
+##  7  2012     8 8/20/12 ivee         3 C              65      0   300  0.065
+##  8  2012     8 8/20/12 ivee         3 C              67      0   300  0.067
+##  9  2012     8 8/20/12 ivee         3 D              70      0   300  0.07 
+## 10  2012     8 8/20/12 ivee         4 B              85      0   300  0.085
+## # ... with 6,356 more rows
+\end{verbatim}
+
+If we want to add a column that has the same value repeated, we can pass it just one value, either a number or a character string (in quotes):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lobsters }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{millenia =} \DecValTok{2000}\NormalTok{,}
+         \DataTypeTok{observer =} \StringTok{"Allison Horst"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6,366 x 11
+##     year month date  site  transect replicate size_mm num_ao  area millenia
+##    <dbl> <dbl> <chr> <chr>    <dbl> <chr>       <dbl>  <dbl> <dbl>    <dbl>
+##  1  2012     8 8/20~ ivee         3 A              70      0   300     2000
+##  2  2012     8 8/20~ ivee         3 B              60      0   300     2000
+##  3  2012     8 8/20~ ivee         3 B              65      0   300     2000
+##  4  2012     8 8/20~ ivee         3 B              70      0   300     2000
+##  5  2012     8 8/20~ ivee         3 B              85      0   300     2000
+##  6  2012     8 8/20~ ivee         3 C              60      0   300     2000
+##  7  2012     8 8/20~ ivee         3 C              65      0   300     2000
+##  8  2012     8 8/20~ ivee         3 C              67      0   300     2000
+##  9  2012     8 8/20~ ivee         3 D              70      0   300     2000
+## 10  2012     8 8/20~ ivee         4 B              85      0   300     2000
+## # ... with 6,356 more rows, and 1 more variable: observer <chr>
+\end{verbatim}
+
+\hypertarget{deep-thoughts-2}{%
+\section{Deep thoughts}\label{deep-thoughts-2}}
+
+Highly recommended read: \href{https://peerj.com/preprints/3183/}{Broman \& Woo: Data organization in spreadsheets}. Practical tips to make spreadsheets less error-prone, easier for computers to process, easier to share
+
+Great opening line: ``Spreadsheets, for all of their mundane rectangularness, have been the subject of angst and controversy for decades.''
+
+\hypertarget{efficiency-tips-4}{%
+\section{Efficiency Tips}\label{efficiency-tips-4}}
+
+arrow keys with shift, option, command
+
+\hypertarget{tidying}{%
+\chapter{Tidying}\label{tidying}}
+
+\hypertarget{summary-5}{%
+\section{Summary}\label{summary-5}}
+
+In previous sessions, we learned to read in data, do some wrangling, and create a graph and table. Here, we'll continue by \emph{reshaping} data frames (converting from long-to-wide, or wide-to-long format), \emph{separating} and \emph{uniting} variable (column) contents, converting between \emph{explicit} and \emph{implicit} missing (\texttt{NA}) values, and cleaning up our column names with the \texttt{janitor} package.
+
+\hypertarget{objectives-5}{%
+\section{Objectives}\label{objectives-5}}
 
 \begin{itemize}
 \tightlist
@@ -2362,15 +2942,15 @@ In previous sessions, we learned to read in data, do some wrangling, and create 
   Make a customized table (TODO: or introduce Kable if not time in pivot tables chapter)
 \end{itemize}
 
-\hypertarget{resources-5}{%
-\section{Resources}\label{resources-5}}
+\hypertarget{resources-6}{%
+\section{Resources}\label{resources-6}}
 
 -- \href{https://r4ds.had.co.nz/tidy-data.html}{Ch. 12 \emph{Tidy Data}, in R for Data Science} by Grolemund \& Wickham
 - \href{https://tidyr.tidyverse.org/}{\texttt{tidyr} documentation from tidyverse.org}
 - \href{https://github.com/sfirke/janitor}{\texttt{janitor} repo / information} from Sam Firke
 
-\hypertarget{lesson-2}{%
-\section{Lesson}\label{lesson-2}}
+\hypertarget{lesson-3}{%
+\section{Lesson}\label{lesson-3}}
 
 \hypertarget{lesson-prep}{%
 \subsection{Lesson Prep}\label{lesson-prep}}
@@ -3030,8 +3610,8 @@ TODO
 \hypertarget{vlookup}{%
 \chapter{Dplyr and vlookups}\label{vlookup}}
 
-\hypertarget{summary-5}{%
-\section{Summary}\label{summary-5}}
+\hypertarget{summary-6}{%
+\section{Summary}\label{summary-6}}
 
 In previous sessions, we've learned to do some basic wrangling and find summary information with functions in the \texttt{dplyr} package, which exists within the \texttt{tidyverse}. We've used:
 
@@ -3061,8 +3641,8 @@ In Session 5, we'll expand our data wrangling toolkit using:
 
 The combination of \texttt{dplyr::filter()} and \texttt{dplyr::*\_join()} - to return rows satisfying a condition we specify, and merging data frames by like variables - is analogous to the useful VLOOKUP function in Excel.
 
-\hypertarget{objectives-5}{%
-\section{Objectives}\label{objectives-5}}
+\hypertarget{objectives-6}{%
+\section{Objectives}\label{objectives-6}}
 
 \begin{itemize}
 \tightlist
@@ -3078,8 +3658,8 @@ The combination of \texttt{dplyr::filter()} and \texttt{dplyr::*\_join()} - to r
   Understand the similarities between \texttt{dplyr::filter()} + \texttt{dplyr::*\_join()} and Excel's VLOOKUP function
 \end{itemize}
 
-\hypertarget{resources-6}{%
-\section{Resources}\label{resources-6}}
+\hypertarget{resources-7}{%
+\section{Resources}\label{resources-7}}
 
 \begin{itemize}
 \tightlist
@@ -3721,8 +4301,8 @@ So, both \texttt{filter()} and \texttt{VLOOKUP} look through your data frame (or
   The risk of partial joins (\& a case for full\_join + drop\_na instead?)
 \end{itemize}
 
-\hypertarget{efficiency-tips-4}{%
-\section{Efficiency Tips}\label{efficiency-tips-4}}
+\hypertarget{efficiency-tips-5}{%
+\section{Efficiency Tips}\label{efficiency-tips-5}}
 
 \begin{itemize}
 \tightlist
@@ -3735,8 +4315,8 @@ So, both \texttt{filter()} and \texttt{VLOOKUP} look through your data frame (or
 \hypertarget{synthesis}{%
 \chapter{Synthesis}\label{synthesis}}
 
-\hypertarget{summary-6}{%
-\section{Summary}\label{summary-6}}
+\hypertarget{summary-7}{%
+\section{Summary}\label{summary-7}}
 
 In this session, we'll pull together the skills that we've learned so far. We'll create a new GitHub repo and R project, wrangle and visualize data from spreadsheets in R Markdown, communicate between RStudio (locally) and GitHub (remotely) to keep our updates safe, then share our outputs in a nicely formatted GitHub ReadMe. And we'll learn a few new things along the way!
 
@@ -3746,8 +4326,8 @@ In this session, we'll pull together the skills that we've learned so far. We'll
 \caption{Grolemund \& Wickham R4DS Illustration}
 \end{figure}
 
-\hypertarget{objectives-6}{%
-\section{Objectives}\label{objectives-6}}
+\hypertarget{objectives-7}{%
+\section{Objectives}\label{objectives-7}}
 
 \begin{itemize}
 \tightlist
@@ -3771,8 +4351,8 @@ In this session, we'll pull together the skills that we've learned so far. We'll
   Publish with a useful ReadMe to share
 \end{itemize}
 
-\hypertarget{resources-7}{%
-\section{Resources}\label{resources-7}}
+\hypertarget{resources-8}{%
+\section{Resources}\label{resources-8}}
 
 \begin{itemize}
 \tightlist
@@ -3784,8 +4364,8 @@ In this session, we'll pull together the skills that we've learned so far. We'll
   \href{https://www.tidyverse.org/blog/2017/12/workflow-vs-script/}{Project oriented workflows} by Jenny Bryan
 \end{itemize}
 
-\hypertarget{lesson-3}{%
-\section{Lesson}\label{lesson-3}}
+\hypertarget{lesson-4}{%
+\section{Lesson}\label{lesson-4}}
 
 \hypertarget{set-up}{%
 \subsection{Set-up:}\label{set-up}}
@@ -3903,8 +4483,8 @@ complete()
 \hypertarget{interludes-deep-thoughtsopenscapes-2}{%
 \section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-2}}
 
-\hypertarget{efficiency-tips-5}{%
-\section{Efficiency Tips}\label{efficiency-tips-5}}
+\hypertarget{efficiency-tips-6}{%
+\section{Efficiency Tips}\label{efficiency-tips-6}}
 
 \bibliography{book.bib,packages.bib}
 
