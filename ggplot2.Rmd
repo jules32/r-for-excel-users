@@ -15,7 +15,7 @@ We'll use the `ggplot2` package, but the function we use to initialize a graph w
 <br>
 ![](img/rstudio-cheatsheet-ggplot.png)
 
-## Objectives
+### Objectives
 
 - Build several common types of graphs (scatterplot, column, line) in ggplot2
 - Customize gg-graph aesthetics (color, style, themes, etc.)
@@ -25,7 +25,7 @@ We'll use the `ggplot2` package, but the function we use to initialize a graph w
 - Split up data into faceted graphs
 - Exporting figures with `ggsave()`
 
-## Resources
+### Resources
 
 - [https://r4ds.had.co.nz/data-visualisation.html](Chapter 3 - Data Visualization in R for Data Science by Grolemund and Wickham)
 - [ggplot2-cheatsheet-2.1.pdf](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)  
@@ -36,7 +36,7 @@ We'll use the `ggplot2` package, but the function we use to initialize a graph w
 
 ### Getting started - Create a new .Rmd, attach packages & get data
 
-Within your existing version-controlled R project, create a new R Markdown document with title "Session 4 - Data visualization with ggplot2." Remove everything below the first code chunk. Knit and save the .Rmd file within your project working directory as "session_4_ggplot2". 
+Within your existing version-controlled R project, create a new R Markdown document with title "Data visualization with ggplot2." Remove everything below the first code chunk. Knit and save the .Rmd file within your project working directory as "my_ggplot2". 
 
 The `ggplot2` package is part of the `tidyverse`, so we don't need to attach it separately. Attach the `tidyverse` and `readxl` packages in the top-most code chunk of your .Rmd. 
 ```{r, message = FALSE}
@@ -53,13 +53,13 @@ In this session, we'll use data for parks visitation from two files:
 
 Add a new code chunk to read in the data from the **data** subfolder within your working directory. 
 ```{r, include = FALSE}
-ca_np <- read_csv(here::here("curation", "ca_np.csv"))
-ci_np <- read_xlsx(here::here("curation", "ci_np.xlsx"))
+ca_np <- read_csv(here("curation", "ca_np.csv"))
+ci_np <- read_xlsx(here("curation", "ci_np.xlsx"))
 ```
 
 ```{r, eval = FALSE}
-ca_np <- read_csv(here::here("data", "ca_np.csv"))
-ci_np <- read_xlsx(here::here("data", "ci_np.xlsx"))
+ca_np <- read_csv(here("data", "ca_np.csv"))
+ci_np <- read_xlsx(here("data", "ci_np.xlsx"))
 ```
 
 Let's take a quick look at the data to see what it contains. For example: 
@@ -186,12 +186,6 @@ Here are a few to try today (but also notice all the options that appear as we s
 - `theme_minimal()`
 - `theme_bw()`
 
-Within those themes, we can also add graph-wide options for fonts and sizes. For example:
-
-- `base_size = `: update base font size
-- `base_family = `: update based font family
-- `base_line_size`: update base line size
-
 Here, let's update our previous graph with `theme_minimal()`:
 ```{r}
 ggplot(data = ci_np, aes(x = year, y = visitors)) +
@@ -200,8 +194,7 @@ ggplot(data = ci_np, aes(x = year, y = visitors)) +
         color = visitors),
     alpha = 0.5
   ) +
-  theme_minimal(
-  )
+  theme_minimal()
 ```
 
 ### Updating axis labels and titles
@@ -289,11 +282,11 @@ If we want our graph to appear in a knitted html, then we don't need to do anyth
 
 So to export the faceted graph above at 180 dpi, width a width of 8" and a height of 7", we can use:
 ```{r, include = FALSE}
-ggsave(here::here("img","np_graph.jpg"), dpi = 180, width = 8, height = 7)
+ggsave(here("img","np_graph.jpg"), dpi = 180, width = 8, height = 7)
 ```
 
 ```{r, eval = FALSE}
-ggsave("np_graph.jpg", dpi = 180, width = 8, height = 7)
+ggsave(here("figures", "np_graph.jpg"), dpi = 180, width = 8, height = 7)
 ```
 
 Notice that a .jpg image of that name and size is now stored in your project working directory. You can change the type of exported image, too (e.g. pdf, tiff, eps, png, mmp, svg). 
@@ -314,13 +307,6 @@ ggplot(data = ca_np, aes(x = park_name, y = visitors)) +
   coord_flip() +
   theme_minimal()
 ```
-
-## Activity 1
-
-
-
-## Activity 2
-
 
 
 ## Efficiency Tips
