@@ -4,7 +4,7 @@
 
 **Check this, may need to be a block quote**: The **readxl** package makes it easy to import tabular data from Excel spreadsheets (.xls or .xlsx files) and includes several options for cleaning data during import. **readxl** has no external dependencies and functions on any operating system, making it an OS- and user-friendly package that simplifies getting your data from Excel into R. 
 
-## Objectives
+### Objectives
 
 - Use `readr::read_csv()` to read in a comma separated value (CSV) file
 - Use `readxl::read_excel()` to read in an Excel worksheet from a workbook
@@ -16,7 +16,7 @@
 - Write data using `readr::write_csv()` or `writexl::write_xlsx()`
 - Workflows with `readxl`: considerations, limitations, reproducibility
 
-## Resources
+### Resources
 
 - https://readxl.tidyverse.org/
 - [readxl Workflows article (from tidyverse.org)](https://readxl.tidyverse.org/articles/articles/readxl-workflows.html)
@@ -24,25 +24,11 @@
 
 ## Lesson
 
-### Lesson prep: get data files into your working directory
+### Attach packages
 
-In Session 1, we introduced how and why R Projects are great for reproducibility, because our self-contained working directory will be the **first** place R looks for files. 
+In the .Rmd you just created, attach the `tidyverse`, `readxl`, `writexl`, and `here` packages  
 
-You downloaded 7 files for this workshop, some comma separate value (CSV) files and some as Excel spreadsheets (.xlsx): 
-
-- fish_counts_curated.csv
-- invert_counts_curated.xlsx
-- kelp_counts_curated.xlsx
-- substrate_cover_curated.xlsx
-- lobster_counts.csv
-- ca_np.csv 
-- ci_np.xlsx
-
-Copy and paste those files into the 'data' subfolder of your R project. Notice that now these files are in your working directory when you go back to that Project in RStudio (check the 'Files' tab and navigate to the data subfolder). That means they're going to be in the first place R will look when you ask it to find a file to read in. 
-
-### In the .Rmd you just created, attach the `tidyverse`, `readxl` and `writexl` packages  
-
-In this lesson, we'll read in a CSV file with the `readr::read_csv()` function, so we need to have the `readr` package attached. Since it's part of the `tidyverse`, we'll go ahead and attach the `tidyverse` package below our script header using `library(package_name)`. It's a good idea to attach packages within the set-up chunk in R Markdown, so we'll also attach the `readxl` and `writexl`packages there. 
+In this lesson, we'll read in a CSV file with the `readr::read_csv()` function, so we need to have the `readr` package attached. Since it's part of the `tidyverse`, we'll go ahead and attach the `tidyverse` package below our script header using `library(package_name)`. It's a good idea to attach packages within the set-up chunk in R Markdown, so we'll also attach the `readxl`, `writexl`, and `here` packages there. 
 
 Here's our first code chunk: 
 
