@@ -38,18 +38,17 @@ We'll use the `ggplot2` package, but the function we use to initialize a graph w
 
 Within your existing version-controlled R project, create a new R Markdown document with title "Data visualization with ggplot2." Remove everything below the first code chunk. Knit and save the .Rmd file within your project working directory as "my_ggplot2". 
 
-The `ggplot2` package is part of the `tidyverse`, so we don't need to attach it separately. Attach the `tidyverse` and `readxl` packages in the top-most code chunk of your .Rmd. 
+The `ggplot2` package is part of the `tidyverse`, so we don't need to attach it separately. Attach the `tidyverse`, `readxl` and `here` packages in the top-most code chunk of your .Rmd. 
 ```{r, message = FALSE}
 library(tidyverse)
 library(readxl)
+library(here)
 ```
 
 In this session, we'll use data for parks visitation from two files: 
 
 - A comma-separated-value (CSV) file containing visitation data for all National Parks in California (ca_np.csv)
-- A single Excel worksheet containing only visitation for Channel Islands National Park
-
-**A bit about Channel Islands National Park**: TODO
+- A single Excel worksheet containing only visitation for Channel Islands National Park (ci_np.xlsx)
 
 Add a new code chunk to read in the data from the **data** subfolder within your working directory. 
 ```{r, include = FALSE}
@@ -115,7 +114,7 @@ ggplot(data = ci_np, aes(x = year, y = visitors)) +
 
 We can see that updating to different `geom_*` types is quick, so long as the types of graphs we're switching between are compatible. 
 
-The data are there, now let's learn some customization. 
+The data are there, now let's do some data viz customization. 
 
 ### Intro to customizing `ggplot` graphs
 
@@ -154,8 +153,13 @@ ggplot(data = ci_np, aes(x = year, y = visitors)) +
              alpha = 0.5)
 ```
 
-In the examples above, we have customized aesthetics based on constants that we input as arguments (e.g., the color / style / size isn't changing based on a variable characteristic or value). 
-Sometimes, however, we **do** want the aesthetics of a graph to depend on a variable. 
+#### Activity: customize your own ggplot graph
+
+Update one of the example graphs you created above to customize **at least** an element color and size!
+
+### Mapping variables onto aesthetics
+
+In the examples above, we have customized aesthetics based on constants that we input as arguments (e.g., the color / style / size isn't changing based on a variable characteristic or value). Sometimes, however, we **do** want the aesthetics of a graph to depend on a variable. To do that, we'll **map variables onto graph aesthetics**, meaning we'll change how an element on the graph looks based on a variable characteristic (usually, character or value). 
 
 > When we want to customize a graph element based on a variable's characteristic or value, add the argument within `aes()` in the appropriate `geom_*()` layer
 
@@ -175,6 +179,17 @@ ggplot(data = ci_np, aes(x = year, y = visitors)) +
 ```
 
 In the example above, notice that the two arguments that **do** depend on variables are within `aes()`, but since `alpha = 0.5` doesn't depend on a variable then it is *outside the `aes()` but still within the `geom_point()` layer*. 
+
+#### Activity: map variables onto graph aesthetics
+
+Create a column plot of Channel Islands National Park visitation over time, where the **fill color** (argument: `fill = `) changes based on the number of **visitors**. 
+
+```{r}
+ggplot(data = ci_np, aes(x = year, y = visitors)) +
+  geom_col(aes(fill = visitors))
+```
+
+**Sync your project with your GitHub repo.**
 
 ### ggplot2 complete themes
 
@@ -308,6 +323,5 @@ ggplot(data = ca_np, aes(x = park_name, y = visitors)) +
   theme_minimal()
 ```
 
-
-## Efficiency Tips
+**Sync your project with your GitHub repo.**
 
