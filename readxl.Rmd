@@ -7,26 +7,24 @@
 ### Objectives
 
 - Use `read_csv()` to read in a comma separated value (CSV) file
-- Use `read_excel()` to read in an Excel worksheet from a workbook
+- Use `read_excel()` to read in an Excel worksheet from an Excel workbook
 - Replace a specific string/value in a spreadsheet with with `NA` 
 - Skip *n* rows when importing an Excel worksheet
 - Use `read_excel()` to read in parts of a worksheet (by cell range)
 - Specify column names when importing Excel data
 - Read and combine data from multiple Excel worksheets into a single df using `purrr::map_df()`
 - Write data using `write_csv()` or `write_xlsx()`
-- Workflows with `readxl`: considerations, limitations, reproducibility
 
 ### Resources
 
 - https://readxl.tidyverse.org/
 - [readxl Workflows article (from tidyverse.org)](https://readxl.tidyverse.org/articles/articles/readxl-workflows.html)
 
-
 ## Lesson
 
 ### Attach packages
 
-In the .Rmd you just created, attach the `tidyverse`, `readxl`, `writexl`, and `here` packages  
+In the .Rmd you just created within your version-controlled `r-workshop` R project, attach the `tidyverse`, `readxl`, `writexl`, and `here` packages.
 
 In this lesson, we'll read in a CSV file with the `read_csv()` function, so we need to have the `readr` package attached. Since it's part of the `tidyverse`, we'll go ahead and attach the `tidyverse` package below our script header using `library(package_name)`. It's a good idea to attach packages within the set-up chunk in R Markdown, so we'll also attach the `readxl`, `writexl`, and `here` packages there. 
 
@@ -35,11 +33,10 @@ Here's our first code chunk:
 ```{r, include = FALSE}
 # Attach the tidyverse, readxl and writexl packages:
 library(tidyverse)
-library(readxl)
-library(writexl)
-library(here)
+library(readxl) # install.packages('readxl')
+library(writexl) # install.packages('writexl')
+library(here) # install.packages('here')
 ```
-
 
 ```
 {r setup, eval = FALSE}
