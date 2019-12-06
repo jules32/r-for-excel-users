@@ -483,6 +483,8 @@ You've just created a webpage!
 
 It will exist at this url: username.github.io/repo-name/filename. Mine is: jules32.github.io/r-workshop/readxl. 
 
+> ***ProTip*** Pay attention to URLs. An unsung skill of the modern analyst is to be able to navigate the internet by keeping an eye on patterns.
+
 Troubleshooting:
 
 - 404 error? Remove trailing / from the url 

@@ -2,52 +2,53 @@
 
 Operational TODOs
 Data in google drive
-Readme with link
 
 
+## Welcome! 
 
-Welcome! 
+We are Dr. Julie Lowndes and Dr. Allison Horst. We are environmental scientists who use and teach R in our daily work. We are both at UCSB, where Julie is based at NCEAS as part of the Ocean Health Index team and leads Openscapes, and Allison is based at Bren as a lecturer of data science & statistics and is also an Artist in Residence at RStudio.
 
-We're Julie and Allison. We are environmental scientists who use and teach R in our daily work.
+This workshop you will learn hands-on how to begin to interoperate between Excel and R. But this is not only about learning R; we will learn R using additional software: RStudio and GitHub. These tools will help us develop good habits for working in a reproducible and collaborative way — critical attributes of the modern analyst. 
 
-This workshop you will learn hands-on how to begin to interoperate between Excel and R, and develop good habits for working in a reproducible and collaborative way. It's going to be fun and empowering! 
-
-We are not only learning R; we will learn a workflow with R and GitHub.
-
-We will practice learning three main things all at the same time: coding with best practices (R/RStudio), collaborative version control (Git/GitHub), and communication/publishing (RMarkdown/GitHub). This training will teach these all together to reinforce skills and best practices, and get you comfortable with a workflow that you can use in your own projects. 
-
-
+It's going to be fun and empowering! 
 
 ## Why learn R if I know Excel? 
 
-R and Excel are both great tools that are powerful for different jobs. 
+Excel is a widely used and powerful tool for working with data. We all work with it or with people who use it daily. This is convenient and familiar; most of us in this modern world have had their first experiences with data through Excel or other spreadsheet programs. As Jenny Bryan has said, ["Excel is how we learn that we love data analysis"](). 
+
+However, as automation, reproducibility, collaboration, and frequent reporting become increasingly expected in data analysis, a good option for Excel users is to extend their workflows with R. Integrating R into data analysis with Excel can bridge the technical gap between collaborators using either software. R enables use of existing tools built for specific tasks and overcomes some limitations that arise when working with large datasets or repeated analyses.
+
+There are technical skills we will develop today in this workshop to help us along this way. But a big part of interfacing between Excel and R is not only skillsets, it is mindsets. 
+
+Excel blends data and analysis into the same place. But we will talk about keeping data separate from analyses. "Keeping the raw data raw." And further, we will think about the shape and organization of data, and how we can set this up in the present to make our future analytical self's life easier. 
+
+
+
+R and Excel are both great tools that are powerful for different tasks. 
 
 Excel is great for data entry. Can also be good for looking at data and feeling like you can touch it, and creating quick exploratory figures.  
 
-But Excel can get problematic with extending to analyses. This is because there aren't firm lines between what is data and what is analyses. Also, the analytical steps taken are not readily apparent, nor easy to reproduce. This also makes them pretty  brittle/sensitive to minor changes. Have you ever done forensics on an Excel sheet, trying to understand what happened between columns or sheets? Maybe it was even your own Excel file from the (recent) past. 
+Excel can also become problematic with extending to analyses. This is because there aren't firm lines between what is data and what is analyses. Also, the analytical steps taken are not readily apparent, nor easy to reproduce. This also makes them pretty brittle/sensitive to minor changes. Have you ever done forensics on an Excel sheet, trying to understand what happened between columns or sheets? Maybe it was even your own Excel file from the (recent) past. 
 
-And there are also problems with Excel incorrectly interpreting data as dates, etc. <!---Horror Stories! Economist etc. -- 
+<!--- And there are also problems with Excel incorrectly interpreting data as dates, etc. Horror Stories! Economist etc. -- 
 
 Mine: genetics example doesn't hit home as much as Durham bike  accidents where age groups are converted to dates just by opening the bloody csv in excel--->
 
 Has seeing this ever given you a feeling of horror: 
 
-```{r, eval=FALSE, echo=FALSE, out.width="80%"}
+```{r, echo=FALSE, out.width="70%"}
 knitr::include_graphics("img/want-to-save-changes-excel.png")  
 ```
 
-R enables you to...
-
 A modern R user has a workflow framed around collaboration, using an ecosystem of tools like GitHub that makes it easier to track versions and share code.
 
-We will learn: 
+We are not only learning R; we will learn a workflow with R and GitHub. We will practice learning three main things all at the same time: 
 
-- R, with the RStudio IDE, with the tidyverse
-- GitHub
+1. coding with best practices (R/RStudio/tidyverse)
+2. collaborative version control (Git/GitHub)
+3. and communication/publishing (RMarkdown/GitHub). 
 
-We'll spend the first two sessions getting set up and oriented with R, RMarkdown, and GitHub, and work with data in R all afternoon. 
-
-
+This training will teach these all together to reinforce skills and best practices, and get you comfortable with a workflow that you can use in your own projects, and interface with Excel in your own analyses and with collaborators. 
 
 <!---
 
@@ -59,19 +60,21 @@ We are a friendly group, coding is social, talk to your neighbors. Sticky notes.
 
 ### What to expect
 
-This is going to be a fun workshop. 
+This is going to be a fun and empowering workshop. 
+
+This is not about wholesale replacing the tasks you do in Excel into R, but helping you incrementally include R into your Excel workflows. But a big part of this incremental transition is the ***mindset*** around data and analysis. Excel makes it easy to have data and analyses in the same file — and even in the same sheet or column: 
+
+TODO: screenshot of Excel
+
+
 
 A main theme throughout is to produce analyses people can understand and build from — including Future You and Future Us. The plan is to expose you to tools and workflows that you can have confidence using in your work. You'll be working hands-on and doing the same things on your own computer as we do live on up on the screen. 
 
-We are not going to cover everything you know how to do in Excel in R. 
+We are not going to cover everything you know how to do in Excel in R. But we are going to go through a lot in these two days and it's less important that you remember it all. More importantly, you'll have experience with it and confidence that you can do it. The main thing to take away is that there *are* good ways to work between R and Excel; we will teach you to expect that so you can find what you need and use it! A theme throughout is that tools exist and are being developed by real, and extraordinarily nice, people to meet you where you are and help you do what you need to do.
 
-But we are going to go through a lot in these two days and it's less important that you remember it all. More importantly, you'll have experience with it and confidence that you can do it. The main thing to take away is that there *are* good ways to work between R and Excel; we will teach you to expect that so you can find what you need and use it! A theme throughout is that tools exist and are being developed by real, and extraordinarily nice, people to meet you where you are and help you do what you need to do. If you expect and appreciate that, you will be more efficient in doing your awesome science.
+You are all welcome here, please be respectful of one another. Everyone in this workshop is coming from a different place with different experiences and expectations. But everyone will learn something new here, because there is so much innovation in the data science world. Instructors and helpers learn something new every time, from each other and from your questions. If you are already familiar with some of this material, focus on how we teach, and how you might teach it to others. Use these workshop materials not only as a reference in the future but also for talking points so you can communicate the importance of these tools to your communities. A big part of this training is not only for you to learn these skills, but for you to also teach others and increase the value and practice of open data science in science as a whole. 
 
-You are all welcome here, please be respectful of one another. You are encouraged to help each other. Please also ask questions use sticky notes to signal for a teaching assistant.
-
-Everyone in this workshop is coming from a different place with different experiences and expectations. But everyone will learn something new here, because there is so much innovation in the data science world. Instructors and helpers learn something new every time, from each other and from your questions. If you are already familiar with some of this material, focus on how we teach, and how you might teach it to others. Use these workshop materials not only as a reference in the future but also for talking points so you can communicate the importance of these tools to your communities. A big part of this training is not only for you to learn these skills, but for you to also teach others and increase the value and practice of open data science in science as a whole. 
-
-
+COME BACK JULIE
 
 ## Friendly mindset
 
