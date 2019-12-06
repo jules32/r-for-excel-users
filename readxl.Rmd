@@ -87,16 +87,6 @@ Here are a few other functions for quickly exploring imported data:
 - `head()`: Show the first x rows (default is 6 lines)
 - `tail()`: Show the last x rows (default is 6 lines)
 
-```{r, include = FALSE}
-# REMOVED THIS (doing ggplot2 next chapter)
-
-# Now let's make a simple plot of some fish counts with `ggplot2`. 
-
-ggplot(fish_counts, aes(x = year, y = total_count)) +
-  geom_col(aes(fill = common_name)) +
-  facet_wrap(~site)
-```
-
 Now that we have our fish counts data ready to work with in R, let's get the substrate cover and kelp data (both .xlsx files). In the following sections, we'll learn that we can use `read_excel()` to read in Excel files directly.
 
 ### Use `read_excel()` to read in a single Excel worksheet 
@@ -132,9 +122,12 @@ substrate_cover
 
 - The top row of text has automatically become the (messy) column headers
 - There are multiple descriptive rows before we actually get to the data
-- There are -9999s that we want R to understand `NA` instead
+- There are -9999s that we want R to understand as `NA` instead
 
-We can deal with those issues by adding arguments within `read_excel()`. Include argument `skip = n` to skip the first 'n' rows when importing data, and `na = "this"` to replace "this" with `NA` when importing:
+We can deal with those issues by adding arguments within `read_excel()`. Like:
+
+- Add `skip = n` to skip the first 'n' rows when importing data
+- Add `na = "this"` to replace "this" with `NA` when reading in spreadsheet data
 
 ```{r, include = FALSE}
 substrate_cover <- read_excel("curation/substrate_cover_curated.xlsx", skip = 4, na = "-9999")
@@ -178,11 +171,11 @@ carp_cover_2000
 ```
 
 
-So far we've read in a single CSV file using `read_csv()`, and an Excel file containing a single worksheet with `read_excel()`. Now let's read in data from an Excel workbook with multiple worksheets. 
+So far we've read in a single CSV file using `read_csv()`, and an Excel file containing a single worksheet with `read_excel()`. Next, let's read in data from an Excel workbook that contains multiple worksheets. 
 
 ### Use `read_excel()` to read in selected worksheets from a workbook
 
-Now, we'll read in the kelp fronds data from file *kelp_counts_curated.xlsx*. If you open the Excel workbook, you'll see that it contains multiple worksheets with giant kelp observations in the Santa Barbara Channel during July 2016, 2017, and 2018, with data collected at each *site* in a separate worksheet.
+Now, we'll read in the kelp fronds data from file *kelp_counts_curated.xlsx*. Open the file in Excel, and notice see that it contains multiple worksheets with giant kelp observations in the Santa Barbara Channel during July 2016, 2017, and 2018, with data collected at each *site* in a separate worksheet.
 
 To read in a single Excel worksheet from a workbook we'll again use `read_excel("file_name.xlsx")`, but we'll need to let R know which worksheet to get. 
 
@@ -239,31 +232,32 @@ kelp_golb
 
 So far, we've read in entire Excel worksheets and pieces of a worksheet. What if we have a workbook (like *kelp_counts_curated.xlsx*) that contains worksheets that contain observations for the same variables, in the same organization? Then we may want to read in data from *all* worksheets, and combine them into a single data frame. 
 
-We'll use `purrr::map_df()` to loop through all the worksheets in a workbook, reading them in & putting them together into a single df in the process. 
+We'll use `purrr::map_df()` to loop through all the worksheets in a workbook, reading them in & putting them together into a single data frame in the process. 
 
 The steps we'll go through in the code below are: 
 
-- Set a pathway so that R knows where to look for an Excel workbook
-- Get the names of all worksheets in that workbook with `excel_sheets()`
-- Set names of a vector with `set_names()`
-- Read in all worksheets, and put them together into a single data frame with `purrr::map_df()`
+1. Set a pathway so that R knows where to look for an Excel workbook
+2. Get the names of all worksheets in that workbook with `excel_sheets()`
+3. Set names of a vector with `set_names()`
+4. Read in all worksheets, and put them together into a single data frame with `purrr::map_df()`
 
-**QUESTION: TODO Have they learned the pipe operator at this point?**
+**Aside**: the pipe operator (`%>%`)
 
+There are many ways to use R functions in sequence. One way, that follows the order that we think about steps in sequence, is using the **pipe operator** (`%>%`). We can use the pipe operator between steps in a sequence, each place we think "and then do this." 
+
+For example, if I would like to **walk my dog** and *then* **eat a burrito**, in code that might be: `walk(dog) %>% eat(burrito, type = "California")`
+
+Here, we'll use the pipe operator to complete steps 1 - 4 above in sequence: 
 ```{r, include = FALSE}
 
 kelp_path <- "curation/kelp_counts_curated.xlsx"
 
-# ADD PIPE OPERATOR BRIEF INTRO (TODO)
-
 kelp_all_sites <- kelp_path %>% # Start with that pathway (file)...
   excel_sheets() %>% # Get all the names of the worksheets
   set_names() %>% # Names the vector items
-  map_df(read_excel, path = kelp_path) # Applies 'read_excel' to all worksheet names (loops through them) in the workbook at kelp_path
+  map_df(read_excel, path = kelp_path) # Applies 'read_excel' function to all worksheet names (loops through them) in the workbook at kelp_path and the _df part of it puts them all into a single data frame
   
 ```
-
-**Expect the question:** Why do I need to use read_excel() instead of just giving it the file path (as below)? 
 
 ```{r, eval = FALSE}
 
@@ -280,33 +274,6 @@ Check out *kelp_all_sites*, and notice that now the data from all 11 sites is no
 
 ```{r}
 kelp_all_sites
-```
-
-```{r, include = FALSE}
-# REMOVED (since adding ggplot2 chapter AFTER this)
-
-# Now, let's make a graph! 
-
-ggplot(kelp_all_sites, aes(x = site, y = total_fronds)) +
-  geom_col(aes(fill = year), position = "dodge") +
-  scale_fill_manual(values = c("purple","orange","gray30"))
-```
-
-```{r, include = FALSE}
-# An extra: notice that for site 'bull' only 2 levels show up, so the width of bars is wider. That's obnoxious. We need to complete the levels - we can do that using tidyr::complete(). 
-
-# Remove this (teaching complete in tidying section):
-kelp_complete <- kelp_all_sites %>% 
-  tidyr::complete(year, site)
-
-# Now, instead of the "bull 2018" observations not existing, it now has 'NA' values. Cool! Then let's try plotting again: 
-
-ggplot(kelp_complete, aes(x = site, y = total_fronds)) +
-  geom_col(aes(fill = year), position = "dodge") +
-  scale_fill_manual(values = c("purple","orange","gray30"))
-
-# Now 'bull' has 3 levels again - even though there's only data for two. Good. 
-
 ```
 
 ### Save data frames as .csv or .xlsx with `write_csv()` or `write_xlsx()`
@@ -328,37 +295,34 @@ write_csv(kelp_all_sites, here("data", "kelp_all_sites.csv"))
 
 A cool thing about `write_csv()` is that it just quietly *works* without wrecking anything else you do in a sequence, so it's great to add at the end of a piped sequence.
 
-For example, if I want to read in the 'ivee' worksheet from kelp_counts_curated.xlsx, select only columns 'year' and 'total_fronds', then write that new subset to a .csv file, I can pipe all the way through:
+For example, if I want to read in the range cells C1:D3 'ivee' worksheet from kelp_counts_curated.xlsx, then write that new subset to a .csv file, I can pipe all the way through:
+
+```{r, include = FALSE, eval = FALSE}
+kelp_ivee_subset <- read_excel(here("curation", "kelp_counts_curated.xlsx"), 
+                        sheet = "ivee", 
+                        range = "C1:D3") %>% 
+  write_csv(here("curation", "kelp_ivee_subset.csv"))
+```
+
 ```{r, eval = FALSE}
 
-kelp_ivee <- read_excel("kelp_counts_curated.xlsx", sheet = "ivee") %>% 
-  #select(year, total_fronds) %>%  TODO: change this to read in a range
+kelp_ivee_subset <- read_excel(here("data", "kelp_counts_curated.xlsx"), 
+                        sheet = "ivee",
+                        range = "C1:D3") %>% 
   write_csv(here("data", "kelp_ivee.csv"))
 
 ```
 
-Now I've created *kelp_ivee.csv*, but the object *kelp_ivee* also exists for me to use in R. 
+Now I've created *kelp_ivee_subset.csv*, but the object *kelp_ivee_subset* also exists as an object for me to use in R. 
 
 If needed, I can also export a data frame as an Excel (.xlsx) worksheet:
 ```{r, eval = FALSE}
 write_xlsx(kelp_all_sites, here("data", "kelp_all_sites.xlsx"))
 ```
 
-## Fun facts ideas:
-
-- Did you know that Clippy shows up to help you in the documentation for ?write_xlsx()?
-- The name of the `purrr` package? Why map? 
-
-## Interludes (deep thoughts/openscapes)
-
-- Workflow/reproducibility/readxl workflows article 
-- Respecting the tools people are working with already (e.g. don't make your Excel using co-workers hate you)
-
 ## Activity: Import some invertebrates! 
 
 There's one dataset we haven't imported or explored yet: invertebrate counts for 5 popular invertebrates (California cone snail, California spiny lobster, orange cup coral, purple urchin and rock scallops) at 11 sites in the Santa Barbara Channel. Take a look at the *invert_counts_curated.xlsx* data by opening it in Excel
-
-TODO: Make these activities more interesting
 
 - Read in the *invert_counts_curated.xlsx* worksheet as object 'inverts_july', only retaining **site**, **common_name**, and **2016** and setting the existing first row in the worksheet as to column headers upon import
 - Explore the imported data frame using View, names, head, tail, etc. 
@@ -398,7 +362,7 @@ tail(inverts_july)
 ls()
 
 # Writing a csv "inverts_july.csv":
-write_csv(inverts_july, "inverts_july.csv")
+write_csv(inverts_july, here("data", "inverts_july.csv"))
 
 ```
 
@@ -408,7 +372,7 @@ write_csv(inverts_july, "inverts_july.csv")
 - Undo shortcut: Command + Z 
 - Redo shortcut: Command + Shift + Z
 
-## Deep thoughts
+## Additional thoughts
 
 - Economist article about gene > dates issue in Excel
 - Mine: data frame of bike casualities in NC, column names are age ranges but some of them import as dates
