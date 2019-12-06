@@ -4,7 +4,7 @@
 
 In previous sessions, we've learned to do some basic wrangling and find summary information with functions in the `dplyr` package, which exists within the `tidyverse`. We've used: 
 
-- `count()` to get counts of observations for groupings we specify (or the reverse!)
+- `count()`: get counts of observations for groupings we specify
 - `mutate()`: **add** a new column, while keeping the existing ones
 - `group_by()`: let R know that **groups** exist within the dataset, by variable(s)
 - `summarize()`: calculate a value (that you specify) for each group, then report each group's value in a table
@@ -18,11 +18,9 @@ The combination of `filter()` and `*_join()` - to return rows satisfying a condi
 
 ### Objectives
 
-- Continue building R Markdown skills
-- Return **rows** that satisfy variable conditions using `filter()` 
-- Use `full_join()`, `left_join()`, and `inner_join()` to merge data frames by matching variables, with different endpoints in mind
-- Use `anti_join()` to find things that **do not** exist in both data frames
-- Understand the similarities between `filter()` + `*_join()` and Excel's VLOOKUP function
+- Use `filter()` to subset data frames, returning **rows** that satisfy variable conditions
+- Use `full_join()`, `left_join()`, and `inner_join()` to merge data frames, with different endpoints in mind
+- Use `filter()` and `*_join()` as part of a wrangling sequence
 
 ### Resources
 
@@ -32,19 +30,19 @@ The combination of `filter()` and `*_join()` - to return rows satisfying a condi
 
 ## Lessons
 
-**Session 5 set-up:** TODO
+### Getting started - Create a new .Rmd, attach packages & get data
 
-- Create a new .Rmd in your r-workshop directory (project)
-- Add some descriptive text
-- Add new code chunks to: 
-    - Attach packages
-    - Read in the necessary data 
-    
-In this session we'll use the **fish_counts_curated.csv** and  **invert_counts_curated.xlsx** files, and the first worksheet from **kelp_counts_curated.xlsx**. 
+Create a new R Markdown document in your r-workshop project and knit to save as **filter_join.Rmd**. Remove all the example code (everything below the set-up code chunk). 
 
+In this session, we'll use three packages: 
+
+- `tidyverse`
+- `readxl`
+- `here`
+
+Attach the packages in the setup code chunk in your .Rmd:
 ```{r, include = FALSE}
 library(tidyverse)
-library(tidyr)
 library(readxl)
 library(here) # They won't have this (files directly in top WD)
 
@@ -58,7 +56,15 @@ kelp_counts_abur <- read_excel(here("curation","kelp_counts_curated.xlsx"))
 # Attach packages:
 library(tidyverse)
 library(readxl)
+library(here)
+```
 
+Then create a new code chunk to read in three files from your 'data' subfolder:
+
+- invert_counts_curated.xlsx
+- fish_counts_curated.csv
+- kelp_counts_curated.xlsx
+```{r, eval = FALSE}
 # Read in data: 
 invert_counts <- read_excel(here("data", "invert_counts_curated.xlsx"))
 fish_counts <- read_csv(here("data", "fish_counts_curated.csv"))
@@ -66,7 +72,7 @@ kelp_counts_abur <- read_excel(here("data", "kelp_counts_curated.xlsx"))
 
 ```
 
-Remember to always explore the data you've read in using functions like `View()`, `names()`, `summary()`, `head()` and `tail()` to ensure that the data you *think* you read in is *actually* the data you read in. 
+We should always explore the data we've read in using functions like `View()`, `names()`, `summary()`, `head()` and `tail()` to ensure that the data we *think* we've read in is *actually* the data we've read in. 
 
 Now, let's use `filter()` to decide which observations (rows) we'll keep or exclude in new subsets, similar to using Excel's VLOOKUP function.
 
@@ -87,7 +93,7 @@ When we use `filter()`, we need to let R know a couple of things:
 - What data frame we're filtering from
 - What condition(s) we want observations to **match** and/or **not match** in order to keep them in the new subset
 
-Follow along with the examples below to learn some common ways to use `filter()`.
+Here, we'll learn some common ways to use `filter()`.
 
 #### Filter rows by matching a single character string
 
@@ -95,20 +101,34 @@ Let's say we want to keep all observations from the fish_counts data frame where
 Use `==` to ask R to look for matching strings:
 
 ```{r, include = FALSE}
-fish_gari <- filter(fish_counts, common_name == "garibaldi")
+fish_garibaldi <- filter(fish_counts, common_name == "garibaldi")
 ```
 
 ```{r, eval = FALSE}
-fish_gari <- filter(fish_counts, common_name == "garibaldi")
+fish_garibaldi <- filter(fish_counts, common_name == "garibaldi")
 ```
 
-Check out the **fish_gari** object to ensure that only *garibaldi* observations remain. 
+Check out the **fish_garibaldi** object to ensure that only *garibaldi* observations remain. 
 
-You could also do this using the pipe operator `%>%` (though for a single function, it doesn't save much effort or typing): 
+You could also do this using the pipe operator `%>%`: 
 ```{r, eval = FALSE}
-fish_gari <- fish_counts %>% 
+fish_garibaldi <- fish_counts %>% 
   filter(common_name == "garibaldi")
 ```
+
+#### Activity
+
+**Task**: Create a subset from the **fish_counts** data frame, stored as object **fish_abur**, that only contains observations from Arroyo Burro (site 'abur'). 
+
+**Solution**: 
+```{r, eval = FALSE}
+
+fish_abur <- fish_counts %>% 
+  filter(site == "abur")
+
+```
+
+Explore the subset you just created to ensure that only Arroyo Burro observations are returned. 
 
 #### Filter rows based on numeric conditions
 
@@ -127,8 +147,6 @@ Or, using the pipe:
 fish_over50 <- fish_counts %>% 
   filter(total_count >= 50)
 ```
-
-TODO: show example of between and exact =
 
 #### Filter to return rows that match *this* OR *that* OR *that*
 
@@ -172,7 +190,6 @@ urchin_abur_mohk <- invert_counts %>%
   filter(site %in% c("abur","mohk"), common_name == "purple urchin")
 ```
 
-
 ```{r}
 head(urchin_abur_mohk)
 ```
@@ -189,12 +206,29 @@ urchin_abur_mohk <- invert_counts %>%
 Or you could just do two filter steps in sequence: 
 
 ```{r, eval = FALSE}
-# Written as multiple filter steps:
+# Written as sequential filter steps:
 
 urchin_abur_mohk <- invert_counts %>% 
   filter(site %in% c("abur", "mohk")) %>% 
   filter(common_name == "purple urchin")
 ```
+
+##### Activity: combined filter conditions
+
+**Task:** Create a subset from the **fish_counts** data frame, called **low_gb_wr** that only contains:
+
+- Observations of *garibaldi* and *rock wrasse*
+- Where the *total_count* is *less than or equal to 10*
+
+**Solution:**
+```{r, eval = FALSE}
+
+low_gb_wr <- fish_counts %>% 
+  filter(common_name %in% c("garibaldi", "rock wrasse"), 
+         total_count <= 10)
+```
+
+**Sync your local project to your repo on GitHub.**
 
 #### Filter to return rows that *do not* match conditions
 
@@ -245,16 +279,13 @@ Which then only returns observations for the other fish species in the dataset.
 head(fish_subset)
 ```
 
-
 #### Example: combining `filter()` with other functions using the pipe operator (`%>%`)
 
 We can also use `filter()` in combination with the functions we previously learned for wrangling. If we have multiple sequential steps to perform, we can string them together using the *pipe operator* (`%>%`).
 
 Here, we'll start with the `invert_counts` data frame and create a subset that:
 
-TODO: NOPE, can't do this, they don't learn `pivot_longer()` until the next section (tidying) 
-
-- Converts to long format with `pivot_longer()`
+- Converts to long(er) format with `pivot_longer()`
 - Only keeps observations for rock scallops
 - Calculates the total count of rock scallops by site only
 
@@ -273,9 +304,7 @@ scallop_count_by_site <- invert_counts %>%
 ```
 
 ```{r, eval = FALSE}
-
 # Counts of scallops by site (all years included):
-
 scallop_count_by_site <- invert_counts %>% 
   pivot_longer(cols = '2016':'2018', 
                names_to = "year", 
@@ -287,26 +316,6 @@ scallop_count_by_site <- invert_counts %>%
 
 ```{r}
 scallop_count_by_site
-```
-
-#### Activity 1: using `filter()` in a wrangling sequence
-
-Write a sequence of code (connected by the pipe operator, `%>% `), to complete the following and store the output as object `my_fish_wrangling`:
-
-- Starting from the `fish_counts` data frame (stored earlier)
-- Only keep observations from *Arroyo Burro* (site 'abur')
-- Group by *common_name* (species)
-- Find total fish counts (by species) across all years
-
-```{r, include = FALSE}
-
-my_fish_wrangling <- fish_counts %>% 
-  filter(site == "abur") %>% 
-  group_by(common_name) %>% 
-  summarize(
-    total_fish_all_years = sum(total_count)
-  )
-
 ```
 
 ### Merging data frames with `*_join()` 
@@ -324,7 +333,7 @@ From R Documentation (`?join`):
 - `inner_join()`: "returns all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned." This will drop observations that don't have a match between the merged data frames, which makes it a riskier merging option if you're not sure what you're trying to do. 
 
 Schematic (from RStudio data wrangling cheat sheet): 
-![joins](img/rstudio-cheatsheet-combine-options1.png)
+![](img/rstudio-cheatsheet-combine-options1.png)
 
 To clarify what the different joins are doing, let's first make a subset of the *fish_counts* data frame that only contains observations from 2016 and 2017. 
 
@@ -393,16 +402,13 @@ abur_kelp_join <- fish_2016_2017 %>%
   full_join(kelp_counts_abur, by = c("year", "site"))
 ```
 
-First, notice that R tells us which sites it is joining by - in this case, *year* and *site* since those were the two matching variables in both data frames. 
-
-Now look at the merged data frame with `View(abur_kelp_join)`. A few things to notice about how `full_join()` has worked: 
+Let's look at the merged data frame with `View(abur_kelp_join)`. A few things to notice about how `full_join()` has worked: 
 
 1. All columns that existed in **both data frames** still exist.
-2. All observations are retained, even if they don't have a match. In this case, notice that for other sites (not 'abur') the observation for fish still exists, even though there was no corresponding kelp data to merge with it. The kelp frond data from 2018 is also returned, even though the fish counts dataset did not have 'year == 2018' in it. 
+2. All observations are retained, even if they don't have a match. In this case, notice that for other sites (not 'abur') the observation for fish still exists, even though there was no corresponding kelp data to merge with it. The kelp frond data from 2018 is also returned, even though the fish counts dataset did not have 'year == 2018' in it.
 3. The kelp frond data is joined to *all observations* where the joining variables (*year*, *site*) are a match, which is why it is repeated 5 times for each year (once for each fish species).
 
 Because all data (observations & columns) are retained, `full_join()` is the safest option if you're unclear about how to merge data frames. 
-
 #### `left_join()` to merge data frames, keeping everything in the 'x' data frame and only matches from the 'y' data frame
 
 Now, we want to keep all observations in *fish_2016_2017*, and merge them with *kelp_counts_abur* while only keeping observations from *kelp_counts_abur* that match an observation within *fish_2016_2017*. So when we use `left_join()`, any information on kelp counts from 2018 should be dropped. 
@@ -457,17 +463,18 @@ abur_lobster_kelp <- invert_counts %>%
 abur_lobster_kelp
 ```
 
-
-#### Activity 2
+##### Activity 
 
 Now let's combine what we've learned about piping, filtering and joining!
 
-Complete the following as part of a single sequence (remember, check to see what you've produced after each step) to create a new data frame called `my_fish_join`:
+**Task:** Complete the following as part of a single sequence (remember, check to see what you've produced after each step) to create a new data frame called `my_fish_join`:
 
 - Start with `fish_counts` data frame
 - Filter to only including observations for 2017 at Arroyo Burro
 - Join the `kelp_counts_abur` data frame to the resulting subset using `left_join()`
 - Add a new column that contains the 'fish per kelp fronds' density (total_count / total_fronds)
+
+**Solution:**
 ```{r, include = FALSE}
 
 my_fish_join <- fish_counts %>% 
@@ -476,6 +483,8 @@ my_fish_join <- fish_counts %>%
   mutate(fish_per_frond = total_count / total_fronds)
 
 ```
+
+**Sync your project with your repo on GitHub.**
 
 ## Fun / kind of scary facts
 
