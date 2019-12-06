@@ -132,17 +132,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
+<li class="chapter" data-level="1.0.1" data-path="index.html"><a href="index.html#agenda-pilot-workshop"><i class="fa fa-check"></i><b>1.0.1</b> Agenda: pilot workshop</a></li>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#agenda"><i class="fa fa-check"></i><b>1.2</b> Agenda</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Overview</a><ul>
 <li class="chapter" data-level="2.1" data-path="overview.html"><a href="overview.html#welcome-1"><i class="fa fa-check"></i><b>2.1</b> Welcome!</a></li>
 <li class="chapter" data-level="2.2" data-path="overview.html"><a href="overview.html#why-learn-r-if-i-know-excel"><i class="fa fa-check"></i><b>2.2</b> Why learn R if I know Excel?</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="overview.html"><a href="overview.html#what-to-expect"><i class="fa fa-check"></i><b>2.2.1</b> What to expect</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="overview.html"><a href="overview.html#friendly-mindset"><i class="fa fa-check"></i><b>2.3</b> Friendly mindset</a></li>
-<li class="chapter" data-level="2.4" data-path="overview.html"><a href="overview.html#guiding-principles"><i class="fa fa-check"></i><b>2.4</b> Guiding principles</a></li>
-<li class="chapter" data-level="2.5" data-path="overview.html"><a href="overview.html#resources"><i class="fa fa-check"></i><b>2.5</b> Resources</a></li>
+<li class="chapter" data-level="2.3" data-path="overview.html"><a href="overview.html#guiding-principles-recurring-themes"><i class="fa fa-check"></i><b>2.3</b> Guiding principles / recurring themes</a></li>
+<li class="chapter" data-level="2.4" data-path="overview.html"><a href="overview.html#resources"><i class="fa fa-check"></i><b>2.4</b> Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>3</b> R &amp; RStudio, RMarkdown</a><ul>
 <li class="chapter" data-level="3.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>3.1</b> Summary</a></li>
@@ -843,12 +842,12 @@ data %>%          # start with data, and then
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1"><span class="co">## a ggplot option:</span></a>
 <a class="sourceLine" id="cb98-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="dt">data =</span> siteyear_summary, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> median_size_mm, <span class="dt">color =</span> site)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb98-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_line</span>() </a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1"><span class="co">## another option:</span></a>
 <a class="sourceLine" id="cb99-2" data-line-number="2"><span class="kw">ggplot</span>(siteyear_summary, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> median_size_mm)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb99-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb99-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>site)</a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-92-2.png" width="672" /></p>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-93-2.png" width="672" /></p>
 <div id="dplyrcount" class="section level3">
 <h3><span class="header-section-number">7.8.1</span> <code>dplyr::count()</code></h3>
 <p>Now that we’ve spent time with group_by %&gt;% summarize, there is a shortcut if you only want to summarize by count. This is with a function called <code>count()</code>, and it will group_by your selected variable, count, and then also ungroup. It looks like this:</p>

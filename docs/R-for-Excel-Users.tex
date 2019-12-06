@@ -145,21 +145,29 @@
 \hypertarget{welcome}{%
 \chapter{Welcome}\label{welcome}}
 
-Hello! This is a workshop taught by Julie Lowndes and Allison Horst at RStudio::conf(2020).
+Hello! This is a workshop taught by Julie Stewart Lowndes and Allison Horst at the RStudio Conference: January 27-28 in San Francisco, California.
 
-Excel is a widely used and powerful tool for working with data. As automation, reproducibility, collaboration, and frequent reporting become increasingly expected in data analysis, a good option for Excel users is to extend their workflows with R. Integrating R into data analysis with Excel can bridge the technical gap between collaborators using either software. R enables use of existing tools built for specific tasks and overcomes some limitations that arise when working with large datasets or repeated analyses. This course is for Excel users who want to add or integrate R and RStudio into their existing data analysis toolkit. Participants will get hands-on experience working with data across R, Excel, and Google Sheets, focusing on: data import and export, basic wrangling, visualization, and reporting with RMarkdown. Throughout, we will emphasize conventions and best practices for working reproducibly and collaboratively with data, including naming conventions, documentation, organization, all while ``keeping the raw data raw''. Whether you are working in Excel and want to get started in R, already working in R and want tools for working more seamlessly with collaborators who use Excel, or whether you are new to data analysis entirely, this is the course for you!
+We are environmental scientists who use and teach R in our daily work. We both work at the University of California Santa Barbara: Julie is based at the National Center for Ecological Analysis and Synthesis as part of the Ocean Health Index team and leads Openscapes, and Allison is based at the Bren School of Environmental Science and Management as a lecturer of data science \& statistics --- and is also an Artist in Residence at RStudio.
 
-If you answer yes to these questions, this course is for you!
+This is going to be fun, because learning R (and friends) is empowering!
 
-\begin{itemize}
-\tightlist
-\item
-  Are you an Excel user who wants to expand your data analysis toolset with R?
-\item
-  Do you want to bridge analyses between Excel and R, whether working independently or to more easily collaborate with others who use Excel or R?
-\item
-  Are you new to data analysis, and looking for a good place to get started?
-\end{itemize}
+\hypertarget{agenda-pilot-workshop}{%
+\subsection{Agenda: pilot workshop}\label{agenda-pilot-workshop}}
+
+\begin{longtable}[]{@{}lrr@{}}
+\toprule
+Time & Day 1 & Day 2\tabularnewline
+\midrule
+\endhead
+9-10:30 & \protect\hyperlink{overview}{Motivation}, \protect\hyperlink{rstudio}{R \& RStudio, Rmarkdown} & \protect\hyperlink{ggplot2}{Charts with \texttt{ggplot2}}\tabularnewline
+break & &\tabularnewline
+11-12:30 & \protect\hyperlink{github}{GitHub} & \protect\hyperlink{dplyr-pivot-tables}{\texttt{dplyr} \& Pivot Tables}\tabularnewline
+lunch & &\tabularnewline
+13:00-14:30 & \protect\hyperlink{readxl}{Importing data: \texttt{readxl}} & \protect\hyperlink{dplyr-vlookups}{\texttt{dplyr} \& VLOOKUPs}\tabularnewline
+\bottomrule
+\end{longtable}
+
+From 14:30-15:00 each day we have time for additional help and feedback.
 
 \hypertarget{prerequisites}{%
 \section{Prerequisites}\label{prerequisites}}
@@ -181,70 +189,60 @@ Before the training, please make sure you have done the following:
   \end{itemize}
 \item
   Install the Tidyverse
-  \\
+\item
+  Create a an account:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \url{https://github.com}
+  \end{itemize}
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
   Get comfortable: if you're not in a physical workshop, be set up with two screens if possible. You will be following along in RStudio on your own computer while also watching a virtual training or following this tutorial on your own.
 \end{enumerate}
 
-\hypertarget{agenda}{%
-\section{Agenda}\label{agenda}}
-
-Agenda for our 2-day pilot workshop:
-
-\begin{longtable}[]{@{}lrr@{}}
-\toprule
-time & Day 1 & Day 2\tabularnewline
-\midrule
-\endhead
-9-10:30 & \protect\hyperlink{overview}{Motivation}, \protect\hyperlink{rstudio}{R \& RStudio, Rmarkdown} & \protect\hyperlink{ggplot2}{Charts with \texttt{ggplot2}}\tabularnewline
-break & &\tabularnewline
-11-12:30 & \protect\hyperlink{github}{GitHub} & \protect\hyperlink{dplyr-pivot-tables}{\texttt{dplyr} \& Pivot Tables}\tabularnewline
-lunch & &\tabularnewline
-13:00-14:30 & \protect\hyperlink{readxl}{Importing data: \texttt{readxl}} & \protect\hyperlink{dplyr-vlookups}{\texttt{dplyr} \& VLOOKUPs}\tabularnewline
-\bottomrule
-\end{longtable}
-
-From 14:30-15:00 each day we have time for additional help and feedback.
-
 \hypertarget{overview}{%
 \chapter{Overview}\label{overview}}
-
-Operational TODOs
-Data in google drive
 
 \hypertarget{welcome-1}{%
 \section{Welcome!}\label{welcome-1}}
 
-We are Dr.~Julie Lowndes and Dr.~Allison Horst. We are environmental scientists who use and teach R in our daily work. We are both at UCSB, where Julie is based at NCEAS as part of the Ocean Health Index team and leads Openscapes, and Allison is based at Bren as a lecturer of data science \& statistics and is also an Artist in Residence at RStudio.
-
-This workshop you will learn hands-on how to begin to interoperate between Excel and R. But this is not only about learning R; we will learn R using additional software: RStudio and GitHub. These tools will help us develop good habits for working in a reproducible and collaborative way --- critical attributes of the modern analyst.
+This workshop you will learn hands-on how to begin to interoperate between Excel and R. But this workshop is not only about learning R; we will learn R using additional software: RStudio and GitHub. These tools will help us develop good habits for working in a reproducible and collaborative way --- critical attributes of the modern analyst.
 
 It's going to be fun and empowering!
 
 \hypertarget{why-learn-r-if-i-know-excel}{%
 \section{Why learn R if I know Excel?}\label{why-learn-r-if-i-know-excel}}
 
-Excel is a widely used and powerful tool for working with data. We all work with it or with people who use it daily. This is convenient and familiar; most of us in this modern world have had their first experiences with data through Excel or other spreadsheet programs. As Jenny Bryan has said, \href{}{``Excel is how we learn that we love data analysis''}.
-
-However, as automation, reproducibility, collaboration, and frequent reporting become increasingly expected in data analysis, a good option for Excel users is to extend their workflows with R. Integrating R into data analysis with Excel can bridge the technical gap between collaborators using either software. R enables use of existing tools built for specific tasks and overcomes some limitations that arise when working with large datasets or repeated analyses.
-
-There are technical skills we will develop today in this workshop to help us along this way. But a big part of interfacing between Excel and R is not only skillsets, it is mindsets. It is the mindset about how we think about the shape and organization of data. And, about how we can set this up in the present to make our future analytical self's life easier.
-
-Excel blends data and analysis into the same place. But as we use R we will talk about keeping data separate from analyses: ``Keeping the raw data raw.''
-
-R and Excel are both great tools that are powerful for different tasks.
+Excel is a widely used and powerful tool for working with data, and it is great for a lot of things. This is convenient and familiar; most of us have had their first experiences with data through Excel or other spreadsheet programs. As Jenny Bryan has said, \href{}{``Excel is how we learn that we love data analysis''}.
 
 Excel is great for data entry. Can also be good for looking at data and feeling like you can touch it, and creating quick exploratory figures.
 
-Excel can also become problematic with extending to analyses. This is because there aren't firm lines between what is data and what is analyses. Also, the analytical steps taken are not readily apparent, nor easy to reproduce. This also makes them pretty brittle/sensitive to minor changes. Have you ever done forensics on an Excel sheet, trying to understand what happened between columns or sheets? Maybe it was even your own Excel file from the (recent) past.
+Excel can also become problematic with extending to analyses. This is because there aren't firm lines between what is data and what is analyses. For example, in this sheet:
 
-Has seeing this ever given you a feeling of horror:
+This makes the analytical steps taken are not readily apparent, nor easy to reproduce. This also makes them pretty brittle/sensitive to minor changes. Have you ever done forensics on an Excel sheet, trying to understand what happened between columns or sheets? Maybe it was even your own Excel file from the (recent) past.
+
+Or, Has seeing this ever given you a feeling of horror:
 
 \includegraphics[width=0.7\linewidth]{img/want-to-save-changes-excel}
 
-A modern R user has a workflow framed around collaboration, using an ecosystem of tools like GitHub that makes it easier to track versions and share code.
+So while it is great how easily you can update different fields and add analytical steps in an Excel sheet, it can also be a bit hard to handle, particularly as projects get more complicated.
 
-We are not only learning R; we will learn a workflow with R and GitHub. We will practice learning three main things all at the same time:
+So, as automation, reproducibility, collaboration, and frequent reporting become increasingly expected in data analysis, a good option for Excel users is to extend their workflows with R.
+
+\hypertarget{what-to-expect}{%
+\subsection{What to expect}\label{what-to-expect}}
+
+This is going to be a fun workshop.
+
+\textbf{This workshop is not about wholesale replacing everything you do in Excel into R}. Instead, it is to give you hands-on experience and confidence with R, and how to interoperate between Excel and R. Incorporating R into your own workflows will be incremental, and a big part of this transition is the \textbf{\emph{mindset}} around data and your analytical workflow.
+
+\textbf{A modern R user has a workflow framed around collaboration}, and uses an ecosystem of tools and practices. We will be learning three main things all at the same time:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -252,57 +250,33 @@ We are not only learning R; we will learn a workflow with R and GitHub. We will 
 \item
   coding with best practices (R/RStudio/tidyverse)
 \item
-  collaborative version control (Git/GitHub)
+  collaborative bookkeeping (Git/GitHub)
 \item
-  and communication/publishing (RMarkdown/GitHub).
+  reporting and publishing (RMarkdown/GitHub)
 \end{enumerate}
 
-This training will teach these all together to reinforce skills and best practices, and get you comfortable with a workflow that you can use in your own projects, and interface with Excel in your own analyses and with collaborators.
+\textbf{An R user also keeps raw data separate from their analyses}, which means having data in one file and written computational commands saved as a separate file. We also think more and more about what we call ``Tidy data'', where the data has a rectangular shape and each column is a variable and each row is an observation. Tidy data is a way of life.
 
-\hypertarget{what-to-expect}{%
-\subsection{What to expect}\label{what-to-expect}}
+\includegraphics[width=0.7\linewidth]{img/tidy_img_np}
 
-This is going to be a fun and empowering workshop.
+There are technical skills we will develop today in this workshop to help us along this way. But a big part of interfacing between Excel and R is not only skillsets, it is mindsets. It is the mindset about how we think about data. How we shape data and organize data and analyze data. And how what we do now can make our analytical life better in the future.
 
-This is not about wholesale replacing the tasks you do in Excel into R, but helping you incrementally include R into your Excel workflows. But a big part of this incremental transition is the \textbf{\emph{mindset}} around data and analysis. Excel makes it easy to have data and analyses in the same file --- and even in the same sheet or column:
+\textbf{We will teach R/RStudio/GitHub/tidyverse/RMarkdown all together} to reinforce skills and best practices, and get you comfortable with a workflow that you can have confidence using in your own work, and interface with Excel in your own analyses and with collaborators. You'll be working hands-on and doing the same things on your own computer as we do live on up on the screen.
 
-TODO: screenshot of Excel
+\textbf{We are going to go through a lot in these two days} and it's less important that you remember it all. More importantly, you'll have experience with it and confidence that you can do it. The main thing to take away is that there \emph{are} good ways to work between R and Excel; we will teach you to expect that so you can find what you need and use it! A theme throughout is that tools exist and are being developed by real, and extraordinarily nice, people to meet you where you are and help you do what you need to do.
 
-A main theme throughout is to produce analyses people can understand and build from --- including Future You and Future Us. The plan is to expose you to tools and workflows that you can have confidence using in your work. You'll be working hands-on and doing the same things on your own computer as we do live on up on the screen.
+\textbf{You are all welcome here}, please be respectful of one another. Everyone in this workshop is coming from a different place with different experiences and expectations. But everyone will learn something new here, because there is so much innovation in the data science world. Instructors and helpers learn something new every time, from each other and from your questions. If you are already familiar with some of this material, focus on how we teach, and how you might teach it to others. Use these workshop materials not only as a reference in the future but also for talking points so you can communicate the importance of these tools to your communities. A big part of this training is not only for you to learn these skills, but for you to also teach others and increase the value and practice of open data science in science as a whole.
 
-We are not going to cover everything you know how to do in Excel in R. But we are going to go through a lot in these two days and it's less important that you remember it all. More importantly, you'll have experience with it and confidence that you can do it. The main thing to take away is that there \emph{are} good ways to work between R and Excel; we will teach you to expect that so you can find what you need and use it! A theme throughout is that tools exist and are being developed by real, and extraordinarily nice, people to meet you where you are and help you do what you need to do.
+\hypertarget{guiding-principles-recurring-themes}{%
+\section{Guiding principles / recurring themes}\label{guiding-principles-recurring-themes}}
 
-You are all welcome here, please be respectful of one another. Everyone in this workshop is coming from a different place with different experiences and expectations. But everyone will learn something new here, because there is so much innovation in the data science world. Instructors and helpers learn something new every time, from each other and from your questions. If you are already familiar with some of this material, focus on how we teach, and how you might teach it to others. Use these workshop materials not only as a reference in the future but also for talking points so you can communicate the importance of these tools to your communities. A big part of this training is not only for you to learn these skills, but for you to also teach others and increase the value and practice of open data science in science as a whole.
+\textbf{``Keep the raw data raw''} --- A hard line separating raw data and analyses. In R, we have data in one file and written computational commands saved as a separate file.
 
-COME BACK JULIE
+\textbf{Scripted analyses} --- We write analytical logic in code (rather than clicks) so that can be understood, rerun, and built upon.
 
-\hypertarget{friendly-mindset}{%
-\section{Friendly mindset}\label{friendly-mindset}}
+\textbf{Learn from data that are not your own} --- We aren't using your data in this workshop, but you will see similiarities and patterns, and you'll see that these tools and practices apply to your work.
 
-``pain of failure, it's just the pain of learning.'' - \href{https://blog.shotwell.ca/posts/r_for_excel_users/}{Gordon Shotwell}
-
-Something else to start us off is to mention that you are learning a new language here. It's an ongoing process, it takes time, you'll make mistakes, it can be frustrating, but it will be overwhelmingly awesome in the long run. We all speak at least one language; it's a similar process, really. And no matter how fluent you are, you'll always be learning, you'll be trying things in new contexts, learning words that mean the same as others, etc, just like everybody else. And just like any form of communication, there will be miscommunications that can be frustrating, but hands down we are all better off because of it.
-
-While language is a familiar concept, programming languages are in a different context from spoken languages, but you will get to know this context with time. For example: you have a concept that there is a first meal of the day, and there is a name for that: in English it's ``breakfast''. So if you're learning Spanish, you could expect there is a word for this concept of a first meal. (And you'd be right: `desayuno'). \textbf{We will get you to expect that programming languages also have words (called functions in R) for concepts as well}. You'll soon expect that there is a way to order values numerically. Or alphabetically. Or search for patterns in text. Or calculate the median. Or reorganize columns to rows. Or subset exactly what you want. We will get you increase your expectations and learn to ask and find what you're looking for.
-
-You came here to learn R, but we are going to learn R together with RStudio.
-
-\hypertarget{guiding-principles}{%
-\section{Guiding principles}\label{guiding-principles}}
-
-\begin{itemize}
-\tightlist
-\item
-  ``Keep the raw data raw''. A hard line separating raw data and analyses. In R, we have data in one file and written computational commands saved as a separate file.
-\end{itemize}
-
-Write analytical logic in code that can be understood and rerun
-
-Learn from data that are not your own
-
-Future You, Future Us. Help make lives easier. Breadcrumbs.
-
-Tidy data is a way of life
+\textbf{Think ahead for Future You, Future Us.} Help make lives easier --- first and foremost your own. Create breadcrumbs for yourselves and others: document and share your work.
 
 \hypertarget{resources}{%
 \section{Resources}\label{resources}}
@@ -548,7 +522,7 @@ Not all functions have (or require) arguments:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Fri Dec  6 12:27:28 2019"
+## [1] "Fri Dec  6 13:32:20 2019"
 \end{verbatim}
 
 \hypertarget{packages}{%
@@ -587,7 +561,7 @@ Now that we've loaded the \texttt{praise} package, we can use the single functio
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "You are world-class!"
+## [1] "You are transcendent!"
 \end{verbatim}
 
 \hypertarget{assigning-objects-with--}{%
@@ -2054,7 +2028,7 @@ Let's do that to create a line graph of visitors to Channel Islands National Par
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-57-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-58-1.pdf}
 
 Or, we could change that to a scatterplot just by updating the \texttt{geom\_*}:
 
@@ -2065,7 +2039,7 @@ Or, we could change that to a scatterplot just by updating the \texttt{geom\_*}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-58-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-59-1.pdf}
 
 We could even do that for a column graph:
 
@@ -2076,7 +2050,7 @@ We could even do that for a column graph:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-59-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-60-1.pdf}
 
 Or an area plot\ldots{}
 
@@ -2087,7 +2061,7 @@ Or an area plot\ldots{}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-60-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-61-1.pdf}
 
 We can see that updating to different \texttt{geom\_*} types is quick, so long as the types of graphs we're switching between are compatible.
 
@@ -2132,7 +2106,7 @@ Building on our first line graph, let's update the line color to ``purple'' and 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-61-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-62-1.pdf}
 
 How do we know which color names ggplot will recognize? If you google ``R colors ggplot2'' you'll find a lot of good resources. Here's one: \href{http://sape.inf.usi.ch/quick-reference/ggplot2/colour}{SAPE ggplot2 colors quick reference guide}
 
@@ -2148,7 +2122,7 @@ Now let's update the point, style and size of points on our previous scatterplot
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-62-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-63-1.pdf}
 
 \hypertarget{activity-customize-your-own-ggplot-graph}{%
 \subsubsection{Activity: customize your own ggplot graph}\label{activity-customize-your-own-ggplot-graph}}
@@ -2181,7 +2155,7 @@ Also: this is overmapped and unnecessary. Avoid excessive / overcomplicated aest
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-63-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-64-1.pdf}
 
 In the example above, notice that the two arguments that \textbf{do} depend on variables are within \texttt{aes()}, but since \texttt{alpha\ =\ 0.5} doesn't depend on a variable then it is \emph{outside the \texttt{aes()} but still within the \texttt{geom\_point()} layer}.
 
@@ -2197,7 +2171,7 @@ Create a column plot of Channel Islands National Park visitation over time, wher
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-64-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-65-1.pdf}
 
 \textbf{Sync your project with your GitHub repo.}
 
@@ -2232,7 +2206,7 @@ Here, let's update our previous graph with \texttt{theme\_minimal()}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-65-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-66-1.pdf}
 
 \hypertarget{updating-axis-labels-and-titles}{%
 \subsection{Updating axis labels and titles}\label{updating-axis-labels-and-titles}}
@@ -2253,7 +2227,7 @@ Use \texttt{labs()} to update axis labels, and add a title and/or subtitle to yo
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-66-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-67-1.pdf}
 
 \textbf{Note}: If you want to update the formatting of axis values (for example, to convert to comma format instead of scientific format above), you can use the \texttt{scales} package options (see more from the \href{http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/}{R Cookbook}).
 
@@ -2273,7 +2247,7 @@ For example, adding points to a line graph:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-67-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-68-1.pdf}
 
 Or, combine a column and line graph (not sure why you'd want to do this, but you can):
 
@@ -2286,7 +2260,7 @@ Or, combine a column and line graph (not sure why you'd want to do this, but you
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-68-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-69-1.pdf}
 
 \hypertarget{multi-series-ggplot-graphs}{%
 \subsection{Multi-series ggplot graphs}\label{multi-series-ggplot-graphs}}
@@ -2302,7 +2276,7 @@ To do that, we need to add an aesthetic that lets \texttt{ggplot} know how thing
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-69-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-70-1.pdf}
 
 Well that's definitely a mess, and it's because ggplot has no idea that these \textbf{should be different series based on the different parks that appear in the `park\_name' column}.
 
@@ -2315,7 +2289,7 @@ We can make sure R does know by updating an aesthetic based on \emph{park\_name}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-70-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-71-1.pdf}
 
 \textbf{Note}: You could also add that aesthetic (\texttt{color\ =\ park\_name}) in the \texttt{geom\_line()} layer, instead of in the topmost \texttt{ggplot()} layer.
 
@@ -2336,7 +2310,7 @@ Also notice that any general theme changes made will be applied to \emph{all} of
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-71-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-72-1.pdf}
 
 \hypertarget{exporting-a-ggplot-graph-with-ggsave}{%
 \subsection{\texorpdfstring{Exporting a ggplot graph with \texttt{ggsave()}}{Exporting a ggplot graph with ggsave()}}\label{exporting-a-ggplot-graph-with-ggsave}}
@@ -2385,7 +2359,7 @@ For the record: this is not a good option for showing the visitation data becaus
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-74-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-75-1.pdf}
 
 \textbf{Sync your project with your GitHub repo.}
 
@@ -3101,7 +3075,7 @@ And now we can see that our plot updated as well:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-92-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-93-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3112,7 +3086,7 @@ And now we can see that our plot updated as well:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-92-2.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-93-2.pdf}
 
 \hypertarget{dplyrcount}{%
 \subsection{\texorpdfstring{\texttt{dplyr::count()}}{dplyr::count()}}\label{dplyrcount}}

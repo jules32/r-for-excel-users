@@ -132,17 +132,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
+<li class="chapter" data-level="1.0.1" data-path="index.html"><a href="index.html#agenda-pilot-workshop"><i class="fa fa-check"></i><b>1.0.1</b> Agenda: pilot workshop</a></li>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#agenda"><i class="fa fa-check"></i><b>1.2</b> Agenda</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Overview</a><ul>
 <li class="chapter" data-level="2.1" data-path="overview.html"><a href="overview.html#welcome-1"><i class="fa fa-check"></i><b>2.1</b> Welcome!</a></li>
 <li class="chapter" data-level="2.2" data-path="overview.html"><a href="overview.html#why-learn-r-if-i-know-excel"><i class="fa fa-check"></i><b>2.2</b> Why learn R if I know Excel?</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="overview.html"><a href="overview.html#what-to-expect"><i class="fa fa-check"></i><b>2.2.1</b> What to expect</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="overview.html"><a href="overview.html#friendly-mindset"><i class="fa fa-check"></i><b>2.3</b> Friendly mindset</a></li>
-<li class="chapter" data-level="2.4" data-path="overview.html"><a href="overview.html#guiding-principles"><i class="fa fa-check"></i><b>2.4</b> Guiding principles</a></li>
-<li class="chapter" data-level="2.5" data-path="overview.html"><a href="overview.html#resources"><i class="fa fa-check"></i><b>2.5</b> Resources</a></li>
+<li class="chapter" data-level="2.3" data-path="overview.html"><a href="overview.html#guiding-principles-recurring-themes"><i class="fa fa-check"></i><b>2.3</b> Guiding principles / recurring themes</a></li>
+<li class="chapter" data-level="2.4" data-path="overview.html"><a href="overview.html#resources"><i class="fa fa-check"></i><b>2.4</b> Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>3</b> R &amp; RStudio, RMarkdown</a><ul>
 <li class="chapter" data-level="3.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>3.1</b> Summary</a></li>
@@ -413,19 +412,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s do that to create a line graph of visitors to Channel Islands National Park:</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> ci_np, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb58-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>()</a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
 <p>Or, we could change that to a scatterplot just by updating the <code>geom_*</code>:</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> ci_np, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb59-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
 <p>We could even do that for a column graph:</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> ci_np, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb60-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>()</a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
 <p>Or an area plot…</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> ci_np, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb61-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_area</span>()</a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 <p>We can see that updating to different <code>geom_*</code> types is quick, so long as the types of graphs we’re switching between are compatible.</p>
 <p>The data are there, now let’s do some data viz customization.</p>
 </div>
@@ -450,7 +449,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb62-3" data-line-number="3">    <span class="dt">color =</span> <span class="st">&quot;purple&quot;</span>,</a>
 <a class="sourceLine" id="cb62-4" data-line-number="4">    <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span></a>
 <a class="sourceLine" id="cb62-5" data-line-number="5">  )</a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
 <p>How do we know which color names ggplot will recognize? If you google “R colors ggplot2” you’ll find a lot of good resources. Here’s one: <a href="http://sape.inf.usi.ch/quick-reference/ggplot2/colour">SAPE ggplot2 colors quick reference guide</a></p>
 <p>Now let’s update the point, style and size of points on our previous scatterplot graph using <code>color =</code>, <code>size =</code>, and <code>pch =</code> (see <code>?pch</code> for the different point styles, which can be further customized).</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> ci_np, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors)) <span class="op">+</span></a>
@@ -458,7 +457,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb63-3" data-line-number="3">             <span class="dt">pch =</span> <span class="dv">17</span>,</a>
 <a class="sourceLine" id="cb63-4" data-line-number="4">             <span class="dt">size =</span> <span class="dv">4</span>,</a>
 <a class="sourceLine" id="cb63-5" data-line-number="5">             <span class="dt">alpha =</span> <span class="fl">0.5</span>)</a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
 <div id="activity-customize-your-own-ggplot-graph" class="section level4">
 <h4><span class="header-section-number">6.2.3.1</span> Activity: customize your own ggplot graph</h4>
 <p>Update one of the example graphs you created above to customize <strong>at least</strong> an element color and size!</p>
@@ -479,14 +478,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb64-4" data-line-number="4">        <span class="dt">color =</span> visitors),</a>
 <a class="sourceLine" id="cb64-5" data-line-number="5">    <span class="dt">alpha =</span> <span class="fl">0.5</span></a>
 <a class="sourceLine" id="cb64-6" data-line-number="6">  )</a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
 <p>In the example above, notice that the two arguments that <strong>do</strong> depend on variables are within <code>aes()</code>, but since <code>alpha = 0.5</code> doesn’t depend on a variable then it is <em>outside the <code>aes()</code> but still within the <code>geom_point()</code> layer</em>.</p>
 <div id="activity-map-variables-onto-graph-aesthetics" class="section level4">
 <h4><span class="header-section-number">6.2.4.1</span> Activity: map variables onto graph aesthetics</h4>
 <p>Create a column plot of Channel Islands National Park visitation over time, where the <strong>fill color</strong> (argument: <code>fill =</code>) changes based on the number of <strong>visitors</strong>.</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> ci_np, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb65-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> visitors))</a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
 <p><strong>Sync your project with your GitHub repo.</strong></p>
 </div>
 </div>
@@ -507,7 +506,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb66-5" data-line-number="5">    <span class="dt">alpha =</span> <span class="fl">0.5</span></a>
 <a class="sourceLine" id="cb66-6" data-line-number="6">  ) <span class="op">+</span></a>
 <a class="sourceLine" id="cb66-7" data-line-number="7"><span class="st">  </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 </div>
 <div id="updating-axis-labels-and-titles" class="section level3">
 <h3><span class="header-section-number">6.2.6</span> Updating axis labels and titles</h3>
@@ -521,7 +520,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb67-7" data-line-number="7">    <span class="dt">title =</span> <span class="st">&quot;Channel Islands NP Visitation&quot;</span>,</a>
 <a class="sourceLine" id="cb67-8" data-line-number="8">    <span class="dt">subtitle =</span> <span class="st">&quot;(1963 - 2016)&quot;</span></a>
 <a class="sourceLine" id="cb67-9" data-line-number="9">  )</a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
 <p><strong>Note</strong>: If you want to update the formatting of axis values (for example, to convert to comma format instead of scientific format above), you can use the <code>scales</code> package options (see more from the <a href="http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/">R Cookbook</a>).</p>
 </div>
 <div id="combining-compatible-geoms" class="section level3">
@@ -532,13 +531,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb68-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb68-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;magenta&quot;</span>,</a>
 <a class="sourceLine" id="cb68-4" data-line-number="4">             <span class="kw">aes</span>(<span class="dt">size =</span> year))</a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
 <p>Or, combine a column and line graph (not sure why you’d want to do this, but you can):</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> ci_np, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb69-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">fill =</span> <span class="st">&quot;orange&quot;</span>,</a>
 <a class="sourceLine" id="cb69-3" data-line-number="3">           <span class="dt">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb69-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_line</span>()</a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
 </div>
 <div id="multi-series-ggplot-graphs" class="section level3">
 <h3><span class="header-section-number">6.2.8</span> Multi-series ggplot graphs</h3>
@@ -546,12 +545,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To do that, we need to add an aesthetic that lets <code>ggplot</code> know how things are going to be grouped. A demonstration of why that’s important - what happens if we <em>don’t</em> let ggplot know how to group things?</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> ca_np, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb70-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>()</a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
 <p>Well that’s definitely a mess, and it’s because ggplot has no idea that these <strong>should be different series based on the different parks that appear in the ‘park_name’ column</strong>.</p>
 <p>We can make sure R does know by updating an aesthetic based on <em>park_name</em>:</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> ca_np, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> visitors, <span class="dt">color =</span> park_name)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb71-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>()</a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
 <p><strong>Note</strong>: You could also add that aesthetic (<code>color = park_name</code>) in the <code>geom_line()</code> layer, instead of in the topmost <code>ggplot()</code> layer.</p>
 </div>
 <div id="faceting-ggplot-graphs" class="section level3">
@@ -563,7 +562,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb72-3" data-line-number="3"><span class="st">  </span><span class="kw">theme_light</span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb72-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;annual visitors&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb72-5" data-line-number="5"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>park_name)</a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
 </div>
 <div id="exporting-a-ggplot-graph-with-ggsave" class="section level3">
 <h3><span class="header-section-number">6.2.10</span> Exporting a ggplot graph with <code>ggsave()</code></h3>
@@ -591,7 +590,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb74-8" data-line-number="8">               <span class="dt">outlier.color =</span> <span class="ot">NA</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb74-9" data-line-number="9"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb74-10" data-line-number="10"><span class="st">  </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
 <p><strong>Sync your project with your GitHub repo.</strong></p>
 
 </div>
