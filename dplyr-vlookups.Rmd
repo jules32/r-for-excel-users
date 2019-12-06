@@ -32,6 +32,8 @@ The combination of `filter()` and `*_join()` - to return rows satisfying a condi
 
 ### Getting started - Create a new .Rmd, attach packages & get data
 
+Create a new R Markdown document in your r-workshop project and knit to save as **filter_join.Rmd**. Remove all the example code (everything below the set-up code chunk). 
+
 In this session, we'll use three packages: 
 
 - `tidyverse`
@@ -225,6 +227,8 @@ low_gb_wr <- fish_counts %>%
   filter(common_name %in% c("garibaldi", "rock wrasse"), 
          total_count <= 10)
 ```
+
+**Sync your local project to your repo on GitHub.**
 
 #### Filter to return rows that *do not* match conditions
 
@@ -479,6 +483,8 @@ my_fish_join <- fish_counts %>%
   mutate(fish_per_frond = total_count / total_fronds)
 
 ```
+
+**Sync your project with your repo on GitHub.**
 
 ## Fun / kind of scary facts
 
