@@ -102,6 +102,8 @@ In the Viewer I can do things like filter or sort. This does not do anything to 
 
 Like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we'll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).
 
+R has a mind-blowing collection of built-in functions that are used with the same syntax: function name with parentheses around what the function needs to do what it is supposed to do. `function_name(argument1 = value1, argument2 = value2, ...)`. When you see this syntax, we say we are "calling the function".
+
 So let's look into some of these functions. In Excel, there is a "SUM" function to calculate a total. Let's expect that there is the same in R. I will type this into the Console: 
 
 ```{r sum-help, eval=FALSE}
@@ -156,15 +158,22 @@ Let's say we want to calculate the total distance:
 sum(cars$dist)
 ```
 
+There are many functions that are built into R, and we'll learn more of them shortly.  
+
+Not all functions have (or require) arguments:
+```{r}
+date()
+```
+
 ### Packages
 
-So far we've been using a couple functions from base R, such as `seq()` and `date()`. But, one of the amazing things about R is that a vast user community is always creating new functions and packages that expand R's capabilities. In R, the fundamental unit of shareable code is the package. A package bundles together code, data, documentation, and tests, and is easy to share with others. They increase the power of R by improving existing base R functionalities, or by adding new ones. 
+So far we've been using a couple functions from base R, such as `sum()` and `date()`. But, one of the amazing things about R is that a vast user community is always creating new functions and packages that expand R's capabilities. In R, the fundamental unit of shareable code is the package. A package bundles together code, data, documentation, and tests, and is easy to share with others. They increase the power of R by improving existing base R functionalities, or by adding new ones. 
 
 The traditional place to download packages is from CRAN, the [Comprehensive R Archive Network](https://cran.r-project.org/), which is where you downloaded R. You can also install packages from GitHub, which we'll do tomorrow.
 
-You don't need to go to CRAN's website to install packages, this can be accomplished within R using the command `install.packages("package-name-in-quotes")`. Let's install a small, fun package `praise`. You need to use quotes around the package name.:
+You don't need to go to CRAN's website to install packages, this can be accomplished within R using the command `install.packages("package-name-in-quotes")`. Let's install a small, fun package `praise`. You need to use quotes around the package name.
 
-Do this in the Console (explain TODO)
+Do this in the Console instead of in your RMarkdown file because we don't want this to load every time:
 
 ```{r, eval=FALSE}
 install.packages("praise")
@@ -172,10 +181,7 @@ install.packages("praise")
 
 Now we've installed the package, but we need to tell R that we are going to use the functions within the `praise` package. We do this by using the function `library()`.
 
-**What’s the difference between a package and a library?**  
-Sometimes there is a confusion between a package and a library, and you can find people calling “libraries” to packages.
-
-Please don’t get confused: `library()` is the command used to load a package, and it refers to the place where the package is contained, usually a folder on your computer, while a package is the collection of functions bundled conveniently.
+In my mind, this is analogous to needing to wire your house for electricity: this is something you do once; this is `install.packages`. But then you need to turn on the lights each time you need them (R Session).
 
 ```{r}
 library(praise)

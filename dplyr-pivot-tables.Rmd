@@ -1,12 +1,5 @@
 # `dplyr` and Pivot Tables {#pivot}
 
-TODO: add here()
-
-remove DT & kable
-
-add some example of repeated ease in R 
-make lobsters2.xlsx and section to reread them
-
 <!---
 Why would you ever want to uncount? You don’t want to assume how future you will want to use this data
 How easy is it to get these counts by different groupings
@@ -48,17 +41,21 @@ In the setup chunk, let's attach our libraries and read in our lobster data. In 
 ```{r setup, eval=FALSE}
 ## attach libraries
 library(tidyverse)
+library(readxl)
+library(here)
 library(skimr) # install.packages('skimr')
 
 ## read in data
-lobsters <- read_csv("data/lobster_counts_curated.csv")
+lobsters <- read_xlsx(here("data/lobsters_curated.xlsx"))
 ```
 
 ```{r, include = FALSE}
 # Teaching version
 library(tidyverse)
+library(readxl)
+library(here)
 library(skimr)
-lobsters <- read_csv("curation/lobster_counts_curated.csv")
+lobsters <- read_xlsx(here("curation/lobsters_curated.xlsx"))
 ```
 
 Let's add a code chunk and explore the data in a few ways.
@@ -234,7 +231,7 @@ Question: What if you *don't* group_by first? Let's try it and discuss what's go
 
 ```{r}
 lobsters %>%
-  summarize(count_by_year =  n())
+  summarize(count =  n())
 ```
 
 So if we don't `group_by` first, we will get a single summary statistic (sum in this case) for the whole dataset. 
@@ -256,7 +253,7 @@ Great. Now let's summarize by both year and site like we did in the pivot table.
 ```{r}
 lobsters %>%
   group_by(site, year) %>%
-  summarize(count_by_year =  n())
+  summarize(count_by_siteyear =  n())
 ```
 
 text. 
@@ -268,8 +265,8 @@ We can summarize multiple variables at a time. So far we've done the count of lo
 
 ```{r}
 lobsters %>%
-  group_by(year) %>%
-  summarize(count_by_year =  n(),
+  group_by(site, year) %>%
+  summarize(count_by_siteyear =  n(),
             mean_size_mm = mean(size_mm))
 ```
 
@@ -279,8 +276,8 @@ Great! But this will actually calculate some of the means as NA because one or m
 
 ```{r}
 lobsters %>%
-  group_by(year) %>%
-  summarize(count_by_year =  n(), 
+  group_by(site, year) %>%
+  summarize(count_by_siteyear =  n(), 
             mean_size_mm = mean(size_mm, na.rm=TRUE), 
             sd_size_mm = sd(size_mm, na.rm=TRUE))
 ```
@@ -288,85 +285,87 @@ lobsters %>%
 So we can make the equivalent of Excel's pivot table in R with `group_by` and then `summarize`. But a powerful thing about R is that maybe we want this information to be used in further analyses. We can make this easier for ourselves by saving this as a variable. So let's add a variable assignment to that first line:
 
 ```{r}
-year_summary <- lobsters %>%
-  group_by(year) %>%
-  summarize(count_by_year =  n(), 
-            mean_size_mm = mean(size_mm, na.rm = TRUE), 
-            sd_size_mm = sd(size_mm, na.rm = TRUE))
-```
-
-### Activity
-
-Summarize `lobsters` by site and assign it to a variable called `site_summary`. 
-
-Then, save, commit, and push your RMarkdown file. 
-
-Solution (no peeking): 
-```{r}
-site_summary <- lobsters %>%
-  group_by(site) %>%
-  summarize(count_by_site =  n(), 
-            mean_size_mm = mean(size_mm, na.rm=TRUE), 
-            sd_size_mm = sd(size_mm, na.rm=TRUE))
-
-site_summary
-```
-
-
-extra?
-```{r}
 siteyear_summary <- lobsters %>%
   group_by(site, year) %>%
-  summarize(count_by_site_year = n(), 
+  summarize(count_by_siteyear =  n(), 
             mean_size_mm = mean(size_mm, na.rm = TRUE), 
             sd_size_mm = sd(size_mm, na.rm = TRUE))
 
 siteyear_summary
 ```
 
-
-## Formatting tables
-
-There are a growing number of R packages for making tables look presentable and beautiful so you can include them nicely in your reports. We will talk about 2 options here. We will actually go back up to our setup chunk to add these libraries so that we follow the good practice of loading libraries at the beginning of a script. 
-
-```{r}
-library(DT) # install.packages("DT")
-library(knitr) # install.packages("knitr")
-```
-
-### `knitr::kable()`
-
-The `knitr` package has a function called `kable()` that will write the output of a dataframe as a table formatted in Markdown. Let's have a look:
-
-```{r}
-kable(site_summary)
-```
-
-When we run this we see there are `|` symbols separating columns, and there are `---`'s indicating the column headers. Additionally, the `:` on the right of each `---` symbol makes the values right-alighned. 
-
-Now let's knit our RMarkdown document and see what this looks like rendered. It's a nice, static table. 
-
-### `DT::datatable()`
-
-The DT package had a function called `datatable`; let's try it with our `siteyear_summary` object:
-
-```{r, eval=FALSE}
-datatable(site_summary)
-```
-
-When we run this, notice how this actually pops up in our Viewer tab in the bottom right. It's interactive so we can sort by different columns. 
-
-Let's knit our RMarkdown file and see what happens. This interactive table is included in the report!
-
-How can we make this look a bit snazzier? 
-
-There are also many other options to walk through here: https://rstudio.github.io/DT/
-
 ### Activity
 
-Use `datatable` to create an interactive table for our `yearsite_summary` object. 
+Calculate the median `size_mm` (Hint: ?median) and create a 
 
-Knit, commit, and push to GitHub. 
+Then, save, commit, and push your RMarkdown file. 
+
+Solution (no peeking): 
+```{r, eval=FALSE}
+siteyear_summary <- lobsters %>%
+  group_by(site, year) %>%
+  summarize(count_by_siteyear =  n(), 
+            mean_size_mm = mean(size_mm, na.rm = TRUE), 
+            sd_size_mm = sd(size_mm, na.rm = TRUE), 
+            median_size_mm = median(size_mm, na.rm = TRUE), )
+
+siteyear_summary
+
+## a ggplot option:
+ggplot(data = siteyear_summary, aes(x = year, y = median_size_mm, color = site)) +
+  geom_line() 
+
+## another option:
+ggplot(siteyear_summary, aes(x = year, y = median_size_mm)) +
+  geom_col() +
+  facet_wrap(~site)
+```
+
+
+Don't forget to knit, commit, and push!
+
+Nice work everybody. 
+
+## Oh no, our colleague sent the wrong data!
+
+Oh no! After all our analyses and everything we've done, our colleague just emailed us at 4:30pm on Friday that he sent the wrong data and we need to redo all our analyses with a new .xlsx file: `lobsters2.xlsx`, not `lobsters.xlsx`. Aaaaah! 
+
+If we were doing this in Excel, this would be a bummer; we'd have to rebuild our pivot table and click through all of our logic again. 
+
+But, since we did it in R, we are much safer. We can go back to the top of our RMarkdown file, and read in the updated dataset, and then re-knit. We will still need to check that everything outputs correctly, (and that column headers haven't been renamed), but our first pass will be to update the filename and re-knit: 
+
+```{r, eval=FALSE}
+## read in data
+lobsters <- read_xlsx(here("data/lobsters2_curated.xlsx"))
+```
+
+```{r, include = FALSE}
+# Teaching version
+lobsters <- read_xlsx(here("curation/lobsters2_curated.xlsx"))
+```
+
+And now we can see that our plot updated as well: 
+
+```{r}
+siteyear_summary <- lobsters %>%
+  group_by(site, year) %>%
+  summarize(count_by_siteyear =  n(), 
+            mean_size_mm = mean(size_mm, na.rm = TRUE), 
+            sd_size_mm = sd(size_mm, na.rm = TRUE), 
+            median_size_mm = median(size_mm, na.rm = TRUE), )
+
+siteyear_summary
+
+## a ggplot option:
+ggplot(data = siteyear_summary, aes(x = year, y = median_size_mm, color = site)) +
+  geom_line() 
+
+## another option:
+ggplot(siteyear_summary, aes(x = year, y = median_size_mm)) +
+  geom_col() +
+  facet_wrap(~site)
+```
+
 
 ### `dplyr::count()`
 
@@ -388,6 +387,12 @@ Switching gears...
 
 ## `mutate()` 
 
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/rstudio-cheatsheet-mutate.png")  
+```
+
+<br>
+
 There are a lot of times where you don't want to summarize your data, but you do want to operate beyond the original data. This is often done by adding a column. We do this with the `mutate()` function from `dplyr`. Let's try this with our original lobsters data. The sizes are in millimeters but let's say it was important for them to be in meters. We can add a column with this calculation: 
 
 ```{r}
@@ -398,17 +403,34 @@ lobsters %>%
   mutate(size_m = size_mm / 1000)
 ```
 
-If we want to add a column that has the same value repeated, we can pass it just one value, either a number or a character string (in quotes):
+If we want to add a column that has the same value repeated, we can pass it just one value, either a number or a character string (in quotes). And let's save this as a variable called `lobsters_detailed`
 
 ```{r}
-lobsters %>%
-  mutate(millenia = 2000,
+lobsters_detailed <- lobsters %>%
+  mutate(size_m = size_mm / 1000, 
+         millenia = 2000,
          observer = "Allison Horst")
 ```
 
-<!---
-select() for reshuffling columns?
---->
+## `select()` 
+
+We will end with one final function, `select`. This is how to choose, retain, and move your data by columns: 
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/rstudio-cheatsheet-select.png")  
+```
+
+<br>
+
+Let's say that we want to present this data finally with only columns for date, site, and size in meters. We would do this:
+
+```{r select}
+
+lobsters_detailed %>%
+  select(date, site, size_m)
+```
+
+One last time, let's knit, save, commit, and push to GitHub.
 
 ## Deep thoughts
 

@@ -1,7 +1,9 @@
 # Overview {#overview}
 
 Operational TODOs
-Saturday morning: email data to all participants
+Data in google drive
+Readme with link
+
 
 
 Welcome! 

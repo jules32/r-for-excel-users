@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(tidyverse)
 library(janitor)
+library(writexl)
 ```
 
 
@@ -36,28 +37,22 @@ lobster_counts <- lobster_counts_raw %>%
   janitor::clean_names() %>% 
   mutate(site = str_to_lower(site))
 
-lobster_subset <- lobster_counts %>%
+## will become lobsters2 to read in second
+lobster_uncount_full <- lobster_counts %>%
   uncount(count) %>%
   select(-area, -num_ao)
-  #filter(year == 2016:2018) 
 
-
-
-## explore
-lobster_subset %>%
-  filter(site == "ivee", 
-         year == 2018)
-
-sum(lobster_counts$count)
-
-
+## will become lobsters to read in first
+lobster_uncount_subset <- lobster_uncount_full %>%
+  filter(year <= 2016) 
 ```
 
 3. Some further curation testing (trying out different lobster subsets, etc.)
 ```{r}
 
-# This is the final curated version (lobster_counts_curated.csv)
-write_csv(lobster_subset, "curation/lobster_counts_curated.csv")
+# These are the final curated version (lobster_counts_curated.csv)
+write_xlsx(lobster_uncount_subset, "curation/lobsters_curated.xlsx")
+write_xlsx(lobster_uncount_full, "curation/lobsters2_curated.xlsx")
 
 # Make a graph of the numbers by location, year & species?
 # Probably want to work on this a bit more ()

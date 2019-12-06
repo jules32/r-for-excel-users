@@ -348,7 +348,7 @@ When we join data frames in R, we need to tell R a couple of things (and it does
 
 # Join the fish_counts and kelp_counts_abur together: 
 abur_kelp_join <- fish_2016_2017 %>% 
-  full_join(kelp_counts_abur, by = c("year", "site)) # Uh oh. An error message.
+  full_join(kelp_counts_abur, by = c("year", "site")) # Uh oh. An error message.
 
 ```
 
@@ -390,7 +390,7 @@ OK, so now the class of *year* in the data frames we're joining is the same. Let
 
 ```{r}
 abur_kelp_join <- fish_2016_2017 %>% 
-  full_join(kelp_counts_abur, by = c("year", "site))
+  full_join(kelp_counts_abur, by = c("year", "site"))
 ```
 
 First, notice that R tells us which sites it is joining by - in this case, *year* and *site* since those were the two matching variables in both data frames. 
