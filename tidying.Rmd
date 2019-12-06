@@ -1,4 +1,6 @@
-# Tidying 
+# Tidying
+
+TODO: janitor: adorn and kable
 
 ## Summary
 

@@ -1,5 +1,8 @@
 # Overview {#overview}
 
+Operational TODOs
+Saturday morning: email data to all participants
+
 
 Welcome! 
 
@@ -10,6 +13,8 @@ This workshop you will learn hands-on how to begin to interoperate between Excel
 We are not only learning R; we will learn a workflow with R and GitHub.
 
 We will practice learning three main things all at the same time: coding with best practices (R/RStudio), collaborative version control (Git/GitHub), and communication/publishing (RMarkdown/GitHub). This training will teach these all together to reinforce skills and best practices, and get you comfortable with a workflow that you can use in your own projects. 
+
+
 
 ## Why learn R if I know Excel? 
 
@@ -39,6 +44,8 @@ We will learn:
 - GitHub
 
 We'll spend the first two sessions getting set up and oriented with R, RMarkdown, and GitHub, and work with data in R all afternoon. 
+
+
 
 <!---
 
@@ -81,6 +88,10 @@ You came here to learn R, but we are going to learn R together with RStudio.
 Write analytical logic in code that can be understood and rerun  
 
 Learn from data that are not your own 
+
+Future You, Future Us. Help make lives easier. Breadcrumbs. 
+
+Tidy data is a way of life
 
 
 <!--- What you'll learn

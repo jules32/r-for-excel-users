@@ -1,5 +1,12 @@
 # `dplyr` and Pivot Tables {#pivot}
 
+TODO: add here()
+
+remove DT & kable
+
+add some example of repeated ease in R 
+make lobsters2.xlsx and section to reread them
+
 <!---
 Why would you ever want to uncount? You don’t want to assume how future you will want to use this data
 How easy is it to get these counts by different groupings
@@ -88,6 +95,8 @@ ggplot(lobsters, aes(x = year)) +
   geom_bar() +
   facet_wrap(~site)
 ```
+
+(geom_bar() counts things and geom_col() is for values within the data (mean))
 
 ### Our task
 
@@ -209,14 +218,14 @@ Let's do this in R.
 
 ### `group_by` one variable
 
-Let's try this on our `lobsters` data, just like we did in Excel. We will count the the total number of lobster by year. In R vocabulary, we will group_by year and then summarize by counting using `n()`, which is a function from `dplyr`. We'll also use the pipe operator `%>%`, which you can read as "and then". 
+Let's try this on our `lobsters` data, just like we did in Excel. We will count the the total number of lobster by year. In R vocabulary, we will group_by year and then summarize by counting using `n()`, which is a function from `dplyr`. `n()` counts the number of times an observation shows up, and since this is uncounted data, this will count each row. We'll also use the pipe operator `%>%`, which you can read as "and then". 
 
 This to me reads: "take the lobsters data and then group_by year and then summarize by count in a new column called 'count'"
 
 ```{r}
 lobsters %>%
   group_by(year) %>%
-  summarize(count = n())
+  summarize(count_by_year = n())
 ```
 
 Notice how together, `group_by` and `summarize` minimize the amount of information we see. We also saw this with the pivot table. We lose the other columns that aren't involved here. 
@@ -225,7 +234,7 @@ Question: What if you *don't* group_by first? Let's try it and discuss what's go
 
 ```{r}
 lobsters %>%
-  summarize(count = n())
+  summarize(count_by_year =  n())
 ```
 
 So if we don't `group_by` first, we will get a single summary statistic (sum in this case) for the whole dataset. 
@@ -240,6 +249,19 @@ We see that we haven't changed any of our original data that was stored in this 
 
 > ***Aside***: You'll also see that when you click on the variable name in the Environment pane, `View(lobsters)` shows up in your Console. `View()` (capital V) is the R function to view any variable in the viewer. So this is something that you can write in your RMarkdown script, although RMarkdown will not be able to knit this view feature into the formatted document. So, if you want include `View()` in your RMarkdown document you will need to either comment it out `#View()` or add `eval=FALSE` to the top of the code chunk so that the full line reads `{r, eval=FALSE}`. 
 
+### `group_by` multiple variables
+
+Great. Now let's summarize by both year and site like we did in the pivot table. We are able to `group_by` more than one variable. Let's do this together:
+
+```{r}
+lobsters %>%
+  group_by(site, year) %>%
+  summarize(count_by_year =  n())
+```
+
+text. 
+
+
 ### `summarize` multiple variables
 
 We can summarize multiple variables at a time. So far we've done the count of lobster observations. Let's also do the mean and standard deviation. First let's use the `mean()` function to calculate the mean. We do this within the same summarize() function, but we can add a new line to make it easier to read. Notice how when you put your curser within the parenthesis and hit return, the indentation will automatically align. 
@@ -247,7 +269,7 @@ We can summarize multiple variables at a time. So far we've done the count of lo
 ```{r}
 lobsters %>%
   group_by(year) %>%
-  summarize(count = n(),
+  summarize(count_by_year =  n(),
             mean_size_mm = mean(size_mm))
 ```
 
@@ -258,7 +280,7 @@ Great! But this will actually calculate some of the means as NA because one or m
 ```{r}
 lobsters %>%
   group_by(year) %>%
-  summarize(count = n(), 
+  summarize(count_by_year =  n(), 
             mean_size_mm = mean(size_mm, na.rm=TRUE), 
             sd_size_mm = sd(size_mm, na.rm=TRUE))
 ```
@@ -268,7 +290,7 @@ So we can make the equivalent of Excel's pivot table in R with `group_by` and th
 ```{r}
 year_summary <- lobsters %>%
   group_by(year) %>%
-  summarize(count = n(), 
+  summarize(count_by_year =  n(), 
             mean_size_mm = mean(size_mm, na.rm = TRUE), 
             sd_size_mm = sd(size_mm, na.rm = TRUE))
 ```
@@ -283,26 +305,25 @@ Solution (no peeking):
 ```{r}
 site_summary <- lobsters %>%
   group_by(site) %>%
-  summarize(count = n(), 
+  summarize(count_by_site =  n(), 
             mean_size_mm = mean(size_mm, na.rm=TRUE), 
             sd_size_mm = sd(size_mm, na.rm=TRUE))
 
 site_summary
 ```
 
-### `group_by` multiple variables
 
-Great. It can be useful to summarize by both site and year, so that we can learn a little more about how things change over time across sites. And, awesomely, we are able to `group_by` more than one variable. Let's do this together, and assign this to a new variable called `siteyear_summary`:
-
+extra?
 ```{r}
 siteyear_summary <- lobsters %>%
   group_by(site, year) %>%
-  summarize(count = n(), 
+  summarize(count_by_site_year = n(), 
             mean_size_mm = mean(size_mm, na.rm = TRUE), 
             sd_size_mm = sd(size_mm, na.rm = TRUE))
 
 siteyear_summary
 ```
+
 
 ## Formatting tables
 

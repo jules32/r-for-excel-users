@@ -4,39 +4,37 @@
 
 In previous sessions, we've learned to do some basic wrangling and find summary information with functions in the `dplyr` package, which exists within the `tidyverse`. We've used: 
 
-TODO: Check these to make sure what we do in 1 - 4!
+- `count()` to get counts of observations for groupings we specify (or the reverse!)
+- `mutate()`: **add** a new column, while keeping the existing ones
+- `group_by()`: let R know that **groups** exist within the dataset, by variable(s)
+- `summarize()`: calculate a value (that you specify) for each group, then report each group's value in a table
 
-- `dplyr::count()` and `dplyr::uncount()` to get counts of observations for groupings we specify (or the reverse!)
-- `dplyr::mutate()`: **add** a new column, while keeping the existing ones
-- `dplyr::group_by()`: let R know that **groups** exist within the dataset, by variable(s)
-- `dplyr::summarize()`: calculate a value (that you specify) for each group, then report each group's value in a table
+In this session, we'll expand our data wrangling toolkit using: 
 
-In Session 5, we'll expand our data wrangling toolkit using: 
+- `filter()` to conditionally subset our data by **rows**, and
+- `*_join()` functions to merge data frames together
 
-- `dplyr::filter()` to conditionally subset our data by **rows**, and
-- `dplyr::*_join()` functions to merge data frames together
+The combination of `filter()` and `*_join()` - to return rows satisfying a condition we specify, and merging data frames by like variables - is analogous to the useful VLOOKUP function in Excel. 
 
-The combination of `dplyr::filter()` and `dplyr::*_join()` - to return rows satisfying a condition we specify, and merging data frames by like variables - is analogous to the useful VLOOKUP function in Excel. 
-
-## Objectives
+### Objectives
 
 - Continue building R Markdown skills
-- Return **rows** that satisfy variable conditions using `dplyr::filter()` 
-- Use `dplyr::full_join()`, `dplyr::left_join()`, and `dplyr::inner_join()` to merge data frames by matching variables, with different endpoints in mind
-- Use `dplyr::anti_join()` to find things that **do not** exist in both data frames
-- Understand the similarities between `dplyr::filter()` + `dplyr::*_join()` and Excel's VLOOKUP function
+- Return **rows** that satisfy variable conditions using `filter()` 
+- Use `full_join()`, `left_join()`, and `inner_join()` to merge data frames by matching variables, with different endpoints in mind
+- Use `anti_join()` to find things that **do not** exist in both data frames
+- Understand the similarities between `filter()` + `*_join()` and Excel's VLOOKUP function
 
-## Resources
+### Resources
 
-- [`dplyr::filter()` documentation from tidyverse.org](https://dplyr.tidyverse.org/reference/filter.html)
-- [`dplyr::join()` documentation from tidyverse.org](https://dplyr.tidyverse.org/reference/join.html)
+- [`filter()` documentation from tidyverse.org](https://dplyr.tidyverse.org/reference/filter.html)
+- [`join()` documentation from tidyverse.org](https://dplyr.tidyverse.org/reference/join.html)
 - [Chapters 5 and 13 in *R for Data Science* by Garrett Grolemund and Hadley Wickham](https://r4ds.had.co.nz/)
 
 ## Lessons
 
 **Session 5 set-up:** TODO
 
-- Create a new .Rmd within the r-and-excel directory (project) you created in Session 1
+- Create a new .Rmd in your r-workshop directory (project)
 - Add some descriptive text
 - Add new code chunks to: 
     - Attach packages
@@ -62,34 +60,34 @@ library(tidyverse)
 library(readxl)
 
 # Read in data: 
-invert_counts <- read_excel("invert_counts_curated.xlsx")
-fish_counts <- read_csv("fish_counts_curated.csv")
-kelp_counts_abur <- read_excel("kelp_counts_curated.xlsx")
+invert_counts <- read_excel(here("data", "invert_counts_curated.xlsx"))
+fish_counts <- read_csv(here("data", "fish_counts_curated.csv"))
+kelp_counts_abur <- read_excel(here("data", "kelp_counts_curated.xlsx"))
 
 ```
 
 Remember to always explore the data you've read in using functions like `View()`, `names()`, `summary()`, `head()` and `tail()` to ensure that the data you *think* you read in is *actually* the data you read in. 
 
-Now, let's use `dplyr::filter()` to decide which observations (rows) we'll keep or exclude in new subsets, similar to using Excel's VLOOKUP function.
+Now, let's use `filter()` to decide which observations (rows) we'll keep or exclude in new subsets, similar to using Excel's VLOOKUP function.
 
-### `dplyr::filter()` to conditionally subset by rows
+### `filter()` to conditionally subset by rows
 
-Use `dplyr::filter()` to let R know which **rows** you want to keep or exclude, based whether or not their contents match conditions that you set for one or more variables. 
+Use `filter()` to let R know which **rows** you want to keep or exclude, based whether or not their contents match conditions that you set for one or more variables. 
 
-![dplyr::filter()](img/rstudio-cheatsheet-filter.png)
+![](img/rstudio-cheatsheet-filter.png)
 
-Some examples in words that might inspire you to use `dplyr::filter()`: 
+Some examples in words that might inspire you to use `filter()`: 
 
 - "I only want to keep rows where the temperature is greater than 90&deg;F."
 - "I want to keep all observations **except** those where the tree type is listed as **unknown**."
 - "I want to make a new subset with only data for mountain lions (the species variable) in California (the state variable)."
 
-When we use `dplyr::filter()`, we need to let R know a couple of things:
+When we use `filter()`, we need to let R know a couple of things:
 
 - What data frame we're filtering from
 - What condition(s) we want observations to **match** and/or **not match** in order to keep them in the new subset
 
-Follow along with the examples below to learn some common ways to use `dplyr::filter()`.
+Follow along with the examples below to learn some common ways to use `filter()`.
 
 #### Filter rows by matching a single character string
 
@@ -97,11 +95,11 @@ Let's say we want to keep all observations from the fish_counts data frame where
 Use `==` to ask R to look for matching strings:
 
 ```{r, include = FALSE}
-fish_gari <- dplyr::filter(fish_counts, common_name == "garibaldi")
+fish_gari <- filter(fish_counts, common_name == "garibaldi")
 ```
 
 ```{r, eval = FALSE}
-fish_gari <- dplyr::filter(fish_counts, common_name == "garibaldi")
+fish_gari <- filter(fish_counts, common_name == "garibaldi")
 ```
 
 Check out the **fish_gari** object to ensure that only *garibaldi* observations remain. 
@@ -109,25 +107,25 @@ Check out the **fish_gari** object to ensure that only *garibaldi* observations 
 You could also do this using the pipe operator `%>%` (though for a single function, it doesn't save much effort or typing): 
 ```{r, eval = FALSE}
 fish_gari <- fish_counts %>% 
-  dplyr::filter(common_name == "garibaldi")
+  filter(common_name == "garibaldi")
 ```
 
 #### Filter rows based on numeric conditions
 
-Use expected operators (>, <, >=, <=, =) to set conditions for a numeric variable when filtering. For this example, we only want to retain observations when the **total_count** column value is >= 50:
+Use expected operators (>, <, >=, <=, ==) to set conditions for a numeric variable when filtering. For this example, we only want to retain observations when the **total_count** column value is >= 50:
 
 ```{r, include = FALSE}
-fish_over50 <- dplyr::filter(fish_counts, total_count >= 50)
+fish_over50 <- filter(fish_counts, total_count >= 50)
 ```
 
 ```{r, eval = FALSE}
-fish_over50 <- dplyr::filter(fish_counts, total_count >= 50)
+fish_over50 <- filter(fish_counts, total_count >= 50)
 ```
 
 Or, using the pipe: 
 ```{r, eval = FALSE}
 fish_over50 <- fish_counts %>% 
-  dplyr::filter(total_count >= 50)
+  filter(total_count >= 50)
 ```
 
 TODO: show example of between and exact =
@@ -142,19 +140,19 @@ Use `%in%` to ask R to look for *any matches* within a combined vector of string
 
 ```{r, include = FALSE}
 fish_3sp <- fish_counts %>% 
-  dplyr::filter(common_name %in% c("garibaldi", "blacksmith", "black surfperch"))
+  filter(common_name %in% c("garibaldi", "blacksmith", "black surfperch"))
 ```
 
 ```{r, eval = FALSE}
 fish_3sp <- fish_counts %>% 
-  dplyr::filter(common_name %in% c("garibaldi", "blacksmith", "black surfperch"))
+  filter(common_name %in% c("garibaldi", "blacksmith", "black surfperch"))
 ```
 
 Alternatively, you can indicate **OR** using the vertical line operator `|` to do the same thing (but you can see that it's more repetitive when looking for matches within the same variable): 
 ```{r, eval = FALSE}
 
 fish_3sp <- fish_counts %>% 
-  dplyr::filter(common_name == "garibaldi" | common_name == "blacksmith" | common_name == "black surfperch")
+  filter(common_name == "garibaldi" | common_name == "blacksmith" | common_name == "black surfperch")
 
 ```
 
@@ -162,16 +160,16 @@ fish_3sp <- fish_counts %>%
 
 In the previous examples, we set filter conditions based on a single variable (e.g. common_name). What if we want to return observations that satisfy conditions for multiple variables? 
 
-For example: We want to create a subset that only returns rows from 'invert_counts' where the **site** is "abur" or "mohk" *and* the **common_name** is "purple urchin." In `dplyr::filter()`, add a comma (or ampersand, &) between arguments for multiple *AND* conditions:
+For example: We want to create a subset that only returns rows from 'invert_counts' where the **site** is "abur" or "mohk" *and* the **common_name** is "purple urchin." In `filter()`, add a comma (or ampersand, &) between arguments for multiple *AND* conditions:
 
 ```{r, include = FALSE}
 urchin_abur_mohk <- invert_counts %>% 
-  dplyr::filter(site %in% c("abur","mohk"), common_name == "purple urchin")
+  filter(site %in% c("abur","mohk"), common_name == "purple urchin")
 ```
 
 ```{r, eval = FALSE}
 urchin_abur_mohk <- invert_counts %>% 
-  dplyr::filter(site %in% c("abur","mohk"), common_name == "purple urchin")
+  filter(site %in% c("abur","mohk"), common_name == "purple urchin")
 ```
 
 
@@ -185,7 +183,7 @@ Like most things in R, there are other ways to do the same thing. For example, y
 # Use the ampersand (&) to add another condition "and this must be true":
 
 urchin_abur_mohk <- invert_counts %>% 
-  dplyr::filter(site %in% c("abur","mohk") & common_name == "purple urchin")
+  filter(site %in% c("abur","mohk") & common_name == "purple urchin")
 ```
 
 Or you could just do two filter steps in sequence: 
@@ -194,8 +192,8 @@ Or you could just do two filter steps in sequence:
 # Written as multiple filter steps:
 
 urchin_abur_mohk <- invert_counts %>% 
-  dplyr::filter(site %in% c("abur", "mohk")) %>% 
-  dplyr::filter(common_name == "purple urchin")
+  filter(site %in% c("abur", "mohk")) %>% 
+  filter(common_name == "purple urchin")
 ```
 
 #### Filter to return rows that *do not* match conditions
@@ -207,12 +205,12 @@ We use `!=` to return observations that **do not match** a condition.
 Like this: 
 ```{r, include = FALSE}
 fish_no_mohk <- fish_counts %>% 
-  dplyr::filter(site != "mohk")
+  filter(site != "mohk")
 ```
 
 ```{r, eval = FALSE}
 fish_no_mohk <- fish_counts %>% 
-  dplyr::filter(site != "mohk")
+  filter(site != "mohk")
 ```
 
 This similarly works to exclude observations by a value. 
@@ -220,12 +218,12 @@ This similarly works to exclude observations by a value.
 For example, if we want to return all observations *except* those where the total fish count is 1, we use:
 ```{r, include = FALSE}
 fish_more_one <- fish_counts %>% 
-  dplyr::filter(total_count != 1)
+  filter(total_count != 1)
 ```
 
 ```{r, eval = FALSE}
 fish_more_one <- fish_counts %>% 
-  dplyr::filter(total_count != 1)
+  filter(total_count != 1)
 ```
 
 What if we want to exclude observations for multiple conditions? For example, here we want to return all rows where the fish species **is not** garibaldi **or** rock wrasse. 
@@ -234,12 +232,12 @@ We can use `filter(!variable %in% c("apple", "orange"))` to return rows where th
 
 ```{r, include = FALSE}
 fish_subset <- fish_counts %>% 
-  dplyr::filter(!common_name %in% c("garibaldi", "rock wrasse"))
+  filter(!common_name %in% c("garibaldi", "rock wrasse"))
 ```
 
 ```{r, eval = FALSE}
 fish_subset <- fish_counts %>% 
-  dplyr::filter(!common_name %in% c("garibaldi", "rock wrasse"))
+  filter(!common_name %in% c("garibaldi", "rock wrasse"))
 ```
 
 Which then only returns observations for the other fish species in the dataset. 
@@ -250,7 +248,7 @@ head(fish_subset)
 
 #### Example: combining `filter()` with other functions using the pipe operator (`%>%`)
 
-We can also use `dplyr::filter()` in combination with the functions we previously learned for wrangling. If we have multiple sequential steps to perform, we can string them together using the *pipe operator* (`%>%`).
+We can also use `filter()` in combination with the functions we previously learned for wrangling. If we have multiple sequential steps to perform, we can string them together using the *pipe operator* (`%>%`).
 
 Here, we'll start with the `invert_counts` data frame and create a subset that:
 
@@ -311,22 +309,22 @@ my_fish_wrangling <- fish_counts %>%
 
 ```
 
-### Merging data frames with `dplyr::*_join()` 
+### Merging data frames with `*_join()` 
 
-Excel's `VLOOKUP` can also be used to merge data from separate tables or worksheets. Here, we'll use the `dplyr::*_join()` functions to merge separate data frames in R. 
+Excel's `VLOOKUP` can also be used to merge data from separate tables or worksheets. Here, we'll use the `*_join()` functions to merge separate data frames in R. 
 
 There are a number of ways to merge data frames in R. We'll use `full_join()`, `left_join()`, and `inner_join()` in this session. 
 
 From R Documentation (`?join`): 
 
-- `dplyr::full_join()`: "returns all rows and all columns from both x and y. Where there are not matching values, returns NA for the one missing." Basically, nothing gets thrown out, even if a match doesn't exist - making `full_join()` the safest option for merging data frames. When in doubt, `full_join()`.
+- `full_join()`: "returns all rows and all columns from both x and y. Where there are not matching values, returns NA for the one missing." Basically, nothing gets thrown out, even if a match doesn't exist - making `full_join()` the safest option for merging data frames. When in doubt, `full_join()`.
 
-- `dplyr::left_join()`: "return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned."
+- `left_join()`: "return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned."
 
-- `dplyr::inner_join()`: "returns all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned." This will drop observations that don't have a match between the merged data frames, which makes it a riskier merging option if you're not sure what you're trying to do. 
+- `inner_join()`: "returns all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned." This will drop observations that don't have a match between the merged data frames, which makes it a riskier merging option if you're not sure what you're trying to do. 
 
 Schematic (from RStudio data wrangling cheat sheet): 
-![dplyr::joins](img/rstudio-cheatsheet-combine-options1.png)
+![joins](img/rstudio-cheatsheet-combine-options1.png)
 
 To clarify what the different joins are doing, let's first make a subset of the *fish_counts* data frame that only contains observations from 2016 and 2017. 
 
@@ -337,7 +335,7 @@ fish_2016_2017 <- fish_counts %>%
 
 Take a look to ensure that only those years are included with `View(fish_2016_2017)`. Now, let's merge it with our kelp fronds data in different ways. 
 
-#### `dplyr::full_join()` to merge data frames, keeping everything
+#### `full_join()` to merge data frames, keeping everything
 
 When we join data frames in R, we need to tell R a couple of things (and it does the hard joining work for us):
 
@@ -350,12 +348,14 @@ When we join data frames in R, we need to tell R a couple of things (and it does
 
 # Join the fish_counts and kelp_counts_abur together: 
 abur_kelp_join <- fish_2016_2017 %>% 
-  full_join(kelp_counts_abur) # Uh oh. An error message.
+  full_join(kelp_counts_abur, by = c("year", "site)) # Uh oh. An error message.
 
 ```
 
 When we try to do that join, we get an error message: 
 `Error: Can't join on 'year' x 'year' because of incompatible types (character / numeric)`
+
+Let's google this. That means copying this from the console and pasting it into Google. 
 
 What's going on here? First, there's something fishy (ha) going on with the class of the *year* variable in `kelp_counts_abur`. Use the `class()` function to see how R understands that variable (remember, we use `$` to return a specific column from a data frame). 
 
@@ -371,7 +371,7 @@ If we go back to the kelp_counts_curated.xlsx file, we'll see that the numbers i
 - The green triangles in the corner indicate some formatting
 - The warning sign shows up when you click on one of the values with text formatting, and lets you know that the cell has been stored as text. We are given the option to reformat as numeric in Excel, but we'll do it here in R so we have a reproducible record of the change to the variable class. 
 
-There are a number of ways to do this in R. We'll use `dplyr::mutate()` to overwrite the existing `year` column while coercing it to class *numeric* using the `as.numeric()` function. 
+There are a number of ways to do this in R. We'll use `mutate()` to overwrite the existing `year` column while coercing it to class *numeric* using the `as.numeric()` function. 
 
 ```{r}
 # Coerce the class of 'year' to numeric
@@ -390,7 +390,7 @@ OK, so now the class of *year* in the data frames we're joining is the same. Let
 
 ```{r}
 abur_kelp_join <- fish_2016_2017 %>% 
-  full_join(kelp_counts_abur)
+  full_join(kelp_counts_abur, by = c("year", "site))
 ```
 
 First, notice that R tells us which sites it is joining by - in this case, *year* and *site* since those were the two matching variables in both data frames. 
@@ -403,9 +403,9 @@ Now look at the merged data frame with `View(abur_kelp_join)`. A few things to n
 
 Because all data (observations & columns) are retained, `full_join()` is the safest option if you're unclear about how to merge data frames. 
 
-#### `dplyr::left_join()` to merge data frames, keeping everything in the 'x' data frame and only matches from the 'y' data frame
+#### `left_join()` to merge data frames, keeping everything in the 'x' data frame and only matches from the 'y' data frame
 
-Now, we want to keep all observations in *fish_2016_2017*, and merge them with *kelp_counts_abur* while only keeping observations from *kelp_counts_abur* that match an observation within *fish_2016_2017*. So when we use `dplyr::left_join()`, any information on kelp counts from 2018 should be dropped. 
+Now, we want to keep all observations in *fish_2016_2017*, and merge them with *kelp_counts_abur* while only keeping observations from *kelp_counts_abur* that match an observation within *fish_2016_2017*. So when we use `left_join()`, any information on kelp counts from 2018 should be dropped. 
 
 ```{r}
 fish_kelp_2016_2017 <- fish_2016_2017 %>% 
@@ -414,7 +414,7 @@ fish_kelp_2016_2017 <- fish_2016_2017 %>%
 
 Notice when you look at `fish_kelp_2016_2017`, the 2018 data that **does** exist in `kelp_counts_abur` does **not** get joined to the `fish_2016_2017` data frame, because `left_join(df_a, df_b)` will only keep observations from `df_b` if they have a match in `df_a`! 
 
-#### `dplyr::inner_join()` to merge data frames, only keeping observations with a match in **both**
+#### `inner_join()` to merge data frames, only keeping observations with a match in **both**
 
 When we used `left_join(df_a, df_b)`, we kept all observations in `df_a` but *only observations from `df_b` that matched an entry in `df_a`* (in other words, some entries from `df_b` were excluded).
 
@@ -430,7 +430,7 @@ abur_kelp_inner_join
 
 Here, we see that only observations where there is a match for *year* and *site* in both data frames are returned.
 
-#### `dplyr::*_join()` in a sequence
+#### `*_join()` in a sequence
 
 We can also merge data frames as part of a sequence of wrangling steps. 
 
@@ -449,7 +449,7 @@ abur_lobster_kelp <- invert_counts %>%
   pivot_longer('2016':'2018', names_to = "year", values_to = "total_counts") %>% 
   mutate(year = as.numeric(year)) %>% 
   filter(common_name == "california spiny lobster") %>% 
-  dplyr::inner_join(kelp_counts_abur)
+  inner_join(kelp_counts_abur)
 
 ```
 
@@ -485,9 +485,9 @@ From [Microsoft Office Support](https://support.office.com/en-us/article/vlookup
 
 So, both `filter()` and `VLOOKUP` look through your data frame (or spreadsheet, in Excel) to look for observations that match your conditions. But they also differ in important ways:
 
-(1) By default `VLOOKUP` looks for and returns an observation for *approximate* matches (and you have to change the final argument to FALSE to look for an exact match). In contrast, by default `dplyr::filter()` will look for exact conditional matches. 
+(1) By default `VLOOKUP` looks for and returns an observation for *approximate* matches (and you have to change the final argument to FALSE to look for an exact match). In contrast, by default `filter()` will look for exact conditional matches. 
 
-(2) `VLOOKUP` will look for and return information from the *first observation* that matches (or approximately matches) a condition. `dplyr::filter()` will return all observations (rows) that exactly match a condition. 
+(2) `VLOOKUP` will look for and return information from the *first observation* that matches (or approximately matches) a condition. `filter()` will return all observations (rows) that exactly match a condition. 
 
 ## Interludes (deep thoughts/openscapes)
 

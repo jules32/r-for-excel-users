@@ -164,6 +164,8 @@ The traditional place to download packages is from CRAN, the [Comprehensive R Ar
 
 You don't need to go to CRAN's website to install packages, this can be accomplished within R using the command `install.packages("package-name-in-quotes")`. Let's install a small, fun package `praise`. You need to use quotes around the package name.:
 
+Do this in the Console (explain TODO)
+
 ```{r, eval=FALSE}
 install.packages("praise")
 ```
@@ -226,7 +228,7 @@ And also know that there are errors that can creep in more subtly, when you are 
 
 ### Logical operators and expressions
 
-A moment about **logical operators and expressions**. We can ask questions about the objects we made. 
+A moment about **logical operators and expressions**. We can ask questions about the objects we made. This is not assigning a new value to our `sum_dist` object.
 
 - `==` means 'is equal to'
 - `!=` means 'is not equal to'
@@ -375,12 +377,14 @@ There are some good [cheatsheets](https://github.com/adam-p/markdown-here/wiki/M
 <br>
 <br>
 
+<!---
 **Important**: note that the hashtag `#` is used differently in Markdown and in R: 
 
 - in R, a hashtag indicates a comment that will not be evaluated. You can use as many as you want: `#` is equivalent to `######`. It's a matter of style. I use two `##` to indicate a comment so that it's clearer what is a comment versus what I don't want to run at the moment.
 - in Markdown, a hashtag indicates a level of a header. And the number you use matters: `#` is a "level one header", meaning the biggest font and the top of the hierarchy. `###` is a level three header, and will show up nested below the `#` and `##` headers.
 
 If this seems confusing, take comfort in the fact that you are already used to using `#`s in a few ways in real life: it can mean "number" or "pound" or hashtags on social media.
+--->
 
 Learn more: http://rmarkdown.rstudio.com/
 

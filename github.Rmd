@@ -13,6 +13,8 @@ I like to turn off workbook mode.
 
 Create the github repo: 'r-and-excel'
 
+gh-pages branch!!! for the collaboratings. 
+
 
 ## Summary 
 
@@ -319,11 +321,28 @@ The repository will contain:
 * README.md
 * Rproj
 
-And, I typically create the following:
+Let's create the following:
 
-* folders for "data" and "figures"  
-* R scripts
-* etc.
+* folder called "data"
+* folder called "figures"  
+
+They both show up in your Finder! ...
+
+### Get data files into your working directory
+
+In Session 1, we introduced how and why R Projects are great for reproducibility, because our self-contained working directory will be the **first** place R looks for files. 
+
+You downloaded 7 files for this workshop, some comma separate value (CSV) files and some as Excel spreadsheets (.xlsx): 
+
+- fish_counts_curated.csv
+- invert_counts_curated.xlsx
+- kelp_counts_curated.xlsx
+- substrate_cover_curated.xlsx
+- lobster_counts.xlsx
+- ca_np.csv 
+- ci_np.xlsx
+
+Copy and paste those files into the 'data' subfolder of your R project. Notice that now these files are in your working directory when you go back to that Project in RStudio (check the 'Files' tab and navigate to the data subfolder). That means they're going to be in the first place R will look when you ask it to find a file to read in. 
 
 <!---
 To be organized, let's also create the following: 
@@ -407,13 +426,13 @@ Let's also explore commit history, file history.
 
 ### Activity
 
-This time let's edit an existing file instead of adding something new. Open your README file by clicking on it in the Files pane (lower right corner). Write a few lines of text, save, and see what happens in your Git Tab. Sync it to your remote repository (Github.com).
+Go back to RStudio. 
 
-Also, go to your Finder/Windows Explorer, and copy-paste something into your local GitHub repo. Then go back to RStudio and confirm that git tracked it. Remember, git will track anything within that folder (the way Dropbox does), it's not specific to RStudio!
+This time let's edit an existing file instead of adding something new. Open your README file by clicking on it in the Files pane (lower right corner). Write a few lines of text (like your dog's name), save, and see what happens in your Git Tab. Sync it to your remote repository at Github.com. 
 
 ## Create a new R Markdown file
 
-OK, now, let's go back to RStudio, and get ourselves back into learning R. We are going to use R Markdown so that you can write notes to yourself in Markdown, and have a record of all your R code. Writing R commands in the console like we did this morning is great, but limited; it's hard to keep track of and hard to efficiently share with others. Plus, as your analyses get more complicated, you need to be able to see them all in one place.
+Now get ourselves back into learning R. We are going to use R Markdown so that you can write notes to yourself in Markdown, and have a record of all your R code. Writing R commands in the console like we did this morning is great, but limited; it's hard to keep track of and hard to efficiently share with others. Plus, as your analyses get more complicated, you need to be able to see them all in one place.
 
 Go to File > New File > R Markdown ... (or click the green plus in the top left corner).
 
