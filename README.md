@@ -8,9 +8,9 @@ Come say hello:
 - Instructors: Julie Lowndes & Allison Horst
 - Teaching assistant: Jessica Couture
 
-In the workshop we'll use the sticky notes to indicate whether everything is OK (blue) or not (yellow).
+In the workshop we'll use the sticky notes to indicate whether everything is OK (blue) or not (pink).
 
-**If you've successfully installed everything listed in the course website setup instructions, please put a blue sticky note up on your laptop.** And put up yellow if you need help. 
+**If you've successfully installed everything listed in the course website setup instructions, please put a blue sticky note up on your laptop.** And put up a pink sticky note if you need help. 
 
 [Google Doc Link](https://drive.google.com/drive/folders/1uhjXW_FS25NemJ_wLjxceqyiiwwPmpz_?usp=sharing)
 
