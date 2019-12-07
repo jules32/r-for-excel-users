@@ -1,8 +1,5 @@
 # Welcome to the R for Excel Users Pilot Workshop!
 
-
-All the course materials are linked from the course website: [https://jules32.github.io/r-for-excel-users](https://jules32.github.io/r-for-excel-users)
-
 Come say hello: 
  
 - Instructors: Julie Lowndes & Allison Horst
@@ -24,3 +21,7 @@ Connect to [UCSB guest wifi](https://www.news.ucsb.edu/2019/019657/new-guest-wi-
 1. Download this [Google folder of data](https://drive.google.com/drive/u/0/folders/1uhjXW_FS25NemJ_wLjxceqyiiwwPmpz_)
 
 And put up a pink sticky note if you need help. 
+
+## Course materials
+
+All the course materials are available here: [https://jules32.github.io/r-for-excel-users](https://jules32.github.io/r-for-excel-users)
