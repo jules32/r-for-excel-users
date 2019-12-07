@@ -17,8 +17,14 @@ Connect to [UCSB guest wifi](https://www.news.ucsb.edu/2019/019657/new-guest-wi-
   - choose “Guest Registration” under the credential login
   - Once registered, you’ll receive an SMS or text message with a username and password, which will last for seven days.
 
-1. Download & install RStudio
-1. Download & install git: https://git-scm.com/downloads
+1. Download & install R: https://cloud.r-project.org
+1. Download & install RStudio: http://www.rstudio.com/download 
+1. Download & install Git: https://git-scm.com/downloads *Note: open the download and follow normal install procedures on your computer but you won't see any software installed when you're done*
 1. Download this [Google folder of data](https://drive.google.com/drive/u/0/folders/1uhjXW_FS25NemJ_wLjxceqyiiwwPmpz_)
+
+- R: https://cloud.r-project.org
+    - RStudio: http://www.rstudio.com/download 
+    - Git: https://git-scm.com/downloads *Note: open the download and follow normal install procedures on your computer but you won't see any software installed when you're done*
+1. Create a GitHub account: https://github.com *Note! Shorter names that kind of identify you are better, and use your work email!*
 
 And put up a pink sticky note if you need help. 
