@@ -9,7 +9,7 @@ In the workshop we'll use the sticky notes to indicate whether everything is OK 
 ## Please do the following, then put a blue sticky note up on your laptop.
 
 
-Connect to UCSB guest wifi: https://www.news.ucsb.edu/2019/019657/new-guest-wi-fi)
+Connect to UCSB guest wifi (https://www.news.ucsb.edu/2019/019657/new-guest-wi-fi):
   - Select “UCSB Wireless Web” from the network options
   - choose “Guest Registration” under the credential login
   - Once registered, you’ll receive an SMS or text message with a username and password, which will last for seven days.
