@@ -133,7 +133,7 @@
 
 \title{R for Excel Users}
 \author{Julie Lowndes \& Allison Horst}
-\date{2019-12-06}
+\date{2019-12-07}
 
 \begin{document}
 \maketitle
@@ -149,19 +149,17 @@ Hello! This is a workshop taught by Julie Stewart Lowndes and Allison Horst at t
 
 We are environmental scientists who use and teach R in our daily work. We both work at the University of California Santa Barbara: Julie is based at the National Center for Ecological Analysis and Synthesis as part of the Ocean Health Index team and leads Openscapes, and Allison is based at the Bren School of Environmental Science and Management as a lecturer of data science \& statistics --- and is also an Artist in Residence at RStudio.
 
-This is going to be fun, because learning R (and friends) is empowering!
-
 \hypertarget{agenda-pilot-workshop}{%
-\subsection{Agenda: pilot workshop}\label{agenda-pilot-workshop}}
+\section{Agenda: pilot workshop}\label{agenda-pilot-workshop}}
 
 \begin{longtable}[]{@{}lrr@{}}
 \toprule
 Time & Day 1 & Day 2\tabularnewline
 \midrule
 \endhead
-9-10:30 & \protect\hyperlink{overview}{Motivation}, \protect\hyperlink{rstudio}{R \& RStudio, Rmarkdown} & \protect\hyperlink{ggplot2}{Charts with \texttt{ggplot2}}\tabularnewline
+9-10:30 & \protect\hyperlink{overview}{Motivation}, \protect\hyperlink{rstudio}{R \& RStudio, RMarkdown} & \protect\hyperlink{ggplot2}{Charts with \texttt{ggplot2}}\tabularnewline
 break & &\tabularnewline
-11-12:30 & \protect\hyperlink{github}{GitHub} & \protect\hyperlink{dplyr-pivot-tables}{\texttt{dplyr} \& Pivot Tables}\tabularnewline
+11-12:30 & \protect\hyperlink{github}{Intro to GitHub} & \protect\hyperlink{dplyr-pivot-tables}{\texttt{dplyr} \& Pivot Tables}\tabularnewline
 lunch & &\tabularnewline
 13:00-14:30 & \protect\hyperlink{readxl}{Importing data: \texttt{readxl}} & \protect\hyperlink{dplyr-vlookups}{\texttt{dplyr} \& VLOOKUPs}\tabularnewline
 \bottomrule
@@ -212,7 +210,7 @@ Before the training, please make sure you have done the following:
 \hypertarget{welcome-1}{%
 \section{Welcome!}\label{welcome-1}}
 
-This workshop you will learn hands-on how to begin to interoperate between Excel and R. But this workshop is not only about learning R; we will learn R using additional software: RStudio and GitHub. These tools will help us develop good habits for working in a reproducible and collaborative way --- critical attributes of the modern analyst.
+In this workshop you will learn hands-on how to begin to interoperate between Excel and R. But this workshop is not only about learning R; we will learn R using additional software: RStudio and GitHub. These tools will help us develop good habits for working in a reproducible and collaborative way --- critical attributes of the modern analyst.
 
 It's going to be fun and empowering!
 
@@ -225,11 +223,13 @@ Excel is great for data entry. Can also be good for looking at data and feeling 
 
 Excel can also become problematic with extending to analyses. This is because there aren't firm lines between what is data and what is analyses. For example, in this sheet:
 
+\includegraphics[width=0.7\linewidth]{img/excel-sheet-example}
+
 This makes the analytical steps taken are not readily apparent, nor easy to reproduce. This also makes them pretty brittle/sensitive to minor changes. Have you ever done forensics on an Excel sheet, trying to understand what happened between columns or sheets? Maybe it was even your own Excel file from the (recent) past.
 
 Or, Has seeing this ever given you a feeling of horror:
 
-\includegraphics[width=0.7\linewidth]{img/want-to-save-changes-excel}
+\includegraphics[width=0.8\linewidth]{img/want-to-save-changes-excel}
 
 So while it is great how easily you can update different fields and add analytical steps in an Excel sheet, it can also be a bit hard to handle, particularly as projects get more complicated.
 
@@ -240,7 +240,8 @@ So, as automation, reproducibility, collaboration, and frequent reporting become
 
 This is going to be a fun workshop.
 
-\textbf{This workshop is not about wholesale replacing everything you do in Excel into R}. Instead, it is to give you hands-on experience and confidence with R, and how to interoperate between Excel and R. Incorporating R into your own workflows will be incremental, and a big part of this transition is the \textbf{\emph{mindset}} around data and your analytical workflow.
+This workshop will give you hands-on experience and confidence with R, and how to interoperate between Excel and R --- it is not about wholesale replacing everything you do in Excel into R.
+We will learn technical skills that you can incrementally incorporate into your existing workflows. But a big part of interfacing between Excel and R is not only skillsets, it is mindsets. It is the mindset about how we think about data. How we shape data and organize data and analyze data. And how what we do now can make our analytical life better in the future.
 
 \textbf{A modern R user has a workflow framed around collaboration}, and uses an ecosystem of tools and practices. We will be learning three main things all at the same time:
 
@@ -255,11 +256,9 @@ This is going to be a fun workshop.
   reporting and publishing (RMarkdown/GitHub)
 \end{enumerate}
 
-\textbf{An R user also keeps raw data separate from their analyses}, which means having data in one file and written computational commands saved as a separate file. We also think more and more about what we call ``Tidy data'', where the data has a rectangular shape and each column is a variable and each row is an observation. Tidy data is a way of life.
+\textbf{R users keep raw data separate from their analyses}, which means having data in one file and written computational commands saved as a separate file. We also embrace the concept of \textbf{``tidy data''}, where the data has a rectangular shape and each column is a variable and each row is an observation. Tidy data is a way of life.
 
 \includegraphics[width=0.7\linewidth]{img/tidy_img_np}
-
-There are technical skills we will develop today in this workshop to help us along this way. But a big part of interfacing between Excel and R is not only skillsets, it is mindsets. It is the mindset about how we think about data. How we shape data and organize data and analyze data. And how what we do now can make our analytical life better in the future.
 
 \textbf{We will teach R/RStudio/GitHub/tidyverse/RMarkdown all together} to reinforce skills and best practices, and get you comfortable with a workflow that you can have confidence using in your own work, and interface with Excel in your own analyses and with collaborators. You'll be working hands-on and doing the same things on your own computer as we do live on up on the screen.
 
@@ -295,6 +294,8 @@ R is not only a language, it is an active community of developers, users, and ed
   \href{https://blog.shotwell.ca/posts/r_for_excel_users/}{}
 \item
   \href{http://nssdeviations.com/episode-9-spreadsheet-drama}{Spreadsheet Drama (Episode 9)} --- Not So Standard Deviations with Roger Peng \& Hilary Parker
+\item
+  more to come!
 \end{itemize}
 
 \hypertarget{rstudio}{%
@@ -433,25 +434,30 @@ Like Excel, some of the biggest power in R is that there are built-in functions 
 
 R has a mind-blowing collection of built-in functions that are used with the same syntax: function name with parentheses around what the function needs to do what it is supposed to do. \texttt{function\_name(argument1\ =\ value1,\ argument2\ =\ value2,\ ...)}. When you see this syntax, we say we are ``calling the function''.
 
-So let's look into some of these functions. In Excel, there is a ``SUM'' function to calculate a total. Let's expect that there is the same in R. I will type this into the Console:
+Let's try using \texttt{seq()} which makes regular sequences of numbers and, while we're at it, demo more helpful features of RStudio.
+
+Type \texttt{se} and hit TAB. A pop up shows you possible completions. Specify \texttt{seq()} by typing more to disambiguate or using the up/down arrows to select. Notice the floating tool-tip-type help that pops up, reminding you of a function's arguments. If you want even more help, press F1 as directed to get the full documentation in the help tab of the lower right pane.
+
+Type the arguments \texttt{1,\ 10} and hit return.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{?sum}
+\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-A few important things to note:
+\begin{verbatim}
+##  [1]  1  2  3  4  5  6  7  8  9 10
+\end{verbatim}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  R is case-sensitive. So ``sum'' is a completely different thing to ``Sum'' or ``SUM''. And this is true for the names of functions, data sets, variable names, and data itself (``blue'' vs ``Blue'').
-\item
-  RStudio has an autocomplete feature that can help you find the function you're looking for. In many cases it pops up as you type, but you can always type the tab key (above your caps lock key) to prompt the autocomplete. And, bonus: this feature can help you with the case-sensitivity mentioned above: If I start typing ``?SU'' and press tab, it will show me all options starting with those two letters, regardless of capitalization (although it will start with the capital S options).
-\end{enumerate}
+We could probably infer that the \texttt{seq()} function makes a sequence, but let's learn for sure. Type (and you can autocomplete) and let's explore the help page:
 
-OK but what does typing \texttt{?sum} actually \emph{do}?
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?seq }
+\KeywordTok{help}\NormalTok{(seq) }\CommentTok{# same as ?seq}
+\end{Highlighting}
+\end{Shaded}
 
 When I press enter/return, it will open up a help page in the bottom right pane. Help pages vary in detail I find some easier to digest than others. But they all have the same structure, which is helpful to know. The help page tells the name of the package in the top left, and broken down into sections:
 
@@ -477,21 +483,49 @@ When I look at a help page, I start with the description, which might be too in-
 
 I next look at the usage and arguments, which give me a more concrete view into what the function does. This syntax looks a bit cryptic but what it means is that you use it by writing sum, and then passing whatever you want to it in terms of data: that is what the ``\ldots{}'' means. And the ``na.rm=FALSE'' means that by default, it will not remove NAs (I read this as: ``remove NAs? FALSE!'')
 
-Then, I usually scroll down to the bottom to the examples. This is where I can actually see how the function is used, and I can also paste those examples into the Console to see their output. Best way to learn what the function actually does is seeing it in action. Let's try:
+Then, I usually scroll down to the bottom to the examples. This is where I can actually see how the function is used, and I can also paste those examples into the Console to see their output. Let's try it:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{)}
+\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from =} \DecValTok{1}\NormalTok{, }\DataTypeTok{to =} \DecValTok{10}\NormalTok{) }\CommentTok{# same as seq(1, 10); R assumes by position}
 \end{Highlighting}
 \end{Shaded}
 
-So this is calculating the sum of the numbers from 1 and 5; that is what that \texttt{1:5} syntax means in this case. We can check it with the next example:
+\begin{verbatim}
+##  [1]  1  2  3  4  5  6  7  8  9 10
+\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from =} \DecValTok{1}\NormalTok{, }\DataTypeTok{to =} \DecValTok{10}\NormalTok{, }\DataTypeTok{by =} \DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## [1] 1 3 5 7 9
+\end{verbatim}
+
+The above also demonstrates something about how R resolves function arguments. You can always specify in \texttt{name\ =\ value} form. But if you do not, R attempts to resolve by position. So above, it is assumed that we want a sequence \texttt{from\ =\ 1} that goes \texttt{to\ =\ 10}. Since we didn't specify step size, the default value of \texttt{by} in the function definition is used, which ends up being 1 in this case. For functions I call often, I might use this resolve by position for the first
+argument or maybe the first two. After that, I always use \texttt{name\ =\ value}.
+
+The examples from the help pages can be copy-pasted into the console for you to understand what's going on. Remember we were talking about expecting there to be a function for something you want to do? Let's try it.
+
+\hypertarget{activity}{%
+\subsection{Activity}\label{activity}}
+
+\begin{quote}
+Exercise: Talk to your neighbor(s) and look up the help file for a function that you know or expect to exist. Here are some ideas: \texttt{?getwd()}, \texttt{?plot()}, \texttt{min()}, \texttt{max()}, \texttt{?mean()}, \texttt{?log()}).
+\end{quote}
+
+Let's try another. In Excel, there is a ``SUM'' function to calculate a total. Let's expect that there is the same in R. I will type this into the Console:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+R is case-sensitive. So ``sum'' is a completely different thing to ``Sum'' or ``SUM''. And this is true for the names of functions, data sets, variable names, and data itself (``blue'' vs ``Blue'').
 
 Awesome. Let's try this on our \texttt{cars} data
 
@@ -522,7 +556,7 @@ Not all functions have (or require) arguments:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Fri Dec  6 13:32:20 2019"
+## [1] "Sat Dec  7 05:35:09 2019"
 \end{verbatim}
 
 \hypertarget{packages}{%
@@ -561,7 +595,7 @@ Now that we've loaded the \texttt{praise} package, we can use the single functio
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "You are transcendent!"
+## [1] "You are prime!"
 \end{verbatim}
 
 \hypertarget{assigning-objects-with--}{%
@@ -686,19 +720,12 @@ We will keep coming back to this theme but let's restart our R session together:
 
 Don't save the workspace!
 
-OK so now that we've got a little bit of a feel for R and RStudio, let's do something much more interesting and really start feeling its power.
+So this is great, but if we were going to do any kind of real analysis, we need to be able to write it in a document rather than this command line prompt in the Console. Let's do something much more interesting and really start feeling its power.
 
 \hypertarget{intro-to-rmarkdown}{%
 \section{Intro to RMarkdown}\label{intro-to-rmarkdown}}
 
-\hypertarget{what-is-rmarkdown-1-minute-video}{%
-\subsection{What is RMarkdown? (1-minute video)}\label{what-is-rmarkdown-1-minute-video}}
-
-Let's watch this to demonstrate all the amazing things you can now do:
-
-\href{https://vimeo.com/178485416}{What is RMarkdown?}
-
-An RMarkdown file will allow us to weave markdown text with chunks of R code to be evaluated and output content like tables and plots.
+An RMarkdown file is a special type of file for making reports --- it allow us to weave markdown text with chunks of R code to be evaluated and output content like tables and plots.
 
 This is really critical to reproducibility, and it also saves time. This document will recreate your figures for you in the same document where you are writing text. So no more doing analysis, saving a plot, pasting that plot into Word, redoing the analysis, re-saving, re-pasting, etc.
 
@@ -747,21 +774,6 @@ Let's have a look at them side-by-side:
 \includegraphics[width=0.8\linewidth]{img/rmarkdown_side_by_side}
 
 Let's take a deeper look at these two files. So much of learning to code is looking for patterns.
-
-\hypertarget{activity-5-mins}{%
-\subsection{Activity (5 mins)}\label{activity-5-mins}}
-
-Look at these two files while talking with your neighbor: What do you notice between the two files? Start off with these observations:
-
-\begin{itemize}
-\tightlist
-\item
-  Markdown text (white sections): The two hashtags \texttt{\#\#} cause the following text to be displayed as a header: the text is larger and in bold
-\item
-  R code (grey sections): The \texttt{summary()} function outputs summary statistics and the \texttt{plot()} function creates a plot!
-\end{itemize}
-
-And now let's talk about this.
 
 \hypertarget{r-code-chunks}{%
 \subsection{R code chunks}\label{r-code-chunks}}
@@ -824,8 +836,8 @@ Cool tip: doesn't have to be only R, other languages supported.
 \subsection{Activity (3 min)}\label{activity-3-min}}
 
 \begin{quote}
-Add a few more commands to your file from this morning. Execute your commands by trying the three ways above. Then, knit your R Markdown file, which will also save the Rmd by default.
-Remember to write your R code within a code chunk (grey)!
+Calculate the maximum cars distance in your RMarkdown file by typing \texttt{max(cars\$dist)}. Remember to write your R code within a code chunk (grey)!\\
+Execute your commands by trying the three ways above. Then, knit your R Markdown file, which will also save the Rmd by default.
 \end{quote}
 
 \hypertarget{markdown-sections}{%
@@ -847,8 +859,8 @@ There are some good \href{https://github.com/adam-p/markdown-here/wiki/Markdown-
 
 Learn more: \url{http://rmarkdown.rstudio.com/}
 
-\hypertarget{activity}{%
-\subsection{Activity}\label{activity}}
+\hypertarget{activity-1}{%
+\subsection{Activity}\label{activity-1}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -866,6 +878,13 @@ Learn more: \url{http://rmarkdown.rstudio.com/}
 To end our work from this session, save, knit, and then restart R (Go to the top menus: Session \textgreater{} Restart R.)
 
 Notice that now with a clean workspace, if I knit my document instead of sending code to the Console, my objects (like \texttt{mean\_dist}) don't show up in my Environment. This is because R isn't actually running this in this R session, it is actually spinning up a clean session to knit my document. This is important for reproducible analyses because I don't want the success of this analysis to be dependent on some weird setting I have on my computer that will make Future Me or Future Us not able to run or understand these important analyses. Having RMarkdown be self-contained in this way helps you develop good habits for reproducibility.
+
+\hypertarget{what-is-rmarkdown-1-minute-video}{%
+\subsection{What is RMarkdown? (1-minute video)}\label{what-is-rmarkdown-1-minute-video}}
+
+Let's watch this to demonstrate all the amazing things you can now do:
+
+\href{https://vimeo.com/178485416}{What is RMarkdown?}
 
 \hypertarget{deep-thoughts}{%
 \section{Deep thoughts}\label{deep-thoughts}}
@@ -929,7 +948,7 @@ These materials borrow from:
   Ben Best's \href{http://remi-daigle.github.io/2016-04-15-UCSB/git/}{Software Carpentry at UCSB}
 \end{itemize}
 
-Today, we'll only introduce the features and terminology that scientists need to learn to begin managing their projects.
+Today, we'll only introduce the features and terminology that new R users need to learn to begin managing their projects.
 
 \hypertarget{why-should-r-users-use-github}{%
 \section{Why should R users use Github?}\label{why-should-r-users-use-github}}
@@ -960,13 +979,9 @@ Today, we'll only introduce the features and terminology that scientists need to
   \textbf{Github} is a website for storing your git versioned files remotely. It has many nice features to be able visualize differences between \href{https://help.github.com/articles/rendering-and-diffing-images/}{images}, \href{https://help.github.com/articles/mapping-geojson-files-on-github/}{rendering} \& \href{https://github.com/blog/1772-diffable-more-customizable-maps}{diffing} map data files, \href{https://help.github.com/articles/rendering-csv-and-tsv-data/}{render text data files}, and \href{https://help.github.com/articles/rendering-differences-in-prose-documents/}{track changes in text}.
 \end{itemize}
 
-\begin{quote}
-If you are a student you can get the micro account which includes 5 private repositories for free (normally a \$7/month value). You can sign up for the student account \href{https://education.github.com/pack}{here}. Instructors can also request a free organization \href{https://education.github.com/}{account, ``Request a discount''}.
-\end{quote}
+Github was developed for social coding (i.e., sort of like an open source Wikipedia for programmers). Consequently, much of the functionality and terminology of Github (e.g., branches and pull requests) isn't necessary for a new R user getting started.
 
-Github was developed for social coding (i.e., sort of like an open source Wikipedia for programmers). Consequently, much of the functionality and terminology of Github (e.g., branches and pull requests) isn't necessary for a scientist getting started.
-
-These concepts are more important for coders who want the entire coding community (and not just people working on the same project) to be able to suggest changes to their code. This isn't how most scientists will use Github.
+These concepts are more important for coders who want the entire coding community (and not just people working on the same project) to be able to suggest changes to their code. This isn't how most new R users will use Github.
 
 To get the full functionality of Github, you will eventually want to learn other concepts. But, this can wait.
 
@@ -1002,10 +1017,9 @@ We're going to switch gears from R for a moment and set up Git and GitHub, which
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
-  Create \textbf{Github} account at \url{http://github.com}, if you don't already have one. For username, I recommend all lower-case letters, short as you can. I recommend using your \emph{.edu email}, since you can request free private repositories via \href{https://education.github.com/}{GitHub Education} discount.
-\item
-  You will use the \texttt{usethis} package to configure \textbf{git} with global commands, which means it will apply `globally' to all files on your computer, rather than to a specific folder.
+  We will use the \texttt{usethis} package to configure \textbf{git} with global commands, which means it will apply `globally' to all files on your computer, rather than to a specific folder.
 \end{enumerate}
 
 \begin{Shaded}
@@ -1013,7 +1027,7 @@ We're going to switch gears from R for a moment and set up Git and GitHub, which
 \KeywordTok{install.packages}\NormalTok{(}\StringTok{"usethis"}\NormalTok{)}
 \KeywordTok{library}\NormalTok{(usethis)}
 
-\KeywordTok{use_git_config}\NormalTok{(}\DataTypeTok{user.name =} \StringTok{"Melsteroni"}\NormalTok{, }\DataTypeTok{user.email =} \StringTok{"Melsteroni@example.org"}\NormalTok{)}
+\KeywordTok{use_git_config}\NormalTok{(}\DataTypeTok{user.name =} \StringTok{"jules32"}\NormalTok{, }\DataTypeTok{user.email =} \StringTok{"jules32@example.org"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1230,7 +1244,7 @@ They both show up in your Finder! \ldots{}
 
 In Session 1, we introduced how and why R Projects are great for reproducibility, because our self-contained working directory will be the \textbf{first} place R looks for files.
 
-You downloaded 7 files for this workshop, some comma separate value (CSV) files and some as Excel spreadsheets (.xlsx):
+You downloaded several files for this workshop, some comma separate value (CSV) files and some as Excel spreadsheets (.xlsx):
 
 \begin{itemize}
 \tightlist
@@ -1243,7 +1257,9 @@ You downloaded 7 files for this workshop, some comma separate value (CSV) files 
 \item
   substrate\_cover\_curated.xlsx
 \item
-  lobster\_counts.xlsx
+  lobsters.xlsx
+\item
+  lobsters2.xlsx
 \item
   ca\_np.csv
 \item
@@ -1308,8 +1324,8 @@ The files you added should be on github.com:
 
 Let's also explore commit history, file history.
 
-\hypertarget{activity-1}{%
-\subsection{Activity}\label{activity-1}}
+\hypertarget{activity-2}{%
+\subsection{Activity}\label{activity-2}}
 
 Go back to RStudio.
 
@@ -2028,7 +2044,7 @@ Let's do that to create a line graph of visitors to Channel Islands National Par
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-58-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-62-1.pdf}
 
 Or, we could change that to a scatterplot just by updating the \texttt{geom\_*}:
 
@@ -2039,7 +2055,7 @@ Or, we could change that to a scatterplot just by updating the \texttt{geom\_*}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-59-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-63-1.pdf}
 
 We could even do that for a column graph:
 
@@ -2050,7 +2066,7 @@ We could even do that for a column graph:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-60-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-64-1.pdf}
 
 Or an area plot\ldots{}
 
@@ -2061,7 +2077,7 @@ Or an area plot\ldots{}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-61-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-65-1.pdf}
 
 We can see that updating to different \texttt{geom\_*} types is quick, so long as the types of graphs we're switching between are compatible.
 
@@ -2106,7 +2122,7 @@ Building on our first line graph, let's update the line color to ``purple'' and 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-62-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-66-1.pdf}
 
 How do we know which color names ggplot will recognize? If you google ``R colors ggplot2'' you'll find a lot of good resources. Here's one: \href{http://sape.inf.usi.ch/quick-reference/ggplot2/colour}{SAPE ggplot2 colors quick reference guide}
 
@@ -2122,7 +2138,7 @@ Now let's update the point, style and size of points on our previous scatterplot
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-63-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-67-1.pdf}
 
 \hypertarget{activity-customize-your-own-ggplot-graph}{%
 \subsubsection{Activity: customize your own ggplot graph}\label{activity-customize-your-own-ggplot-graph}}
@@ -2155,7 +2171,7 @@ Also: this is overmapped and unnecessary. Avoid excessive / overcomplicated aest
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-64-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-68-1.pdf}
 
 In the example above, notice that the two arguments that \textbf{do} depend on variables are within \texttt{aes()}, but since \texttt{alpha\ =\ 0.5} doesn't depend on a variable then it is \emph{outside the \texttt{aes()} but still within the \texttt{geom\_point()} layer}.
 
@@ -2171,7 +2187,7 @@ Create a column plot of Channel Islands National Park visitation over time, wher
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-65-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-69-1.pdf}
 
 \textbf{Sync your project with your GitHub repo.}
 
@@ -2206,7 +2222,7 @@ Here, let's update our previous graph with \texttt{theme\_minimal()}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-66-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-70-1.pdf}
 
 \hypertarget{updating-axis-labels-and-titles}{%
 \subsection{Updating axis labels and titles}\label{updating-axis-labels-and-titles}}
@@ -2227,7 +2243,7 @@ Use \texttt{labs()} to update axis labels, and add a title and/or subtitle to yo
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-67-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-71-1.pdf}
 
 \textbf{Note}: If you want to update the formatting of axis values (for example, to convert to comma format instead of scientific format above), you can use the \texttt{scales} package options (see more from the \href{http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/}{R Cookbook}).
 
@@ -2247,7 +2263,7 @@ For example, adding points to a line graph:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-68-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-72-1.pdf}
 
 Or, combine a column and line graph (not sure why you'd want to do this, but you can):
 
@@ -2260,7 +2276,7 @@ Or, combine a column and line graph (not sure why you'd want to do this, but you
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-69-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-73-1.pdf}
 
 \hypertarget{multi-series-ggplot-graphs}{%
 \subsection{Multi-series ggplot graphs}\label{multi-series-ggplot-graphs}}
@@ -2276,7 +2292,7 @@ To do that, we need to add an aesthetic that lets \texttt{ggplot} know how thing
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-70-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-74-1.pdf}
 
 Well that's definitely a mess, and it's because ggplot has no idea that these \textbf{should be different series based on the different parks that appear in the `park\_name' column}.
 
@@ -2289,7 +2305,7 @@ We can make sure R does know by updating an aesthetic based on \emph{park\_name}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-71-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-75-1.pdf}
 
 \textbf{Note}: You could also add that aesthetic (\texttt{color\ =\ park\_name}) in the \texttt{geom\_line()} layer, instead of in the topmost \texttt{ggplot()} layer.
 
@@ -2310,7 +2326,7 @@ Also notice that any general theme changes made will be applied to \emph{all} of
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-72-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-76-1.pdf}
 
 \hypertarget{exporting-a-ggplot-graph-with-ggsave}{%
 \subsection{\texorpdfstring{Exporting a ggplot graph with \texttt{ggsave()}}{Exporting a ggplot graph with ggsave()}}\label{exporting-a-ggplot-graph-with-ggsave}}
@@ -2359,7 +2375,7 @@ For the record: this is not a good option for showing the visitation data becaus
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-75-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-79-1.pdf}
 
 \textbf{Sync your project with your GitHub repo.}
 
@@ -2426,7 +2442,7 @@ In the setup chunk, let's attach our libraries and read in our lobster data. In 
 \KeywordTok{library}\NormalTok{(skimr) }\CommentTok{# install.packages('skimr')}
 
 \CommentTok{## read in data}
-\NormalTok{lobsters <-}\StringTok{ }\KeywordTok{read_xlsx}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data/lobsters_curated.xlsx"}\NormalTok{))}
+\NormalTok{lobsters <-}\StringTok{ }\KeywordTok{read_xlsx}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data/lobsters.xlsx"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2983,8 +2999,8 @@ So we can make the equivalent of Excel's pivot table in R with \texttt{group\_by
 ## # ... with 15 more rows
 \end{verbatim}
 
-\hypertarget{activity-2}{%
-\subsection{Activity}\label{activity-2}}
+\hypertarget{activity-3}{%
+\subsection{Activity}\label{activity-3}}
 
 Calculate the median \texttt{size\_mm} (Hint: ?median) and create a
 
@@ -3030,7 +3046,7 @@ But, since we did it in R, we are much safer. We can go back to the top of our R
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{## read in data}
-\NormalTok{lobsters <-}\StringTok{ }\KeywordTok{read_xlsx}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data/lobsters2_curated.xlsx"}\NormalTok{))}
+\NormalTok{lobsters <-}\StringTok{ }\KeywordTok{read_xlsx}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data/lobsters2.xlsx"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3075,7 +3091,7 @@ And now we can see that our plot updated as well:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-93-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-97-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3086,7 +3102,7 @@ And now we can see that our plot updated as well:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-93-2.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-97-2.pdf}
 
 \hypertarget{dplyrcount}{%
 \subsection{\texorpdfstring{\texttt{dplyr::count()}}{dplyr::count()}}\label{dplyrcount}}
@@ -4080,8 +4096,8 @@ You could also do this using the pipe operator \texttt{\%\textgreater{}\%}:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{activity-3}{%
-\subsubsection{Activity}\label{activity-3}}
+\hypertarget{activity-4}{%
+\subsubsection{Activity}\label{activity-4}}
 
 \textbf{Task}: Create a subset from the \textbf{fish\_counts} data frame, stored as object \textbf{fish\_abur}, that only contains observations from Arroyo Burro (site `abur').
 
@@ -4577,8 +4593,8 @@ That might look like this:
 ## 3 7     abur  california spiny lobster  2018           16         3532
 \end{verbatim}
 
-\hypertarget{activity-4}{%
-\paragraph{Activity}\label{activity-4}}
+\hypertarget{activity-5}{%
+\paragraph{Activity}\label{activity-5}}
 
 Now let's combine what we've learned about piping, filtering and joining!
 

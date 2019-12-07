@@ -2,7 +2,7 @@
 
 ## Welcome! 
 
-This workshop you will learn hands-on how to begin to interoperate between Excel and R. But this workshop is not only about learning R; we will learn R using additional software: RStudio and GitHub. These tools will help us develop good habits for working in a reproducible and collaborative way — critical attributes of the modern analyst. 
+In this workshop you will learn hands-on how to begin to interoperate between Excel and R. But this workshop is not only about learning R; we will learn R using additional software: RStudio and GitHub. These tools will help us develop good habits for working in a reproducible and collaborative way — critical attributes of the modern analyst. 
 
 It's going to be fun and empowering! 
 
@@ -14,9 +14,12 @@ Excel is great for data entry. Can also be good for looking at data and feeling 
 
 Excel can also become problematic with extending to analyses. This is because there aren't firm lines between what is data and what is analyses. For example, in this sheet:
 
-<!---
-TODO: screenshot
---->
+```{r, echo=FALSE, out.width="70%"}
+knitr::include_graphics("img/excel-sheet-example.png")  
+#https://www.smartsheet.com/how-to-make-spreadsheets
+```
+
+<br>
 
 This makes the analytical steps taken are not readily apparent, nor easy to reproduce. This also makes them pretty brittle/sensitive to minor changes. Have you ever done forensics on an Excel sheet, trying to understand what happened between columns or sheets? Maybe it was even your own Excel file from the (recent) past. 
 
@@ -27,9 +30,11 @@ Mine: genetics example doesn't hit home as much as Durham bike  accidents where 
 
 Or, Has seeing this ever given you a feeling of horror: 
 
-```{r, echo=FALSE, out.width="70%"}
+```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("img/want-to-save-changes-excel.png")  
 ```
+
+<br>
 
 So while it is great how easily you can update different fields and add analytical steps in an Excel sheet, it can also be a bit hard to handle, particularly as projects get more complicated. 
 
@@ -45,7 +50,8 @@ Excel blends data and analysis into the same place. But as we use R we will talk
 
 This is going to be a fun workshop. 
 
-**This workshop is not about wholesale replacing everything you do in Excel into R**. Instead, it is to give you hands-on experience and confidence with R, and how to interoperate between Excel and R. Incorporating R into your own workflows will be incremental, and a big part of this transition is the ***mindset*** around data and your analytical workflow.
+This workshop will give you hands-on experience and confidence with R, and how to interoperate between Excel and R — it is not about wholesale replacing everything you do in Excel into R. 
+We will learn technical skills that you can incrementally incorporate into your existing workflows. But a big part of interfacing between Excel and R is not only skillsets, it is mindsets. It is the mindset about how we think about data. How we shape data and organize data and analyze data. And how what we do now can make our analytical life better in the future.
 
 **A modern R user has a workflow framed around collaboration**, and uses an ecosystem of tools and practices. We will be learning three main things all at the same time: 
 
@@ -53,15 +59,13 @@ This is going to be a fun workshop.
 2. collaborative bookkeeping (Git/GitHub)
 3. reporting and publishing (RMarkdown/GitHub) 
 
-**An R user also keeps raw data separate from their analyses**, which means having data in one file and written computational commands saved as a separate file. We also think more and more about what we call "Tidy data", where the data has a rectangular shape and each column is a variable and each row is an observation. Tidy data is a way of life.
+**R users keep raw data separate from their analyses**, which means having data in one file and written computational commands saved as a separate file. We also embrace the concept of **"tidy data"**, where the data has a rectangular shape and each column is a variable and each row is an observation. Tidy data is a way of life.
 
 ```{r, echo=FALSE, out.width="70%"}
 knitr::include_graphics("img/tidy_img_np.png")  
 ```
 
 <br>
-
-There are technical skills we will develop today in this workshop to help us along this way. But a big part of interfacing between Excel and R is not only skillsets, it is mindsets. It is the mindset about how we think about data. How we shape data and organize data and analyze data. And how what we do now can make our analytical life better in the future.
 
 **We will teach R/RStudio/GitHub/tidyverse/RMarkdown all together** to reinforce skills and best practices, and get you comfortable with a workflow that you can have confidence using in your own work, and interface with Excel in your own analyses and with collaborators. You'll be working hands-on and doing the same things on your own computer as we do live on up on the screen. 
 
@@ -96,10 +100,6 @@ You came here to learn R, but we are going to learn R together with RStudio.
 **Learn from data that are not your own** — We aren't using your data in this workshop, but you will see similiarities and patterns, and you'll see that these tools and practices apply to your work.
 
 **Think ahead for Future You, Future Us.** Help make lives easier — first and foremost your own. Create breadcrumbs for yourselves and others: document and share your work. 
-
-
-
-
 
 <!---
 
@@ -165,4 +165,5 @@ R is not only a language, it is an active community of developers, users, and ed
 - [Where do Things Live in R?](http://rex-analytics.com/things-live-r-r-excel-users/) REX Analytics
 - [](https://blog.shotwell.ca/posts/r_for_excel_users/)
 - [Spreadsheet Drama (Episode 9)](http://nssdeviations.com/episode-9-spreadsheet-drama) — Not So Standard Deviations with Roger Peng & Hilary Parker
+- more to come!
 

@@ -46,7 +46,7 @@ library(here)
 library(skimr) # install.packages('skimr')
 
 ## read in data
-lobsters <- read_xlsx(here("data/lobsters_curated.xlsx"))
+lobsters <- read_xlsx(here("data/lobsters.xlsx"))
 ```
 
 ```{r, include = FALSE}
@@ -336,7 +336,7 @@ But, since we did it in R, we are much safer. We can go back to the top of our R
 
 ```{r, eval=FALSE}
 ## read in data
-lobsters <- read_xlsx(here("data/lobsters2_curated.xlsx"))
+lobsters <- read_xlsx(here("data/lobsters2.xlsx"))
 ```
 
 ```{r, include = FALSE}

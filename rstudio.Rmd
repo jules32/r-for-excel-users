@@ -104,19 +104,21 @@ Like Excel, some of the biggest power in R is that there are built-in functions 
 
 R has a mind-blowing collection of built-in functions that are used with the same syntax: function name with parentheses around what the function needs to do what it is supposed to do. `function_name(argument1 = value1, argument2 = value2, ...)`. When you see this syntax, we say we are "calling the function".
 
-So let's look into some of these functions. In Excel, there is a "SUM" function to calculate a total. Let's expect that there is the same in R. I will type this into the Console: 
+Let's try using `seq()` which makes regular sequences of numbers and, while we're at it, demo more helpful features of RStudio.
 
-```{r sum-help, eval=FALSE}
-?sum
+Type `se` and hit TAB. A pop up shows you possible completions. Specify `seq()` by typing more to disambiguate or using the up/down arrows to select. Notice the floating tool-tip-type help that pops up, reminding you of a function's arguments. If you want even more help, press F1 as directed to get the full documentation in the help tab of the lower right pane. 
+
+Type the arguments `1, 10` and hit return. 
+```{r}
+seq(1, 10)
 ```
 
-A few important things to note: 
+We could probably infer that the `seq()` function makes a sequence, but let's learn for sure. Type (and you can autocomplete) and let's explore the help page:
 
-1. R is case-sensitive. So "sum" is a completely different thing to "Sum" or "SUM". And this is true for the names of functions, data sets, variable names, and data itself ("blue" vs "Blue"). 
-
-1. RStudio has an autocomplete feature that can help you find the function you're looking for. In many cases it pops up as you type, but you can always type the tab key (above your caps lock key) to prompt the autocomplete. And, bonus: this feature can help you with the case-sensitivity mentioned above: If I start typing "?SU" and press tab, it will show me all options starting with those two letters, regardless of capitalization (although it will start with the capital S options). 
-
-OK but what does typing `?sum` actually *do*?
+```{r, eval=F}
+?seq 
+help(seq) # same as ?seq
+```
 
 When I press enter/return, it will open up a help page in the bottom right pane. Help pages vary in detail I find some easier to digest than others. But they all have the same structure, which is helpful to know. The help page tells the name of the package in the top left, and broken down into sections:
 
@@ -132,17 +134,30 @@ When I look at a help page, I start with the description, which might be too in-
 
 I next look at the usage and arguments, which give me a more concrete view into what the function does. This syntax looks a bit cryptic but what it means is that you use it by writing sum, and then passing whatever you want to it in terms of data: that is what the "..." means. And the "na.rm=FALSE" means that by default, it will not remove NAs (I read this as: "remove NAs? FALSE!")
 
-Then, I usually scroll down to the bottom to the examples. This is where I can actually see how the function is used, and I can also paste those examples into the Console to see their output. Best way to learn what the function actually does is seeing it in action. Let's try: 
+Then, I usually scroll down to the bottom to the examples. This is where I can actually see how the function is used, and I can also paste those examples into the Console to see their output. Let's try it:
 
-```{r sum, eval=FALSE}
-sum(1:5)
+```{r}
+seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position
+seq(from = 1, to = 10, by = 2)
 ```
 
-So this is calculating the sum of the numbers from 1 and 5; that is what that `1:5` syntax means in this case. We can check it with the next example: 
+The above also demonstrates something about how R resolves function arguments. You can always specify in `name = value` form. But if you do not, R attempts to resolve by position. So above, it is assumed that we want a sequence `from = 1` that goes `to = 10`. Since we didn't specify step size, the default value of `by` in the function definition is used, which ends up being 1 in this case. For functions I call often, I might use this resolve by position for the first
+argument or maybe the first two. After that, I always use `name = value`.
+
+The examples from the help pages can be copy-pasted into the console for you to understand what's going on. Remember we were talking about expecting there to be a function for something you want to do? Let's try it. 
+
+### Activity
+
+> Exercise: Talk to your neighbor(s) and look up the help file for a function that you know or expect to exist. Here are some ideas: `?getwd()`, `?plot()`,  `min()`, `max()`, `?mean()`, `?log()`).
+
+
+Let's try  another. In Excel, there is a "SUM" function to calculate a total. Let's expect that there is the same in R. I will type this into the Console: 
 
 ```{r sum2, eval=FALSE}
-sum(1, 2, 3, 4, 5)
+sum(1, 2, 3)
 ```
+
+R is case-sensitive. So "sum" is a completely different thing to "Sum" or "SUM". And this is true for the names of functions, data sets, variable names, and data itself ("blue" vs "Blue"). 
 
 Awesome. Let's try this on our `cars` data
 
@@ -266,17 +281,11 @@ We will keep coming back to this theme but let's restart our R session together:
 
 Don't save the workspace!
 
-OK so now that we've got a little bit of a feel for R and RStudio, let's do something much more interesting and really start feeling its power. 
+So this is great, but if we were going to do any kind of real analysis, we need to be able to write it in a document rather than this command line prompt in the Console. Let's do something much more interesting and really start feeling its power. 
 
 ## Intro to RMarkdown
 
-### What is RMarkdown? (1-minute video)
-
-Let's watch this to demonstrate all the amazing things you can now do: 
-
-[What is RMarkdown?](https://vimeo.com/178485416)
-
-An RMarkdown file will allow us to weave markdown text with chunks of R code to be evaluated and output content like tables and plots. 
+An RMarkdown file is a special type of file for making reports — it allow us to weave markdown text with chunks of R code to be evaluated and output content like tables and plots. 
 
 This is really critical to reproducibility, and it also saves time. This document will recreate your figures for you in the same document where you are writing text. So no more doing analysis, saving a plot, pasting that plot into Word, redoing the analysis, re-saving, re-pasting, etc. 
 
@@ -322,15 +331,6 @@ knitr::include_graphics("img/rmarkdown_side_by_side.png")
 
 Let's take a deeper look at these two files. So much of learning to code is looking for patterns.
 
-### Activity (5 mins)
-
-Look at these two files while talking with your neighbor: What do you notice between the two files? Start off with these observations:
-
-- Markdown text (white sections): The two hashtags `##` cause the following text to be displayed as a header: the text is larger and in bold 
-- R code (grey sections): The `summary()` function outputs summary statistics and the `plot()` function creates a plot!
-
-And now let's talk about this. 
-
 ### R code chunks
 
 Notice how the grey **R code chunks** are surrounded by 3 backticks and `{r LABEL}`. These are evaluated and return the output text in the case of `summary(cars)` and the output plot in the case of `plot(pressure)`.
@@ -366,8 +366,8 @@ Cool tip: doesn't have to be only R, other languages supported.
 
 ### Activity (3 min)
 
-> Add a few more commands to your file from this morning. Execute your commands by trying the three ways above. Then, knit your R Markdown file, which will also save the Rmd by default. 
-Remember to write your R code within a code chunk (grey)! 
+> Calculate the maximum cars distance in your RMarkdown file by typing `max(cars$dist)`. Remember to write your R code within a code chunk (grey)!  
+> Execute your commands by trying the three ways above. Then, knit your R Markdown file, which will also save the Rmd by default. 
 
 ### Markdown sections
 
@@ -405,6 +405,13 @@ Learn more: http://rmarkdown.rstudio.com/
 To end our work from this session, save, knit, and then restart R (Go to the top menus: Session > Restart R.) 
 
 Notice that now with a clean workspace, if I knit my document instead of sending code to the Console, my objects (like `mean_dist`) don't show up in my Environment. This is because R isn't actually running this in this R session, it is actually spinning up a clean session to knit my document. This is important for reproducible analyses because I don't want the success of this analysis to be dependent on some weird setting I have on my computer that will make Future Me or Future Us not able to run or understand these important analyses. Having RMarkdown be self-contained in this way helps you develop good habits for reproducibility.
+
+### What is RMarkdown? (1-minute video)
+
+Let's watch this to demonstrate all the amazing things you can now do: 
+
+[What is RMarkdown?](https://vimeo.com/178485416)
+
 
 <!---
 ### Activity
