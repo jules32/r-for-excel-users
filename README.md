@@ -9,7 +9,8 @@ Come say hello:
 
 In the workshop we'll use the sticky notes to indicate whether everything is OK (blue) or not (pink).
 
-**Please do the following, then put a blue sticky note up on your laptop.** And put up a pink sticky note if you need help. 
+## Please do the following, then put a blue sticky note up on your laptop.
+And put up a pink sticky note if you need help. 
 
 Connect to [UCSB guest wifi](https://www.news.ucsb.edu/2019/019657/new-guest-wi-fi): 
   - Select “UCSB Wireless Web” from the network options
