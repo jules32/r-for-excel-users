@@ -10,7 +10,7 @@ Come say hello:
 In the workshop we'll use the sticky notes to indicate whether everything is OK (blue) or not (pink).
 
 ## Please do the following, then put a blue sticky note up on your laptop.
-And put up a pink sticky note if you need help. 
+
 
 Connect to [UCSB guest wifi](https://www.news.ucsb.edu/2019/019657/new-guest-wi-fi): 
   - Select “UCSB Wireless Web” from the network options
@@ -21,6 +21,4 @@ Connect to [UCSB guest wifi](https://www.news.ucsb.edu/2019/019657/new-guest-wi-
 1. Download & install git: https://git-scm.com/downloads
 1. Download this [Google folder of data](https://drive.google.com/drive/u/0/folders/1uhjXW_FS25NemJ_wLjxceqyiiwwPmpz_)
 
-[Google Doc Link](https://drive.google.com/drive/folders/1uhjXW_FS25NemJ_wLjxceqyiiwwPmpz_?usp=sharing)
-
-Toilets:
+And put up a pink sticky note if you need help. 
