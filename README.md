@@ -12,6 +12,8 @@ In the workshop we'll use the sticky notes to indicate whether everything is OK 
 
 **If you've successfully installed everything listed in the course website setup instructions, please put a blue sticky note up on your laptop.** And put up a pink sticky note if you need help. 
 
+Please download this [Google folder of data](https://drive.google.com/drive/u/0/folders/1uhjXW_FS25NemJ_wLjxceqyiiwwPmpz_)
+
 [Google Doc Link](https://drive.google.com/drive/folders/1uhjXW_FS25NemJ_wLjxceqyiiwwPmpz_?usp=sharing)
 
 WIFI info is written on whiteboard.
