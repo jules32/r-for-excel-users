@@ -18,7 +18,7 @@ Connect to [UCSB guest wifi](https://www.news.ucsb.edu/2019/019657/new-guest-wi-
 1. Download & install RStudio: http://www.rstudio.com/download 
 1. Download & install Git: https://git-scm.com/downloads *Note: open the download and follow normal install procedures on your computer but you won't see any software installed when you're done*
 1. Create a GitHub account: https://github.com *Note! Shorter names that kind of identify you are better, and use your work email!*
-1. Download this [Google folder of data](https://drive.google.com/drive/u/0/folders/1uhjXW_FS25NemJ_wLjxceqyiiwwPmpz_)
+1. Download this [Google folder of data](https://drive.google.com/open?id=1uhjXW_FS25NemJ_wLjxceqyiiwwPmpz_)
 
 And put up a pink sticky note if you need help. 
 
