@@ -225,9 +225,9 @@ Excel can also become problematic with extending to analyses. This is because th
 
 \includegraphics[width=0.7\linewidth]{img/excel-sheet-example}
 
-This makes the analytical steps taken are not readily apparent, nor easy to reproduce. This also makes them pretty brittle/sensitive to minor changes. Have you ever done forensics on an Excel sheet, trying to understand what happened between columns or sheets? Maybe it was even your own Excel file from the (recent) past.
+This makes the analytical steps taken are not readily apparent, nor easy to reproduce. Have you ever done forensics on an Excel sheet, trying to understand what happened between columns or sheets? Maybe it was even your own Excel file from the (recent) past.
 
-Or, Has seeing this ever given you a feeling of horror:
+This also makes them pretty brittle/sensitive to minor changes. Has seeing this ever given you a feeling of horror:
 
 \includegraphics[width=0.8\linewidth]{img/want-to-save-changes-excel}
 
@@ -259,8 +259,6 @@ We will learn technical skills that you can incrementally incorporate into your 
 \textbf{R users keep raw data separate from their analyses}, which means having data in one file and written computational commands saved as a separate file. We also embrace the concept of \textbf{``tidy data''}, where the data has a rectangular shape and each column is a variable and each row is an observation. Tidy data is a way of life.
 
 \includegraphics[width=0.7\linewidth]{img/tidy_img_np}
-
-\textbf{We will teach R/RStudio/GitHub/tidyverse/RMarkdown all together} to reinforce skills and best practices, and get you comfortable with a workflow that you can have confidence using in your own work, and interface with Excel in your own analyses and with collaborators. You'll be working hands-on and doing the same things on your own computer as we do live on up on the screen.
 
 \textbf{We are going to go through a lot in these two days} and it's less important that you remember it all. More importantly, you'll have experience with it and confidence that you can do it. The main thing to take away is that there \emph{are} good ways to work between R and Excel; we will teach you to expect that so you can find what you need and use it! A theme throughout is that tools exist and are being developed by real, and extraordinarily nice, people to meet you where you are and help you do what you need to do.
 
@@ -307,7 +305,7 @@ R is not only a language, it is an active community of developers, users, and ed
 We'll learn RMarkdown, which helps you tell a story with your data analysis because you can write text alongside the code. We are actually learning two languages at once: R and Markdown.
 
 \hypertarget{objectives}{%
-\section{Objectives}\label{objectives}}
+\subsection{Objectives}\label{objectives}}
 
 In this lesson we will:
 
@@ -326,7 +324,7 @@ In this lesson we will:
 \end{itemize}
 
 \hypertarget{resources-1}{%
-\section{Resources}\label{resources-1}}
+\subsection{Resources}\label{resources-1}}
 
 \begin{itemize}
 \tightlist
@@ -391,10 +389,6 @@ We can do math:
 \end{Shaded}
 
 But like Excel, the power comes not from doing small operations by hand (like 8*22.3), it's by being able to operate on whole suites of numbers and datasets. In Excel, data are stored in the spreadsheet. In R, they are stored in objects, which are often vectors or dataframes. They are rectangular.
-
-We have to name these dataframes. This is a big difference with Excel, where you usually identify data by its location on the grid, like \texttt{\$A1:D\$20}. (You can do this with Excel by naming ranges of cells, but many people don't do this.)
-
-Data can be a variety of formats, like numeric and text.
 
 \hypertarget{viewing-data-in-r}{%
 \subsection{Viewing data in R}\label{viewing-data-in-r}}
@@ -556,7 +550,7 @@ Not all functions have (or require) arguments:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Sat Dec  7 05:35:09 2019"
+## [1] "Sat Dec  7 08:22:00 2019"
 \end{verbatim}
 
 \hypertarget{packages}{%
@@ -595,13 +589,19 @@ Now that we've loaded the \texttt{praise} package, we can use the single functio
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "You are prime!"
+## [1] "You are priceless!"
 \end{verbatim}
 
 \hypertarget{assigning-objects-with--}{%
 \subsection{\texorpdfstring{Assigning objects with \texttt{\textless{}-}}{Assigning objects with \textless{}-}}\label{assigning-objects-with--}}
 
-This might be a really important value that we want to have on hand. We can save this as its own object. We do this by writing the name along with the assignment operator \texttt{\textless{}-}
+This might be a really important value that we want to have on hand. We can save this as its own object.
+
+This is a big difference with Excel, where you usually identify data by its location on the grid, like \texttt{\$A1:D\$20}. (You can do this with Excel by naming ranges of cells, but many people don't do this.)
+
+Data can be a variety of formats, like numeric and text.
+
+We do this by writing the name along with the assignment operator \texttt{\textless{}-}
 
 \begin{Shaded}
 \begin{Highlighting}[]

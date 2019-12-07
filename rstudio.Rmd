@@ -4,7 +4,7 @@
 
 We'll learn RMarkdown, which helps you tell a story with your data analysis because you can write text alongside the code. We are actually learning two languages at once: R and Markdown. 
 
-## Objectives 
+### Objectives 
 
 In this lesson we will:
 
@@ -14,7 +14,7 @@ In this lesson we will:
 - learn to use the help pages
 - explore RMarkdown
 
-## Resources
+### Resources
 
 - [R for Excel Users](https://blog.shotwell.ca/posts/r_for_excel_users/) by Gordon Shotwell (blog)
 
@@ -69,10 +69,6 @@ We can do math:
 ```
  
 But like Excel, the power comes not from doing small operations by hand (like 8*22.3), it's by being able to operate on whole suites of numbers and datasets. In Excel, data are stored in the spreadsheet. In R, they are stored in objects, which are often vectors or dataframes. They are rectangular. 
-
-We have to name these dataframes. This is a big difference with Excel, where you usually identify data by its location on the grid, like `$A1:D$20`. (You can do this with Excel by naming ranges of cells, but many people don’t do this.)
-
-Data can be a variety of formats, like numeric and text. 
 
 ### Viewing data in R
 
@@ -210,7 +206,13 @@ praise()
 
 ### Assigning objects with `<-`
 
-This might be a really important value that we want to have on hand. We can save this as its own object. We do this by writing the name along with the assignment operator `<-`
+This might be a really important value that we want to have on hand. We can save this as its own object. 
+
+This is a big difference with Excel, where you usually identify data by its location on the grid, like `$A1:D$20`. (You can do this with Excel by naming ranges of cells, but many people don’t do this.)
+
+Data can be a variety of formats, like numeric and text. 
+
+We do this by writing the name along with the assignment operator `<-`
 
 ```{r assign}
 sum_dist <- sum(cars$dist)
