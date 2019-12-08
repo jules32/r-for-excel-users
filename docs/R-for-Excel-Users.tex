@@ -133,7 +133,7 @@
 
 \title{R for Excel Users}
 \author{Julie Lowndes \& Allison Horst}
-\date{2019-12-07}
+\date{2019-12-08}
 
 \begin{document}
 \maketitle
@@ -550,7 +550,7 @@ Not all functions have (or require) arguments:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Sat Dec  7 08:22:00 2019"
+## [1] "Sun Dec  8 07:00:34 2019"
 \end{verbatim}
 
 \hypertarget{packages}{%
@@ -589,7 +589,7 @@ Now that we've loaded the \texttt{praise} package, we can use the single functio
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "You are priceless!"
+## [1] "You are tiptop!"
 \end{verbatim}
 
 \hypertarget{assigning-objects-with--}{%
@@ -2399,8 +2399,6 @@ In R, we can use dplyr for pivot tables by using 2 main verbs in combination: \t
 \item
   Introduce \texttt{group\_by()\ \%\textgreater{}\%\ summarize()} from the \texttt{dplyr} package
 \item
-  Format tables with the \texttt{DT} and \texttt{knitr} packages
-\item
   Practice our reproducible workflow with RMarkdown and GitHub
 \end{itemize}
 
@@ -2480,21 +2478,21 @@ In this data set, every row is a unique observation. This is called ``uncounted'
 
 \begin{verbatim}
 ##       year          month           date               site          
-##  Min.   :2012   Min.   :8.000   Length:2893        Length:2893       
-##  1st Qu.:2014   1st Qu.:8.000   Class :character   Class :character  
-##  Median :2015   Median :8.000   Mode  :character   Mode  :character  
-##  Mean   :2015   Mean   :8.037                                        
-##  3rd Qu.:2016   3rd Qu.:8.000                                        
-##  Max.   :2016   Max.   :9.000                                        
+##  Min.   :2012   Min.   :8.000   Length:6366        Length:6366       
+##  1st Qu.:2015   1st Qu.:8.000   Class :character   Class :character  
+##  Median :2017   Median :8.000   Mode  :character   Mode  :character  
+##  Mean   :2016   Mean   :8.017                                        
+##  3rd Qu.:2018   3rd Qu.:8.000                                        
+##  Max.   :2018   Max.   :9.000                                        
 ##                                                                      
 ##     transect      replicate            size_mm      
-##  Min.   :1.000   Length:2893        Min.   : 18.00  
-##  1st Qu.:2.000   Class :character   1st Qu.: 62.00  
-##  Median :3.000   Mode  :character   Median : 72.00  
-##  Mean   :3.723                      Mean   : 71.38  
-##  3rd Qu.:5.000                      3rd Qu.: 81.00  
-##  Max.   :9.000                      Max.   :165.00  
-##                                     NA's   :5
+##  Min.   :1.000   Length:6366        Min.   : 18.00  
+##  1st Qu.:2.000   Class :character   1st Qu.: 65.00  
+##  Median :4.000   Mode  :character   Median : 75.00  
+##  Mean   :3.806                      Mean   : 73.02  
+##  3rd Qu.:5.000                      3rd Qu.: 82.00  
+##  Max.   :9.000                      Max.   :183.00  
+##                                     NA's   :6
 \end{verbatim}
 
 \texttt{summary} gives us summary statistics for each variable (column). I like this for numeric columns, but it doesn't give a lot of useful information for non-numeric data. To have a look there I like using the skimr package:
@@ -2514,7 +2512,7 @@ lobsters
 
 Number of rows
 
-2893
+6366
 
 Number of columns
 
@@ -2568,7 +2566,7 @@ date
 
 0
 
-28
+38
 
 0
 
@@ -2634,21 +2632,21 @@ year
 
 1
 
-2014.70
+2016.24
 
-1.19
+1.66
 
 2012
 
-2014
-
 2015
 
-2016
+2017
 
-2016
+2018
 
-▂▂▃▇▆
+2018
+
+▁▁▂▂▇
 
 month
 
@@ -2656,9 +2654,9 @@ month
 
 1
 
-8.04
+8.02
 
-0.19
+0.13
 
 8
 
@@ -2678,43 +2676,43 @@ transect
 
 1
 
-3.72
+3.81
 
-2.30
+2.17
 
 1
 
 2
 
-3
+4
 
 5
 
 9
 
-▇▅▃▂▂
+▇▆▅▃▂
 
 size\_mm
 
-5
+6
 
 1
 
-71.38
+73.02
 
-14.75
+13.61
 
 18
 
-62
+65
 
-72
+75
 
-81
+82
 
-165
+183
 
-▁▇▆▁▁
+▁▇▂▁▁
 
 This \texttt{skimr::} notation is a reminder to me that \texttt{skim} is from the \texttt{skimr} package. It is a nice convention: it's a reminder to others (especially you!).
 
@@ -2748,7 +2746,9 @@ Let's start by having a quick look at what pivot tables can do in Excel.
 
 Let's make a pivot table with our lobster data.
 
-Let's start off with how many lobsters were counted each year. I want a count of rows by year So to do this in Excel we would initiate the Pivot Table Process:
+Let's start off with how many lobsters were counted each year. I want a count of rows by year.
+
+So to do this in Excel we would initiate the Pivot Table Process:
 
 \includegraphics[width=0.6\linewidth]{img/pivot-table-menu}
 
@@ -2773,6 +2773,8 @@ A few things to note:
   The pivot table is separate entity from our data (it's on a different sheet); the original data has not been affected
 \item
   The pivot table only shows the variables we requested; we don't see other columns (like date, month, or site).
+\item
+  Notice that in Excel we retain the overall totals for each site (in bold, on the same line with the site name). This is nice for communicating about data. But it can be problematic for further analyses, because it could be easy to take a total of this column and introduce errors.
 \end{itemize}
 
 So pivot tables are great because they summarize the data and keep the raw data raw --- they even promote good pratice because they by default ask you if you'd like to present the data in a new sheet rather than in the same sheet.
@@ -2825,7 +2827,7 @@ This to me reads: ``take the lobsters data and then group\_by year and then summ
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 5 x 2
+## # A tibble: 7 x 2
 ##    year count_by_year
 ##   <dbl>         <int>
 ## 1  2012           231
@@ -2833,6 +2835,8 @@ This to me reads: ``take the lobsters data and then group\_by year and then summ
 ## 3  2014           510
 ## 4  2015          1100
 ## 5  2016           809
+## 6  2017          1668
+## 7  2018          1805
 \end{verbatim}
 
 Notice how together, \texttt{group\_by} and \texttt{summarize} minimize the amount of information we see. We also saw this with the pivot table. We lose the other columns that aren't involved here.
@@ -2850,12 +2854,37 @@ Question: What if you \emph{don't} group\_by first? Let's try it and discuss wha
 ## # A tibble: 1 x 1
 ##   count
 ##   <int>
-## 1  2893
+## 1  6366
 \end{verbatim}
 
 So if we don't \texttt{group\_by} first, we will get a single summary statistic (sum in this case) for the whole dataset.
 
-Notice that in Excel we retain the overall totals for each site (in bold, on the same line with the site name). This is nice for communicating about data. But it can be problematic for further analyses, because it could be easy to take a total of this column and introduce errors.
+Another question: what if we \emph{only} group\_by?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lobsters }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6,366 x 7
+## # Groups:   year [7]
+##     year month date    site  transect replicate size_mm
+##    <dbl> <dbl> <chr>   <chr>    <dbl> <chr>       <dbl>
+##  1  2012     8 8/20/12 ivee         3 A              70
+##  2  2012     8 8/20/12 ivee         3 B              60
+##  3  2012     8 8/20/12 ivee         3 B              65
+##  4  2012     8 8/20/12 ivee         3 B              70
+##  5  2012     8 8/20/12 ivee         3 B              85
+##  6  2012     8 8/20/12 ivee         3 C              60
+##  7  2012     8 8/20/12 ivee         3 C              65
+##  8  2012     8 8/20/12 ivee         3 C              67
+##  9  2012     8 8/20/12 ivee         3 D              70
+## 10  2012     8 8/20/12 ivee         4 B              85
+## # ... with 6,356 more rows
+\end{verbatim}
 
 \hypertarget{rstudio-viewer}{%
 \subsection{RStudio Viewer}\label{rstudio-viewer}}
@@ -2882,7 +2911,7 @@ Great. Now let's summarize by both year and site like we did in the pivot table.
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 25 x 3
+## # A tibble: 35 x 3
 ## # Groups:   site [5]
 ##    site   year count_by_siteyear
 ##    <chr> <dbl>             <int>
@@ -2891,12 +2920,12 @@ Great. Now let's summarize by both year and site like we did in the pivot table.
 ##  3 aque   2014               100
 ##  4 aque   2015                83
 ##  5 aque   2016                48
-##  6 carp   2012                78
-##  7 carp   2013                93
-##  8 carp   2014                79
-##  9 carp   2015                90
-## 10 carp   2016               231
-## # ... with 15 more rows
+##  6 aque   2017                67
+##  7 aque   2018                54
+##  8 carp   2012                78
+##  9 carp   2013                93
+## 10 carp   2014                79
+## # ... with 25 more rows
 \end{verbatim}
 
 text.
@@ -2916,7 +2945,7 @@ We can summarize multiple variables at a time. So far we've done the count of lo
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 25 x 4
+## # A tibble: 35 x 4
 ## # Groups:   site [5]
 ##    site   year count_by_siteyear mean_size_mm
 ##    <chr> <dbl>             <int>        <dbl>
@@ -2925,12 +2954,12 @@ We can summarize multiple variables at a time. So far we've done the count of lo
 ##  3 aque   2014               100         76.9
 ##  4 aque   2015                83         68.5
 ##  5 aque   2016                48         68.7
-##  6 carp   2012                78         74.4
-##  7 carp   2013                93         76.6
-##  8 carp   2014                79         NA  
-##  9 carp   2015                90         70.7
-## 10 carp   2016               231         68.9
-## # ... with 15 more rows
+##  6 aque   2017                67         73.9
+##  7 aque   2018                54         71.7
+##  8 carp   2012                78         74.4
+##  9 carp   2013                93         76.6
+## 10 carp   2014                79         NA  
+## # ... with 25 more rows
 \end{verbatim}
 
 \begin{quote}
@@ -2950,7 +2979,7 @@ Great! But this will actually calculate some of the means as NA because one or m
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 25 x 5
+## # A tibble: 35 x 5
 ## # Groups:   site [5]
 ##    site   year count_by_siteyear mean_size_mm sd_size_mm
 ##    <chr> <dbl>             <int>        <dbl>      <dbl>
@@ -2959,12 +2988,12 @@ Great! But this will actually calculate some of the means as NA because one or m
 ##  3 aque   2014               100         76.9       9.32
 ##  4 aque   2015                83         68.5      12.6 
 ##  5 aque   2016                48         68.7      12.5 
-##  6 carp   2012                78         74.4      14.6 
-##  7 carp   2013                93         76.6       8.71
-##  8 carp   2014                79         79.1       8.57
-##  9 carp   2015                90         70.7      14.6 
-## 10 carp   2016               231         68.9      12.5 
-## # ... with 15 more rows
+##  6 aque   2017                67         73.9      11.9 
+##  7 aque   2018                54         71.7       8.14
+##  8 carp   2012                78         74.4      14.6 
+##  9 carp   2013                93         76.6       8.71
+## 10 carp   2014                79         79.1       8.57
+## # ... with 25 more rows
 \end{verbatim}
 
 So we can make the equivalent of Excel's pivot table in R with \texttt{group\_by} and then \texttt{summarize}. But a powerful thing about R is that maybe we want this information to be used in further analyses. We can make this easier for ourselves by saving this as a variable. So let's add a variable assignment to that first line:
@@ -2982,7 +3011,7 @@ So we can make the equivalent of Excel's pivot table in R with \texttt{group\_by
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 25 x 5
+## # A tibble: 35 x 5
 ## # Groups:   site [5]
 ##    site   year count_by_siteyear mean_size_mm sd_size_mm
 ##    <chr> <dbl>             <int>        <dbl>      <dbl>
@@ -2991,20 +3020,27 @@ So we can make the equivalent of Excel's pivot table in R with \texttt{group\_by
 ##  3 aque   2014               100         76.9       9.32
 ##  4 aque   2015                83         68.5      12.6 
 ##  5 aque   2016                48         68.7      12.5 
-##  6 carp   2012                78         74.4      14.6 
-##  7 carp   2013                93         76.6       8.71
-##  8 carp   2014                79         79.1       8.57
-##  9 carp   2015                90         70.7      14.6 
-## 10 carp   2016               231         68.9      12.5 
-## # ... with 15 more rows
+##  6 aque   2017                67         73.9      11.9 
+##  7 aque   2018                54         71.7       8.14
+##  8 carp   2012                78         74.4      14.6 
+##  9 carp   2013                93         76.6       8.71
+## 10 carp   2014                79         79.1       8.57
+## # ... with 25 more rows
 \end{verbatim}
 
 \hypertarget{activity-3}{%
 \subsection{Activity}\label{activity-3}}
 
-Calculate the median \texttt{size\_mm} (Hint: ?median) and create a
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Calculate the median \texttt{size\_mm} (Hint: ?median) and
+\item
+  create and ggsave() a plot.
+\end{enumerate}
 
-Then, save, commit, and push your RMarkdown file.
+Then, save, commit, and push your .Rmd, .html, and .png.
 
 Solution (no peeking):
 
@@ -3015,18 +3051,21 @@ Solution (no peeking):
 \StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{count_by_siteyear =}  \KeywordTok{n}\NormalTok{(), }
             \DataTypeTok{mean_size_mm =} \KeywordTok{mean}\NormalTok{(size_mm, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{), }
             \DataTypeTok{sd_size_mm =} \KeywordTok{sd}\NormalTok{(size_mm, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{), }
-            \DataTypeTok{median_size_mm =} \KeywordTok{median}\NormalTok{(size_mm, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{), )}
+            \DataTypeTok{median_size_mm =} \KeywordTok{median}\NormalTok{(size_mm, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
 
 \NormalTok{siteyear_summary}
 
 \CommentTok{## a ggplot option:}
 \KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ siteyear_summary, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ year, }\DataTypeTok{y =}\NormalTok{ median_size_mm, }\DataTypeTok{color =}\NormalTok{ site)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_line}\NormalTok{() }
+\KeywordTok{ggsave}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"figures"}\NormalTok{, }\StringTok{"lobsters-line.png"}\NormalTok{))}
+
 
 \CommentTok{## another option:}
 \KeywordTok{ggplot}\NormalTok{(siteyear_summary, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ year, }\DataTypeTok{y =}\NormalTok{ median_size_mm)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_col}\NormalTok{() }\OperatorTok{+}
 \StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{site)}
+\KeywordTok{ggsave}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"figures"}\NormalTok{, }\StringTok{"lobsters-col.png"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3039,7 +3078,7 @@ Nice work everybody.
 
 Oh no! After all our analyses and everything we've done, our colleague just emailed us at 4:30pm on Friday that he sent the wrong data and we need to redo all our analyses with a new .xlsx file: \texttt{lobsters2.xlsx}, not \texttt{lobsters.xlsx}. Aaaaah!
 
-If we were doing this in Excel, this would be a bummer; we'd have to rebuild our pivot table and click through all of our logic again.
+If we were doing this in Excel, this would be a bummer; we'd have to rebuild our pivot table and click through all of our logic again. And then export our figures and save them into our report.
 
 But, since we did it in R, we are much safer. We can go back to the top of our RMarkdown file, and read in the updated dataset, and then re-knit. We will still need to check that everything outputs correctly, (and that column headers haven't been renamed), but our first pass will be to update the filename and re-knit:
 
@@ -3091,7 +3130,17 @@ And now we can see that our plot updated as well:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-97-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-98-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggsave}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"figures"}\NormalTok{, }\StringTok{"lobsters-line.png"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Saving 6.5 x 4.5 in image
+\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3102,7 +3151,22 @@ And now we can see that our plot updated as well:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-97-2.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-98-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggsave}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"figures"}\NormalTok{, }\StringTok{"lobsters-col.png"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Saving 6.5 x 4.5 in image
+\end{verbatim}
+
+\hypertarget{knit-push-show-differences-on-github}{%
+\subsection{Knit, push, \& show differences on GitHub}\label{knit-push-show-differences-on-github}}
+
+So cool.
 
 \hypertarget{dplyrcount}{%
 \subsection{\texorpdfstring{\texttt{dplyr::count()}}{dplyr::count()}}\label{dplyrcount}}

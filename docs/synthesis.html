@@ -24,7 +24,7 @@
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
 
 
-<meta name="date" content="2019-12-07" />
+<meta name="date" content="2019-12-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -264,7 +264,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.7.5" data-path="pivot.html"><a href="pivot.html#activity-3"><i class="fa fa-check"></i><b>7.7.5</b> Activity</a></li>
 </ul></li>
 <li class="chapter" data-level="7.8" data-path="pivot.html"><a href="pivot.html#oh-no-our-colleague-sent-the-wrong-data"><i class="fa fa-check"></i><b>7.8</b> Oh no, our colleague sent the wrong data!</a><ul>
-<li class="chapter" data-level="7.8.1" data-path="pivot.html"><a href="pivot.html#dplyrcount"><i class="fa fa-check"></i><b>7.8.1</b> <code>dplyr::count()</code></a></li>
+<li class="chapter" data-level="7.8.1" data-path="pivot.html"><a href="pivot.html#knit-push-show-differences-on-github"><i class="fa fa-check"></i><b>7.8.1</b> Knit, push, &amp; show differences on GitHub</a></li>
+<li class="chapter" data-level="7.8.2" data-path="pivot.html"><a href="pivot.html#dplyrcount"><i class="fa fa-check"></i><b>7.8.2</b> <code>dplyr::count()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="7.9" data-path="pivot.html"><a href="pivot.html#mutate"><i class="fa fa-check"></i><b>7.9</b> <code>mutate()</code></a></li>
 <li class="chapter" data-level="7.10" data-path="pivot.html"><a href="pivot.html#select"><i class="fa fa-check"></i><b>7.10</b> <code>select()</code></a></li>
@@ -379,19 +380,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="attach-packages-and-read-in-the-data" class="section level3">
 <h3><span class="header-section-number">10.4.2</span> Attach packages and read in the data</h3>
 <p>Attach (load) packages with <code>library()</code>:</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb188-2" data-line-number="2"><span class="kw">library</span>(googlesheets4)</a>
-<a class="sourceLine" id="cb188-3" data-line-number="3"><span class="kw">library</span>(here)  </a>
-<a class="sourceLine" id="cb188-4" data-line-number="4"><span class="kw">library</span>(janitor) </a></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb194-2" data-line-number="2"><span class="kw">library</span>(googlesheets4)</a>
+<a class="sourceLine" id="cb194-3" data-line-number="3"><span class="kw">library</span>(here)  </a>
+<a class="sourceLine" id="cb194-4" data-line-number="4"><span class="kw">library</span>(janitor) </a></code></pre></div>
 <p>Now we’ll read in our files with <code>readr::read_csv()</code>, but our files aren’t in our <strong>project root</strong>. They’re in the <code>data</code> subfolder.</p>
 <p>Use <code>here::here()</code> to direct R where to look for files, if they’re not in the project root. Not sure where that is? Type <code>here()</code> in the Console, and it will tell you!</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" data-line-number="1">here<span class="op">::</span><span class="kw">here</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" data-line-number="1">here<span class="op">::</span><span class="kw">here</span>()</a></code></pre></div>
 <p><code>&quot;/returns/your/project/root/&quot;</code></p>
 <p>Go ahead, find your project root!</p>
 <p>Then use <code>here::here()</code> <em>again</em> to easily locate a file somewhere outside of the exact project root. In our case, the files we want to read in are in the <code>data</code> subfolder - so we have to tell R how to get there from the root:</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" data-line-number="1"><span class="co"># Read in CSV files</span></a>
-<a class="sourceLine" id="cb190-2" data-line-number="2">fish_counts &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;fish_counts_curated.csv&quot;</span>))</a>
-<a class="sourceLine" id="cb190-3" data-line-number="3">lobster_counts &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;lobster_counts.csv&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" data-line-number="1"><span class="co"># Read in CSV files</span></a>
+<a class="sourceLine" id="cb196-2" data-line-number="2">fish_counts &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;fish_counts_curated.csv&quot;</span>))</a>
+<a class="sourceLine" id="cb196-3" data-line-number="3">lobster_counts &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;lobster_counts.csv&quot;</span>))</a></code></pre></div>
 <p>Check out the two data frames (<code>fish_counts</code> and <code>lobster_counts</code>).</p>
 <p>The <code>fish_counts</code> data frame is in pretty good shape. But the <code>lobster_counts</code> df could use some love, because there are “-99999” entries indicating <code>NA</code> values, and the column names would be difficult to write code with.</p>
 <p>When reading in the lobster data, let’s:</p>
@@ -399,9 +400,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>convert every “-99999” to an <code>NA</code></li>
 <li>get the column names into lower snake case using <code>janitor::clean_names()</code></li>
 </ul>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" data-line-number="1">lobster_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;curation&quot;</span>, <span class="st">&quot;lobster_counts.csv&quot;</span>),</a>
-<a class="sourceLine" id="cb191-2" data-line-number="2">                           <span class="dt">na =</span> <span class="st">&quot;-99999&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb191-3" data-line-number="3"><span class="st">                  </span><span class="kw">clean_names</span>() </a></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" data-line-number="1">lobster_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;curation&quot;</span>, <span class="st">&quot;lobster_counts.csv&quot;</span>),</a>
+<a class="sourceLine" id="cb197-2" data-line-number="2">                           <span class="dt">na =</span> <span class="st">&quot;-99999&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb197-3" data-line-number="3"><span class="st">                  </span><span class="kw">clean_names</span>() </a></code></pre></div>
 <p>Look at it again to check (always look at your data) - now both data frames seem pretty coder-friendly to work with.</p>
 </div>
 <div id="data-wrangling" class="section level3">

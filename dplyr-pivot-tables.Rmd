@@ -387,6 +387,8 @@ ggsave(here("figures", "lobsters-col.png"))
 
 ### Knit, push, & show differences on GitHub
 
+So cool. 
+
 ### `dplyr::count()`
 
 Now that we've spent time with group_by %>% summarize, there is a shortcut if you only want to summarize by count. This is with a function called `count()`, and it will group_by your selected variable, count, and then also ungroup. It looks like this: 
