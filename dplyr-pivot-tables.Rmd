@@ -15,7 +15,6 @@ In R, we can use dplyr for pivot tables by using 2 main verbs in combination: `g
 
 - Discuss pivot tables in Excel
 - Introduce `group_by() %>% summarize()` from the `dplyr` package
-- Format tables with the `DT` and `knitr` packages
 - Practice our reproducible workflow with RMarkdown and GitHub
 
 ## Resources
@@ -55,7 +54,7 @@ library(tidyverse)
 library(readxl)
 library(here)
 library(skimr)
-lobsters <- read_xlsx(here("curation/lobsters_curated.xlsx"))
+lobsters <- read_xlsx(here("curation/lobsters2_curated.xlsx"))
 ```
 
 Let's add a code chunk and explore the data in a few ways.
@@ -108,7 +107,9 @@ Let's start by having a quick look at what pivot tables can do in Excel.
 
 Let's make a pivot table with our lobster data.
 
-Let's start off with how many lobsters were counted each year. I want a count of rows by year So to do this in Excel we would initiate the Pivot Table Process: 
+Let's start off with how many lobsters were counted each year. I want a count of rows by year.
+
+So to do this in Excel we would initiate the Pivot Table Process: 
 
 <br>
 
@@ -146,6 +147,7 @@ A few things to note:
 
 - The pivot table is separate entity from our data (it's on a different sheet); the original data has not been affected 
 - The pivot table only shows the variables we requested; we don't see other columns (like date, month, or site). 
+- Notice that in Excel we retain the overall totals for each site (in bold, on the same line with the site name). This is nice for communicating about data. But it can be problematic for further analyses, because it could be easy to take a total of this column and introduce errors. 
 
 So pivot tables are great because they summarize the data and keep the raw data raw — they even promote good pratice because they by default ask you if you'd like to present the data in a new sheet rather than in the same sheet.  
 
@@ -205,9 +207,13 @@ Say it with me: "pivot tables are group_by and then summarize". And just like pi
 
 I think it's incredibly powerful to visualize what we are talking about with our data when do do these kinds of operations. It looks like this (from [RStudio's cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf); all cheatsheets available from <https://rstudio.com/resources/cheatsheets>): 
 
+<br>
+<br>
 ```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("img/rstudio-cheatsheet-group_by_summarize.png")  
 ```
+<br>
+<br>
 
 When we were reporting by year or site, we were essentially modifying what we were grouping by (the different colors here in this figure. 
 
@@ -236,7 +242,14 @@ lobsters %>%
 
 So if we don't `group_by` first, we will get a single summary statistic (sum in this case) for the whole dataset. 
 
-Notice that in Excel we retain the overall totals for each site (in bold, on the same line with the site name). This is nice for communicating about data. But it can be problematic for further analyses, because it could be easy to take a total of this column and introduce errors. 
+Another question: what if we *only* group_by? 
+
+```{r}
+lobsters %>%
+  group_by(year)
+```
+
+
 
 ### RStudio Viewer 
 
@@ -296,9 +309,10 @@ siteyear_summary
 
 ### Activity
 
-Calculate the median `size_mm` (Hint: ?median) and create a 
+1. Calculate the median `size_mm` (Hint: ?median) and 
+1. create and ggsave() a plot. 
 
-Then, save, commit, and push your RMarkdown file. 
+Then, save, commit, and push your .Rmd, .html, and .png. 
 
 Solution (no peeking): 
 ```{r, eval=FALSE}
@@ -307,18 +321,21 @@ siteyear_summary <- lobsters %>%
   summarize(count_by_siteyear =  n(), 
             mean_size_mm = mean(size_mm, na.rm = TRUE), 
             sd_size_mm = sd(size_mm, na.rm = TRUE), 
-            median_size_mm = median(size_mm, na.rm = TRUE), )
+            median_size_mm = median(size_mm, na.rm = TRUE))
 
 siteyear_summary
 
 ## a ggplot option:
 ggplot(data = siteyear_summary, aes(x = year, y = median_size_mm, color = site)) +
   geom_line() 
+ggsave(here("figures", "lobsters-line.png"))
+
 
 ## another option:
 ggplot(siteyear_summary, aes(x = year, y = median_size_mm)) +
   geom_col() +
   facet_wrap(~site)
+ggsave(here("figures", "lobsters-col.png"))
 ```
 
 
@@ -330,7 +347,7 @@ Nice work everybody.
 
 Oh no! After all our analyses and everything we've done, our colleague just emailed us at 4:30pm on Friday that he sent the wrong data and we need to redo all our analyses with a new .xlsx file: `lobsters2.xlsx`, not `lobsters.xlsx`. Aaaaah! 
 
-If we were doing this in Excel, this would be a bummer; we'd have to rebuild our pivot table and click through all of our logic again. 
+If we were doing this in Excel, this would be a bummer; we'd have to rebuild our pivot table and click through all of our logic again. And then export our figures and save them into our report.
 
 But, since we did it in R, we are much safer. We can go back to the top of our RMarkdown file, and read in the updated dataset, and then re-knit. We will still need to check that everything outputs correctly, (and that column headers haven't been renamed), but our first pass will be to update the filename and re-knit: 
 
@@ -359,13 +376,16 @@ siteyear_summary
 ## a ggplot option:
 ggplot(data = siteyear_summary, aes(x = year, y = median_size_mm, color = site)) +
   geom_line() 
+ggsave(here("figures", "lobsters-line.png"))
 
 ## another option:
 ggplot(siteyear_summary, aes(x = year, y = median_size_mm)) +
   geom_col() +
   facet_wrap(~site)
+ggsave(here("figures", "lobsters-col.png"))
 ```
 
+### Knit, push, & show differences on GitHub
 
 ### `dplyr::count()`
 
