@@ -12,7 +12,9 @@ description: "This is a workshop for RStudio::conf(2020) in San Francisco, Calif
 
 # Welcome {#welcome}
 
-Hello! This is a workshop taught by Julie Stewart Lowndes and Allison Horst at the RStudio Conference: January 27-28 in San Francisco, California. 
+**Deprecated draft matrials: please see [http://rstd.io/r-for-excel](http://rstd.io/r-for-excel) for current teaching materials**
+
+Hello! These are materials for a pilot workshop that was taught by Julie Stewart Lowndes and Allison Horst in preparation for the RStudio Conference in San Francisco January 27-28.
 
 We are environmental scientists who use and teach R in our daily work. We both work at the University of California Santa Barbara: Julie is based at the National Center for Ecological Analysis and Synthesis as part of the Ocean Health Index team and leads Openscapes, and Allison is based at the Bren School of Environmental Science and Management as a lecturer of data science & statistics — and is also an Artist in Residence at RStudio.
 
